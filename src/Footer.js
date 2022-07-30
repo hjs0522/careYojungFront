@@ -1,3 +1,4 @@
+//풋터 컴포넌트
 import styled from "styled-components";
 import { Button, Grid, Image } from 'semantic-ui-react'
 
