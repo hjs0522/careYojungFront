@@ -19,7 +19,7 @@ function Popularlist(){
     return (
         <StyledPopularlist>
             <PopularH1>가장 인기있는 시설</PopularH1>
-            <FacilityList ></FacilityList>
+            <FacilityList count={4} ></FacilityList>
         </StyledPopularlist>
     )
 }

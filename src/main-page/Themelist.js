@@ -3,7 +3,7 @@ import FacilityList from "./FacilityList";
 
 
 const StyledThemelist = styled.div({
-    height:"500px",
+    height:"550px",
     backgroundColor:'#F5F7FA'
 })
 
@@ -18,7 +18,7 @@ const ThemeH1 = styled.h1({
 function Themelist(){
     return (<StyledThemelist>
         <ThemeH1>테마별 시설 둘러 보기</ThemeH1>
-        <FacilityList />
+        <FacilityList count={5}/>
     </StyledThemelist>)
 
 }

@@ -11,11 +11,16 @@ const RecentH1 = styled.h1({
     marginLeft:"7.5%"
 })
 
+const Aaa = styled.div({
+    height:"350px",
+    overflow:"scroll",
+})
+
 
 function Recentlist(){
     return (<StyledRecentlist>
-        <RecentH1>최근본시설</RecentH1>
-        <FacilityList />
+        <RecentH1>최근 본 시설</RecentH1>
+        <FacilityList count={4}/>
     </StyledRecentlist>)
 }
 

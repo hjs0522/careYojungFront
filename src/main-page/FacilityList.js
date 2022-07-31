@@ -1,8 +1,11 @@
 import styled from "styled-components";
 import {  Grid, Image } from 'semantic-ui-react'
+import _ from 'lodash'
 
 const HorizontalScroll = styled.div({
-    height:'150px',
+    whiteSpace:'nowrap',
+    overflow:"auto",
+    height:'80%',
     width:"85%",
     marginLeft:"7.5%"
 })
@@ -15,35 +18,37 @@ const StyledGridCol = styled(Grid.Column)({
   
 })
 
-const StyledImage = styled(Image)({
-  
+const StyledImage = styled.img({
+  //width:"260px",
+  borderRadius:'10px',
+  marginLeft:'20px',
+  marginRight:'20px',
 })
 
 
-
-const GridExampleRelaxedVery = () => (
-  <StyledGrid >
+const GridExampleRelaxedVery = ({count}) => (
+  <StyledGrid  >
     <Grid.Row>
-      <StyledGridCol width={4}>
+      <StyledGridCol width={count} >
         <StyledImage src='https://react.semantic-ui.com/images/wireframe/image.png' />
-      </StyledGridCol>
-      <StyledGridCol width={4}>
         <StyledImage src='https://react.semantic-ui.com/images/wireframe/image.png' />
-      </StyledGridCol>
-      <StyledGridCol width={4}>
         <StyledImage src='https://react.semantic-ui.com/images/wireframe/image.png' />
-      </StyledGridCol>
-      <StyledGridCol width={4}>
-        <StyledImage src='https://react.semantic-ui.com/images/wireframe/image.png'/>
+        <StyledImage src='https://react.semantic-ui.com/images/wireframe/image.png' />
+        <StyledImage src='https://react.semantic-ui.com/images/wireframe/image.png' />
+        <StyledImage src='https://react.semantic-ui.com/images/wireframe/image.png' />
+        <StyledImage src='https://react.semantic-ui.com/images/wireframe/image.png' />
+        <StyledImage src='https://react.semantic-ui.com/images/wireframe/image.png' />
       </StyledGridCol>
     </Grid.Row>
+    
   </StyledGrid>
 )
 
-function FacilityList(){
+function FacilityList({count}){
     return (
         <HorizontalScroll>
-            <GridExampleRelaxedVery />
+            {console.log(count)}
+            <GridExampleRelaxedVery count={count} />
         </HorizontalScroll>
     )
 }
