@@ -12,7 +12,7 @@ const StyledFooter = styled.div`
 const StyledGrid = styled(Grid)({
   height:'150px',
   width:'100%',
-  borderTop : 'solid 1px black',
+  borderTop : 'solid 1px #E1E1E1',
   backgroundColor:'white'
 })
 const StyledColumn = styled(Grid.Column)({
