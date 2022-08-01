@@ -5,7 +5,8 @@ import ListArg from "./ListArg";
 const HorizontalScroll = styled.div({
     whiteSpace:'nowrap',
     overflow:"auto",
-    height:'110%',
+    height:'105%',
+    paddingBottom:'20px',
     width:"80%",
     marginLeft:"5%",
     display:'inline-block',
@@ -22,9 +23,6 @@ const StyledGridCol = styled(Grid.Column)({
 
 
 const GridExampleRelaxedVery = ({size, arr}) => {  //넘겨받는 count는 semantic-ui-react의 grid에서 출력 크기 (값이 클수록 커짐)
-  console.log(arr)
-  const abc=arr;
-  console.log(abc)
   return(<StyledGrid>
     <Grid.Row>
       <StyledGridCol width={size} >

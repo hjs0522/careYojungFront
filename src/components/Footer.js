@@ -4,6 +4,8 @@ import { Button, Grid, Image } from 'semantic-ui-react'
 
 
 const StyledGrid = styled(Grid)({
+  position:'relative',
+  bottom:'0',
   height:'150px',
   width:'100%',
   borderTop : 'solid 1px #E1E1E1',

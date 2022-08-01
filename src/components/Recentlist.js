@@ -8,11 +8,10 @@ const StyledDiv = styled.div({
 
 
 const StyledRecentlist = styled(Grid)({ //메인 페이지 최근 본 시설 css
-    height:"100%",
     
 })
 
-const StyledRecentInfo = styled.div({ //최근 본 시설 소개 문구 css
+export const StyledInfo = styled.div({ //최근 본 시설 소개 문구 css
     height:"100%",
     width:'80%',
     display:'inline-block',
@@ -21,24 +20,31 @@ const StyledRecentInfo = styled.div({ //최근 본 시설 소개 문구 css
     marginLeft:"50%",
 })
 
-const RecentH1=styled.h1({
-    paddingTop:'30px',
+export const InfoH1=styled.h1({
+    paddingTop:'10px',
     color:'#496ACE',
 })
-const RecentH3=styled.h6({
+export const InfoH3=styled.h6({
     margin:'0px',
     fontSize:'20px',
     fontWeight:'normal',
     color:'#444444',
 })
 
+export const StyledBox = styled.div({
+    height:'5px',
+    width:"40px",
+    backgroundColor:'#496ACE',
+})
+
 function RecentInfo(){ //최근 본 시설 소개 문구 컴포넌트
     return(
-        <StyledRecentInfo>
-            <RecentH1>최근 본 시설</RecentH1>
-            <RecentH3>고객님께서 </RecentH3>
-            <RecentH3>최근 본 시설입니다.</RecentH3>
-        </StyledRecentInfo>
+        <StyledInfo>
+            <StyledBox />
+            <InfoH1>최근 본 시설</InfoH1>
+            <InfoH3>고객님께서 </InfoH3>
+            <InfoH3>최근 본 시설입니다.</InfoH3>
+        </StyledInfo>
     )
 }
 

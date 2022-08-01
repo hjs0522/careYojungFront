@@ -4,15 +4,17 @@ import FacilityList from "./FacilityList";
 
 const StyledThemelist = styled.div({
     textAlign:'center',
-    height:"550px",
-    backgroundColor:'#F5F7FA'
+    height:"100%",
+    backgroundColor:'#F5F7FA',
+    paddingBottom:'100px',
 })
 
 const ThemeH1 = styled.h1({
     paddingTop:'50px',
     height:'80px',
-    fontSize:'20px',
-    textAlign:'center'
+    fontSize:'25px',
+    textAlign:'center',
+    marginBottom:'50px'
 })
 
 

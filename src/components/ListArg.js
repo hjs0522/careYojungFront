@@ -34,7 +34,7 @@ const StyleLoc = styled.div({
 })
 
 function ListArg({name,img,loc}){
-    console.log(img);
+    
     return (
         <>
             <StyleName>{name}</StyleName>
