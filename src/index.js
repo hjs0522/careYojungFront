@@ -1,8 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
-import Mainpage from './main-page/Mainpage';
-import Footer from './Footer';
+import Mainpage from './pages/Mainpage';
 
 
 
