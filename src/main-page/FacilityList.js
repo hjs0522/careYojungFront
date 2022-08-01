@@ -1,13 +1,14 @@
 import styled from "styled-components";
 import {  Grid, Image } from 'semantic-ui-react'
-import _ from 'lodash'
+import ListArg from "./ListArg";
 
 const HorizontalScroll = styled.div({
     whiteSpace:'nowrap',
     overflow:"auto",
-    height:'80%',
-    width:"85%",
-    marginLeft:"7.5%"
+    height:'110%',
+    width:"80%",
+    marginLeft:"5%",
+    display:'inline-block',
 })
 
 const StyledGrid = styled(Grid)({
@@ -18,38 +19,38 @@ const StyledGridCol = styled(Grid.Column)({
   
 })
 
-const StyledImage = styled.img({
-  //width:"260px",
-  borderRadius:'10px',
-  marginLeft:'20px',
-  marginRight:'20px',
-})
 
 
-const GridExampleRelaxedVery = ({count}) => (
-  <StyledGrid  >
+const GridExampleRelaxedVery = ({size, arr}) => {  //넘겨받는 count는 semantic-ui-react의 grid에서 출력 크기 (값이 클수록 커짐)
+  console.log(arr)
+  const abc=arr;
+  console.log(abc)
+  return(<StyledGrid>
     <Grid.Row>
-      <StyledGridCol width={count} >
+      <StyledGridCol width={size} >
+        
+        {arr.map( (i) => <ListArg name={i.name} img={i.img} loc={i.ShortLoc} /> )}
+        {/* <StyledImage src='https://react.semantic-ui.com/images/wireframe/image.png' />
         <StyledImage src='https://react.semantic-ui.com/images/wireframe/image.png' />
         <StyledImage src='https://react.semantic-ui.com/images/wireframe/image.png' />
         <StyledImage src='https://react.semantic-ui.com/images/wireframe/image.png' />
         <StyledImage src='https://react.semantic-ui.com/images/wireframe/image.png' />
         <StyledImage src='https://react.semantic-ui.com/images/wireframe/image.png' />
         <StyledImage src='https://react.semantic-ui.com/images/wireframe/image.png' />
-        <StyledImage src='https://react.semantic-ui.com/images/wireframe/image.png' />
-        <StyledImage src='https://react.semantic-ui.com/images/wireframe/image.png' />
+        <StyledImage src='https://react.semantic-ui.com/images/wireframe/image.png' /> */}
       </StyledGridCol>
     </Grid.Row>
     
-  </StyledGrid>
-)
+  </StyledGrid>)
+}
 
-function FacilityList({count}){
+function FacilityList({size,arr}){
     return (
+      <>
         <HorizontalScroll>
-            {console.log(count)}
-            <GridExampleRelaxedVery count={count} />
+            <GridExampleRelaxedVery size={size} arr={arr} />
         </HorizontalScroll>
+      </>
     )
 }
 
