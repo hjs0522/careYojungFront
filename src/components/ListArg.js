@@ -3,16 +3,13 @@ import {Image} from "semantic-ui-react";
 
 
 const StyledImage = styled.img({
-    // width:"190px",
-    // height:"190px",
     borderRadius:'10px',
     marginLeft:'20px',
     marginRight:'20px',
     filter:'drop-shadow(4px 4px 20px rgba(25,32,60,0.35))',
     display:'inline-block',
-      
+    
 })
-
 
 const StyleName = styled.div({
     position:'absolute',

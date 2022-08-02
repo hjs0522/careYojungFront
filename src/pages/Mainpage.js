@@ -2,6 +2,7 @@ import Recentlist from "../components/Recentlist";
 import Popularlist from "../components/Popularlist";
 import Themelist from "../components/Themelist";
 import Footer from "../components/Footer";
+import Pageup from "../components/Pageup";
 
 const arr = [{ //원래는 메인페이지에서 최근본시설, 인기있는시설, 테마별 시설을 가져와서 뿌려줌. 현재는 가상의 데이터 사용
   name : "안녕하세요",
@@ -44,6 +45,7 @@ function Mainpage(){
           <Recentlist arr={arr}/>
           <Popularlist arr={arr}/>
           <Themelist arr={arr} />
+          <Pageup />
           <Footer />
         </div>
     )
