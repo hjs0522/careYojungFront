@@ -3,6 +3,8 @@ import Popularlist from "../components/Popularlist";
 import Themelist from "../components/Themelist";
 import Footer from "../components/Footer";
 import Pageup from "../components/Pageup";
+import Header from "../components/Header";
+import styled from "styled-components";
 
 const arr = [{ //원래는 메인페이지에서 최근본시설, 인기있는시설, 테마별 시설을 가져와서 뿌려줌. 현재는 가상의 데이터 사용
   name : "안녕하세요",
@@ -39,16 +41,20 @@ const arr = [{ //원래는 메인페이지에서 최근본시설, 인기있는�
   img : "https://react.semantic-ui.com/images/wireframe/image.png"
 }]
 
+const StyledMainpage = styled.div`
+  padding-top:150px;
+  padding-bottom:150px;
+`
+
 function Mainpage(){
-    return (
-        <div >
-          <Recentlist arr={arr}/>
-          <Popularlist arr={arr}/>
-          <Themelist arr={arr} />
-          <Pageup />
-          <Footer />
-        </div>
-    )
+  return (    
+    <StyledMainpage>
+      <Recentlist arr={arr}/>
+      <Popularlist arr={arr}/>
+      <Themelist arr={arr} />
+      <Pageup />
+    </StyledMainpage>
+  )
 }
 
 export default Mainpage;

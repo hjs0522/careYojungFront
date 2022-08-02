@@ -7,7 +7,6 @@ const StyledThemelist = styled.div({
     height:"100%",
     backgroundColor:'#F5F7FA',
     paddingBottom:'100px',
-    marginBottom:'100px',
 })
 
 const ThemeH1 = styled.h1({

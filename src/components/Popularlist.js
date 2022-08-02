@@ -8,8 +8,9 @@ const StyledDiv = styled.div({
 })
 
 const StyledPopularlist = styled(Grid)({
-    height:"100%"
+    height:"100%",
 })
+
 
 const StyledPopularInfo = styled.div({ //최근 본 시설 소개 문구 css
     height:"100%",
@@ -37,10 +38,10 @@ function Popularlist({arr}){
     return (
         <StyledDiv>
             <StyledPopularlist>
-                <Grid.Column width={3} floated="left">
+                <Grid.Column width={4} floated="left">
                     <PopularInfo size={arr.size} />
                 </Grid.Column>
-                <Grid.Column width={13}>
+                <Grid.Column width={12}  >
                     <FacilityList size={4} arr={arr} ></FacilityList>
                 </Grid.Column>
             </StyledPopularlist>

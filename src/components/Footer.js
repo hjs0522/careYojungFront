@@ -23,8 +23,8 @@ const StyledGridRow = styled(Grid.Row)({
 })
 
 const StyledImage = styled(Image)({
-    width:"160px", 
-    marginLeft:"50px"
+    width:"160px",
+    marginLeft:'40%' 
 })
 
 const StyledP = styled.p({
@@ -39,7 +39,7 @@ function Footer(){
             <Grid.Column width={3}>
             <StyledImage src='https://react.semantic-ui.com/images/wireframe/image.png' />
             </Grid.Column>
-            <Grid.Column width={12}>
+            <Grid.Column width={12} style={{marginLeft:'5%'}}>
                 <StyledGridRow >
                     <StyledColumn >
                         개인정보처리방침
@@ -48,7 +48,7 @@ function Footer(){
                         자주묻는질문
                     </StyledColumn>
                     <StyledColumn >
-                        공지사항
+                        <a href="../pages/Information.js">공지사항</a>
                     </StyledColumn>
                     <StyledColumn>
                         이용약관

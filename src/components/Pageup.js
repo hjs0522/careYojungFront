@@ -6,8 +6,7 @@ const StyledPageup = styled.div({
     display:'inline',
     float:'right',
     marginRight:'40px',
-    marginTop:'-60px',
-    marginBottom:'40px',
+    
 })
 
 const StyledIcon = styled(Icon)({
@@ -16,7 +15,6 @@ const StyledIcon = styled(Icon)({
     marginTop:'20px',
     
 })
-
 
 function Pageup(){
     const onClick = () =>{

@@ -3,6 +3,7 @@ import FacilityList from "./FacilityList";
 import {Grid} from 'semantic-ui-react'
 
 const StyledDiv = styled.div({
+    position:'relative',
     marginBottom:"120px",
 })
 
@@ -55,10 +56,10 @@ function Recentlist({arr}){
     return (
         <StyledDiv>
             <StyledRecentlist>
-                <Grid.Column width={3} floated="left">
+                <Grid.Column width={4} floated="left">
                     <RecentInfo />
                 </Grid.Column>
-                <Grid.Column width={13}>
+                <Grid.Column width={12}>
                     <FacilityList size={4} arr={arr} />
                 </Grid.Column>
             </StyledRecentlist>
