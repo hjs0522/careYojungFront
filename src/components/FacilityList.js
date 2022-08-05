@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import {  Grid, Image } from 'semantic-ui-react'
 import ListArg from "./ListArg";
+import Detail from "./Detail";
 
 const HorizontalScroll = styled.div`
     white-space:nowrap;

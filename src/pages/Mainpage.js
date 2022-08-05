@@ -7,24 +7,24 @@ import Header from "../components/Header";
 import styled from "styled-components";
 
 const arr = [{ //원래는 메인페이지에서 최근본시설, 인기있는시설, 테마별 시설을 가져와서 뿌려줌. 현재는 가상의 데이터 사용
-  name : "안녕하세요",
+  name : "서울요양시설",
   ShortLoc : "서울 마포구",
   img : "https://react.semantic-ui.com/images/wireframe/image.png"
 
 },{
-  name : "반값습니다",
+  name : "부산요양시설",
+  ShortLoc : "",
+  img : "https://react.semantic-ui.com/images/wireframe/image.png"
+},{
+  name : "강릉요양시설",
+  ShortLoc : "강원도 강릉시",
+  img : "https://react.semantic-ui.com/images/wireframe/image.png"
+},{
+  name : "저런 ",
   ShortLoc : "서울 마포구",
   img : "https://react.semantic-ui.com/images/wireframe/image.png"
 },{
-  name : "반값습니다",
-  ShortLoc : "서울 마포구",
-  img : "https://react.semantic-ui.com/images/wireframe/image.png"
-},{
-  name : "반값습니다",
-  ShortLoc : "서울 마포구",
-  img : "https://react.semantic-ui.com/images/wireframe/image.png"
-},{
-  name : "반값습니다",
+  name : "배고프다",
   ShortLoc : "서울 마포구",
   img : "https://react.semantic-ui.com/images/wireframe/image.png"
 },{

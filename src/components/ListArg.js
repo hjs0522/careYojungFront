@@ -2,7 +2,6 @@ import styled from "styled-components";
 import {Image} from "semantic-ui-react";
 import Detail from "./Detail";
 
-
 const StyledImage = styled.img({
     borderRadius:'10px',
     marginLeft:'20px',
@@ -37,8 +36,8 @@ function ListArg({name,img,loc}){
     
     return (
         <>
-            <StyleName onClick={()=>window.open("https://www.naver.com")}>{name}</StyleName>
-            <StyleLoc onClick={()=>window.open("https://www.naver.com")}>{loc}</StyleLoc>
+            <StyleName >{name}</StyleName>
+            <StyleLoc >{loc}</StyleLoc>
             <Detail img={img} name={name} loc={loc} />
         </>
     )
