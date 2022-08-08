@@ -1,38 +1,49 @@
+<<<<<<< HEAD:src/Footer.js
 //풋터 구현
+=======
+//풋터 컴포넌트
+>>>>>>> sa:src/components/Footer.js
 import styled from "styled-components";
 import { Button, Grid, Image } from 'semantic-ui-react'
 
-const StyledFooter = styled.div`
-  height:150px;
-  width:100%;  
-  border-top : solid 1px black;
-  background-color:white;
-`;
 
 const StyledGrid = styled(Grid)({
+  position:'relative',
+  bottom:'0',
   height:'150px',
   width:'100%',
-  borderTop : 'solid 1px black',
+  borderTop : 'solid 1px #E1E1E1',
   backgroundColor:'white'
 })
 const StyledColumn = styled(Grid.Column)({
     display:"inline",
     marginRight:"50px",
-    fontWeight:"bold"
+    fontWeight:"bold",
+    fontSize:"17px"
 })
 const StyledGridRow = styled(Grid.Row)({
-    marginBottom:'10px',
+    marginBottom:'20px',
     marginTop:'10px'
+})
+
+const StyledImage = styled(Image)({
+    width:"160px",
+    marginLeft:'40%' 
+})
+
+const StyledP = styled.p({
+    height:"25px",
+    fontSize:'15px'
 })
 
 
 function Footer(){
     return (
         <StyledGrid>
-            <Grid.Column width={2}>
-            <Image src='https://react.semantic-ui.com/images/wireframe/image.png' />
+            <Grid.Column width={3}>
+            <StyledImage src='https://react.semantic-ui.com/images/wireframe/image.png' />
             </Grid.Column>
-            <Grid.Column width={12}>
+            <Grid.Column width={12} style={{marginLeft:'5%'}}>
                 <StyledGridRow >
                     <StyledColumn >
                         개인정보처리방침
@@ -41,17 +52,21 @@ function Footer(){
                         자주묻는질문
                     </StyledColumn>
                     <StyledColumn >
-                        공지사항
+                        <a href='../pages/Information.js'>공지사항</a>
                     </StyledColumn>
                     <StyledColumn>
                         이용약관
                     </StyledColumn>
                 </StyledGridRow>
                 <Grid.Row>
-                    ydk9819@gmail.com
+                    <StyledP>
+                        ydk9819@gmail.com
+                    </StyledP>
                 </Grid.Row>
                 <Grid.Row>
-                    Copyrightⓒ2022 silver surfer All rights reserved.
+                    <StyledP>
+                        Copyrightⓒ2022 silver surfer All rights reserved.
+                    </StyledP>
                 </Grid.Row>
             </Grid.Column>
         </StyledGrid>
