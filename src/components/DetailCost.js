@@ -36,4 +36,6 @@ function DetailCost(){
     )
 }
 
+
+
 export default DetailCost;
