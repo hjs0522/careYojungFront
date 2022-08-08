@@ -10,6 +10,7 @@ const StyledHeader = styled.text({
   
 })
 
+
 const StyledInnerHeader = styled.text({
     fontSize:'22px',
     color:'#444444',
