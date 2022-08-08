@@ -15,6 +15,7 @@ const StyledInnerHeader = styled.text({
     color:'#444444',
 })
   
+
 const BeneficalType = styled.div({
     marginTop:'5%',
 })
