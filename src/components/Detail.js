@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
-import { Button, Header, Modal,Grid, Image} from 'semantic-ui-react'
+import { Button, Modal,Grid} from 'semantic-ui-react'
 import styled from 'styled-components'
+import DetailCost from './DetailCost'
 
 const DetailPage = styled.div({
   marginLeft:'4%',
@@ -16,9 +17,10 @@ const StyledImage = styled.img({
     cursor:'pointer',
 })
 
-const RightImage = styled.img({
+const DetailImage = styled.img({
   marginTop:'20px',
-  height:'170px'
+  height:'170px',
+  borderRadius:'10px',
 })
 
 const ModalHeader = styled.div({
@@ -30,10 +32,11 @@ const ModalHeader = styled.div({
 const MenuBarBox = styled.div({
   width:'100%',
   fontSize:'20px',
-  borderRadius:'0px',
+  borderTop:'3px solid #706EE9'
 })
 
 const MenuBar = styled.button({
+  cursor:'pointer',
   textAlign:'center',
   width:'20%',
   height:'40px',
@@ -45,11 +48,30 @@ const MenuBar = styled.button({
   color:'#706EE9'
 })
 
+const DetailBody = styled(Modal.Content)({
+  marginTop:'3%',
+})
+
+const DetailInfo = styled.div({
+  fontSize:"24px",
+  display:'inline',
+})
+
+const DetailTel = styled.div({
+  color:"#0596FF",
+  fontSize:'24px',
+  display:'inline',
+  marginLeft:'3%',
+})
+
+const DetailPerson = styled.div({
+  
+})
+
 
 
 function Detail({img,name,loc}) {
   const [menubar, setMenubar] = useState();
-
   const [open, setOpen] = useState(false)
   return (
     <Modal
@@ -67,34 +89,37 @@ function Detail({img,name,loc}) {
         <MenuBar>시설현황</MenuBar>
         <MenuBar>AI점수</MenuBar>
         <MenuBar>시설리뷰</MenuBar>
-
       </MenuBarBox>
       <Modal.Content Grid>
         <Grid columns={2} >
             <Grid.Row stretched>
-            <Grid.Column width={10}>
-                <RightImage src="https://react.semantic-ui.com/images/wireframe/image.png"/>
+            <Grid.Column width={11}>
+                <DetailImage src="https://react.semantic-ui.com/images/wireframe/image.png"/>
             </Grid.Column>
-            <Grid.Column width={6}>
-                <RightImage src="https://react.semantic-ui.com/images/wireframe/image.png"/>
-                <RightImage src="https://react.semantic-ui.com/images/wireframe/image.png"/>
+            <Grid.Column width={5}>
+                <DetailImage src="https://react.semantic-ui.com/images/wireframe/image.png"/>
+                <DetailImage src="https://react.semantic-ui.com/images/wireframe/image.png"/>
             </Grid.Column>
             </Grid.Row>
         </Grid>
       </Modal.Content>
-      <Modal.Content>
-        <div>{loc}</div>
-        <div>{loc}</div>
-        <div>{loc}</div>
-        <div>{loc}</div>
-        <div>{loc}</div>
-        <div>{loc}</div>
-        <div>{loc}</div>
-        <div>{loc}</div>
-        <div>{loc}</div>
+      <Modal.Content Grid>
+        <Grid columns={2} >
+            <Grid.Row >
+            <Grid.Column width={11}>
+              <DetailInfo>{loc}</DetailInfo>
+              <DetailTel>T : 031-1234-3456</DetailTel>
+            </Grid.Column>
+            <Grid.Column width={5}>
+                <DetailCost />
+                  
+            </Grid.Column>
+            </Grid.Row>
+        </Grid>
       </Modal.Content>
+
       
-      <Modal.Actions>
+      <Modal.Actions >
         <Button color='black' onClick={() => setOpen(false)}>
           닫기
         </Button>

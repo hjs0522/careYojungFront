@@ -15,6 +15,7 @@ root.render(
   <>
     <Header />
     <Mainpage />
+        
     <Footer />
   </>
 );

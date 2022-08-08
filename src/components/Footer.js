@@ -48,7 +48,7 @@ function Footer(){
                         자주묻는질문
                     </StyledColumn>
                     <StyledColumn >
-                        <a href="../pages/Information.js">공지사항</a>
+                        <a href='../pages/Information.js'>공지사항</a>
                     </StyledColumn>
                     <StyledColumn>
                         이용약관
