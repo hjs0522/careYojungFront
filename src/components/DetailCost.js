@@ -10,7 +10,6 @@ const StyledHeader = styled.text({
   
 })
 
-
 const StyledInnerHeader = styled.text({
     fontSize:'22px',
     color:'#444444',
@@ -27,7 +26,10 @@ function DetailCost(){
             <StyledHeader>예상비용</StyledHeader>
             <BeneficalType>
                 <StyledInnerHeader>수급자 유형</StyledInnerHeader>
-                        
+                <Grid columns={2}>
+                        <Button>aa</Button>
+                        <Button>aa</Button>
+                </Grid>
             </BeneficalType>
         </StyledDetailCost>
     )
