@@ -160,7 +160,7 @@ function DetailCost(){
         <StyledDetailCost >
             
             <StyledHeader>예상비용</StyledHeader>
-            <BeneficalType>
+            <BeneficalType> 
             <StyledInnerHeader>수급자 유형</StyledInnerHeader>
                 <CostButton id="benetype1" onClick={beneOnClick} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} style={{width:'48%'}}>일반대상</CostButton>
                 <CostButton id="benetype2" onClick={beneOnClick} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} style={{width:'48%',float:'right'}}>기초생활수급자</CostButton>

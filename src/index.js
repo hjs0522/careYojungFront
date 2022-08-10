@@ -1,12 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
-import Mainpage from './pages/Mainpage';
-import App from './App';
-import Information from './pages/Information';
 import Header from './components/Header';
-import Footer from './components/Footer';
-import Detail from './components/Detail';
+import Mappage from './pages/Mappage';
 
 
 
@@ -14,9 +10,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <>
     <Header />
-    <Mainpage />
-        
-    <Footer />
+    <Mappage />
   </>
 );
 

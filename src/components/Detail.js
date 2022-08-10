@@ -375,71 +375,64 @@ function Detail({img,name,loc}) {
       trigger={<StyledImage src={img} />}
     >
       <DetailPage>
-      <ModalHeader >{name}</ModalHeader>
-      <div style={{display:'inline-block',float:'right',marginTop:'1%',marginRight:'1%',cursor:'pointer'}}>
-      <Modal.Actions >
-        <Icon size="huge" color="grey" name="x" onClick={() => setOpen(false)}/>
-      </Modal.Actions>
-      </div>
-      <MenuBarBox >
-        <Menubar onClick={onMenuClick}>기본정보</Menubar>
-        <Menubar onClick={onMenuClick} >인력현황</Menubar>
-        <Menubar onClick={onMenuClick}>시설현황</Menubar>
-        <Menubar onClick={onMenuClick}>AI점수</Menubar>
-        <Menubar onClick={onMenuClick}>시설리뷰</Menubar>
-      </MenuBarBox>
-      <div ref={aRef}>
-      <Modal.Content scrolling>
-        <div >
-        <DetailBody id="Detail-1">
-        <Grid columns={2}relaxe >
-            <Grid.Row stretched>
-            <Grid.Column  width={11}>
-                <DetailImage  src="https://react.semantic-ui.com/images/wireframe/image.png"/>
-            </Grid.Column>
-            <Grid.Column width={5}>
-                <DetailImage src="https://react.semantic-ui.com/images/wireframe/image.png"/>
-                <DetailImage src="https://react.semantic-ui.com/images/wireframe/image.png"/>
-            </Grid.Column>
-            </Grid.Row>
-        </Grid>
-
-        <Grid columns={2} >
-            <Grid.Row >
-            <Grid.Column width={11}>
-              <DetailInfo>{loc}</DetailInfo>
-              <DetailTel>T : 031-1234-3456</DetailTel>
-              <DetailSummary>
-                <DetailSummaryText>시설정원</DetailSummaryText>
-                <DetailSummaryText style={{color:'#496ACE'}}>45</DetailSummaryText>
-                <DetailSummaryText style={{padding:'0'}}>명 </DetailSummaryText>
-                <DetailSummaryText>현원</DetailSummaryText>
-                <DetailSummaryText style={{color:'#496ACE'}}>45</DetailSummaryText>
-                <DetailSummaryText style={{padding:'0'}}>명 </DetailSummaryText>
-                <DetailSummaryText>대기</DetailSummaryText>
-                <DetailSummaryText style={{color:'#496ACE'}}>45</DetailSummaryText>
-                <DetailSummaryText style={{padding:'0'}}>명 </DetailSummaryText>
-              </DetailSummary>
-              <DetailPerson />  {/*인력현황 컴포넌트*/}
-              <DetailFacility />  {/*시설현황 컴포넌트*/}
-              <DetailAI />  {/*AI점수 컴포넌트*/}
-              <DetailReview /> {/*시설리뷰 컴포넌트*/}
-              <div>a</div>
-              <button id="1234" onClick={onClick}>aa</button>
-              
-            </Grid.Column>
-            <Grid.Column width={5}>
-              <div style={{top:'5%',position:'sticky'}}> 
-                {/* position:'sticky'를 사용하면 스크롤을 따라오게 할 수 있음. */}
-                <DetailCost />
-              </div>
-            </Grid.Column>
-            </Grid.Row>
-        </Grid>
-        </DetailBody>
+        <ModalHeader >{name}</ModalHeader>
+        <div style={{display:'inline-block',float:'right',marginTop:'1%',marginRight:'1%',cursor:'pointer'}}>
+          <Modal.Actions >
+            <Icon size="huge" color="grey" name="x" onClick={() => setOpen(false)}/>
+          </Modal.Actions>
         </div>
-          </Modal.Content>
-        </div>
+        <MenuBarBox >
+          <Menubar onClick={onMenuClick}>기본정보</Menubar>
+          <Menubar onClick={onMenuClick} >인력현황</Menubar>
+          <Menubar onClick={onMenuClick}>시설현황</Menubar>
+          <Menubar onClick={onMenuClick}>AI점수</Menubar>
+          <Menubar onClick={onMenuClick}>시설리뷰</Menubar>
+        </MenuBarBox>
+        <Modal.Content scrolling>
+          <DetailBody id="Detail-1">
+            <Grid columns={2}relaxe >
+              <Grid.Row stretched>
+                <Grid.Column  width={11}>
+                  <DetailImage  src="https://react.semantic-ui.com/images/wireframe/image.png"/>
+                </Grid.Column>
+                <Grid.Column width={5}>
+                  <DetailImage src="https://react.semantic-ui.com/images/wireframe/image.png"/>
+                  <DetailImage src="https://react.semantic-ui.com/images/wireframe/image.png"/>
+                </Grid.Column>
+              </Grid.Row>
+            </Grid>
+            <Grid columns={2} >
+              <Grid.Row >
+                <Grid.Column width={11}>
+                  <DetailInfo>{loc}</DetailInfo>
+                  <DetailTel>T : 031-1234-3456</DetailTel>
+                  <DetailSummary>
+                    <DetailSummaryText>시설정원</DetailSummaryText>
+                    <DetailSummaryText style={{color:'#496ACE'}}>45</DetailSummaryText>
+                    <DetailSummaryText style={{padding:'0'}}>명 </DetailSummaryText>
+                    <DetailSummaryText>현원</DetailSummaryText>
+                    <DetailSummaryText style={{color:'#496ACE'}}>45</DetailSummaryText>
+                    <DetailSummaryText style={{padding:'0'}}>명 </DetailSummaryText>
+                    <DetailSummaryText>대기</DetailSummaryText>
+                    <DetailSummaryText style={{color:'#496ACE'}}>45</DetailSummaryText>
+                    <DetailSummaryText style={{padding:'0'}}>명 </DetailSummaryText>
+                  </DetailSummary>
+                  <DetailPerson />  {/*인력현황 컴포넌트*/}
+                  <DetailFacility />  {/*시설현황 컴포넌트*/}
+                  <DetailAI />  {/*AI점수 컴포넌트*/}
+                  <DetailReview /> {/*시설리뷰 컴포넌트*/}
+                  
+                </Grid.Column>
+                <Grid.Column width={5}>
+                  <div style={{top:'5%',position:'sticky'}}> 
+                    {/* position:'sticky'를 사용하면 스크롤을 따라오게 할 수 있음. */}
+                    <DetailCost />
+                  </div>
+                </Grid.Column>
+              </Grid.Row>
+            </Grid>
+          </DetailBody>
+        </Modal.Content>
       </DetailPage>
     </Modal>
   )
