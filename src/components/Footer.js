@@ -1,8 +1,3 @@
-<<<<<<< HEAD:src/Footer.js
-//풋터 구현
-=======
-//풋터 컴포넌트
->>>>>>> sa:src/components/Footer.js
 import styled from "styled-components";
 import { Button, Grid, Image } from 'semantic-ui-react'
 

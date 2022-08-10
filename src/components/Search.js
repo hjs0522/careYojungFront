@@ -1,6 +1,7 @@
 import _ from 'lodash'
 import React from 'react'
 import { Search} from 'semantic-ui-react'
+import styled from 'styled-components'
 const source = [
   {
     title: "aaaa",
@@ -19,6 +20,17 @@ const source = [
     description: "Aabbcc",
   },
 ]
+
+const MySearch = styled(Search)`
+  & *{
+    width: 30vw;
+    height: 5vh;
+  }
+  
+  &.ui.search > .results {
+    width: 30vw;
+  }
+`
 
 const initialState = {
   loading: false,
@@ -74,7 +86,7 @@ function SearchExampleStandard() {
 
   return (
   <>
-    <Search
+    <MySearch
           loading={loading}
           placeholder='Search...'
           onResultSelect={(e, data) =>
