@@ -3,11 +3,10 @@ import { Button, Grid } from "semantic-ui-react"
 import styled from "styled-components"
 
 const StyledDetailCost = styled.div({
-    border:'1px solid black',
+    boxSizing:'border-box',
+    border:'1px solid #CCCCCC',
     padding:'20px',
-    
-    top:'1',
-    
+    borderRadius:'10px',
 })
 
 const StyledHeader = styled.h4({
@@ -98,6 +97,8 @@ function DetailCost(){
         setIsEnter(false);
     }
     const beneOnClick = (i) =>{ //수급자 유형 버튼 클릭시 하이라이팅, 한번에 한개의 버튼만 선택할 수 있게 바로 전 선택을 저장한 후 다른 버튼 클릭 시 호버 풀어줌.
+        if(i.target.id===beneClickid)
+            return;
         setBeneClickid(i.target.id)
         const item = document.getElementById(i.target.id);
         item.style.color='#496ace';
@@ -115,6 +116,8 @@ function DetailCost(){
         setBeneCost(costArr[beneClickid]);
     }
     const careOnClick = (i) =>{ // 요양 등급 버튼 클릭시 하이라이팅, 한번에 한개의 버튼만 선택할 수 있게 바로 전 선택을 저장한 후 다른 버튼 클릭 시 호버 풀어줌.
+        if(careClickid===i.target.id)
+            return;
         setCareClickid(i.target.id)
         const item = document.getElementById(i.target.id);
         item.style.color='#496ace';
@@ -154,7 +157,7 @@ function DetailCost(){
     },[beneClickid]);
 
     return (
-        <StyledDetailCost ref={boxRef} >
+        <StyledDetailCost >
             
             <StyledHeader>예상비용</StyledHeader>
             <BeneficalType>

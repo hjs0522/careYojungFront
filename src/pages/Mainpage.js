@@ -1,9 +1,7 @@
 import Recentlist from "../components/Recentlist";
 import Popularlist from "../components/Popularlist";
 import Themelist from "../components/Themelist";
-import Footer from "../components/Footer";
 import Pageup from "../components/Pageup";
-import Header from "../components/Header";
 import styled from "styled-components";
 
 const arr = [{ //원래는 메인페이지에서 최근본시설, 인기있는시설, 테마별 시설을 가져와서 뿌려줌. 현재는 가상의 데이터 사용
@@ -44,6 +42,7 @@ const arr = [{ //원래는 메인페이지에서 최근본시설, 인기있는�
 const StyledMainpage = styled.div`
   padding-top:150px;
   padding-bottom:150px;
+  overflow-y:auto;
 `
 
 function Mainpage(){

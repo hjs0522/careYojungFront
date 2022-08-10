@@ -344,11 +344,26 @@ function DetailReview(){
   )
 }
 
+const menuArr={
+  기본정보:'Detail-1',
+  인력현황:'Detail-2',
+  시설현황:'Detail-3',
+  AI점수:'Detail-4',
+  시설리뷰:'Detail-5'
+}
+
 function Detail({img,name,loc}) {
   const [menubar, setMenubar] = useState();
+  const [pageY,setPageY]=useState(0);
   const aRef=useRef(null);
-  const onClick= () =>{
-    window.scrollTo({left:0, top:0, behavior:'smooth'})
+
+  const onMenuClick= (i) =>{
+    const item=document.getElementById(menuArr[i.target.innerText]);
+    item.scrollIntoView({behavior: "smooth" })
+  }
+  const onClick= (i)=>{
+    console.log(i.target.getBoundingClientRect().top);
+    console.log(i);
   }
   const [open, setOpen] = useState(false)
   return (
@@ -367,13 +382,15 @@ function Detail({img,name,loc}) {
       </Modal.Actions>
       </div>
       <MenuBarBox >
-        <a href="#Detail-1"><Menubar>기본정보</Menubar></a>
-        <a href="#Detail-2"><Menubar>인력현황</Menubar></a>
-        <a href="#Detail-3"><Menubar>시설현황</Menubar></a>
-        <a href="#Detail-4"><Menubar>AI점수</Menubar></a>
-        <a href="#Detail-5"><Menubar>시설리뷰</Menubar></a>
+        <Menubar onClick={onMenuClick}>기본정보</Menubar>
+        <Menubar onClick={onMenuClick} >인력현황</Menubar>
+        <Menubar onClick={onMenuClick}>시설현황</Menubar>
+        <Menubar onClick={onMenuClick}>AI점수</Menubar>
+        <Menubar onClick={onMenuClick}>시설리뷰</Menubar>
       </MenuBarBox>
+      <div ref={aRef}>
       <Modal.Content scrolling>
+        <div >
         <DetailBody id="Detail-1">
         <Grid columns={2}relaxe >
             <Grid.Row stretched>
@@ -407,16 +424,22 @@ function Detail({img,name,loc}) {
               <DetailFacility />  {/*시설현황 컴포넌트*/}
               <DetailAI />  {/*AI점수 컴포넌트*/}
               <DetailReview /> {/*시설리뷰 컴포넌트*/}
+              <div>a</div>
+              <button id="1234" onClick={onClick}>aa</button>
               
             </Grid.Column>
             <Grid.Column width={5}>
+              <div style={{top:'5%',position:'sticky'}}> 
+                {/* position:'sticky'를 사용하면 스크롤을 따라오게 할 수 있음. */}
                 <DetailCost />
+              </div>
             </Grid.Column>
             </Grid.Row>
         </Grid>
         </DetailBody>
-      </Modal.Content>
-
+        </div>
+          </Modal.Content>
+        </div>
       </DetailPage>
     </Modal>
   )
