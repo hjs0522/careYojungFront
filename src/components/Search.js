@@ -78,6 +78,7 @@ function SearchExampleStandard() {
       })
     }, 300)
   }, [])
+  
   React.useEffect(() => {
     return () => {
       clearTimeout(timeoutRef.current)

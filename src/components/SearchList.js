@@ -6,6 +6,7 @@ const ListContainer = styled.div`
 `
 
 const SearchList = ({searchList}) =>{
+
     return(
      <ListContainer>
         {searchList.map((it)=>(

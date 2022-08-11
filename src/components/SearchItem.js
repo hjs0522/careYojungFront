@@ -3,24 +3,31 @@ import styled from "styled-components";
 
 const ItemContainer = styled.div`
     display: flex;
-    align-items: center;
-    padding: 1vh 0px;
-    border: 1px solid #F1C644;
+    flex-basis: auto;
     margin: 3vh 0px;
+    align-items: center;
+    border: 1px solid #F1C644;
     border-radius: 15px;
+    & .ui.image{
+        margin: 1vh;
+    }
 `
 
 const InfoContainer = styled.div`
     display: flex;
     flex-direction: column;
-    padding-left: 3vw;
-    padding-right: 30vw;
+    margin-left: 3vw;
 `
 const LinkContainer = styled.div`
     display: flex;
-    height: 8vh;
+    margin-left: auto;
+    margin-right: 3vw;
     flex-direction: column;
     justify-content: space-between;
+    & .ui.button{
+        margin: 0.5vh 0px;
+    }
+
 `
 
 const SearchItem = ({id,img,name,type,grade,reviewScore,reviewNum,location,phoneNumber})=>
@@ -42,8 +49,8 @@ const SearchItem = ({id,img,name,type,grade,reviewScore,reviewNum,location,phone
                 <div>{phoneNumber}</div>
             </InfoContainer>
             <LinkContainer>
-                <Button>상세보기</Button>
-                <Button>리뷰하기</Button>
+                <Button size="small">상세보기</Button>
+                <Button size="small">리뷰하기</Button>
             </LinkContainer>
         </ItemContainer>
         
