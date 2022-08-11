@@ -1,28 +1,50 @@
+import { Button,Image } from "semantic-ui-react";
 import styled from "styled-components";
 
 const ItemContainer = styled.div`
     display: flex;
+    align-items: center;
+    padding: 1vh 0px;
+    border: 1px solid #F1C644;
+    margin: 3vh 0px;
+    border-radius: 15px;
 `
 
-const SearchItem = (name,type,grade,reviewScore,reviewNum,location,phoneNumber)=>
+const InfoContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    padding-left: 3vw;
+    padding-right: 30vw;
+`
+const LinkContainer = styled.div`
+    display: flex;
+    height: 8vh;
+    flex-direction: column;
+    justify-content: space-between;
+`
+
+const SearchItem = ({id,img,name,type,grade,reviewScore,reviewNum,location,phoneNumber})=>
 {
     return(
         <ItemContainer>
-            <img alt = "요양원 사진"></img>
-            <div>
+            <Image src={img} alt = "요양원 사진" size="small"></Image>
+            <InfoContainer>
                 <div>
-                    <span>{this.props.name}</span>
-                    <span>{this.props.type}</span>
-                    <span>{this.props.grade}</span>
+                    <span>{name}</span>
+                    <span>{type}</span>
+                    <span>{grade}</span>
                 </div>
                 <div>
-                    <span>{this.props.reviewScore}</span>
-                    <span>{this.props.reviewNum}</span>
+                    <span>{reviewScore}</span>
+                    <span>{reviewNum}</span>
                 </div>
-                <div>{this.props.location}</div>
-                <div>{this.props.phoneNumber}</div>
-            </div>
-            
+                <div>{location}</div>
+                <div>{phoneNumber}</div>
+            </InfoContainer>
+            <LinkContainer>
+                <Button>상세보기</Button>
+                <Button>리뷰하기</Button>
+            </LinkContainer>
         </ItemContainer>
         
     );

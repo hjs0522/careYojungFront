@@ -1,4 +1,4 @@
-import { Button } from "semantic-ui-react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import SearchExampleStandard from "./Search";
 
@@ -32,15 +32,16 @@ const HeaderButtonContainer = styled.div`
         background-color: inherit;
         padding: 8px 8px;
     }
+    a{
+        margin: 0px 1vw;
+        border:none;
+        color: white;
+        background-color: inherit;
+        padding: 8px 8px;
+    }
+
 `
 
-const MyButton = styled(Button)`
-    &.ui.button{background-color: red};
-`
-
-const MyButton2 = styled(Button)`
-    background-color: red;
-`
 
 
 const Header = () =>{
@@ -50,8 +51,8 @@ const Header = () =>{
             <SearchExampleStandard></SearchExampleStandard>
             <HeaderButtonContainer>
                 <button>로그아웃</button>
-                <button>위시리스트</button>
-                <button>마이페이지</button>
+                <Link to={"/wish"}>위시리스트</Link>
+                <Link to={"/mypage"}>마이페이지</Link>
             </HeaderButtonContainer>
         </HeaderDiv>
     )

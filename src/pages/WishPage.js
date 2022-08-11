@@ -45,7 +45,7 @@ const SearchPageContainer = styled.div`
 
 
 
-const SearchPage = ()=>{
+const WishPage = ()=>{
     return(
     <SearchPageContainer>
         <DropDownRow></DropDownRow>
@@ -54,4 +54,4 @@ const SearchPage = ()=>{
     )
 };
 
-export default SearchPage;
+export default WishPage;

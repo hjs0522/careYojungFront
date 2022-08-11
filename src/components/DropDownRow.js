@@ -14,8 +14,6 @@ const DropDownRow = ()=>{
             <Dropdown></Dropdown>
             <span>등급</span>
             <Dropdown></Dropdown>
-            <span>키워드</span>
-            <Dropdown></Dropdown>
             <span>순서</span>
             <Dropdown></Dropdown>
             <Button>지도로 보기</Button>
