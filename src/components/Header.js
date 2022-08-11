@@ -15,7 +15,7 @@ const HeaderDiv = styled.div`
     z-index: 3;
 `
 
-const Logo = styled.div`
+const Logo = styled(Link)`
     font-family: 'Jalnan';
     font-size: x-large;
     padding: 0px 2%;
@@ -47,7 +47,7 @@ const HeaderButtonContainer = styled.div`
 const Header = () =>{
     return(
         <HeaderDiv>
-            <Logo>케어요정</Logo>
+            <Logo to={"/"}>케어요정</Logo>
             <SearchExampleStandard></SearchExampleStandard>
             <HeaderButtonContainer>
                 <button>로그아웃</button>

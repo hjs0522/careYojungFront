@@ -9,7 +9,7 @@ const HorizontalScroll = styled.div`
     height:100%;
     padding-bottom:20px;
     width:80%;
-    marginLeft:5%;
+    margin-Left:5%;
     display:inline-block;
     &::-webkit-scrollbar {
       width: 10px;
