@@ -2,20 +2,27 @@ import styled from "styled-components";
 import {Grid,Icon} from "semantic-ui-react";
 
 const StyledMaplist = styled.div({
-    width:'35%',
-    height:'100vh',
+    display:"inline-block",
+    width:'30%',
+    height:'88vh',
     border:'1px solid black',
 })
 
 const AllMaplist = styled.div({
-
+    overflowY:'auto',
+    height:'88vh',
 })
 
 const MaplistBox = styled.div({
-    border:'1px solid #e1e1e1',
-    height:'100vh',
-    overflowY:'100vh',
-    padding:'8%',
+    border:'1px solid #000000',
+    paddingLeft:"4%",
+    paddingTop:'5%',
+    paddingBottom:'3%',
+    
+})
+
+const MaplistElement = styled.div({
+    marginBottom:'3%',
 })
 
 const MaplistBoxTitle = styled.div({
@@ -33,6 +40,98 @@ const MaplistBoxText = styled.div({
     fontSize:'20px',
     display:'inline-block',
 })
+
+const maplistArr = [{
+    name:"시립서부노인전문요양센터",
+    class :"요양원",
+    star:4.5,
+    reviewLen:10,
+    loc : "서울 성동구 금호로 45",
+    tel : "T.031-1234-4566",
+    img : "https://react.semantic-ui.com/images/wireframe/image.png"
+},{
+    name:"시립서부노인전문요양센터",
+    class :"요양원",
+    star:4.5,
+    reviewLen:10,
+    loc : "서울 성동구 금호로 45",
+    tel : "T.031-1234-4566",
+    img : "https://react.semantic-ui.com/images/wireframe/image.png"
+},{
+    name:"시립서부노인전문요양센터",
+    class :"요양원",
+    star:4.5,
+    reviewLen:10,
+    loc : "서울 성동구 금호로 45",
+    tel : "T.031-1234-4566",
+    img : "https://react.semantic-ui.com/images/wireframe/image.png"
+},{
+    name:"시립서부노인전문요양센터",
+    class :"요양원",
+    star:4.5,
+    reviewLen:10,
+    loc : "서울 성동구 금호로 45",
+    tel : "T.031-1234-4566",
+    img : "https://react.semantic-ui.com/images/wireframe/image.png"
+},{
+    name:"시립서부노인전문요양센터",
+    class :"요양원",
+    star:4.5,
+    reviewLen:10,
+    loc : "서울 성동구 금호로 45",
+    tel : "T.031-1234-4566",
+    img : "https://react.semantic-ui.com/images/wireframe/image.png"
+},{
+    name:"시립서부노인전문요양센터",
+    class :"요양원",
+    star:4.5,
+    reviewLen:10,
+    loc : "서울 성동구 금호로 45",
+    tel : "T.031-1234-4566",
+    img : "https://react.semantic-ui.com/images/wireframe/image.png"
+},{
+    name:"시립서부노인전문요양센터",
+    class :"요양원",
+    star:4.5,
+    reviewLen:10,
+    loc : "서울 성동구 금호로 45",
+    tel : "T.031-1234-4566",
+    img : "https://react.semantic-ui.com/images/wireframe/image.png"
+},{
+    name:"시립서부노인전문요양센터",
+    class :"요양원",
+    star:4.5,
+    reviewLen:10,
+    loc : "서울 성동구 금호로 45",
+    tel : "T.031-1234-4566",
+    img : "https://react.semantic-ui.com/images/wireframe/image.png"
+},{
+    name:"시립서부노인전문요양센터",
+    class :"요양원",
+    star:4.5,
+    reviewLen:10,
+    loc : "서울 성동구 금호로 45",
+    tel : "T.031-1234-4566",
+    img : "https://react.semantic-ui.com/images/wireframe/image.png"
+},{
+    name:"시립서부노인전문요양센터",
+    class :"요양원",
+    star:4.5,
+    reviewLen:10,
+    loc : "서울 성동구 금호로 45",
+    tel : "T.031-1234-4566",
+    img : "https://react.semantic-ui.com/images/wireframe/image.png"
+},{
+    name:"시립서부노인전문요양센터",
+    class :"요양원",
+    star:4.5,
+    reviewLen:10,
+    loc : "서울 성동구 금호로 45",
+    tel : "T.031-1234-4566",
+    img : "https://react.semantic-ui.com/images/wireframe/image.png"
+}]
+
+
 
 function Maplist(){
     function getStar(num){
@@ -52,33 +151,36 @@ function Maplist(){
     return(
         <StyledMaplist>
             <AllMaplist>
-                <MaplistBox>
-                    <Grid columns={2}>
-                        <Grid.Column width={1}>
-                            <MaplistBoxIcon src="https://react.semantic-ui.com/images/wireframe/image.png" />
-                        </Grid.Column>
-                        <Grid.Column width={15}>
-                            <div>
-                            <MaplistBoxTitle style={{}}>시립서부노인전문요양센터</MaplistBoxTitle>
-                            <MaplistBoxTitle style={{marginLeft:'4%'}}>요양원</MaplistBoxTitle>
-                            </div>
-                            <div>
-                            {getStar(4)}
-                            <MaplistBoxText style={{marginLeft:'2%'}}>4.0</MaplistBoxText>
-                            <MaplistBoxText style={{marginLeft:'2%'}}>리뷰 10개</MaplistBoxText>
-                            </div>
-                            <div>
-                                <MaplistBoxText>서울 성동구 금호로 45</MaplistBoxText>
-                            </div>
-                            <div>
-                                <MaplistBoxText style={{color:'#0596ff'}}>T.031-1234-3456</MaplistBoxText>
-                            </div>
-                            <div style={{float:'right'}}>
-                                <Icon size="big" name="heart outline"/>
-                            </div>
-                        </Grid.Column>
-                    </Grid> 
-                </MaplistBox>
+                {maplistArr.map((i)=>{
+                    return(
+                        <MaplistBox>
+                            <Grid columns={2}>
+                                <Grid.Column width={2}>
+                                    <MaplistBoxIcon style={{marginLeft:'50%'}} src="https://react.semantic-ui.com/images/wireframe/image.png" />
+                                </Grid.Column>
+                                <Grid.Column width={14}>
+                                    <MaplistElement>
+                                    <MaplistBoxTitle style={{}}>{i.name}</MaplistBoxTitle>
+                                    <MaplistBoxTitle style={{marginLeft:'4%'}}>{i.class}</MaplistBoxTitle>
+                                    </MaplistElement>
+                                    <MaplistElement>
+                                    {getStar(i.star)}
+                                    <MaplistBoxText style={{marginLeft:'2%'}}>{i.star}</MaplistBoxText>
+                                    <MaplistBoxText style={{marginLeft:'2%'}}>리뷰 {i.reviewLen}개</MaplistBoxText>
+                                    </MaplistElement>
+                                    <MaplistElement>
+                                        <MaplistBoxText>{i.loc}</MaplistBoxText>
+                                    </MaplistElement>
+                                    <MaplistElement>
+                                        <MaplistBoxText style={{color:'#0596ff'}}>{i.tel}</MaplistBoxText>
+                                        <MaplistBoxText style={{float:'right',marginRight:"8%"}}><Icon size="large" name="heart outline"/></MaplistBoxText>
+                                    </MaplistElement>
+                                </Grid.Column>
+                            </Grid> 
+                        </MaplistBox>
+                    )
+                })}
+                
             </AllMaplist>
         </StyledMaplist>
     )

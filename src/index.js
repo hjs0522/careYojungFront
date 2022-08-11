@@ -3,14 +3,17 @@ import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
 import Header from './components/Header';
 import Mappage from './pages/Mappage';
-
+import Mainpage from './pages/Mainpage';
+import Footer from './components/Footer';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <>
     <Header />
-    <Mappage />
+    <Mainpage />
+    <Footer />
+    
   </>
 );
 

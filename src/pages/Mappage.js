@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Map from "../components/Map";
 import Maplist from "../components/Maplist";
 
 const StyledMappage = styled.div`
@@ -11,6 +12,7 @@ function Mappage(){
     return(
         <StyledMappage>
             <Maplist />
+            <Map />
         </StyledMappage>
     )
 }
