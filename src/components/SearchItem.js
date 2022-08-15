@@ -1,15 +1,22 @@
-import { Button,Image } from "semantic-ui-react";
+import { Button,Image,Icon } from "semantic-ui-react";
 import styled from "styled-components";
 
-const ItemContainer = styled.div`
+const ItemContainer = styled.li`
     display: flex;
     flex-basis: auto;
     margin: 3vh 0px;
     align-items: center;
     border: 1px solid #F1C644;
     border-radius: 15px;
+    position: relative;
     & .ui.image{
         margin: 1vh;
+    }
+    
+    & i{
+        position: absolute;
+        top: 20px;
+        left: 120px;
     }
 `
 
@@ -30,11 +37,15 @@ const LinkContainer = styled.div`
 
 `
 
-const SearchItem = ({id,img,name,type,grade,reviewScore,reviewNum,location,phoneNumber})=>
+
+
+
+const SearchItem = ({id,img,name,type,grade,reviewScore,reviewNum,location,phoneNumber,wish})=>
 {
     return(
         <ItemContainer>
             <Image src={img} alt = "요양원 사진" size="small"></Image>
+            <Icon name='heart outline' size="large"></Icon>
             <InfoContainer>
                 <div>
                     <span>{name}</span>

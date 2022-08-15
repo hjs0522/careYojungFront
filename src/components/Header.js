@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { Icon } from "semantic-ui-react";
 import styled from "styled-components";
 import SearchExampleStandard from "./Search";
 
@@ -13,6 +14,7 @@ const HeaderDiv = styled.div`
     width: 100%;
     height: 8vh;
     z-index: 3;
+    
 `
 
 const Logo = styled(Link)`
@@ -25,19 +27,19 @@ const Logo = styled(Link)`
 const HeaderButtonContainer = styled.div`
     display: flex;
     justify-content: space-around;
-    button{
+    button, a{
         margin: 0px 1vw;
         border:none;
         color: white;
         background-color: inherit;
-        padding: 8px 8px;
     }
-    a{
-        margin: 0px 1vw;
-        border:none;
-        color: white;
-        background-color: inherit;
+
+    
+    div{
         padding: 8px 8px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
 `
@@ -45,14 +47,24 @@ const HeaderButtonContainer = styled.div`
 
 
 const Header = () =>{
+
     return(
         <HeaderDiv>
             <Logo to={"/"}>케어요정</Logo>
             <SearchExampleStandard></SearchExampleStandard>
             <HeaderButtonContainer>
-                <button>로그아웃</button>
-                <Link to={"/wish"}>위시리스트</Link>
-                <Link to={"/mypage"}>마이페이지</Link>
+                <div>
+                    <Icon name="sign-out"></Icon>
+                    <button>로그아웃</button> 
+                </div>
+                <div>
+                    <Icon name="heart outline"></Icon>
+                    <Link to={"/wish"}>위시리스트</Link>
+                </div>
+                <div>
+                    <Icon name="user outline"></Icon>
+                    <Link to={"/mypage"}>마이페이지</Link>
+                </div>
             </HeaderButtonContainer>
         </HeaderDiv>
     )

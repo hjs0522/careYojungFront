@@ -15,6 +15,7 @@ const dummyList = [
         reviewNum:"10개",
         location:"서울시 강남구",
         phoneNumber:"010-****-****",
+        wish:false,
     },
     {
         id:2,
@@ -26,6 +27,7 @@ const dummyList = [
         reviewNum:"10개",
         location:"서울시 강북구",
         phoneNumber:"010-****-****",
+        wish:false,
     },
     {
         id:3,
@@ -37,6 +39,7 @@ const dummyList = [
         reviewNum:"10개",
         location:"서울시 강동구",
         phoneNumber:"010-****-****",
+        wish:false,
     },
     {
         id:4,
@@ -48,6 +51,7 @@ const dummyList = [
         reviewNum:"10개",
         location:"서울시 강남구",
         phoneNumber:"010-****-****",
+        wish:false,
     },
     {
         id:5,
@@ -59,6 +63,7 @@ const dummyList = [
         reviewNum:"10개",
         location:"서울시 강북구",
         phoneNumber:"010-****-****",
+        wish:false,
     },
     {
         id:6,
@@ -70,6 +75,7 @@ const dummyList = [
         reviewNum:"10개",
         location:"서울시 강동구",
         phoneNumber:"010-****-****",
+        wish:false,
     },
     {
         id:7,
@@ -81,6 +87,7 @@ const dummyList = [
         reviewNum:"10개",
         location:"서울시 강남구",
         phoneNumber:"010-****-****",
+        wish:false,
     },
     {
         id:8,
@@ -92,6 +99,7 @@ const dummyList = [
         reviewNum:"10개",
         location:"서울시 강북구",
         phoneNumber:"010-****-****",
+        wish:false,
     },
     {
         id:9,
@@ -103,6 +111,7 @@ const dummyList = [
         reviewNum:"10개",
         location:"서울시 강동구",
         phoneNumber:"010-****-****",
+        wish:false,
     },
     {
         id:10,
@@ -114,6 +123,7 @@ const dummyList = [
         reviewNum:"10개",
         location:"서울시 강남구",
         phoneNumber:"010-****-****",
+        wish:false,
     },
     {
         id:11,
@@ -125,6 +135,7 @@ const dummyList = [
         reviewNum:"10개",
         location:"서울시 강북구",
         phoneNumber:"010-****-****",
+        wish:false,
     },
     {
         id:12,
@@ -136,6 +147,7 @@ const dummyList = [
         reviewNum:"10개",
         location:"서울시 강동구",
         phoneNumber:"010-****-****",
+        wish:false,
     },
     {
         id:13,
@@ -147,6 +159,7 @@ const dummyList = [
         reviewNum:"10개",
         location:"서울시 강남구",
         phoneNumber:"010-****-****",
+        wish:false,
     },
     {
         id:14,
@@ -158,6 +171,7 @@ const dummyList = [
         reviewNum:"10개",
         location:"서울시 강북구",
         phoneNumber:"010-****-****",
+        wish:false,
     },
     {
         id:15,
@@ -169,6 +183,7 @@ const dummyList = [
         reviewNum:"10개",
         location:"서울시 강동구",
         phoneNumber:"010-****-****",
+        wish:false,
     },
     {
         id:16,
@@ -180,6 +195,7 @@ const dummyList = [
         reviewNum:"10개",
         location:"서울시 강남구",
         phoneNumber:"010-****-****",
+        wish:false,
     },
     {
         id:17,
@@ -191,6 +207,7 @@ const dummyList = [
         reviewNum:"10개",
         location:"서울시 강북구",
         phoneNumber:"010-****-****",
+        wish:false,
     },
     {
         id:18,
@@ -202,6 +219,7 @@ const dummyList = [
         reviewNum:"10개",
         location:"서울시 강동구",
         phoneNumber:"010-****-****",
+        wish:false,
     },
 ];
 
@@ -218,7 +236,7 @@ const SearchPage = ()=>{
 
     const [posts,setPosts] = useState([]);
     const [page,setPage] = useState(1);
-    const offset = (page-1) * 10;
+    const offset = (page-1) * 5;
     
     /*
         useEffect(() =>{
@@ -233,7 +251,7 @@ const SearchPage = ()=>{
     return(
     <SearchPageContainer>
         <DropDownRow></DropDownRow>
-        <SearchList searchList={posts.slice(offset,offset+10)}></SearchList>
+        <SearchList searchList={posts.slice(offset,offset+5)}></SearchList>
         <Pagination
             total = {posts.length}
             page = {page}

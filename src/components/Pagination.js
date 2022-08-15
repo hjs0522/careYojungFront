@@ -17,8 +17,9 @@ const Button = styled.button`
   color: white;
   font-size: 1rem;
 
+
   &:hover {
-    background: tomato;
+    border: solid #496ace;
     cursor: pointer;
     transform: translateY(-2px);
   }
@@ -30,7 +31,7 @@ const Button = styled.button`
   }
 
   &[aria-current] {
-    background: deeppink;
+    background: #496ace;
     font-weight: bold;
     cursor: revert;
     transform: revert;
@@ -38,7 +39,7 @@ const Button = styled.button`
 `;
 
 function Pagination({ total, page, setPage }) {
-  const numPages = Math.ceil(total / 10);
+  const numPages = Math.ceil(total / 5);
 
   return (
     <>

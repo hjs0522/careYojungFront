@@ -2,6 +2,8 @@ import _ from 'lodash'
 import React from 'react'
 import { Search} from 'semantic-ui-react'
 import styled from 'styled-components'
+import { useRecoilState } from 'recoil'
+import { searchState } from '../atom'
 const source = [
   {
     title: "aaaa",
@@ -55,6 +57,8 @@ function exampleReducer(state, action) {
 }
 
 function SearchExampleStandard() {
+
+  const [searchs,setSearchs] = useRecoilState(searchState);
   const [state, dispatch] = React.useReducer(exampleReducer, initialState)
   const { loading, results, value } = state
 
@@ -79,15 +83,17 @@ function SearchExampleStandard() {
     }, 300)
   }, [])
   
+  
   React.useEffect(() => {
     return () => {
       clearTimeout(timeoutRef.current)
     }
   }, [])
-
   return (
+  
   <>
     <MySearch
+          
           loading={loading}
           placeholder='Search...'
           onResultSelect={(e, data) =>

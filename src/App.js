@@ -5,10 +5,11 @@ import { BrowserRouter, Routes,Route } from "react-router-dom";
 import SearchPage from "./pages/SearchPage";
 import WishPage from "./pages/WishPage";
 import MyPage from "./pages/MyPage";
+import { RecoilRoot } from "recoil";
 
 function App() {
   return (
-  <>
+  <RecoilRoot>
     <BrowserRouter>
       <Header />
       <Routes>
@@ -19,7 +20,7 @@ function App() {
       </Routes>
     </BrowserRouter>
     <Footer />
-  </>
+  </RecoilRoot>
   );
 }
 
