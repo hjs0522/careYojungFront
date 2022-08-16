@@ -21,7 +21,7 @@ const ThemeH1 = styled.h1({
 function Themelist({arr}){
     return (<StyledThemelist>
         <ThemeH1>테마별 시설 둘러 보기</ThemeH1>
-        <FacilityList size={5} arr={arr} />
+        <FacilityList size={5} arr={arr} id="Themelist"/>
     </StyledThemelist>)
 
 }

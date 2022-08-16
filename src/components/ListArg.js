@@ -13,8 +13,8 @@ const StyledImage = styled.img({
 
 const StyleName = styled.div({
     position:'absolute',
-    marginLeft:'15%',
-    marginTop:"55%",
+    marginLeft:'3%',
+    marginTop:"18%",
     zIndex:'2',
     color:"white",
     fontSize:'20px',
@@ -24,21 +24,21 @@ const StyleName = styled.div({
 })
 const StyleLoc = styled.div({
     position:'absolute',
-    marginLeft:'15%',
-    marginTop:'63%',
+    marginLeft:'3%',
+    marginTop:'21%',
     zIndex:'2',
     color:"white",
     display:'inline-block',
     cursor:'pointer',
 })
 
-function ListArg({name,img,loc}){
+function ListArg({name,img,loc,id}){
     
     return (
-        <>
+        <>  
             <StyleName >{name}</StyleName>
             <StyleLoc >{loc}</StyleLoc>
-            <Detail img={img} name={name} loc={loc} />
+            <Detail img={img} name={name} loc={loc} id={id} />
         </>
     )
 }

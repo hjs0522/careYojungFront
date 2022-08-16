@@ -9,14 +9,15 @@ const DetailPage = styled.div({
   scrollBehavior:'smooth',
 })
 
-const StyledImage = styled.img({
-    borderRadius:'10px',
-    marginLeft:'20px',
-    marginRight:'20px',
-    filter:'drop-shadow(4px 4px 20px rgba(25,32,60,0.35))',
-    display:'inline-block',
-    cursor:'pointer',
-})
+const StyledImage = styled.img`
+    border-radius:10px;
+    margin-left:20px;
+    filter:drop-shadow(1px 1px 5px rgba(25,32,60,0.3));
+    height:${prop=>prop.id==='Themelist'? '320px':'220px'};
+    width:${prop=>prop.id==='Themelist'? '31.5%':'22.5%'};
+    display:inline-block;
+    cursor:pointer;
+`
 
 const DetailImage = styled.img({
   marginTop:'20px',
@@ -117,7 +118,7 @@ function DetailPerson(){
           <DetailPersonText style={{float:'right',color:'#E9539b'}}>10명</DetailPersonText>
         </div>
         <div style={{padding:"7%"}}>
-          <DetailPersonText style={{display:'block',marginBottom:'10px'}}>1명당 입소자 20명</DetailPersonText>
+          <DetailPersonText style={{display:'block',marginBottom:'10px'}}>1명당 입소자 10명</DetailPersonText>
           <DetailPersonText style={{display:'block',fontSize:'18px',color:'#999999'}}>평균 1명당 20명</DetailPersonText>
         </div>
       </DetailPersonBox>
@@ -352,19 +353,13 @@ const menuArr={
   시설리뷰:'Detail-5'
 }
 
-function Detail({img,name,loc}) {
-  const [menubar, setMenubar] = useState();
-  const [pageY,setPageY]=useState(0);
-  const aRef=useRef(null);
+function Detail({img,name,loc,id}) {
 
   const onMenuClick= (i) =>{
     const item=document.getElementById(menuArr[i.target.innerText]);
     item.scrollIntoView({behavior: "smooth" })
   }
-  const onClick= (i)=>{
-    console.log(i.target.getBoundingClientRect().top);
-    console.log(i);
-  }
+  
   const [open, setOpen] = useState(false)
   return (
     <Modal
@@ -372,7 +367,7 @@ function Detail({img,name,loc}) {
       onOpen={() => setOpen(true)}
       open={open}
       size='large'
-      trigger={<StyledImage src={img} />}
+      trigger={<StyledImage id={id} src={img} />}
     >
       <DetailPage>
         <ModalHeader >{name}</ModalHeader>
