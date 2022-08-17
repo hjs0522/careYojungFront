@@ -42,10 +42,13 @@ const LinkContainer = styled.div`
 
 const SearchItem = ({id,img,name,type,grade,reviewScore,reviewNum,location,phoneNumber,wish})=>
 {
+    const handleOnClick = () =>{
+        console.log("heart clicked")
+    }
     return(
         <ItemContainer>
             <Image src={img} alt = "요양원 사진" size="small"></Image>
-            <Icon name='heart outline' size="large"></Icon>
+            <Icon name='heart outline' size="large" onClick = {handleOnClick}></Icon>
             <InfoContainer>
                 <div>
                     <span>{name}</span>

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Container, Icon } from "semantic-ui-react";
+import {Icon } from "semantic-ui-react";
 import styled from "styled-components";
 import SearchExampleStandard from "./Search";
 
