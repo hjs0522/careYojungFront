@@ -6,20 +6,23 @@ import SearchPage from "./pages/SearchPage";
 import WishPage from "./pages/WishPage";
 import MyPage from "./pages/MyPage";
 import { RecoilRoot } from "recoil";
+import { Container } from "semantic-ui-react";
 
 function App() {
   return (
   <RecoilRoot>
-    <BrowserRouter>
-      <Header />
-      <Routes>
-        <Route path="/" element={<Mainpage></Mainpage>}></Route>
-        <Route path="search" element={<SearchPage></SearchPage>}></Route>
-        <Route path="wish" element = {<WishPage></WishPage>}></Route>
-        <Route path="mypage" element = {<MyPage></MyPage>}></Route>
-      </Routes>
+    <BrowserRouter> 
+      <Container fluid>
+        <Header />
+        <Routes>
+          <Route path="/" element={<Mainpage></Mainpage>}></Route>
+          <Route path="search" element={<SearchPage></SearchPage>}></Route>
+          <Route path="wish" element = {<WishPage></WishPage>}></Route>
+          <Route path="mypage" element = {<MyPage></MyPage>}></Route>
+        </Routes>
+        <Footer />
+      </Container>
     </BrowserRouter>
-    <Footer />
   </RecoilRoot>
   );
 }

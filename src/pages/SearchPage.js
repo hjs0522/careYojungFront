@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Container } from "semantic-ui-react";
 import styled from "styled-components";
 import DropDownRow from "../components/DropDownRow";
 import Pagination from '../components/Pagination'
@@ -223,13 +224,6 @@ const dummyList = [
     },
 ];
 
-const SearchPageContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    padding-top: 9vh;
-    padding-bottom: 150px;
-`
-
 
 
 const SearchPage = ()=>{
@@ -249,7 +243,7 @@ const SearchPage = ()=>{
         setPosts(dummyList);
     },[])
     return(
-    <SearchPageContainer>
+    <Container fluid>
         <DropDownRow></DropDownRow>
         <SearchList searchList={posts.slice(offset,offset+5)}></SearchList>
         <Pagination
@@ -257,7 +251,7 @@ const SearchPage = ()=>{
             page = {page}
             setPage = {setPage}
         ></Pagination>
-    </SearchPageContainer>
+    </Container>
     )
 };
 

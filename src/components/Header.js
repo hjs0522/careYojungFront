@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Icon } from "semantic-ui-react";
+import { Container, Icon } from "semantic-ui-react";
 import styled from "styled-components";
 import SearchExampleStandard from "./Search";
 
@@ -10,25 +10,27 @@ const HeaderDiv = styled.div`
     justify-content: space-between;
     position: fixed;
     align-items: center;
-    padding: 2% 0px;
+    padding: 1% 0px;
     width: 100%;
     height: 8vh;
     z-index: 3;
+    & >*{
+        width: 33%;
+    }
     
 `
 
 const Logo = styled(Link)`
     font-family: 'Jalnan';
     font-size: x-large;
-    padding: 0px 2%;
+    margin-left: 2vw;
     color: white;
 `
 
 const HeaderButtonContainer = styled.div`
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     button, a{
-        margin: 0px 1vw;
         border:none;
         color: white;
         background-color: inherit;
@@ -51,7 +53,7 @@ const Header = () =>{
     return(
         <HeaderDiv>
             <Logo to={"/"}>케어요정</Logo>
-            <SearchExampleStandard></SearchExampleStandard>
+            <SearchExampleStandard ></SearchExampleStandard>
             <HeaderButtonContainer>
                 <div>
                     <Icon name="sign-out"></Icon>

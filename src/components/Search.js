@@ -1,9 +1,8 @@
 import _ from 'lodash'
 import React from 'react'
-import { Search} from 'semantic-ui-react'
+import { Form, Search} from 'semantic-ui-react'
+import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
-import { useRecoilState } from 'recoil'
-import { searchState } from '../atom'
 const source = [
   {
     title: "aaaa",
@@ -23,14 +22,9 @@ const source = [
   },
 ]
 
-const MySearch = styled(Search)`
+const MyForm = styled(Form)`
   & *{
-    width: 30vw;
-    height: 5vh;
-  }
-  
-  &.ui.search > .results {
-    width: 30vw;
+    width: 100%;
   }
 `
 
@@ -57,8 +51,6 @@ function exampleReducer(state, action) {
 }
 
 function SearchExampleStandard() {
-
-  const [searchs,setSearchs] = useRecoilState(searchState);
   const [state, dispatch] = React.useReducer(exampleReducer, initialState)
   const { loading, results, value } = state
 
@@ -83,6 +75,12 @@ function SearchExampleStandard() {
     }, 300)
   }, [])
   
+  const navigate = useNavigate();
+  
+  const handleSubmit = () =>{
+    navigate("search")
+    
+  }
   
   React.useEffect(() => {
     return () => {
@@ -91,19 +89,16 @@ function SearchExampleStandard() {
   }, [])
   return (
   
-  <>
-    <MySearch
-          
+  <MyForm onSubmit={handleSubmit}>
+    <Search
+          fluid
           loading={loading}
           placeholder='Search...'
-          onResultSelect={(e, data) =>
-            dispatch({ type: 'UPDATE_SELECTION', selection: data.result.title })
-          }
           onSearchChange={handleSearchChange}
           results={results}
           value={value}
         />
-  </>
+  </MyForm>
         
   )
 }
