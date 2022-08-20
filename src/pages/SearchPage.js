@@ -233,7 +233,7 @@ const SearchContainer = styled(Container)`
 
 const SearchPage = ()=>{
 
-    const [posts,setPosts] = useState([]);
+    const [searchList,setSearchList] = useState([]);
     const [page,setPage] = useState(1);
     const offset = (page-1) * 5;
     
@@ -241,18 +241,26 @@ const SearchPage = ()=>{
         useEffect(() =>{
             fetch("")
                 .then((res) => res.json())
-                .then((data)=> setPosts(data));
+                .then((data)=> setSearchList(data));
         },[]);
     */
     useEffect(()=>{
-        setPosts(dummyList);
+        setSearchList(dummyList);
     },[])
+    
+    const onEditWish = (targetId, newWish)=>{
+        setSearchList(
+            searchList.map((it)=>
+                it.id ===targetId ? {...it,wish:newWish} : it
+            )
+        );
+    };
     return(
     <SearchContainer fluid>
         <DropDownRow></DropDownRow>
-        <SearchList searchList={posts.slice(offset,offset+5)}></SearchList>
+        <SearchList searchList={searchList.slice(offset,offset+5)} onEditWish={onEditWish}></SearchList>
         <Pagination
-            total = {posts.length}
+            total = {searchList.length}
             page = {page}
             setPage = {setPage}
         ></Pagination>

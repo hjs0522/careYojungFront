@@ -6,11 +6,11 @@ const ListContainer = styled.ul`
     padding-right: 15vw;
 `
 
-const SearchList = ({searchList,onAdd}) =>{
+const SearchList = ({searchList,onAdd,onEditWish}) =>{
     return(
      <ListContainer>
         {searchList.map((it)=>(
-        <SearchItem key={`item_${it.id}`} {...it} onAdd={onAdd}/>
+        <SearchItem key={`item_${it.id}`} {...it} onAdd={onAdd} onEditWish = {onEditWish}/>
         ))}
      </ListContainer>   
     );

@@ -41,11 +41,11 @@ const LinkContainer = styled.div`
 
 
 
-const SearchItem = ({id,img,name,type,grade,reviewScore,reviewNum,location,phoneNumber,wish,onAdd,compareList})=>
+const SearchItem = ({id,img,name,type,grade,reviewScore,reviewNum,location,phoneNumber,wish,onAdd,onEditWish})=>
 {
     
     const handleOnClick = () =>{
-        console.log("heart clicked")
+        onEditWish(id,!wish);
     }
     
     const handleOnAdd = () =>{
