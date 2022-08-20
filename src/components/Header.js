@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import {Icon } from "semantic-ui-react";
 import styled from "styled-components";
-import SearchExampleStandard from "./Search";
+import SearchBar from "./SearchBar";
 
 
 const HeaderDiv = styled.div`
@@ -10,7 +10,6 @@ const HeaderDiv = styled.div`
     justify-content: space-between;
     position: fixed;
     align-items: center;
-    padding: 1% 0px;
     width: 100%;
     height: 8vh;
     z-index: 3;
@@ -52,21 +51,19 @@ const Header = () =>{
 
     return(
         <HeaderDiv>
-            <Logo to={"/"}>케어요정</Logo>
-            <SearchExampleStandard ></SearchExampleStandard>
+            <div>
+                <Logo to={"/"}>케어요정</Logo>
+            </div>
+            <SearchBar></SearchBar>
             <HeaderButtonContainer>
-                <div>
+                <nav>
                     <Icon name="sign-out"></Icon>
-                    <button>로그아웃</button> 
-                </div>
-                <div>
+                    <button onClick={()=>{console.log("logout")}}>로그아웃</button> 
                     <Icon name="heart outline"></Icon>
                     <Link to={"/wish"}>위시리스트</Link>
-                </div>
-                <div>
                     <Icon name="user outline"></Icon>
                     <Link to={"/mypage"}>마이페이지</Link>
-                </div>
+                </nav>
             </HeaderButtonContainer>
         </HeaderDiv>
     )

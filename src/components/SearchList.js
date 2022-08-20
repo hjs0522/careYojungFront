@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styled from "styled-components"
 import SearchItem from "./SearchItem";
 const ListContainer = styled.ul`
@@ -5,12 +6,11 @@ const ListContainer = styled.ul`
     padding-right: 15vw;
 `
 
-const SearchList = ({searchList}) =>{
-
+const SearchList = ({searchList,onAdd}) =>{
     return(
      <ListContainer>
         {searchList.map((it)=>(
-        <SearchItem key={`item_${it.id}`} {...it}/>
+        <SearchItem key={`item_${it.id}`} {...it} onAdd={onAdd}/>
         ))}
      </ListContainer>   
     );

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Container } from "semantic-ui-react";
+import { Container,Header } from "semantic-ui-react";
 import styled from "styled-components";
 import DropDownRow from "../components/DropDownRow";
 import Pagination from '../components/Pagination'
@@ -12,7 +12,7 @@ const dummyList = [
         name:"강남 요양원",
         type:"요양원",
         grade:"등급 A",
-        reviewScore:"5점",
+        reviewScore:5,
         reviewNum:"10개",
         location:"서울시 강남구",
         phoneNumber:"010-****-****",
@@ -24,7 +24,7 @@ const dummyList = [
         name:"강북 요양원",
         type:"요양원",
         grade:"등급 A",
-        reviewScore:"5점",
+        reviewScore:5,
         reviewNum:"10개",
         location:"서울시 강북구",
         phoneNumber:"010-****-****",
@@ -36,7 +36,7 @@ const dummyList = [
         name:"강동 요양원",
         type:"요양원",
         grade:"등급 A",
-        reviewScore:"5점",
+        reviewScore:4,
         reviewNum:"10개",
         location:"서울시 강동구",
         phoneNumber:"010-****-****",
@@ -48,7 +48,7 @@ const dummyList = [
         name:"강남 요양원",
         type:"요양원",
         grade:"등급 A",
-        reviewScore:"5점",
+        reviewScore:3,
         reviewNum:"10개",
         location:"서울시 강남구",
         phoneNumber:"010-****-****",
@@ -60,7 +60,7 @@ const dummyList = [
         name:"강북 요양원",
         type:"요양원",
         grade:"등급 A",
-        reviewScore:"5점",
+        reviewScore:4,
         reviewNum:"10개",
         location:"서울시 강북구",
         phoneNumber:"010-****-****",
@@ -72,7 +72,7 @@ const dummyList = [
         name:"강동 요양원",
         type:"요양원",
         grade:"등급 A",
-        reviewScore:"5점",
+        reviewScore:5,
         reviewNum:"10개",
         location:"서울시 강동구",
         phoneNumber:"010-****-****",
@@ -84,7 +84,7 @@ const dummyList = [
         name:"강남 요양원",
         type:"요양원",
         grade:"등급 A",
-        reviewScore:"5점",
+        reviewScore:5,
         reviewNum:"10개",
         location:"서울시 강남구",
         phoneNumber:"010-****-****",
@@ -96,7 +96,7 @@ const dummyList = [
         name:"강북 요양원",
         type:"요양원",
         grade:"등급 A",
-        reviewScore:"5점",
+        reviewScore:2,
         reviewNum:"10개",
         location:"서울시 강북구",
         phoneNumber:"010-****-****",
@@ -108,7 +108,7 @@ const dummyList = [
         name:"강동 요양원",
         type:"요양원",
         grade:"등급 A",
-        reviewScore:"5점",
+        reviewScore:3,
         reviewNum:"10개",
         location:"서울시 강동구",
         phoneNumber:"010-****-****",
@@ -120,7 +120,7 @@ const dummyList = [
         name:"강남 요양원",
         type:"요양원",
         grade:"등급 A",
-        reviewScore:"5점",
+        reviewScore:4,
         reviewNum:"10개",
         location:"서울시 강남구",
         phoneNumber:"010-****-****",
@@ -132,7 +132,7 @@ const dummyList = [
         name:"강북 요양원",
         type:"요양원",
         grade:"등급 A",
-        reviewScore:"5점",
+        reviewScore:5,
         reviewNum:"10개",
         location:"서울시 강북구",
         phoneNumber:"010-****-****",
@@ -144,7 +144,7 @@ const dummyList = [
         name:"강동 요양원",
         type:"요양원",
         grade:"등급 A",
-        reviewScore:"5점",
+        reviewScore:4,
         reviewNum:"10개",
         location:"서울시 강동구",
         phoneNumber:"010-****-****",
@@ -156,7 +156,7 @@ const dummyList = [
         name:"강남 요양원",
         type:"요양원",
         grade:"등급 A",
-        reviewScore:"5점",
+        reviewScore:4,
         reviewNum:"10개",
         location:"서울시 강남구",
         phoneNumber:"010-****-****",
@@ -168,7 +168,7 @@ const dummyList = [
         name:"강북 요양원",
         type:"요양원",
         grade:"등급 A",
-        reviewScore:"5점",
+        reviewScore:5,
         reviewNum:"10개",
         location:"서울시 강북구",
         phoneNumber:"010-****-****",
@@ -180,7 +180,7 @@ const dummyList = [
         name:"강동 요양원",
         type:"요양원",
         grade:"등급 A",
-        reviewScore:"5점",
+        reviewScore:4,
         reviewNum:"10개",
         location:"서울시 강동구",
         phoneNumber:"010-****-****",
@@ -192,7 +192,7 @@ const dummyList = [
         name:"강남 요양원",
         type:"요양원",
         grade:"등급 A",
-        reviewScore:"5점",
+        reviewScore:5,
         reviewNum:"10개",
         location:"서울시 강남구",
         phoneNumber:"010-****-****",
@@ -204,7 +204,7 @@ const dummyList = [
         name:"강북 요양원",
         type:"요양원",
         grade:"등급 A",
-        reviewScore:"5점",
+        reviewScore:4,
         reviewNum:"10개",
         location:"서울시 강북구",
         phoneNumber:"010-****-****",
@@ -216,7 +216,7 @@ const dummyList = [
         name:"강동 요양원",
         type:"요양원",
         grade:"등급 A",
-        reviewScore:"5점",
+        reviewScore:4,
         reviewNum:"10개",
         location:"서울시 강동구",
         phoneNumber:"010-****-****",
@@ -225,6 +225,11 @@ const dummyList = [
 ];
 
 
+const SearchContainer = styled(Container)`
+    &.ui.fluid.container{
+        padding-top: 100px;
+    }
+`
 
 const SearchPage = ()=>{
 
@@ -243,7 +248,7 @@ const SearchPage = ()=>{
         setPosts(dummyList);
     },[])
     return(
-    <Container fluid>
+    <SearchContainer fluid>
         <DropDownRow></DropDownRow>
         <SearchList searchList={posts.slice(offset,offset+5)}></SearchList>
         <Pagination
@@ -251,7 +256,7 @@ const SearchPage = ()=>{
             page = {page}
             setPage = {setPage}
         ></Pagination>
-    </Container>
+    </SearchContainer>
     )
 };
 
