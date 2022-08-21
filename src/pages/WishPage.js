@@ -68,10 +68,10 @@ const WishPage = ()=>{
         setBarOpen(!barOpen)
     }
     
-    const onAdd = (id,name) =>{
+    const onAdd = (nursingHome_id,name) =>{
         if(compareList.length<3){
             const newItem = {
-                id,
+                nursingHome_id,
                 name,
             };
             setCompareList([...compareList,newItem])
@@ -83,6 +83,10 @@ const WishPage = ()=>{
     }
     
     const onRemoveCompare = (targetId)=>{
+        console.log(targetId)
+        for(let i=0;i<compareList.length;i++){
+            console.log(compareList[i].nursingHome_id)
+        }
         const newCompareList = compareList.filter((it)=>it.nursingHome_id !== targetId);
         setCompareList(newCompareList);
     }

@@ -1,4 +1,4 @@
-import {Modal,Icon, Grid,Image} from 'semantic-ui-react'
+import {Modal,Icon, Grid,Image, Button} from 'semantic-ui-react'
 import {useState} from 'react'
 import styled from 'styled-components'
 
@@ -90,19 +90,7 @@ const arr = [{
     per4 : 10,
     per5 : 10,
     per6 : 10,
-},{
-    key : 1,
-    name : "시립서부노인전문요양센터",
-    loc : "서울 성동구 금호로 45",
-    tel : 'T.031-1234-3456',
-    cost : '210,000',
-    per1 : 35,
-    per2 : 32,
-    per3 : 7,
-    per4 : 10,
-    per5 : 10,
-    per6 : 10,
-}]
+},]
 
 function Compare(){
     const arrSize=arr.length;
@@ -114,7 +102,7 @@ function Compare(){
       onOpen={() => setOpen(true)}
       open={open}
       size='large'
-      trigger={<button>a</button>}
+      trigger={<Button>비교하기</Button>}
     >
         <PageHeader>
             <TitleText >서비스 비교결과</TitleText>

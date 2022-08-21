@@ -1,5 +1,6 @@
 import { Button,Icon} from "semantic-ui-react";
 import styled from "styled-components";
+import Compare from "./Compare";
 import CompareList from "./CompareList";
 
 const CompareAddBarContainer = styled.div`
@@ -43,7 +44,7 @@ const CompareAddBarOpen = ({toggleIsBarOpen,compareList,onRemoveCompare})=>  {
         </TextContainer>
         <CompareList compareList={compareList} onRemoveCompare = {onRemoveCompare}></CompareList>
         <ButtonContainer>
-            <Button>비교하기</Button>
+            <Compare></Compare>
             <Button onClick={toggleIsBarOpen}>닫기<Icon name="angle down"></Icon></Button>
         </ButtonContainer>
     </CompareAddBarContainer>
