@@ -74,7 +74,15 @@ const WishPage = ()=>{
                 nursingHome_id,
                 name,
             };
-            setCompareList([...compareList,newItem])
+            let flag = false;
+            for(let i=0;i<compareList.length;i++){
+                if(compareList[i].nursingHome_id === nursingHome_id){
+                    flag = true;
+                }
+            }
+            if (!flag){
+                setCompareList([...compareList,newItem]);
+            }
         }
         else
         {
@@ -83,9 +91,8 @@ const WishPage = ()=>{
     }
     
     const onRemoveCompare = (targetId)=>{
-        console.log(targetId)
         for(let i=0;i<compareList.length;i++){
-            console.log(compareList[i].nursingHome_id)
+            console.log(`compare id is ${compareList[i].nursingHome_id}`);
         }
         const newCompareList = compareList.filter((it)=>it.nursingHome_id !== targetId);
         setCompareList(newCompareList);

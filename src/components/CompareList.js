@@ -29,7 +29,8 @@ const CompareList = ({compareList,onRemoveCompare})=>{
     }
     return(
         <CompareListContainer>
-            {getCompare()}
+            {compareList.map((it)=>(
+                <CompareItem key={it.nursingHome_id} {...it} onRemoveCompare = {onRemoveCompare}></CompareItem>))}
         </CompareListContainer>
     );
 }
