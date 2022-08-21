@@ -6,11 +6,11 @@ const ListContainer = styled.ul`
     padding-right: 15vw;
 `
 
-const SearchList = ({searchList,onAdd,onEditWish}) =>{
+const SearchList = ({searchList,onAdd,onEditWish,isWishPage,onRemoveWish}) =>{
     return(
      <ListContainer>
         {searchList.map((it)=>(
-        <SearchItem key={`item_${it.id}`} {...it} onAdd={onAdd} onEditWish = {onEditWish}/>
+        <SearchItem key={it.id} {...it} onAdd={onAdd} onEditWish = {onEditWish} isWishPage={isWishPage} onRemoveWish={onRemoveWish}/>
         ))}
      </ListContainer>   
     );

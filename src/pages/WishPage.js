@@ -57,10 +57,16 @@ const WishContainer = styled(Container)`
 
 const WishPage = ()=>{
     const [barOpen,setBarOpen] = useState(false);
+    const [compareList,setCompareList] = useState([]);
+    const [searchList,setSearchList] = useState([]);
+    
+    useEffect(()=>{
+        setSearchList(dummyList);
+    },[])
+    
     const toggleIsBarOpen = ()=>{
         setBarOpen(!barOpen)
     }
-    const [compareList,setCompareList] = useState([]);
     
     const onAdd = (id,name) =>{
         if(compareList.length<3){
@@ -76,15 +82,29 @@ const WishPage = ()=>{
         }
     }
     
-    const onRemove = (targetId)=>{
+    const onRemoveCompare = (targetId)=>{
         const newCompareList = compareList.filter((it)=>it.id !== targetId);
         setCompareList(newCompareList);
     }
+    
+    const onRemoveWish = (targetId) =>{
+        const newSearchList = searchList.filter((it)=>it.id !== targetId);
+        setSearchList(newSearchList);
+    }
+    
+    const onEditWish = (targetId, newWish)=>{
+        setSearchList(
+            searchList.map((it)=>
+                it.id ===targetId ? {...it,wish:newWish} : it
+            )
+        );
+    };
+    
     return(
     <WishContainer fluid>
         <DropDownRow></DropDownRow>
-        <SearchList searchList={dummyList} onAdd = {onAdd} compareList = {compareList}></SearchList>
-        {barOpen?<CompareAddBarOpen toggleIsBarOpen={toggleIsBarOpen} compareList={compareList} onRemove = {onRemove}></CompareAddBarOpen>:<CompareAddBarClose toggleIsBarOpen={toggleIsBarOpen} compareList={compareList}></CompareAddBarClose>}
+        <SearchList searchList={searchList} onAdd = {onAdd} onEditWish={onEditWish} onRemoveWish={onRemoveWish} compareList = {compareList} isWishPage = {true}></SearchList>
+        {barOpen?<CompareAddBarOpen toggleIsBarOpen={toggleIsBarOpen} compareList={compareList} onRemove = {onRemoveCompare}></CompareAddBarOpen>:<CompareAddBarClose toggleIsBarOpen={toggleIsBarOpen} compareList={compareList}></CompareAddBarClose>}
     </WishContainer>
     )
 };

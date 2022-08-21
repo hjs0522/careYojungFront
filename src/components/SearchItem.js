@@ -41,7 +41,7 @@ const LinkContainer = styled.div`
 
 
 
-const SearchItem = ({id,img,name,type,grade,reviewScore,reviewNum,location,phoneNumber,wish,onAdd,onEditWish})=>
+const SearchItem = ({id,img,name,type,grade,reviewScore,reviewNum,location,phoneNumber,wish,onAdd,onEditWish,isWishPage,onRemoveWish})=>
 {
     
     const handleOnClick = () =>{
@@ -50,6 +50,10 @@ const SearchItem = ({id,img,name,type,grade,reviewScore,reviewNum,location,phone
     
     const handleOnAdd = () =>{
         onAdd(id,name);    
+    }
+    
+    const handleRemoveWish = ()=>{
+        onRemoveWish(id);
     }
     
     function getStar(num){
@@ -70,7 +74,12 @@ const SearchItem = ({id,img,name,type,grade,reviewScore,reviewNum,location,phone
     return(
         <ItemContainer>
             <Image src={img} alt = "요양원 사진" size="small"></Image>
-            {wish
+            {isWishPage
+            ?
+            (wish
+            ?<Icon name='heart' color="red" size="large" onClick = {handleRemoveWish}></Icon>:
+            <Icon name='heart outline' size="large" onClick = {handleOnClick}></Icon>)
+            :wish
             ? <Icon name='heart' color="red" size="large" onClick = {handleOnClick}></Icon>:
             <Icon name='heart outline' size="large" onClick = {handleOnClick}></Icon>}
             <InfoContainer>
@@ -89,7 +98,7 @@ const SearchItem = ({id,img,name,type,grade,reviewScore,reviewNum,location,phone
             <LinkContainer>
                 <Button size="small">상세보기</Button>
                 <Button size="small">리뷰하기</Button>
-                {wish?
+                {isWishPage?
                 <Button size="samll" onClick={handleOnAdd}>비교담기</Button>:
                 null}
             </LinkContainer>
