@@ -6,9 +6,9 @@ const CompareItemContainer = styled.div`
     border: solid;
 `
 
-const CompareItem = ({id,name,onRemove}) =>{
+const CompareItem = ({nursingHome_id,name,onRemoveCompare}) =>{
     const handleOnRemove = () =>{
-        onRemove(id);
+        onRemoveCompare(nursingHome_id);
     }
     return(
     <CompareItemContainer>

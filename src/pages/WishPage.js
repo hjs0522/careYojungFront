@@ -10,41 +10,43 @@ import SearchList from "../components/SearchList";
 
 const dummyList = [
     {
-        id:1,
+        nursingHome_id:1,
         img:"https://react.semantic-ui.com/images/wireframe/image.png",
         name:"강남 요양원",
         type:"요양원",
         grade:"등급 A",
-        reviewScore:5,
+        score:5,
         reviewNum:"10개",
-        location:"서울시 강남구",
+        addRoad:"서울시 강남구",
         phoneNumber:"010-****-****",
         wish:true,
     },
     {
-        id:2,
+        nursingHome_id:2,
         img:"https://react.semantic-ui.com/images/wireframe/image.png",
         name:"강북 요양원",
         type:"요양원",
         grade:"등급 A",
-        reviewScore:4,
+        score:5,
         reviewNum:"10개",
-        location:"서울시 강북구",
+        addRoad:"서울시 강북구",
         phoneNumber:"010-****-****",
         wish:true,
     },
     {
-        id:3,
+        nursingHome_id:3,
         img:"https://react.semantic-ui.com/images/wireframe/image.png",
         name:"강동 요양원",
         type:"요양원",
         grade:"등급 A",
-        reviewScore:5,
+        score:4,
         reviewNum:"10개",
-        location:"서울시 강동구",
+        addRoad:"서울시 강동구",
         phoneNumber:"010-****-****",
         wish:true,
     },
+
+    
 ];
 
 
@@ -83,19 +85,19 @@ const WishPage = ()=>{
     }
     
     const onRemoveCompare = (targetId)=>{
-        const newCompareList = compareList.filter((it)=>it.id !== targetId);
+        const newCompareList = compareList.filter((it)=>it.nursingHome_id !== targetId);
         setCompareList(newCompareList);
     }
     
     const onRemoveWish = (targetId) =>{
-        const newSearchList = searchList.filter((it)=>it.id !== targetId);
+        const newSearchList = searchList.filter((it)=>it.nursingHome_id !== targetId);
         setSearchList(newSearchList);
     }
     
     const onEditWish = (targetId, newWish)=>{
         setSearchList(
             searchList.map((it)=>
-                it.id ===targetId ? {...it,wish:newWish} : it
+                it.nursingHome_id ===targetId ? {...it,wish:newWish} : it
             )
         );
     };
@@ -104,7 +106,7 @@ const WishPage = ()=>{
     <WishContainer fluid>
         <DropDownRow></DropDownRow>
         <SearchList searchList={searchList} onAdd = {onAdd} onEditWish={onEditWish} onRemoveWish={onRemoveWish} compareList = {compareList} isWishPage = {true}></SearchList>
-        {barOpen?<CompareAddBarOpen toggleIsBarOpen={toggleIsBarOpen} compareList={compareList} onRemove = {onRemoveCompare}></CompareAddBarOpen>:<CompareAddBarClose toggleIsBarOpen={toggleIsBarOpen} compareList={compareList}></CompareAddBarClose>}
+        {barOpen?<CompareAddBarOpen toggleIsBarOpen={toggleIsBarOpen} compareList={compareList} onRemoveCompare = {onRemoveCompare}></CompareAddBarOpen>:<CompareAddBarClose toggleIsBarOpen={toggleIsBarOpen} compareList={compareList}></CompareAddBarClose>}
     </WishContainer>
     )
 };

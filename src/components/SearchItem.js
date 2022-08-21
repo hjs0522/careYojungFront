@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Button,Image,Icon } from "semantic-ui-react";
 import styled from "styled-components";
 
@@ -41,19 +40,19 @@ const LinkContainer = styled.div`
 
 
 
-const SearchItem = ({id,img,name,type,grade,reviewScore,reviewNum,location,phoneNumber,wish,onAdd,onEditWish,isWishPage,onRemoveWish})=>
+const SearchItem = ({nursingHome_id,img,name,type,grade,score,reviewNum,addRoad,phoneNumber,wish,onAdd,onEditWish,isWishPage,onRemoveWish})=>
 {
     
     const handleOnClick = () =>{
-        onEditWish(id,!wish);
+        onEditWish(nursingHome_id,!wish);
     }
     
     const handleOnAdd = () =>{
-        onAdd(id,name);    
+        onAdd(nursingHome_id,name);    
     }
     
     const handleRemoveWish = ()=>{
-        onRemoveWish(id);
+        onRemoveWish(nursingHome_id);
     }
     
     function getStar(num){
@@ -89,10 +88,10 @@ const SearchItem = ({id,img,name,type,grade,reviewScore,reviewNum,location,phone
                     <span>{grade}</span>
                 </div>
                 <div>
-                    <div>{getStar(reviewScore)}</div>
+                    <div>{getStar(score)}</div>
                     <span>{reviewNum}</span>
                 </div>
-                <div>{location}</div>
+                <div>{addRoad}</div>
                 <div>{phoneNumber}</div>
             </InfoContainer>
             <LinkContainer>

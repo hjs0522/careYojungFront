@@ -10,7 +10,7 @@ const SearchList = ({searchList,onAdd,onEditWish,isWishPage,onRemoveWish}) =>{
     return(
      <ListContainer>
         {searchList.map((it)=>(
-        <SearchItem key={it.id} {...it} onAdd={onAdd} onEditWish = {onEditWish} isWishPage={isWishPage} onRemoveWish={onRemoveWish}/>
+        <SearchItem key={it.nursingHome_id} {...it} onAdd={onAdd} onEditWish = {onEditWish} isWishPage={isWishPage} onRemoveWish={onRemoveWish}/>
         ))}
      </ListContainer>   
     );
