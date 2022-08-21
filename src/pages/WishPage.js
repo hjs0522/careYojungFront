@@ -1,10 +1,8 @@
-import { Action } from "history";
-import { useEffect, useReducer, useState,useCallback } from "react";
+import { useEffect, useState } from "react";
 import { Container } from "semantic-ui-react";
 import styled from "styled-components";
 import CompareAddBarClose from "../components/CompareAddBarClose";
 import CompareAddBarOpen from "../components/CompareAddBarOpen";
-import CompareAddBar from "../components/CompareAddBarOpen";
 import DropDownRow from "../components/DropDownRow";
 import SearchList from "../components/SearchList";
 

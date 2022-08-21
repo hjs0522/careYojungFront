@@ -1,4 +1,3 @@
-import { useState } from "react";
 import styled from "styled-components"
 import SearchItem from "./SearchItem";
 const ListContainer = styled.ul`

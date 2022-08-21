@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { Button, Container, Icon} from "semantic-ui-react";
+import { Button,Icon} from "semantic-ui-react";
 import styled from "styled-components";
 import CompareList from "./CompareList";
 
@@ -14,11 +13,7 @@ const CompareAddBarContainer = styled.div`
 `
 
 
-const CompareItem = styled.div`
-    background-color: #496ace;
-    border-radius: 10%;
-    border: solid;
-`
+
 
 const ButtonContainer = styled.div`
     display: flex;
