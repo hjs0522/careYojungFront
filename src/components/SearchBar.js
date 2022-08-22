@@ -1,24 +1,32 @@
 import _ from 'lodash'
 import React from 'react'
-import { Search} from 'semantic-ui-react'
+import { Form, Search} from 'semantic-ui-react'
+import { useNavigate } from 'react-router-dom'
+import styled from 'styled-components'
 const source = [
   {
-    title: "aaaa",
+    title: "성동구",
     description: "Aaaa",
   },
   {
-    title: "aabb",
+    title: "강남구",
     description: "Aabb",
   },
   {
-    title: "aacc",
+    title: "성북구",
     description: "Aacc",
   },
   {
-    title: "aabbcc",
+    title: "강서구",
     description: "Aabbcc",
   },
 ]
+
+const MyForm = styled(Form)`
+  & *{
+    width: 100%;
+  }
+`
 
 const initialState = {
   loading: false,
@@ -42,7 +50,7 @@ function exampleReducer(state, action) {
   }
 }
 
-function SearchExampleStandard() {
+function SearchBar() {
   const [state, dispatch] = React.useReducer(exampleReducer, initialState)
   const { loading, results, value } = state
 
@@ -66,27 +74,36 @@ function SearchExampleStandard() {
       })
     }, 300)
   }, [])
+  
+  const navigate = useNavigate();
+  
+  const handleSubmit = () =>{
+    navigate("search")
+    
+  }
+  
   React.useEffect(() => {
     return () => {
       clearTimeout(timeoutRef.current)
     }
   }, [])
-
   return (
-  <>
+  
+  <MyForm onSubmit={handleSubmit}>
     <Search
+          fluid
           loading={loading}
           placeholder='Search...'
+          onSearchChange={handleSearchChange}
           onResultSelect={(e, data) =>
             dispatch({ type: 'UPDATE_SELECTION', selection: data.result.title })
           }
-          onSearchChange={handleSearchChange}
           results={results}
           value={value}
         />
-  </>
+  </MyForm>
         
   )
 }
 
-export default SearchExampleStandard
+export default SearchBar;

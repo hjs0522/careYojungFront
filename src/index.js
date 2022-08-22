@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import reportWebVitals from './reportWebVitals';
+import App from './App';
 import Header from './components/Header';
 import Mappage from './pages/Mappage';
 import Mainpage from './pages/Mainpage';
@@ -13,12 +13,5 @@ import Information from './pages/Information';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
-  <>
-    <Header />
-    <Mainpage />
-    <Footer />
-  </>
+  <App></App>
 );
-
-
-reportWebVitals();

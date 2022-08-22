@@ -1,8 +1,6 @@
 import styled from "styled-components";
-import {  Grid, Image,Icon} from 'semantic-ui-react'
+import { Icon, Grid} from 'semantic-ui-react'
 import ListArg from "./ListArg";
-import Detail from "./Detail";
-import { useRef } from "react";
 
 const HorizontalScroll = styled.div`
     white-space:nowrap;
@@ -10,7 +8,6 @@ const HorizontalScroll = styled.div`
     height:100%;
     padding-bottom:20px;
     width:80%;
-    marginLeft:5%;
     display:inline-block;
     scroll-behavior: smooth;
     &::-webkit-scrollbar {
@@ -36,24 +33,34 @@ const GridExampleRelaxedVery = ({size, arr,id}) => {  //넘겨받는 count는 se
 }
 
 function FacilityList({size,arr,id,listCount,setListCount,listLen}){
-  
-  const row = useRef();
   const onClick=()=>{
-    if(listCount>=listLen)
+    if(listCount>=listLen){
       return;
+    }
+    else if(listCount==listLen-1){
+      setListCount(cur=>cur+1);
+      document.getElementById(id).scrollLeft+=(10000);
+      return;
+    }
     setListCount(cur=>cur+1);
-    document.getElementById(id).scrollLeft+=(id==="Themelist"?460 :270);
+    document.getElementById(id).scrollLeft+=(id==="Themelist"?'460%' :270);
   }
   const onClick2=()=>{
     if(listCount<listLen){
-      if(listLen>4&&listCount<=4)
+      if(listLen>4&&listCount<=4){
         return;
+      }
       else if(listLen<4)
         return;
+      else if(listCount==5){
+        setListCount(cur=>cur-1);
+        document.getElementById(id).scrollLeft-=(10000);
+        return;
+      }  
     }
     if(listCount>0)
       setListCount(cur=>cur-1);
-    document.getElementById(id).scrollLeft-=(id==='Themelist'?460:270);
+    document.getElementById(id).scrollLeft-=(id==='Themelist'?'460%':270);
   }
     return (
       <>

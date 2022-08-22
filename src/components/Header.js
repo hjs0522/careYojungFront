@@ -1,35 +1,70 @@
+import { Link } from "react-router-dom";
+import {Icon } from "semantic-ui-react";
 import styled from "styled-components";
-import SearchExampleStandard from "./Search";
+import SearchBar from "./SearchBar";
 
 
 const HeaderDiv = styled.div`
     background: linear-gradient(to bottom right,#496ace,#715deb);
     display: flex;
     justify-content: space-between;
-    align-items: center;
     position: fixed;
-    padding: 2% 0px;
+    align-items: center;
     width: 100%;
+    height: 8vh;
     z-index: 3;
+    & >*{
+        width: 33%;
+    }
+    
 `
 
-const Logo = styled.div`
+const Logo = styled(Link)`
     font-family: 'Jalnan';
     font-size: x-large;
-    padding: 0px 2%;
+    margin-left: 2vw;
     color: white;
 `
 
+const HeaderButtonContainer = styled.div`
+    display: flex;
+    justify-content: center;
+    button, a{
+        border:none;
+        color: white;
+        background-color: inherit;
+    }
+
+    
+    div{
+        padding: 8px 8px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+`
+
+
+
 const Header = () =>{
+
     return(
         <HeaderDiv>
-            <Logo>케어요정</Logo>
-            <SearchExampleStandard></SearchExampleStandard>
             <div>
-                <span>로그아웃</span>
-                <span>위시리스트</span>
-                <span>마이페이지</span>
+                <Logo to={"/"}>케어요정</Logo>
             </div>
+            <SearchBar></SearchBar>
+            <HeaderButtonContainer>
+                <nav>
+                    <Icon name="sign-out"></Icon>
+                    <button onClick={()=>{console.log("logout")}}>로그아웃</button> 
+                    <Icon name="heart outline"></Icon>
+                    <Link to={"/wish"}>위시리스트</Link>
+                    <Icon name="user outline"></Icon>
+                    <Link to={"/mypage"}>마이페이지</Link>
+                </nav>
+            </HeaderButtonContainer>
         </HeaderDiv>
     )
 }

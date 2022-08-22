@@ -2,7 +2,7 @@ import styled from "styled-components";
 import {  Grid, Image } from 'semantic-ui-react'
 import FacilityList from "./FacilityList";
 import { StyledInfo,StyledBox, InfoH1, InfoH3 } from "./Recentlist";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 
 const StyledDiv = styled.div({
     marginBottom:"120px",
@@ -38,6 +38,12 @@ function PopularInfo({listLen,listCount}){ //최근 본 시설 소개 문구 컴
 function Popularlist({arr}){
     const listLen=arr.length;
     const [listCount,setListCount] = useState(0);
+    useEffect(()=>{
+        if(listLen>4)
+            setListCount(4);
+        else
+            setListCount(listLen);
+    },[])
     return (
         <StyledDiv>
             <StyledPopularlist>
