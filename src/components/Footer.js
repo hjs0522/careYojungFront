@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import { Button, Grid, Image } from 'semantic-ui-react'
+import {Link} from "react-router-dom";
+import {  Grid, Image } from 'semantic-ui-react';
 
 
 const StyledGrid = styled(Grid)({
@@ -45,7 +46,7 @@ function Footer(){
                         자주묻는질문
                     </StyledColumn>
                     <StyledColumn >
-                        <a href='../pages/Information.js'>공지사항</a>
+                        <Link to={"/info"}>공지사항</Link>
                     </StyledColumn>
                     <StyledColumn>
                         이용약관

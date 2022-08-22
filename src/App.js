@@ -7,6 +7,7 @@ import WishPage from "./pages/WishPage";
 import MyPage from "./pages/MyPage";
 import { RecoilRoot } from "recoil";
 import { Container } from "semantic-ui-react";
+import Information from "./pages/Information";
 
 
 
@@ -21,6 +22,7 @@ function App() {
           <Route path="search" element={<SearchPage></SearchPage>}></Route>
           <Route path="wish" element = {<WishPage></WishPage>}></Route>
           <Route path="mypage" element = {<MyPage></MyPage>}></Route>
+          <Route path="info" element = {<Information></Information>}></Route>
         </Routes>
         <Footer />
       </Container>
