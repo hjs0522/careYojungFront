@@ -179,7 +179,6 @@ function DetailPerson(){
           <DetailPersonText style={{display:'block',fontSize:'18px',color:'#999999'}}>평균 1명당 20명</DetailPersonText>
         </div>
       </DetailPersonBox>
-      
     </StyledDetailBox>
   )
 }
@@ -420,7 +419,7 @@ function Detail({img,name,loc,id,bb,setbb}) {
             <Grid columns={2}relaxe >
               <Grid.Row stretched>
                 <Grid.Column  width={11}>
-                  <DetailImage  src="https://search.pstatic.net/common/?autoRotate=true&quality=95&type=w750&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20220524_127%2F1653351165932y6ySc_PNG%2F20220524_091121.png"/>
+                  <DetailImage  src={img}/>
                 </Grid.Column>
                 <Grid.Column width={5}>
                   <DetailImage src="https://search.pstatic.net/common/?autoRotate=true&quality=95&type=w750&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20210627_259%2F1624777448578z0UmE_JPEG%2FNmbf0Se_e3WnRHnHeFr39mX7.jpg"/>
@@ -432,16 +431,16 @@ function Detail({img,name,loc,id,bb,setbb}) {
               <Grid.Row >
                 <Grid.Column width={11}>
                   <DetailInfo>{loc}</DetailInfo>
-                  <DetailTel>T : 031-1234-3456</DetailTel>
+                  <DetailTel>T : {response.phoneNumber}</DetailTel>
                   <DetailSummary>
                     <DetailSummaryText>시설정원</DetailSummaryText>
-                    <DetailSummaryText style={{color:'#496ACE'}}>45</DetailSummaryText>
+                    <DetailSummaryText style={{color:'#496ACE'}}>{response.headCount}</DetailSummaryText>
                     <DetailSummaryText style={{padding:'0'}}>명 </DetailSummaryText>
                     <DetailSummaryText>현원</DetailSummaryText>
-                    <DetailSummaryText style={{color:'#496ACE'}}>45</DetailSummaryText>
+                    <DetailSummaryText style={{color:'#496ACE'}}>{response.nowCount}</DetailSummaryText>
                     <DetailSummaryText style={{padding:'0'}}>명 </DetailSummaryText>
                     <DetailSummaryText>대기</DetailSummaryText>
-                    <DetailSummaryText style={{color:'#496ACE'}}>45</DetailSummaryText>
+                    <DetailSummaryText style={{color:'#496ACE'}}>{response.waitingCount}</DetailSummaryText>
                     <DetailSummaryText style={{padding:'0'}}>명 </DetailSummaryText>
                   </DetailSummary>
                   <DetailPerson />  {/*인력현황 컴포넌트*/}

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Icon, Grid} from 'semantic-ui-react'
+import { Icon, Grid, ListContent} from 'semantic-ui-react'
 import ListArg from "./ListArg";
 
 const HorizontalScroll = styled.div`
@@ -23,10 +23,12 @@ const HorizontalScroll = styled.div`
 `;
 
 const GridExampleRelaxedVery = ({size, arr,id}) => {  //넘겨받는 count는 semantic-ui-react의 grid에서 출력 크기 (값이 클수록 커짐)
+  let index=0
   return(<Grid>
     <Grid.Row>
       <Grid.Column  >
-        {arr.map( (i) => <ListArg id={id} name={i.name} img={i.img} loc={i.ShortLoc} /> )}
+        {arr.map( (i) => { index+=1
+          return( <ListArg index={index} id={id} name={i.name} img={i.img} loc={i.ShortLoc} /> )})}
       </Grid.Column>
     </Grid.Row>
   </Grid>)
@@ -37,30 +39,20 @@ function FacilityList({size,arr,id,listCount,setListCount,listLen}){
     if(listCount>=listLen){
       return;
     }
-    else if(listCount==listLen-1){
-      setListCount(cur=>cur+1);
-      document.getElementById(id).scrollLeft+=(10000);
-      return;
-    }
+    const item=document.getElementById(id+(listCount+1));
+    item.scrollIntoView({behavior: "smooth",block:'nearest' })
     setListCount(cur=>cur+1);
-    document.getElementById(id).scrollLeft+=(id==="Themelist"?'460%' :270);
   }
   const onClick2=()=>{
-    if(listCount<listLen){
-      if(listLen>4&&listCount<=4){
-        return;
-      }
-      else if(listLen<4)
-        return;
-      else if(listCount==5){
-        setListCount(cur=>cur-1);
-        document.getElementById(id).scrollLeft-=(10000);
-        return;
-      }  
+    if(listCount<2){
+      const item=document.getElementById(id+(1));
+      item.scrollIntoView({behavior: "smooth",block:'nearest' }) 
+      return;
     }
-    if(listCount>0)
-      setListCount(cur=>cur-1);
-    document.getElementById(id).scrollLeft-=(id==='Themelist'?'460%':270);
+    setListCount(cur=>cur-1);
+    const item=document.getElementById(id+(listCount-1));
+    item.scrollIntoView({behavior: "smooth",block:'nearest' })
+    
   }
     return (
       <>
