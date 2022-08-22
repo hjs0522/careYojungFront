@@ -158,7 +158,6 @@ function DetailCost(){
 
     return (
         <StyledDetailCost >
-            
             <StyledHeader>예상비용</StyledHeader>
             <BeneficalType> 
             <StyledInnerHeader>수급자 유형</StyledInnerHeader>

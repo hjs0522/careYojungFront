@@ -2,6 +2,43 @@ import React, {useState,useRef,useEffect} from 'react'
 import { Button, Modal,Grid, Icon} from 'semantic-ui-react'
 import styled from 'styled-components'
 import DetailCost from './DetailCost'
+import ListArg from './ListArg'
+
+const response={
+		nursingHome_id:123, // 요양원 id
+		name:'서울요양시설', // 요양원이름
+		addrSiDo:11, //시도코드
+		addrSiGunGu:500, // 시군구코드
+		addrDong:500, // 법정동코드
+		addrRi:123, // 리코드
+		addrRoad:"서울시 상도로 22길", // 도로명주소
+		addrDetail:"4층", // 상세주소
+		phoneNumber:"010-1234-4567", // 전화번호
+		headCount:40, // 정원
+		nowCount:35, // 현원
+		waitingCount:23, // 대기
+		doctor:10, // 의사 수
+		nurse:13, // 간호사 수
+		careGiver:5, // 요양보호사 수
+		singleRoom:12, // 1인실
+		doubleRoom:21, // 2인실
+		tripleRoom:13, // 3인실
+		quadrupleRoom:12, // 4인실
+		programRoom:1, // 프로그램실
+		trainingRoom:1, // 작업 및 일상동작 훈련실
+		cost:210000, // 비용
+		reviews: [
+			{
+				review_id:'abd', // 리뷰 id
+				member_id:'vcdc', // 사용자 id
+				nursingHome_id:'sdafasdf', // 요양원 id
+				text:"별로예요!", // 리뷰
+				score:4, // 평점
+				date:"2022.07.21" // 작성 날짜
+			},
+		]
+		// word 키워드 추가 예정
+}
 
 const DetailPage = styled.div({
   marginLeft:'4%',
@@ -115,7 +152,7 @@ function DetailPerson(){
       <DetailPersonBox style={{marginLeft:"0"}}>
         <div style={{padding:"7%",borderBottom:'1px solid #e1e1e1'}}>
           <DetailPersonText>의사</DetailPersonText>
-          <DetailPersonText style={{float:'right',color:'#E9539b'}}>10명</DetailPersonText>
+          <DetailPersonText style={{float:'right',color:'#E9539b'}}>{response.doctor}명</DetailPersonText>
         </div>
         <div style={{padding:"7%"}}>
           <DetailPersonText style={{display:'block',marginBottom:'10px'}}>1명당 입소자 10명</DetailPersonText>
@@ -125,7 +162,7 @@ function DetailPerson(){
       <DetailPersonBox style={{marginLeft:'5%'}}>
         <div style={{padding:"7%",borderBottom:'1px solid #e1e1e1'}}>
           <DetailPersonText>간호사</DetailPersonText>
-          <DetailPersonText style={{float:'right',color:'#E9539b'}}>10명</DetailPersonText>
+          <DetailPersonText style={{float:'right',color:'#E9539b'}}>{response.nurse}명</DetailPersonText>
         </div>
         <div style={{padding:"7%"}}>
           <DetailPersonText style={{display:'block',marginBottom:'10px'}}>1명당 입소자 20명</DetailPersonText>
@@ -135,7 +172,7 @@ function DetailPerson(){
       <DetailPersonBox style={{float:"right"}}>
         <div style={{padding:"7%",borderBottom:'1px solid #e1e1e1'}}>
           <DetailPersonText>요양보호사</DetailPersonText>
-          <DetailPersonText style={{float:'right',color:'#E9539b'}}>10명</DetailPersonText>
+          <DetailPersonText style={{float:'right',color:'#E9539b'}}>{response.careGiver}명</DetailPersonText>
         </div>
         <div style={{padding:"7%"}}>
           <DetailPersonText style={{display:'block',marginBottom:'10px'}}>1명당 입소자 20명</DetailPersonText>
@@ -175,23 +212,23 @@ function DetailFacility(){
       <DetailFacilityBox style={{marginBottom:'2%'}} >
         <DetailFacilityImg src="https://react.semantic-ui.com/images/wireframe/image.png"/>
         <DetailFaciltytext style={{paddingLeft:'5%'}}>1인실</DetailFaciltytext>
-        <DetailFaciltytext style={{paddingLeft:"0",borderRight:'1px solid #e1e1e1',color:'#706ee9'}}>10개</DetailFaciltytext>
+        <DetailFaciltytext style={{paddingLeft:"0",borderRight:'1px solid #e1e1e1',color:'#706ee9'}}>{response.singleRoom}개</DetailFaciltytext>
         <DetailFaciltytext >2인실</DetailFaciltytext>
-        <DetailFaciltytext style={{paddingLeft:"0",borderRight:'1px solid #e1e1e1',color:'#706ee9'}}>10개</DetailFaciltytext>
+        <DetailFaciltytext style={{paddingLeft:"0",borderRight:'1px solid #e1e1e1',color:'#706ee9'}}>{response.doubleRoom}개</DetailFaciltytext>
         <DetailFaciltytext>3인실</DetailFaciltytext>
-        <DetailFaciltytext style={{paddingLeft:"0",borderRight:'1px solid #e1e1e1',color:'#706ee9'}}>10개</DetailFaciltytext>
+        <DetailFaciltytext style={{paddingLeft:"0",borderRight:'1px solid #e1e1e1',color:'#706ee9'}}>{response.tripleRoom}개</DetailFaciltytext>
         <DetailFaciltytext>4인실</DetailFaciltytext>
-        <DetailFaciltytext style={{paddingLeft:"0",color:'#706ee9'}}>10개</DetailFaciltytext>
+        <DetailFaciltytext style={{paddingLeft:"0",color:'#706ee9'}}>{response.quadrupleRoom}개</DetailFaciltytext>
       </DetailFacilityBox>
       <DetailFacilityBox style={{width:"49%",display:'inline-block'}}>
       <DetailFacilityImg style={{marginLeft:'10%'}} src="https://react.semantic-ui.com/images/wireframe/image.png"/>
         <DetailFaciltytext style={{paddingLeft:'5%'}}>프로그램실</DetailFaciltytext>
-        <DetailFaciltytext style={{paddingLeft:"0",paddingRight:'9%',color:'#706ee9',float:'right'}}>10개</DetailFaciltytext>
+        <DetailFaciltytext style={{paddingLeft:"0",paddingRight:'9%',color:'#706ee9',float:'right'}}>{response.programRoom}개</DetailFaciltytext>
       </DetailFacilityBox>
       <DetailFacilityBox style={{width:"49%",display:'inline-block',float:'right'}}>
       <DetailFacilityImg src="https://react.semantic-ui.com/images/wireframe/image.png"/>
         <DetailFaciltytext style={{paddingLeft:'5%'}}>작업 및 일상동작 훈련실</DetailFaciltytext>
-        <DetailFaciltytext style={{paddingLeft:"0",paddingRight:'9%',color:'#706ee9',float:'right'}}>10개</DetailFaciltytext>
+        <DetailFaciltytext style={{paddingLeft:"0",paddingRight:'9%',color:'#706ee9',float:'right'}}>{response.trainingRoom}개</DetailFaciltytext>
       </DetailFacilityBox>
     </StyledDetailBox>
   )
@@ -290,14 +327,6 @@ const DetailReviewElement = styled.div({
   borderBottom:'1px solid #e1e1e1'
 })
 
-const ReviewArr = [
-  {name:'홍길동',star:4,date:'2022.07.10',review:'전반적으로 시설도 괜찮고 깔끔한 것 같았습니다. 직원들도 친절하시고 프로그램도 많이 다양한 편이네요,'},
-  {name:'홍길동',star:5,date:'2022.07.10',review:'전반적으로 시설도 괜찮고 깔끔한 것 같았습니다. 직원들도 친절하시고 프로그램도 많이 다양한 편이네요,'},
-  {name:'홍길동',star:5,date:'2022.07.10',review:'전반적으로 시설도 괜찮고 깔끔한 것 같았습니다. 직원들도 친절하시고 프로그램도 많이 다양한 편이네요,'},
-  {name:'홍길동',star:4,date:'2022.07.10',review:'전반적으로 시설도 괜찮고 깔끔한 것 같았습니다. 직원들도 친절하시고 프로그램도 많이 다양한 편이네요,'},
-  {name:'홍길동',star:3,date:'2022.07.10',review:'전반적으로 시설도 괜찮고 깔끔한 것 같았습니다. 직원들도 친절하시고 프로그램도 많이 다양한 편이네요,'},
-  {name:'홍길동',star:1,date:'2022.07.10',review:'전반적으로 시설도 괜찮고 깔끔한 것 같았습니다. 직원들도 친절하시고 프로그램도 많이 다양한 편이네요,'}
-]
 
 function DetailReview(){
   function getStar(num){
@@ -317,8 +346,10 @@ function DetailReview(){
 
   function avgStar(){
     let sum=0;
-    ReviewArr.map((i)=>sum+=i.star)
-    return (sum/ReviewArr.length).toFixed(1);
+    console.log(sum)
+    response.reviews.map((i)=>sum+=i.score)
+    console.log(sum)
+    return (sum/response.reviews.length).toFixed(1);
   }
 
   return (
@@ -327,16 +358,16 @@ function DetailReview(){
         <DetailTitle  style={{display:'inline-block'}}>시설리뷰</DetailTitle>
         <Icon size="large" style={{paddingLeft:"3%"}} name="star" color="yellow"/>
         <DetailReviewText style={{paddingLeft:'3%',paddingRight:'2%'}}>{avgStar()}</DetailReviewText>
-        <DetailReviewText style={{paddingLeft:'2%',borderLeft:'1px solid #444444'}}>리뷰 {ReviewArr.length}개</DetailReviewText>
+        <DetailReviewText style={{paddingLeft:'2%',borderLeft:'1px solid #444444'}}>리뷰 {response.reviews.length}개</DetailReviewText>
         <DetailReviewButton><img style={{width:'15px',height:'15px',marginRight:"10%"}} src="https://react.semantic-ui.com/images/wireframe/image.png" />리뷰하기</DetailReviewButton>
       </div>
       <DetailReviewBox>
-        {ReviewArr.map((i)=>(
+        {response.reviews.map((i)=>(
           <DetailReviewElement>
-            <DetailReviewStar>{getStar(i.star)}</DetailReviewStar>
-            <DetailReviewText style={{paddingRight:'2%',color:'black'}}>{i.name}</DetailReviewText>
+            <DetailReviewStar>{getStar(i.score)}</DetailReviewStar>
+            <DetailReviewText style={{paddingRight:'2%',color:'black'}}>{i.member_id}</DetailReviewText>
             <DetailReviewText style={{paddingLeft:'2%',color:'#999999',borderLeft:'1px solid #444444'}}>{i.date}</DetailReviewText>
-            <DetailReviewText style={{marginTop:'2%',display:'block',fontWeight:'normal'}}>{i.review}</DetailReviewText>
+            <DetailReviewText style={{marginTop:'2%',display:'block',fontWeight:'normal'}}>{i.text}</DetailReviewText>
           </DetailReviewElement>
         ))}
       </DetailReviewBox>
@@ -353,27 +384,28 @@ const menuArr={
   시설리뷰:'Detail-5'
 }
 
-function Detail({img,name,loc,id}) {
+function Detail({img,name,loc,id,bb,setbb}) {
 
   const onMenuClick= (i) =>{
     const item=document.getElementById(menuArr[i.target.innerText]);
     item.scrollIntoView({behavior: "smooth" })
   }
-  
-  const [open, setOpen] = useState(false)
   return (
     <Modal
-      onClose={() => setOpen(false)}
-      onOpen={() => setOpen(true)}
-      open={open}
+      onClose={() => setbb(false)}
+      onOpen={() => setbb(true)}
+      open={bb}
       size='large'
-      trigger={<StyledImage id={id} src={img} />}
+      // trigger={
+      //   <StyledImage id={id} src={img} />
+      //   // <ListArg img={img} name={name} loc={loc} id={id}/>
+      // }
     >
       <DetailPage>
         <ModalHeader >{name}</ModalHeader>
         <div style={{display:'inline-block',float:'right',marginTop:'1%',marginRight:'1%',cursor:'pointer'}}>
           <Modal.Actions >
-            <Icon size="huge" color="grey" name="x" onClick={() => setOpen(false)}/>
+            <Icon size="huge" color="grey" name="x" onClick={() => setbb(false)}/>
           </Modal.Actions>
         </div>
         <MenuBarBox >
@@ -388,11 +420,11 @@ function Detail({img,name,loc,id}) {
             <Grid columns={2}relaxe >
               <Grid.Row stretched>
                 <Grid.Column  width={11}>
-                  <DetailImage  src="https://react.semantic-ui.com/images/wireframe/image.png"/>
+                  <DetailImage  src="https://search.pstatic.net/common/?autoRotate=true&quality=95&type=w750&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20220524_127%2F1653351165932y6ySc_PNG%2F20220524_091121.png"/>
                 </Grid.Column>
                 <Grid.Column width={5}>
-                  <DetailImage src="https://react.semantic-ui.com/images/wireframe/image.png"/>
-                  <DetailImage src="https://react.semantic-ui.com/images/wireframe/image.png"/>
+                  <DetailImage src="https://search.pstatic.net/common/?autoRotate=true&quality=95&type=w750&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20210627_259%2F1624777448578z0UmE_JPEG%2FNmbf0Se_e3WnRHnHeFr39mX7.jpg"/>
+                  <DetailImage src="https://search.pstatic.net/common/?autoRotate=true&quality=95&type=w750&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20220308_120%2F1646721661971q1ccQ_JPEG%2FmosaBADqZ0.jpg"/>
                 </Grid.Column>
               </Grid.Row>
             </Grid>

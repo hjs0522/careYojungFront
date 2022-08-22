@@ -2,6 +2,7 @@ import styled from "styled-components";
 import FacilityList from "./FacilityList";
 import {Grid} from 'semantic-ui-react'
 import { useState } from "react";
+import { useEffect } from "react";
 
 const StyledDiv = styled.div({
     position:'relative',
@@ -58,6 +59,13 @@ function RecentInfo({listLen,listCount}){ //최근 본 시설 소개 문구 컴�
 function Recentlist({arr}){
     const listLen=arr.length;
     const [listCount,setListCount] = useState(0);
+
+    useEffect(()=>{
+        if(listLen>4)
+            setListCount(4);
+        else
+            setListCount(listLen);
+    },[])
     return (
         <StyledDiv>
             <StyledRecentlist>

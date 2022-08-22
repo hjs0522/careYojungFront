@@ -5,19 +5,20 @@ import Header from './components/Header';
 import Mappage from './pages/Mappage';
 import Mainpage from './pages/Mainpage';
 import Footer from './components/Footer';
-
+import { Loader,Segment,Dimmer,Image } from 'semantic-ui-react';
+import Compare from './pages/Compare';
+import PhotoEx from './pages/PhotoEx';
+import Information from './pages/Information';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
 root.render(
   <>
     <Header />
     <Mainpage />
     <Footer />
-    
   </>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+
 reportWebVitals();

@@ -25,8 +25,6 @@ const HorizontalScroll = styled.div`
     }
 `;
 
-
-
 const GridExampleRelaxedVery = ({size, arr,id}) => {  //넘겨받는 count는 semantic-ui-react의 grid에서 출력 크기 (값이 클수록 커짐)
   return(<Grid>
     <Grid.Row>
@@ -41,22 +39,33 @@ function FacilityList({size,arr,id,listCount,setListCount,listLen}){
   
   const row = useRef();
   const onClick=()=>{
-    if(listCount<listLen)
-      setListCount(cur=>cur+1);
-    document.getElementById(id).scrollLeft+=(id==="Themelist"?400 :225);
+    if(listCount>=listLen)
+      return;
+    setListCount(cur=>cur+1);
+    document.getElementById(id).scrollLeft+=(id==="Themelist"?460 :270);
   }
   const onClick2=()=>{
+    if(listCount<listLen){
+      if(listLen>4&&listCount<=4)
+        return;
+      else if(listLen<4)
+        return;
+    }
     if(listCount>0)
       setListCount(cur=>cur-1);
-    document.getElementById(id).scrollLeft-=(id==='Themelist'?400:225);
+    document.getElementById(id).scrollLeft-=(id==='Themelist'?460:270);
   }
     return (
       <>
-        <Icon name="angle left" size="huge" style={{marginTop:'-25%',verticalAlign:'middle'}} onClick={onClick2} />
-        <HorizontalScroll id={id} onTouchMove >
-            <GridExampleRelaxedVery size={size} arr={arr} id={id}/>
-        </HorizontalScroll>
-        <Icon name="angle right" size="huge" style={{marginTop:'-25%',verticalAlign:'middle'}} onClick={onClick} />
+      <div style={{display:'inline-block',height:'100%'}}>
+        {id==='Themelist' ?<Icon name="angle left" size="huge" style={{height:'100%',marginTop:'-450%',cursor:'pointer'}} onClick={onClick2} /> :<Icon name="angle left" size="huge" style={{height:'100%',marginTop:'-100%',cursor:'pointer'}} onClick={onClick2} />}
+      </div>
+      <HorizontalScroll id={id} onTouchMove >
+        <GridExampleRelaxedVery size={size} arr={arr} id={id}/>
+      </HorizontalScroll>
+      <div style={{display:'inline-block',height:'100%'}}>
+      {id==='Themelist' ?<Icon name="angle right" size="huge" style={{height:'100%',marginTop:'-450%',cursor:'pointer'}} onClick={onClick} /> :<Icon name="angle right" size="huge" style={{height:'100%',marginTop:'-100%',cursor:'pointer'}} onClick={onClick} />}
+      </div>
       </>
     )
 }
