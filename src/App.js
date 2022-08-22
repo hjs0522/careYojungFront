@@ -13,7 +13,7 @@ import { Container } from "semantic-ui-react";
 function App() {
   return (
   <RecoilRoot>
-    <BrowserRouter> 
+    <BrowserRouter>
       <Container fluid>
         <Header />
         <Routes>

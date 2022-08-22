@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Button, Grid, Image } from 'semantic-ui-react'
+import { Grid, Image } from 'semantic-ui-react'
 
 
 const StyledGrid = styled(Grid)({

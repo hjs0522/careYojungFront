@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { Container,Header } from "semantic-ui-react";
+import {useSearchParams } from "react-router-dom";
+import { Container} from "semantic-ui-react";
 import styled from "styled-components";
 import DropDownRow from "../components/DropDownRow";
 import Pagination from '../components/Pagination'
@@ -235,11 +236,13 @@ const SearchPage = ()=>{
 
     const [searchList,setSearchList] = useState([]);
     const [page,setPage] = useState(1);
+    const [searchParams,setSearchParams] = useSearchParams();
+    searchParams.get("keyword");
     const offset = (page-1) * 5;
     
     /*
         useEffect(() =>{
-            fetch("")
+            fetch("localhost:8080/search?keyword=${searchParms}")
                 .then((res) => res.json())
                 .then((data)=> setSearchList(data));
         },[]);
@@ -258,6 +261,7 @@ const SearchPage = ()=>{
     return(
     <SearchContainer fluid>
         <DropDownRow></DropDownRow>
+        <h3>{searchParams}</h3>
         <SearchList searchList={searchList.slice(offset,offset+5)} onEditWish={onEditWish}></SearchList>
         <Pagination
             total = {searchList.length}

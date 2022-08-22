@@ -78,7 +78,7 @@ function SearchBar() {
   const navigate = useNavigate();
   
   const handleSubmit = () =>{
-    navigate("search")
+    navigate(`search?keyword=${value}`)
     
   }
   

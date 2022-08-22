@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import CompareItem from "./CompareItem";
-import { Icon } from "semantic-ui-react";
 const CompareListContainer = styled.div`
     display: flex;
     justify-content: center;
@@ -15,7 +14,7 @@ const CompareListContainer = styled.div`
 
 const CompareList = ({compareList,onRemoveCompare})=>{
 
-    const getCompare = ()=> {
+    /*const getCompare = ()=> {
         const result = []
         for(let i=0;i<3;i++){
           if (compareList.length < i+1){
@@ -26,7 +25,7 @@ const CompareList = ({compareList,onRemoveCompare})=>{
           }
         }
         return result;
-    }
+    }*/
     return(
         <CompareListContainer>
             {compareList.map((it)=>(
