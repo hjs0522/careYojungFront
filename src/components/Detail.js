@@ -2,7 +2,6 @@ import React, {useState,useRef,useEffect} from 'react'
 import { Button, Modal,Grid, Icon} from 'semantic-ui-react'
 import styled from 'styled-components'
 import DetailCost from './DetailCost'
-import ListArg from './ListArg'
 
 const response={
 		nursingHome_id:123, // 요양원 id
@@ -345,9 +344,7 @@ function DetailReview(){
 
   function avgStar(){
     let sum=0;
-    console.log(sum)
     response.reviews.map((i)=>sum+=i.score)
-    console.log(sum)
     return (sum/response.reviews.length).toFixed(1);
   }
 
@@ -383,18 +380,30 @@ const menuArr={
   시설리뷰:'Detail-5'
 }
 
-function Detail({img,name,loc,id,bb,setbb}) {
+function Detail({img,name,loc,id,detail_bool,setDetail_bool}) {
+  console.log("AA")
 
   const onMenuClick= (i) =>{
     const item=document.getElementById(menuArr[i.target.innerText]);
     item.scrollIntoView({behavior: "smooth" })
   }
+  const [open,setOpen] = useState(false)
+  useEffect(()=>{
+    console.log("Detail : ",detail_bool);
+    if(detail_bool===true)
+      setOpen(true)
+  },[detail_bool])
   return (
     <Modal
-      onClose={() => setbb(false)}
-      onOpen={() => setbb(true)}
-      open={bb}
+      onClose={() => setDetail_bool(false)}
+      onOpen={() => setDetail_bool(true)}
+      open={detail_bool}
       size='large'
+      // onClose={() => setOpen(false)}
+      // onOpen={() => setOpen(true)}
+      // open={open}
+      // size='large'
+      // trigger={<button>aa</button>}
       // trigger={
       //   <StyledImage id={id} src={img} />
       //   // <ListArg img={img} name={name} loc={loc} id={id}/>
@@ -404,7 +413,7 @@ function Detail({img,name,loc,id,bb,setbb}) {
         <ModalHeader >{name}</ModalHeader>
         <div style={{display:'inline-block',float:'right',marginTop:'1%',marginRight:'1%',cursor:'pointer'}}>
           <Modal.Actions >
-            <Icon size="huge" color="grey" name="x" onClick={() => setbb(false)}/>
+            <Icon size="huge" color="grey" name="x" onClick={() => setDetail_bool(false)}/>
           </Modal.Actions>
         </div>
         <MenuBarBox >
@@ -430,7 +439,7 @@ function Detail({img,name,loc,id,bb,setbb}) {
             <Grid columns={2} >
               <Grid.Row >
                 <Grid.Column width={11}>
-                  <DetailInfo>{loc}</DetailInfo>
+                  <DetailInfo>{response.addrRoad}</DetailInfo>
                   <DetailTel>T : {response.phoneNumber}</DetailTel>
                   <DetailSummary>
                     <DetailSummaryText>시설정원</DetailSummaryText>

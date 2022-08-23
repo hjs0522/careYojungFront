@@ -3,7 +3,7 @@ import Map from "../components/Map";
 import Maplist from "../components/Maplist";
 
 const StyledMappage = styled.div`
-    padding-top:100px;
+    padding-top:70px;
 `
 
 

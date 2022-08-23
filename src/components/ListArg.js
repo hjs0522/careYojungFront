@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import {Image} from "semantic-ui-react";
 import Detail from "./Detail";
 import { useState } from "react";
 
@@ -62,15 +61,19 @@ const StyledListArg = styled.div({
 
 
 function ListArg({index,name,img,loc,id}){
-    const [bb,setbb]=useState(false);
+    const [detail_bool,setDetail_bool]=useState(false);
     return (  
-        <StyledListArg id={id+index} onClick={()=>{setbb(true);}}>
+        <StyledListArg id={id+index} onClick={()=>{
+            console.log("Listarg : ",detail_bool);
+            setDetail_bool(true);
+            console.log("Listarg : ",detail_bool);
+            }}>
             <TextBox>
                 <StyleName >{name}</StyleName>
                 <StyleLoc >{loc}</StyleLoc>
             </TextBox>
             <StyledImage id={id} src={img}/>
-            <Detail img={img} name={name} loc={loc} id={id} bb={bb} setbb={setbb} />
+            <Detail img={img} name={name} loc={loc} id={id} detail_bool={detail_bool} setDetail_bool={setDetail_bool} />
         </StyledListArg>
     )
 }

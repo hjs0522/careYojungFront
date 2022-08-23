@@ -15,8 +15,8 @@ function Map({list}){
   },[]);
   return (
     <div style={{float:'right',display:"inline-block",width:'70%',}}>
-        <Findmap map={map} list={list} />
-        <div className="Map" ref={mapcontent} style={{height:"88vh"}}></div>
+        {/* <Findmap map={map} list={list} /> */}
+        <div className="Map" ref={mapcontent} style={{height:"100vh"}}></div>
     </div>
   );
 } 
