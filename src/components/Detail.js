@@ -381,18 +381,11 @@ const menuArr={
 }
 
 function Detail({img,name,loc,id,detail_bool,setDetail_bool}) {
-  console.log("AA")
-
   const onMenuClick= (i) =>{
     const item=document.getElementById(menuArr[i.target.innerText]);
     item.scrollIntoView({behavior: "smooth" })
   }
   const [open,setOpen] = useState(false)
-  useEffect(()=>{
-    console.log("Detail : ",detail_bool);
-    if(detail_bool===true)
-      setOpen(true)
-  },[detail_bool])
   return (
     <Modal
       onClose={() => setDetail_bool(false)}

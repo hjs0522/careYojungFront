@@ -45,98 +45,12 @@ const MaplistBoxText = styled.div({
     display:'inline-block',
 })
 
-const maplistArr = [{
-    name:"부산요양원",
-    fac :"요양원",
-    star:4.5,
-    reviewLen:10,
-    loc : "서울 성동구 금호로 45",
-    tel : "T.031-1234-4566",
-    img : "https://react.semantic-ui.com/images/wireframe/image.png"
-},{
-    name:"서울요양원",
-    fac :"요양원",
-    star:4.5,
-    reviewLen:10,
-    loc : "서울 성동구 금호로 45",
-    tel : "T.031-1234-4566",
-    img : "https://react.semantic-ui.com/images/wireframe/image.png"
-},{
-    name:"시립서부노인전문요양센터",
-    fac :"요양원",
-    star:4.5,
-    reviewLen:10,
-    loc : "서울 성동구 금호로 45",
-    tel : "T.031-1234-4566",
-    img : "https://react.semantic-ui.com/images/wireframe/image.png"
-},{
-    name:"시립서부노인전문요양센터",
-    fac :"요양원",
-    star:4.5,
-    reviewLen:10,
-    loc : "서울 성동구 금호로 45",
-    tel : "T.031-1234-4566",
-    img : "https://react.semantic-ui.com/images/wireframe/image.png"
-},{
-    name:"시립서부노인전문요양센터",
-    fac :"요양원",
-    star:4.5,
-    reviewLen:10,
-    loc : "서울 성동구 금호로 45",
-    tel : "T.031-1234-4566",
-    img : "https://react.semantic-ui.com/images/wireframe/image.png"
-},{
-    name:"시립서부노인전문요양센터",
-    fac :"요양원",
-    star:4.5,
-    reviewLen:10,
-    loc : "서울 성동구 금호로 45",
-    tel : "T.031-1234-4566",
-    img : "https://react.semantic-ui.com/images/wireframe/image.png"
-},{
-    name:"시립서부노인전문요양센터",
-    fac :"요양원",
-    star:4.5,
-    reviewLen:10,
-    loc : "서울 성동구 금호로 45",
-    tel : "T.031-1234-4566",
-    img : "https://react.semantic-ui.com/images/wireframe/image.png"
-},{
-    name:"시립서부노인전문요양센터",
-    fac :"요양원",
-    star:4.5,
-    reviewLen:10,
-    loc : "서울 성동구 금호로 45",
-    tel : "T.031-1234-4566",
-    img : "https://react.semantic-ui.com/images/wireframe/image.png"
-},{
-    name:"시립서부노인전문요양센터",
-    fac :"요양원",
-    star:4.5,
-    reviewLen:10,
-    loc : "서울 성동구 금호로 45",
-    tel : "T.031-1234-4566",
-    img : "https://react.semantic-ui.com/images/wireframe/image.png"
-},{
-    name:"시립서부노인전문요양센터",
-    fac :"요양원",
-    star:4.5,
-    reviewLen:10,
-    loc : "서울 성동구 금호로 45",
-    tel : "T.031-1234-4566",
-    img : "https://react.semantic-ui.com/images/wireframe/image.png"
-},{
-    name:"시립서부노인전문요양센터",
-    fac :"요양원",
-    star:4.5,
-    reviewLen:10,
-    loc : "서울 성동구 금호로 45",
-    tel : "T.031-1234-4566",
-    img : "https://react.semantic-ui.com/images/wireframe/image.png"
-}]
 
 
-export function Detail_Maplist({star,reviewLen,loc,img,name,tel,fac}){
+export function Detail_Maplist({score,reviewNum,addRoad,img,name,phoneNumber,type,nursingHome_id,wholemap}){
+    const {kakao}=window;
+    const geocoder = new kakao.maps.services.Geocoder();
+
     function getStar(num){
         const starArr=[0,0,0,0,0];
         for(let i=0;i<num;i++){
@@ -152,8 +66,51 @@ export function Detail_Maplist({star,reviewLen,loc,img,name,tel,fac}){
         return result;
     }
     const [detail_bool,setDetail_bool]=useState(false); 
+    // const onClick=(item)=>{
+        // item.preventDefault();
+        // //console.log(item.target);
+        // geocoder.addressSearch(loc, function(result, status) {
+    
+          // 정상적으로 검색이 완료됐으면 
+        //    if (status === kakao.maps.services.Status.OK) {
+      
+        //     const coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+        //     const marker = new kakao.maps.Marker({
+        //       wholemap: wholemap,
+        //       position: coords
+        //     });
+        //     // 인포윈도우로 장소에 대한 설명을 표시합니다
+        //     const infowindow = new kakao.maps.InfoWindow({
+        //         content: `<div style="width:150px;text-align:center;padding:6px 0;">${item.target.innerText}</div>`
+        //     });
+        //     infowindow.open(wholemap, marker);
+        //     //console.log(coords);
+        //       // 지도의 중심을 결과값으로  받은 위치로 이동시킵니다
+        //       //mapcontent.setCenter(coords);
+        //     wholemap.setCenter(coords);
+        //   }  
+        // })
+    // }
+    // const markerMap = (item)=>{
+    //     console.log(loc);
+    //     geocoder.addressSearch(loc,(result, status)=>{
+    //         if(status === kakao.maps.services.Status.OK){
+    //             const coords = new kakao.maps.LatLng(result[0].y,result[0].x);
+    //             const marker = new kakao.maps.Marker({
+    //                 map : wholemap,
+    //                 position : coords
+    //             })
+    //             const infowindow = new kakao.maps.InfoWindow({
+    //                 content: `<div style="width:150px;text-align:center;padding:6px 0;">${item.target.innerText}</div>`
+    //             });
+    //             infowindow.open(wholemap,marker);
+    //             console.log(coords);
+    //             wholemap.setCenter(coords);
+    //         }
+    //     })
+    // }
     return(
-    <MaplistBox onClick={()=>{setDetail_bool(true);}} style={{cursor:'pointer'}}>
+    <MaplistBox onClick={()=>{setDetail_bool(true)}} style={{cursor:'pointer'}} id={'maplist'+nursingHome_id}>
         <Grid columns={2}>
             <Grid.Column width={2}>
                 <MaplistBoxIcon style={{marginLeft:'50%'}} src="https://react.semantic-ui.com/images/wireframe/image.png" />
@@ -164,31 +121,51 @@ export function Detail_Maplist({star,reviewLen,loc,img,name,tel,fac}){
                 <MaplistBoxTitle style={{marginLeft:'4%'}}></MaplistBoxTitle>
                 </MaplistElement>
                 <MaplistElement>
-                {getStar(star)}
-                <MaplistBoxText style={{marginLeft:'2%'}}>{fac}</MaplistBoxText>
-                <MaplistBoxText style={{marginLeft:'2%'}}>리뷰 {reviewLen}개</MaplistBoxText>
+                {getStar(score)}
+                <MaplistBoxText style={{marginLeft:'2%'}}>{type}</MaplistBoxText>
+                <MaplistBoxText style={{marginLeft:'2%'}}>리뷰 {reviewNum}</MaplistBoxText>
                 </MaplistElement>
                 <MaplistElement>
-                    <MaplistBoxText>{loc}</MaplistBoxText>
+                    <MaplistBoxText>{addRoad}</MaplistBoxText>
                 </MaplistElement>
                 <MaplistElement>
-                    <MaplistBoxText style={{color:'#0596ff'}}>{tel}</MaplistBoxText>
+                    <MaplistBoxText style={{color:'#0596ff'}}>{phoneNumber}</MaplistBoxText>
                     <MaplistBoxText style={{float:'right',marginRight:"8%"}}><Icon size="large" name="heart outline"/></MaplistBoxText>
                 </MaplistElement>
             </Grid.Column>
-            <Detail img={img} name={name} loc={loc} detail_bool={detail_bool} setDetail_bool={setDetail_bool} />
+            <Detail img={img} name={name} loc={addRoad} detail_bool={detail_bool} setDetail_bool={setDetail_bool} />
         </Grid> 
     </MaplistBox>
     )
 }
 
 
-function Maplist(){
+function Maplist({mapArr,wholemap}){
+    // const {kakao}=window;
+    // const geocoder = new kakao.maps.services.Geocoder();
+    // useEffect(()=>{
+    //     console.log(loc);
+    //     geocoder.addressSearch('서울시 성동구 금호로 45',(result, status)=>{
+    //         if(status === kakao.maps.services.Status.OK){
+    //             const coords = new kakao.maps.LatLng(result[0].y,result[0].x);
+    //             const marker = new kakao.maps.Marker({
+    //                 map : wholemap,
+    //                 position : coords
+    //             })
+    //             const infowindow = new kakao.maps.InfoWindow({
+    //                 content: `<div style="width:150px;text-align:center;padding:6px 0;">ㅁㅁㅁ</div>`
+    //             });
+    //             infowindow.open(wholemap,marker);
+    //             console.log(coords);
+    //             wholemap.setCenter(coords);
+    //         }
+    //     })
+    // },[])
     return(
         <StyledMaplist>
             <AllMaplist>
-                {maplistArr.map((i)=>{
-                    return(<Detail_Maplist {...i} />)
+                {mapArr.map((i)=>{
+                    return(<Detail_Maplist {...i} wholemap={wholemap}/>)
                 })}
             </AllMaplist>
         </StyledMaplist>

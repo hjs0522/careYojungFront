@@ -59,7 +59,6 @@ const StyledListArg = styled.div({
     cursor:'pointer',
 })
 
-
 function ListArg({index,name,img,loc,id}){
     const [detail_bool,setDetail_bool]=useState(false);
     return (  
