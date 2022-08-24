@@ -11,6 +11,7 @@ const CompareAddBarContainer = styled.div`
     height: 10vh;
     width: 100%;
     border-top: solid;
+    background-color: white;
 `
 
 

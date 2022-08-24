@@ -109,8 +109,9 @@ const dummyList = [
 
 
 const WishContainer = styled(Container)`
-    &{
-        padding-top:100px;
+    &.ui.container{
+        padding-top:10vh;
+        padding-bottom: 12vh;
     }
 `
 
@@ -172,11 +173,13 @@ const WishPage = ()=>{
     };
     
     return(
-    <WishContainer fluid>
-        <DropDownRow></DropDownRow>
-        <SearchList searchList={searchList} onAdd = {onAdd} onEditWish={onEditWish} onRemoveWish={onRemoveWish} compareList = {compareList} isWishPage = {true}></SearchList>
+    <>
+        <WishContainer>
+            <DropDownRow></DropDownRow>
+            <SearchList searchList={searchList} onAdd = {onAdd} onEditWish={onEditWish} onRemoveWish={onRemoveWish} compareList = {compareList} isWishPage = {true}></SearchList>
+        </WishContainer>
         {barOpen?<CompareAddBarOpen toggleIsBarOpen={toggleIsBarOpen} compareList={compareList} onRemoveCompare = {onRemoveCompare}></CompareAddBarOpen>:<CompareAddBarClose toggleIsBarOpen={toggleIsBarOpen} compareList={compareList}></CompareAddBarClose>}
-    </WishContainer>
+    </>
     )
 };
 

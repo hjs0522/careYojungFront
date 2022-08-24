@@ -227,8 +227,8 @@ const dummyList = [
 
 
 const SearchContainer = styled(Container)`
-    &.ui.fluid.container{
-        padding-top: 100px;
+    &.ui.container{
+        padding-top: 10vh;
     }
 `
 
@@ -259,7 +259,7 @@ const SearchPage = ()=>{
         );
     };
     return(
-    <SearchContainer fluid>
+    <SearchContainer>
         <DropDownRow></DropDownRow>
         <h3>{searchParams}</h3>
         <SearchList searchList={searchList.slice(offset,offset+5)} onEditWish={onEditWish}></SearchList>

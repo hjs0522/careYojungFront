@@ -14,16 +14,14 @@ function App() {
   return (
   <RecoilRoot>
     <BrowserRouter>
-      <Container fluid>
-        <Header />
-        <Routes>
-          <Route path="/" element={<Mainpage></Mainpage>}></Route>
-          <Route path="search" element={<SearchPage></SearchPage>}></Route>
-          <Route path="wish" element = {<WishPage></WishPage>}></Route>
-          <Route path="mypage" element = {<MyPage></MyPage>}></Route>
-        </Routes>
-        <Footer />
-      </Container>
+      <Header/>
+      <Routes>
+        <Route path="/" element={<Mainpage></Mainpage>}></Route>
+        <Route path="search" element={<SearchPage></SearchPage>}></Route>
+        <Route path="wish" element = {<WishPage></WishPage>}></Route>
+        <Route path="mypage" element = {<MyPage></MyPage>}></Route>
+      </Routes>
+      <Footer></Footer>
     </BrowserRouter>
   </RecoilRoot>
   );

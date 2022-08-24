@@ -91,7 +91,6 @@ function SearchBar() {
   
   <MyForm onSubmit={handleSubmit}>
     <Search
-          fluid
           loading={loading}
           placeholder='Search...'
           onSearchChange={handleSearchChange}
