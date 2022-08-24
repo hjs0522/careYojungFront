@@ -63,9 +63,7 @@ function ListArg({index,name,img,loc,id}){
     const [detail_bool,setDetail_bool]=useState(false);
     return (  
         <StyledListArg id={id+index} onClick={()=>{
-            console.log("Listarg : ",detail_bool);
             setDetail_bool(true);
-            console.log("Listarg : ",detail_bool);
             }}>
             <TextBox>
                 <StyleName >{name}</StyleName>

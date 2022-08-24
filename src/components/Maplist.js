@@ -1,13 +1,11 @@
 import styled from "styled-components";
 import {Grid,Icon, List} from "semantic-ui-react";
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import Detail from "./Detail";
-import ListArg from "./ListArg";
-
 
 const StyledMaplist = styled.div({
     display:"inline-block",
-    width:'30%',
+    width:'350px',
     height:'100vh',
     border:'1px solid black',
 })
@@ -22,7 +20,6 @@ const MaplistBox = styled.div({
     paddingLeft:"4%",
     paddingTop:'5%',
     paddingBottom:'3%',
-    
 })
 
 const MaplistElement = styled.div({
@@ -30,7 +27,7 @@ const MaplistElement = styled.div({
 })
 
 const MaplistBoxTitle = styled.div({
-    fontSize:'24px',
+    fontSize:'22px',
     display:'inline-block',
 })
 
@@ -41,15 +38,13 @@ const MaplistBoxIcon = styled.img({
 })
 
 const MaplistBoxText = styled.div({
-    fontSize:'20px',
+    fontSize:'18px',
     display:'inline-block',
 })
 
 
 
 export function Detail_Maplist({score,reviewNum,addRoad,img,name,phoneNumber,type,nursingHome_id,wholemap}){
-    const {kakao}=window;
-    const geocoder = new kakao.maps.services.Geocoder();
 
     function getStar(num){
         const starArr=[0,0,0,0,0];
@@ -118,11 +113,10 @@ export function Detail_Maplist({score,reviewNum,addRoad,img,name,phoneNumber,typ
             <Grid.Column width={14}>
                 <MaplistElement>
                 <MaplistBoxTitle>{name}</MaplistBoxTitle>
-                <MaplistBoxTitle style={{marginLeft:'4%'}}></MaplistBoxTitle>
+                <MaplistBoxTitle style={{marginLeft:'4%'}}>{type}</MaplistBoxTitle>
                 </MaplistElement>
                 <MaplistElement>
                 {getStar(score)}
-                <MaplistBoxText style={{marginLeft:'2%'}}>{type}</MaplistBoxText>
                 <MaplistBoxText style={{marginLeft:'2%'}}>리뷰 {reviewNum}</MaplistBoxText>
                 </MaplistElement>
                 <MaplistElement>

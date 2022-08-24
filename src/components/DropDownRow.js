@@ -22,7 +22,7 @@ const DropDownRow = ()=>{
             <Dropdown></Dropdown>
             <span>순서</span>
             <Dropdown></Dropdown>
-            <Link to ={"map"}>지도로 보기</Link>
+            <Link to ={"/map"}>지도로 보기</Link>
         </DropdownContainer>
     );
 };

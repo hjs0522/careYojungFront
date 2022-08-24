@@ -385,7 +385,6 @@ function Detail({img,name,loc,id,detail_bool,setDetail_bool}) {
     const item=document.getElementById(menuArr[i.target.innerText]);
     item.scrollIntoView({behavior: "smooth" })
   }
-  const [open,setOpen] = useState(false)
   return (
     <Modal
       onClose={() => setDetail_bool(false)}

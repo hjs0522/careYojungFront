@@ -16,7 +16,7 @@ const HeaderDiv = styled.div`
     & >*{
         width: 33%;
     }
-    padding-left:15%;
+    
 `
 
 const Logo = styled(Link)`
@@ -45,6 +45,9 @@ const HeaderButtonContainer = styled.div`
 
 `
 
+const StyledContainer = styled(Container)({
+    paddingLeft:'100px',
+})
 
 
 const Header = () =>{
