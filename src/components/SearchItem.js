@@ -52,7 +52,10 @@ const SearchItem = ({nursingHome_id,img,name,type,grade,score,reviewNum,addRoad,
     }
     
     const handleRemoveWish = ()=>{
-        onRemoveWish(nursingHome_id);
+        if(window.confirm(`${name}을 위시리스트에서 삭제하시겠습니까?`)){
+            onRemoveWish(nursingHome_id);
+            window.scrollTo(0, 0);
+        }
     }
     
     function getStar(num){

@@ -15,6 +15,7 @@ const CompareListContainer = styled.div`
 
 const CompareList = ({compareList,onRemoveCompare})=>{
 
+
     const getCompare = ()=> {
         const result = []
         for(let i=0;i<3;i++){

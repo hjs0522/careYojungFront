@@ -133,25 +133,32 @@ const WishPage = ()=>{
     }
     
     const onAdd = (nursingHome_id,name) =>{
-        if(compareList.length<3){
-            const newItem = {
-                nursingHome_id,
-                name,
-            };
-            let flag = false;
-            for(let i=0;i<compareList.length;i++){
-                if(compareList[i].nursingHome_id === nursingHome_id){
-                    flag = true;
-                }
+    
+        const newItem = {
+            nursingHome_id,
+            name,
+        };
+        
+        let flag = false;
+        for(let i=0;i<compareList.length;i++){
+            if(compareList[i].nursingHome_id === nursingHome_id){
+                flag = true;
             }
-            if (!flag){
+        }
+        
+        if (!flag){
+            if(compareList.length<3){
                 setCompareList([...compareList,newItem]);
             }
+            else
+            {
+                alert("비교하기는 최대 3개까지 가능합니다");
+            }
         }
-        else
-        {
-            alert("비교하기는 최대 3개까지 가능합니다")
+        else{
+            alert("이미 추가된 시설입니다");
         }
+        
     }
     
     const onRemoveCompare = (targetId)=>{
