@@ -115,6 +115,9 @@ const WishContainer = styled(Container)`
     }
 `
 
+const PageContainer = styled.div`
+    background-color: #F5F7FA;
+`
 
 const WishPage = ()=>{
     const [barOpen,setBarOpen] = useState(false);
@@ -173,13 +176,13 @@ const WishPage = ()=>{
     };
     
     return(
-    <>
+    <PageContainer>
         <WishContainer>
             <DropDownRow></DropDownRow>
             <SearchList searchList={searchList} onAdd = {onAdd} onEditWish={onEditWish} onRemoveWish={onRemoveWish} compareList = {compareList} isWishPage = {true}></SearchList>
         </WishContainer>
         {barOpen?<CompareAddBarOpen toggleIsBarOpen={toggleIsBarOpen} compareList={compareList} onRemoveCompare = {onRemoveCompare}></CompareAddBarOpen>:<CompareAddBarClose toggleIsBarOpen={toggleIsBarOpen} compareList={compareList}></CompareAddBarClose>}
-    </>
+    </PageContainer>
     )
 };
 

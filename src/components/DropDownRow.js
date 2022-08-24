@@ -4,12 +4,13 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 const DropdownContainer = styled.div`
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    & *{padding: 0px 10px;}
-    
     & a{
         border: solid;
+    }
+    & span{
+        padding-right: 2vw;
     }
     
 `
@@ -56,12 +57,18 @@ const DropDownRow = ()=>{
     }
     return(
         <DropdownContainer>
-            <span>서비스</span>
-            <Dropdown options={serviceOptions} onChange={handleServiceChange} value = {service} selection></Dropdown>
+            <div>
+                <span>서비스</span>
+                <Dropdown options={serviceOptions} onChange={handleServiceChange} value = {service} selection></Dropdown>
+            </div>
+            <div>
             <span>등급</span>
             <Dropdown options={gradeOptions} onChange={handleGradeChange} value ={grade}  selection></Dropdown>
+            </div>
+            <div>
             <span>순서</span>
             <Dropdown options={orderOptions} onChange={handleOrderChange} value={order} selection></Dropdown>
+            </div>
             <Link to ={"Mappage"}>지도로 보기</Link>
         </DropdownContainer>
     );

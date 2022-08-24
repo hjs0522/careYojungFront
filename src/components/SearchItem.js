@@ -3,11 +3,11 @@ import styled from "styled-components";
 
 const ItemContainer = styled.li`
     display: flex;
-    flex-basis: auto;
     margin: 3vh 0px;
     align-items: center;
     border: 1px solid #F1C644;
     border-radius: 15px;
+    background-color:white;
     position: relative;
     & .ui.image{
         margin: 1vh;

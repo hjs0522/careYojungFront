@@ -225,6 +225,9 @@ const dummyList = [
     },
 ];
 
+const PageContainer = styled.div`
+    background-color: #F5F7FA;
+`
 
 const SearchContainer = styled(Container)`
     &.ui.container{
@@ -259,16 +262,18 @@ const SearchPage = ()=>{
         );
     };
     return(
-    <SearchContainer>
-        <DropDownRow></DropDownRow>
-        <h3>{searchParams}</h3>
-        <SearchList searchList={searchList.slice(offset,offset+5)} onEditWish={onEditWish}></SearchList>
-        <Pagination
-            total = {searchList.length}
-            page = {page}
-            setPage = {setPage}
-        ></Pagination>
-    </SearchContainer>
+    <PageContainer>
+        <SearchContainer>
+            <DropDownRow></DropDownRow>
+            <h3>{searchParams}</h3>
+            <SearchList searchList={searchList.slice(offset,offset+5)} onEditWish={onEditWish}></SearchList>
+            <Pagination
+                total = {searchList.length}
+                page = {page}
+                setPage = {setPage}
+            ></Pagination>
+        </SearchContainer>
+    </PageContainer>
     )
 };
 
