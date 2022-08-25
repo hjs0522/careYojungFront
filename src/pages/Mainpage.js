@@ -116,12 +116,18 @@ const StyledMainpage = styled.div`
   overflow-y:auto;
 `
 
+const StyledContainer = styled.div({
+  paddingLeft:'100px',
+})
+
+
 function Mainpage(){
   return (    
     <StyledMainpage>
       <Recentlist arr={arr}/>
       <Popularlist arr={arr1}/>
       <Themelist arr={arr2} />
+      
       <Pageup />
     </StyledMainpage>
   )

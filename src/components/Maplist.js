@@ -1,16 +1,18 @@
 import styled from "styled-components";
-import {Grid,Icon} from "semantic-ui-react";
+import {Grid,Icon, List} from "semantic-ui-react";
+import {  useState } from "react";
+import Detail from "./Detail";
 
 const StyledMaplist = styled.div({
     display:"inline-block",
-    width:'30%',
-    height:'88vh',
+    width:'350px',
+    height:'100vh',
     border:'1px solid black',
 })
 
 const AllMaplist = styled.div({
     overflowY:'auto',
-    height:'88vh',
+    height:'100vh',
 })
 
 const MaplistBox = styled.div({
@@ -18,7 +20,6 @@ const MaplistBox = styled.div({
     paddingLeft:"4%",
     paddingTop:'5%',
     paddingBottom:'3%',
-    
 })
 
 const MaplistElement = styled.div({
@@ -26,7 +27,7 @@ const MaplistElement = styled.div({
 })
 
 const MaplistBoxTitle = styled.div({
-    fontSize:'24px',
+    fontSize:'22px',
     display:'inline-block',
 })
 
@@ -37,103 +38,14 @@ const MaplistBoxIcon = styled.img({
 })
 
 const MaplistBoxText = styled.div({
-    fontSize:'20px',
+    fontSize:'18px',
     display:'inline-block',
 })
 
-const maplistArr = [{
-    name:"시립서부노인전문요양센터",
-    class :"요양원",
-    star:4.5,
-    reviewLen:10,
-    loc : "서울 성동구 금호로 45",
-    tel : "T.031-1234-4566",
-    img : "https://react.semantic-ui.com/images/wireframe/image.png"
-},{
-    name:"시립서부노인전문요양센터",
-    class :"요양원",
-    star:4.5,
-    reviewLen:10,
-    loc : "서울 성동구 금호로 45",
-    tel : "T.031-1234-4566",
-    img : "https://react.semantic-ui.com/images/wireframe/image.png"
-},{
-    name:"시립서부노인전문요양센터",
-    class :"요양원",
-    star:4.5,
-    reviewLen:10,
-    loc : "서울 성동구 금호로 45",
-    tel : "T.031-1234-4566",
-    img : "https://react.semantic-ui.com/images/wireframe/image.png"
-},{
-    name:"시립서부노인전문요양센터",
-    class :"요양원",
-    star:4.5,
-    reviewLen:10,
-    loc : "서울 성동구 금호로 45",
-    tel : "T.031-1234-4566",
-    img : "https://react.semantic-ui.com/images/wireframe/image.png"
-},{
-    name:"시립서부노인전문요양센터",
-    class :"요양원",
-    star:4.5,
-    reviewLen:10,
-    loc : "서울 성동구 금호로 45",
-    tel : "T.031-1234-4566",
-    img : "https://react.semantic-ui.com/images/wireframe/image.png"
-},{
-    name:"시립서부노인전문요양센터",
-    class :"요양원",
-    star:4.5,
-    reviewLen:10,
-    loc : "서울 성동구 금호로 45",
-    tel : "T.031-1234-4566",
-    img : "https://react.semantic-ui.com/images/wireframe/image.png"
-},{
-    name:"시립서부노인전문요양센터",
-    class :"요양원",
-    star:4.5,
-    reviewLen:10,
-    loc : "서울 성동구 금호로 45",
-    tel : "T.031-1234-4566",
-    img : "https://react.semantic-ui.com/images/wireframe/image.png"
-},{
-    name:"시립서부노인전문요양센터",
-    class :"요양원",
-    star:4.5,
-    reviewLen:10,
-    loc : "서울 성동구 금호로 45",
-    tel : "T.031-1234-4566",
-    img : "https://react.semantic-ui.com/images/wireframe/image.png"
-},{
-    name:"시립서부노인전문요양센터",
-    class :"요양원",
-    star:4.5,
-    reviewLen:10,
-    loc : "서울 성동구 금호로 45",
-    tel : "T.031-1234-4566",
-    img : "https://react.semantic-ui.com/images/wireframe/image.png"
-},{
-    name:"시립서부노인전문요양센터",
-    class :"요양원",
-    star:4.5,
-    reviewLen:10,
-    loc : "서울 성동구 금호로 45",
-    tel : "T.031-1234-4566",
-    img : "https://react.semantic-ui.com/images/wireframe/image.png"
-},{
-    name:"시립서부노인전문요양센터",
-    class :"요양원",
-    star:4.5,
-    reviewLen:10,
-    loc : "서울 성동구 금호로 45",
-    tel : "T.031-1234-4566",
-    img : "https://react.semantic-ui.com/images/wireframe/image.png"
-}]
 
 
+export function Detail_Maplist({score,reviewNum,addRoad,img,name,phoneNumber,type,nursingHome_id,wholemap}){
 
-function Maplist(){
     function getStar(num){
         const starArr=[0,0,0,0,0];
         for(let i=0;i<num;i++){
@@ -147,40 +59,108 @@ function Maplist(){
             result.push(<Icon key={i}  name="star" color="grey"/>)
         })
         return result;
-      }
+    }
+    const [detail_bool,setDetail_bool]=useState(false); 
+    // const onClick=(item)=>{
+        // item.preventDefault();
+        // //console.log(item.target);
+        // geocoder.addressSearch(loc, function(result, status) {
+    
+          // 정상적으로 검색이 완료됐으면 
+        //    if (status === kakao.maps.services.Status.OK) {
+      
+        //     const coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+        //     const marker = new kakao.maps.Marker({
+        //       wholemap: wholemap,
+        //       position: coords
+        //     });
+        //     // 인포윈도우로 장소에 대한 설명을 표시합니다
+        //     const infowindow = new kakao.maps.InfoWindow({
+        //         content: `<div style="width:150px;text-align:center;padding:6px 0;">${item.target.innerText}</div>`
+        //     });
+        //     infowindow.open(wholemap, marker);
+        //     //console.log(coords);
+        //       // 지도의 중심을 결과값으로  받은 위치로 이동시킵니다
+        //       //mapcontent.setCenter(coords);
+        //     wholemap.setCenter(coords);
+        //   }  
+        // })
+    // }
+    // const markerMap = (item)=>{
+    //     console.log(loc);
+    //     geocoder.addressSearch(loc,(result, status)=>{
+    //         if(status === kakao.maps.services.Status.OK){
+    //             const coords = new kakao.maps.LatLng(result[0].y,result[0].x);
+    //             const marker = new kakao.maps.Marker({
+    //                 map : wholemap,
+    //                 position : coords
+    //             })
+    //             const infowindow = new kakao.maps.InfoWindow({
+    //                 content: `<div style="width:150px;text-align:center;padding:6px 0;">${item.target.innerText}</div>`
+    //             });
+    //             infowindow.open(wholemap,marker);
+    //             console.log(coords);
+    //             wholemap.setCenter(coords);
+    //         }
+    //     })
+    // }
+    return(
+    <MaplistBox onClick={()=>{setDetail_bool(true)}} style={{cursor:'pointer'}} id={'maplist'+nursingHome_id}>
+        <Grid columns={2}>
+            <Grid.Column width={2}>
+                <MaplistBoxIcon style={{marginLeft:'50%'}} src="https://react.semantic-ui.com/images/wireframe/image.png" />
+            </Grid.Column>
+            <Grid.Column width={14}>
+                <MaplistElement>
+                <MaplistBoxTitle>{name}</MaplistBoxTitle>
+                <MaplistBoxTitle style={{marginLeft:'4%'}}>{type}</MaplistBoxTitle>
+                </MaplistElement>
+                <MaplistElement>
+                {getStar(score)}
+                <MaplistBoxText style={{marginLeft:'2%'}}>리뷰 {reviewNum}</MaplistBoxText>
+                </MaplistElement>
+                <MaplistElement>
+                    <MaplistBoxText>{addRoad}</MaplistBoxText>
+                </MaplistElement>
+                <MaplistElement>
+                    <MaplistBoxText style={{color:'#0596ff'}}>{phoneNumber}</MaplistBoxText>
+                    <MaplistBoxText style={{float:'right',marginRight:"8%"}}><Icon size="large" name="heart outline"/></MaplistBoxText>
+                </MaplistElement>
+            </Grid.Column>
+            <Detail img={img} name={name} loc={addRoad} detail_bool={detail_bool} setDetail_bool={setDetail_bool} />
+        </Grid> 
+    </MaplistBox>
+    )
+}
+
+
+function Maplist({mapArr,wholemap}){
+    // const {kakao}=window;
+    // const geocoder = new kakao.maps.services.Geocoder();
+    // useEffect(()=>{
+    //     console.log(loc);
+    //     geocoder.addressSearch('서울시 성동구 금호로 45',(result, status)=>{
+    //         if(status === kakao.maps.services.Status.OK){
+    //             const coords = new kakao.maps.LatLng(result[0].y,result[0].x);
+    //             const marker = new kakao.maps.Marker({
+    //                 map : wholemap,
+    //                 position : coords
+    //             })
+    //             const infowindow = new kakao.maps.InfoWindow({
+    //                 content: `<div style="width:150px;text-align:center;padding:6px 0;">ㅁㅁㅁ</div>`
+    //             });
+    //             infowindow.open(wholemap,marker);
+    //             console.log(coords);
+    //             wholemap.setCenter(coords);
+    //         }
+    //     })
+    // },[])
     return(
         <StyledMaplist>
             <AllMaplist>
-                {maplistArr.map((i)=>{
-                    return(
-                        <MaplistBox>
-                            <Grid columns={2}>
-                                <Grid.Column width={2}>
-                                    <MaplistBoxIcon style={{marginLeft:'50%'}} src="https://react.semantic-ui.com/images/wireframe/image.png" />
-                                </Grid.Column>
-                                <Grid.Column width={14}>
-                                    <MaplistElement>
-                                    <MaplistBoxTitle style={{}}>{i.name}</MaplistBoxTitle>
-                                    <MaplistBoxTitle style={{marginLeft:'4%'}}>{i.class}</MaplistBoxTitle>
-                                    </MaplistElement>
-                                    <MaplistElement>
-                                    {getStar(i.star)}
-                                    <MaplistBoxText style={{marginLeft:'2%'}}>{i.star}</MaplistBoxText>
-                                    <MaplistBoxText style={{marginLeft:'2%'}}>리뷰 {i.reviewLen}개</MaplistBoxText>
-                                    </MaplistElement>
-                                    <MaplistElement>
-                                        <MaplistBoxText>{i.loc}</MaplistBoxText>
-                                    </MaplistElement>
-                                    <MaplistElement>
-                                        <MaplistBoxText style={{color:'#0596ff'}}>{i.tel}</MaplistBoxText>
-                                        <MaplistBoxText style={{float:'right',marginRight:"8%"}}><Icon size="large" name="heart outline"/></MaplistBoxText>
-                                    </MaplistElement>
-                                </Grid.Column>
-                            </Grid> 
-                        </MaplistBox>
-                    )
+                {mapArr.map((i)=>{
+                    return(<Detail_Maplist {...i} wholemap={wholemap}/>)
                 })}
-                
             </AllMaplist>
         </StyledMaplist>
     )

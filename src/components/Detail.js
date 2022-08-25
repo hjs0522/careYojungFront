@@ -2,7 +2,6 @@ import React, {useState,useRef,useEffect} from 'react'
 import { Button, Modal,Grid, Icon} from 'semantic-ui-react'
 import styled from 'styled-components'
 import DetailCost from './DetailCost'
-import ListArg from './ListArg'
 
 const response={
 		nursingHome_id:123, // 요양원 id
@@ -179,7 +178,6 @@ function DetailPerson(){
           <DetailPersonText style={{display:'block',fontSize:'18px',color:'#999999'}}>평균 1명당 20명</DetailPersonText>
         </div>
       </DetailPersonBox>
-      
     </StyledDetailBox>
   )
 }
@@ -346,9 +344,7 @@ function DetailReview(){
 
   function avgStar(){
     let sum=0;
-    console.log(sum)
     response.reviews.map((i)=>sum+=i.score)
-    console.log(sum)
     return (sum/response.reviews.length).toFixed(1);
   }
 
@@ -384,18 +380,22 @@ const menuArr={
   시설리뷰:'Detail-5'
 }
 
-function Detail({img,name,loc,id,bb,setbb}) {
-
+function Detail({img,name,loc,id,detail_bool,setDetail_bool}) {
   const onMenuClick= (i) =>{
     const item=document.getElementById(menuArr[i.target.innerText]);
     item.scrollIntoView({behavior: "smooth" })
   }
   return (
     <Modal
-      onClose={() => setbb(false)}
-      onOpen={() => setbb(true)}
-      open={bb}
+      onClose={() => setDetail_bool(false)}
+      onOpen={() => setDetail_bool(true)}
+      open={detail_bool}
       size='large'
+      // onClose={() => setOpen(false)}
+      // onOpen={() => setOpen(true)}
+      // open={open}
+      // size='large'
+      // trigger={<button>aa</button>}
       // trigger={
       //   <StyledImage id={id} src={img} />
       //   // <ListArg img={img} name={name} loc={loc} id={id}/>
@@ -405,7 +405,7 @@ function Detail({img,name,loc,id,bb,setbb}) {
         <ModalHeader >{name}</ModalHeader>
         <div style={{display:'inline-block',float:'right',marginTop:'1%',marginRight:'1%',cursor:'pointer'}}>
           <Modal.Actions >
-            <Icon size="huge" color="grey" name="x" onClick={() => setbb(false)}/>
+            <Icon size="huge" color="grey" name="x" onClick={() => setDetail_bool(false)}/>
           </Modal.Actions>
         </div>
         <MenuBarBox >
@@ -420,7 +420,7 @@ function Detail({img,name,loc,id,bb,setbb}) {
             <Grid columns={2}relaxe >
               <Grid.Row stretched>
                 <Grid.Column  width={11}>
-                  <DetailImage  src="https://search.pstatic.net/common/?autoRotate=true&quality=95&type=w750&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20220524_127%2F1653351165932y6ySc_PNG%2F20220524_091121.png"/>
+                  <DetailImage  src={img}/>
                 </Grid.Column>
                 <Grid.Column width={5}>
                   <DetailImage src="https://search.pstatic.net/common/?autoRotate=true&quality=95&type=w750&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20210627_259%2F1624777448578z0UmE_JPEG%2FNmbf0Se_e3WnRHnHeFr39mX7.jpg"/>
@@ -431,17 +431,17 @@ function Detail({img,name,loc,id,bb,setbb}) {
             <Grid columns={2} >
               <Grid.Row >
                 <Grid.Column width={11}>
-                  <DetailInfo>{loc}</DetailInfo>
-                  <DetailTel>T : 031-1234-3456</DetailTel>
+                  <DetailInfo>{response.addrRoad}</DetailInfo>
+                  <DetailTel>T : {response.phoneNumber}</DetailTel>
                   <DetailSummary>
                     <DetailSummaryText>시설정원</DetailSummaryText>
-                    <DetailSummaryText style={{color:'#496ACE'}}>45</DetailSummaryText>
+                    <DetailSummaryText style={{color:'#496ACE'}}>{response.headCount}</DetailSummaryText>
                     <DetailSummaryText style={{padding:'0'}}>명 </DetailSummaryText>
                     <DetailSummaryText>현원</DetailSummaryText>
-                    <DetailSummaryText style={{color:'#496ACE'}}>45</DetailSummaryText>
+                    <DetailSummaryText style={{color:'#496ACE'}}>{response.nowCount}</DetailSummaryText>
                     <DetailSummaryText style={{padding:'0'}}>명 </DetailSummaryText>
                     <DetailSummaryText>대기</DetailSummaryText>
-                    <DetailSummaryText style={{color:'#496ACE'}}>45</DetailSummaryText>
+                    <DetailSummaryText style={{color:'#496ACE'}}>{response.waitingCount}</DetailSummaryText>
                     <DetailSummaryText style={{padding:'0'}}>명 </DetailSummaryText>
                   </DetailSummary>
                   <DetailPerson />  {/*인력현황 컴포넌트*/}

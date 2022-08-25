@@ -90,6 +90,18 @@ const arr = [{
     per4 : 10,
     per5 : 10,
     per6 : 10,
+},{
+    key : 1,
+    name : "시립서부노인전문요양센터",
+    loc : "서울 성동구 금호로 45",
+    tel : 'T.031-1234-3456',
+    cost : '210,000',
+    per1 : 35,
+    per2 : 32,
+    per3 : 7,
+    per4 : 10,
+    per5 : 10,
+    per6 : 10,
 },]
 
 function Compare(){

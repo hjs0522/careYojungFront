@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import {Icon } from "semantic-ui-react";
+import {Container, Icon } from "semantic-ui-react";
 import styled from "styled-components";
 import SearchBar from "./SearchBar";
 
@@ -45,6 +45,9 @@ const HeaderButtonContainer = styled.div`
 
 `
 
+const StyledContainer = styled(Container)({
+    paddingLeft:'100px',
+})
 
 
 const Header = () =>{
