@@ -5,8 +5,8 @@ import { BrowserRouter, Routes,Route } from "react-router-dom";
 import SearchPage from "./pages/SearchPage";
 import WishPage from "./pages/WishPage";
 import MyPage from "./pages/MyPage";
+import Mappage from "./pages/Mappage"
 import { RecoilRoot } from "recoil";
-import { Container } from "semantic-ui-react";
 
 
 
@@ -17,9 +17,10 @@ function App() {
       <Header/>
       <Routes>
         <Route path="/" element={<Mainpage></Mainpage>}></Route>
-        <Route path="search" element={<SearchPage></SearchPage>}></Route>
-        <Route path="wish" element = {<WishPage></WishPage>}></Route>
-        <Route path="mypage" element = {<MyPage></MyPage>}></Route>
+        <Route path="/search" element={<SearchPage></SearchPage>}></Route>
+        <Route path="/wish" element = {<WishPage></WishPage>}></Route>
+        <Route path="/mypage" element = {<MyPage></MyPage>}></Route>
+        <Route path="/map" element= {<Mappage></Mappage>}></Route>
       </Routes>
       <Footer></Footer>
     </BrowserRouter>

@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import FacilityList from "./FacilityList";
 import {Grid} from 'semantic-ui-react'
+import { useState } from "react";
+import { useEffect } from "react";
 
 const StyledDiv = styled.div({
     position:'relative',
@@ -30,6 +32,7 @@ export const InfoH3=styled.h6({
     fontSize:'20px',
     fontWeight:'normal',
     color:'#444444',
+    
 })
 
 export const StyledBox = styled.div({
@@ -38,13 +41,14 @@ export const StyledBox = styled.div({
     backgroundColor:'#496ACE',
 })
 
-function RecentInfo(){ //최근 본 시설 소개 문구 컴포넌트
+function RecentInfo({listLen,listCount}){ //최근 본 시설 소개 문구 컴포넌트
     return(
         <StyledInfo>
             <StyledBox />
             <InfoH1>최근 본 시설</InfoH1>
             <InfoH3>고객님께서 </InfoH3>
             <InfoH3>최근 본 시설입니다.</InfoH3>
+            <InfoH3 style={{marginTop:'10%',fontSize:'18px'}}>{'<'} {listCount}{'/'}{listLen} {'>'}</InfoH3>
         </StyledInfo>
     )
 }
@@ -53,14 +57,23 @@ function RecentInfo(){ //최근 본 시설 소개 문구 컴포넌트
 
 
 function Recentlist({arr}){
+    const listLen=arr.length;
+    const [listCount,setListCount] = useState(0);
+
+    useEffect(()=>{
+        if(listLen>4)
+            setListCount(4);
+        else
+            setListCount(listLen);
+    },[])
     return (
         <StyledDiv>
             <StyledRecentlist>
                 <Grid.Column width={4} floated="left">
-                    <RecentInfo />
+                    <RecentInfo  listLen={listLen} listCount={listCount}/>
                 </Grid.Column>
                 <Grid.Column width={12}>
-                    <FacilityList size={4} arr={arr} />
+                    <FacilityList size={4} arr={arr} id='recentlist' listLen={listLen} listCount={listCount} setListCount={setListCount}/>
                 </Grid.Column>
             </StyledRecentlist>
         </StyledDiv>

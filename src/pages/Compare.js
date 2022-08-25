@@ -1,4 +1,4 @@
-import {Modal,Icon, Grid,Image, Button} from 'semantic-ui-react'
+import {Modal,Icon, Grid,Image} from 'semantic-ui-react'
 import {useState} from 'react'
 import styled from 'styled-components'
 
@@ -102,7 +102,7 @@ const arr = [{
     per4 : 10,
     per5 : 10,
     per6 : 10,
-},]
+}]
 
 function Compare(){
     const arrSize=arr.length;
@@ -114,7 +114,7 @@ function Compare(){
       onOpen={() => setOpen(true)}
       open={open}
       size='large'
-      trigger={<Button>비교하기</Button>}
+      trigger={<button>a</button>}
     >
         <PageHeader>
             <TitleText >서비스 비교결과</TitleText>

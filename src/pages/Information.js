@@ -12,6 +12,8 @@ const InfoBody = styled.div({
     backgroundColor:'#FFFFFF',
     marginLeft:'10%',
     borderRadius:'30px',
+    paddingBottom:'10%',
+
 })
 
 const InfoH1 = styled.h1({
@@ -22,6 +24,8 @@ const InfoH1 = styled.h1({
 })
 
 const One = styled.div({
+    paddingTop:'1%',
+    paddingBottom:'2%',
     marginLeft:'10%',
     width:'80%',
     height:'30px',
@@ -37,25 +41,31 @@ const OneData = styled.div({
 })
 
 const infoarr=[{
-    name:'이런거 누가 씀',
+    name:'케어요정 웹 내 신청서 날짜변경 오류 수정 공지',
     data:'2022.07.01'
 },{
-    name:'소마 너무 힘듬',
+    name:'이용약관 개정에 따른 생활돌봄 서비스 범위 및 요금변경 안내',
     data:'2022.07.01'
 },{
-    name:'아 배고프다',
+    name:'케어요정 이용약관 개정 안내',
     data:'2022.07.01'
 },{ 
-    name:'ㄴㅇㅁㄹㄴㅇㅁㄹㅇㄴㄹㅁㄹㄹㅇㅁㄴㅇㄹㅁㄹ',
+    name:'22-05-06 케어요정 업데이트 (1.0.2)',
     data:'2022.07.01'
 },{
-    name:'메이플 꿀잼',
+    name:'서비스 오류발생 공지',
     data:'2022.07.01'
 },{
-    name:'메이플 꿀잼',
+    name:'케어요정 대표번호 변경 안내',
     data:'2022.07.01'
 },{
-    name:'메이플 꿀잼',
+    name:'계좌 이체 등록 중지 안내',
+    data:'2022.07.01'
+},{
+    name:'[케어요정] 긴급 서비스 공지',
+    data:'2022.07.01'
+},{
+    name:'새로운 요양시설 추가 안내',
     data:'2022.07.01'
 }]
 
