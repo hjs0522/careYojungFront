@@ -5,8 +5,8 @@ const CompareAddBarContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    position: fixed;
-    bottom: 0;
+    position: sticky;
+    bottom: 0px;
     height: 7vh;
     width: 100%;
     background-color: #496ace;

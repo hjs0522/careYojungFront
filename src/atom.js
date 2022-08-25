@@ -1,6 +1,6 @@
 import { atom } from "recoil";
 
-export const wishState = atom({
-    key: 'wishState',
-    default:'',
+export const compareListState = atom({
+    key: 'compareListState',
+    default:[],
 });

@@ -131,7 +131,7 @@ const WishPage = ()=>{
     const toggleIsBarOpen = ()=>{
         setBarOpen(!barOpen)
     }
-    
+
     const onAdd = (nursingHome_id,name) =>{
     
         const newItem = {
