@@ -48,13 +48,31 @@ const SearchItem = ({nursingHome_id,img,name,type,grade,score,reviewNum,addRoad,
     }
     
     const handleOnAdd = () =>{
-        onAdd(nursingHome_id,name);    
+        onAdd(nursingHome_id,name);
+        /*
+        fetch("localhost:8080/wish",{
+            method:'PUT',
+            body:{
+                "nursingHome_id": nursingHome_id,
+            }
+        })
+        */
     }
     
     const handleRemoveWish = ()=>{
         if(window.confirm(`${name}을 위시리스트에서 삭제하시겠습니까?`)){
             onRemoveWish(nursingHome_id);
             window.scrollTo(0, 0);
+            
+            /*
+        fetch("localhost:8080/wish",{
+            method:'PUT',
+            body:{
+                "nursingHome_id": nursingHome_id,
+                "name": name,
+            }
+        })
+        */
         }
     }
     

@@ -1,7 +1,7 @@
 import styled from "styled-components"
 import { Dropdown } from "semantic-ui-react";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 const DropdownContainer = styled.div`
     display: flex;
     justify-content: space-between;
@@ -31,10 +31,9 @@ const gradeOptions = [
 ]
 
 const orderOptions = [
-    {key:"ac",text:"정확도순",value:"ac"},
-    {key:"re",text:"최신순",value:"re"},
-    {key:"gr",text:"평점순",value:"gr"},
-    {key:"it",text:"관심순",value:"it"},
+    {key:"0",text:"정확도순",value:"0"},
+    {key:"1",text:"평점순",value:"1"},
+    {key:"2",text:"관심순",value:"2"},
 ]
 const DropDownRow = ()=>{
     const [service,setService] =useState(serviceOptions[0].value);
@@ -55,6 +54,7 @@ const DropDownRow = ()=>{
         setOrder(order);
         console.log(order);
     }
+
     return(
         <DropdownContainer>
             <div>
@@ -69,7 +69,7 @@ const DropDownRow = ()=>{
             <span>순서</span>
             <Dropdown options={orderOptions} onChange={handleOrderChange} value={order} selection></Dropdown>
             </div>
-            <Link to ={"Mappage"}>지도로 보기</Link>
+            <Link to ={"/map"}>지도로 보기</Link>
         </DropdownContainer>
     );
 };

@@ -125,6 +125,11 @@ const WishPage = ()=>{
     const [searchList,setSearchList] = useState([]);
     
     useEffect(()=>{
+        /*
+        fetch("localhost:8080/wish")
+            .then((res)=>res.json())
+            .then((data)=>setSearchList(data));
+        */
         setSearchList(dummyList);
     },[])
     

@@ -243,16 +243,14 @@ const SearchPage = ()=>{
     searchParams.get("keyword");
     const offset = (page-1) * 5;
     
-    /*
         useEffect(() =>{
-            fetch("localhost:8080/search?keyword=${searchParms}")
+        /*
+            fetch('localhost:8080/search?${searchParms}')
                 .then((res) => res.json())
                 .then((data)=> setSearchList(data));
+        */
+            setSearchList(dummyList);
         },[]);
-    */
-    useEffect(()=>{
-        setSearchList(dummyList);
-    },[])
     
     const onEditWish = (targetId, newWish)=>{
         setSearchList(
@@ -265,7 +263,6 @@ const SearchPage = ()=>{
     <PageContainer>
         <SearchContainer>
             <DropDownRow></DropDownRow>
-            <h3>{searchParams}</h3>
             <SearchList searchList={searchList.slice(offset,offset+5)} onEditWish={onEditWish}></SearchList>
             <Pagination
                 total = {searchList.length}
