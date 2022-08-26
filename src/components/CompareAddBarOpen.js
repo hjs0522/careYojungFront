@@ -6,11 +6,12 @@ import CompareList from "./CompareList";
 const CompareAddBarContainer = styled.div`
     display: flex;
     justify-content: center;
-    position: fixed;
-    bottom: 0;
+    position: sticky;
+    bottom: 0px;
     height: 10vh;
     width: 100%;
     border-top: solid;
+    background-color: white;
 `
 
 

@@ -5,70 +5,66 @@ import SearchBar from "./SearchBar";
 
 
 const HeaderDiv = styled.div`
+    &.ui.top.fixed.menu{
     background: linear-gradient(to bottom right,#496ace,#715deb);
+    }
+`
+
+const FlexContainer = styled.div`
     display: flex;
     justify-content: space-between;
-    position: fixed;
-    align-items: center;
     width: 100%;
     height: 8vh;
-    z-index: 3;
+    align-items: center;
     & >*{
         width: 33%;
     }
-    
 `
 
 const Logo = styled(Link)`
     font-family: 'Jalnan';
     font-size: x-large;
-    margin-left: 2vw;
     color: white;
+`
+
+const HeaderButton = styled.button`
+    border:none;
+    color: white;
+    background-color: inherit;
+`
+const HeaderLink = styled(Link)`
+    border:none;
+    color: white;
+    background-color: inherit;
 `
 
 const HeaderButtonContainer = styled.div`
     display: flex;
-    justify-content: center;
-    button, a{
-        border:none;
-        color: white;
-        background-color: inherit;
-    }
-
-    
-    div{
-        padding: 8px 8px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
+    justify-content: flex-end;
+    align-items: center;
 `
-
-const StyledContainer = styled(Container)({
-    paddingLeft:'100px',
-})
-
 
 const Header = () =>{
 
     return(
-        <HeaderDiv>
-            <div>
-                <Logo to={"/"}>케어요정</Logo>
-            </div>
-            <SearchBar></SearchBar>
-            <HeaderButtonContainer>
-                <nav>
-                    <Icon name="sign-out"></Icon>
-                    <button onClick={()=>{console.log("logout")}}>로그아웃</button> 
-                    <Icon name="heart outline"></Icon>
-                    <Link to={"/wish"}>위시리스트</Link>
-                    <Icon name="user outline"></Icon>
-                    <Link to={"/mypage"}>마이페이지</Link>
-                </nav>
-            </HeaderButtonContainer>
-        </HeaderDiv>
+    <HeaderDiv className="ui top fixed menu">
+        <Container>
+            <FlexContainer>
+                <div>
+                    <Logo to={"/"}>케어요정</Logo>
+                </div>
+                <SearchBar></SearchBar>
+                    <HeaderButtonContainer>
+                        <Icon name="sign-out"></Icon>
+                        <HeaderButton onClick={()=>{console.log("logout")}}>로그아웃</HeaderButton> 
+                        <Icon name="heart outline"></Icon>
+                        <HeaderLink to={"/wish"}>위시리스트</HeaderLink>
+                        <Icon name="user outline"></Icon>
+                        <HeaderLink to={"/mypage"}>마이페이지</HeaderLink>
+                    </HeaderButtonContainer>
+            </FlexContainer>
+        </Container>
+    </HeaderDiv>
     )
 }
 

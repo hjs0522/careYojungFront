@@ -6,11 +6,11 @@ import {photoarr} from './photos';
 
 const ItemContainer = styled.li`
     display: flex;
-    flex-basis: auto;
     margin: 3vh 0px;
     align-items: center;
     border: 1px solid #F1C644;
     border-radius: 15px;
+    background-color:white;
     position: relative;
     & .ui.image{
         margin: 1vh;
@@ -53,11 +53,32 @@ const SearchItem = ({nursingHome_id,img,name,type,grade,score,reviewNum,addRoad,
     }
     
     const handleOnAdd = () =>{
-        onAdd(nursingHome_id,name);    
+        onAdd(nursingHome_id,name);
+        /*
+        fetch("localhost:8080/wish",{
+            method:'PUT',
+            body:{
+                "nursingHome_id": nursingHome_id,
+            }
+        })
+        */
     }
     
     const handleRemoveWish = ()=>{
-        onRemoveWish(nursingHome_id);
+        if(window.confirm(`${name}을 위시리스트에서 삭제하시겠습니까?`)){
+            onRemoveWish(nursingHome_id);
+            window.scrollTo(0, 0);
+            
+            /*
+        fetch("localhost:8080/wish",{
+            method:'PUT',
+            body:{
+                "nursingHome_id": nursingHome_id,
+                "name": name,
+            }
+        })
+        */
+        }
     }
     
     function getStar(num){

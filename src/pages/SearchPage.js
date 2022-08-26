@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { Container,Header } from "semantic-ui-react";
+import {useSearchParams } from "react-router-dom";
+import { Container} from "semantic-ui-react";
 import styled from "styled-components";
 import DropDownRow from "../components/DropDownRow";
 import Pagination from '../components/Pagination'
@@ -224,10 +225,13 @@ const dummyList = [
     },
 ];
 
+const PageContainer = styled.div`
+    background-color: #F5F7FA;
+`
 
 const SearchContainer = styled(Container)`
-    &.ui.fluid.container{
-        padding-top: 100px;
+    &.ui.container{
+        padding-top: 10vh;
     }
 `
 
@@ -235,18 +239,18 @@ const SearchPage = ()=>{
 
     const [searchList,setSearchList] = useState([]);
     const [page,setPage] = useState(1);
+    const [searchParams,setSearchParams] = useSearchParams();
+    searchParams.get("keyword");
     const offset = (page-1) * 5;
     
-    /*
         useEffect(() =>{
-            fetch("")
+        /*
+            fetch('localhost:8080/search?${searchParms}')
                 .then((res) => res.json())
                 .then((data)=> setSearchList(data));
+        */
+            setSearchList(dummyList);
         },[]);
-    */
-    useEffect(()=>{
-        setSearchList(dummyList);
-    },[])
     
     const onEditWish = (targetId, newWish)=>{
         setSearchList(
@@ -256,15 +260,17 @@ const SearchPage = ()=>{
         );
     };
     return(
-    <SearchContainer fluid>
-        <DropDownRow></DropDownRow>
-        <SearchList searchList={searchList.slice(offset,offset+5)} onEditWish={onEditWish}></SearchList>
-        <Pagination
-            total = {searchList.length}
-            page = {page}
-            setPage = {setPage}
-        ></Pagination>
-    </SearchContainer>
+    <PageContainer>
+        <SearchContainer>
+            <DropDownRow></DropDownRow>
+            <SearchList searchList={searchList.slice(offset,offset+5)} onEditWish={onEditWish}></SearchList>
+            <Pagination
+                total = {searchList.length}
+                page = {page}
+                setPage = {setPage}
+            ></Pagination>
+        </SearchContainer>
+    </PageContainer>
     )
 };
 

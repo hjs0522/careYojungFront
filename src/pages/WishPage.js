@@ -43,17 +43,81 @@ const dummyList = [
         phoneNumber:"010-****-****",
         wish:true,
     },
+    {
+        nursingHome_id:4,
+        img:"https://react.semantic-ui.com/images/wireframe/image.png",
+        name:"강남 요양원",
+        type:"요양원",
+        grade:"등급 A",
+        score:3,
+        reviewNum:"10개",
+        addRoad:"서울시 강남구",
+        phoneNumber:"010-****-****",
+        wish:true,
+    },
+    {
+        nursingHome_id:5,
+        img:"https://react.semantic-ui.com/images/wireframe/image.png",
+        name:"강북 요양원",
+        type:"요양원",
+        grade:"등급 A",
+        score:4,
+        reviewNum:"10개",
+        addRoad:"서울시 강북구",
+        phoneNumber:"010-****-****",
+        wish:true,
+    },
+    {
+        nursingHome_id:6,
+        img:"https://react.semantic-ui.com/images/wireframe/image.png",
+        name:"강동 요양원",
+        type:"요양원",
+        grade:"등급 A",
+        score:5,
+        reviewNum:"10개",
+        addRoad:"서울시 강동구",
+        phoneNumber:"010-****-****",
+        wish:true,
+    },
+    {
+        nursingHome_id:7,
+        img:"https://react.semantic-ui.com/images/wireframe/image.png",
+        name:"강남 요양원",
+        type:"요양원",
+        grade:"등급 A",
+        score:5,
+        reviewNum:"10개",
+        addRoad:"서울시 강남구",
+        phoneNumber:"010-****-****",
+        wish:true,
+    },
+    {
+        nursingHome_id:8,
+        img:"https://react.semantic-ui.com/images/wireframe/image.png",
+        name:"강북 요양원",
+        type:"요양원",
+        grade:"등급 A",
+        score:2,
+        reviewNum:"10개",
+        addRoad:"서울시 강북구",
+        phoneNumber:"010-****-****",
+        wish:true,
+    },
 
     
 ];
 
 
 const WishContainer = styled(Container)`
-    &{
-        padding-top:100px;
+    &.ui.container{
+        padding-top:10vh;
+        padding-bottom: 12vh;
     }
 `
 
+const PageContainer = styled.div`
+    background-color: #F5F7FA;
+`
 
 const WishPage = ()=>{
     const [barOpen,setBarOpen] = useState(false);
@@ -61,33 +125,45 @@ const WishPage = ()=>{
     const [searchList,setSearchList] = useState([]);
     
     useEffect(()=>{
+        /*
+        fetch("localhost:8080/wish")
+            .then((res)=>res.json())
+            .then((data)=>setSearchList(data));
+        */
         setSearchList(dummyList);
     },[])
     
     const toggleIsBarOpen = ()=>{
         setBarOpen(!barOpen)
     }
-    
+
     const onAdd = (nursingHome_id,name) =>{
-        if(compareList.length<3){
-            const newItem = {
-                nursingHome_id,
-                name,
-            };
-            let flag = false;
-            for(let i=0;i<compareList.length;i++){
-                if(compareList[i].nursingHome_id === nursingHome_id){
-                    flag = true;
-                }
+    
+        const newItem = {
+            nursingHome_id,
+            name,
+        };
+        
+        let flag = false;
+        for(let i=0;i<compareList.length;i++){
+            if(compareList[i].nursingHome_id === nursingHome_id){
+                flag = true;
             }
-            if (!flag){
+        }
+        
+        if (!flag){
+            if(compareList.length<3){
                 setCompareList([...compareList,newItem]);
             }
+            else
+            {
+                alert("비교하기는 최대 3개까지 가능합니다");
+            }
         }
-        else
-        {
-            alert("비교하기는 최대 3개까지 가능합니다")
+        else{
+            alert("이미 추가된 시설입니다");
         }
+        
     }
     
     const onRemoveCompare = (targetId)=>{
@@ -112,11 +188,13 @@ const WishPage = ()=>{
     };
     
     return(
-    <WishContainer fluid>
-        <DropDownRow></DropDownRow>
-        <SearchList searchList={searchList} onAdd = {onAdd} onEditWish={onEditWish} onRemoveWish={onRemoveWish} compareList = {compareList} isWishPage = {true}></SearchList>
+    <PageContainer>
+        <WishContainer>
+            <DropDownRow></DropDownRow>
+            <SearchList searchList={searchList} onAdd = {onAdd} onEditWish={onEditWish} onRemoveWish={onRemoveWish} compareList = {compareList} isWishPage = {true}></SearchList>
+        </WishContainer>
         {barOpen?<CompareAddBarOpen toggleIsBarOpen={toggleIsBarOpen} compareList={compareList} onRemoveCompare = {onRemoveCompare}></CompareAddBarOpen>:<CompareAddBarClose toggleIsBarOpen={toggleIsBarOpen} compareList={compareList}></CompareAddBarClose>}
-    </WishContainer>
+    </PageContainer>
     )
 };
 

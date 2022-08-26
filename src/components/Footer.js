@@ -1,13 +1,14 @@
 import styled from "styled-components";
-import {Link} from "react-router-dom";
-import {  Grid, Image } from 'semantic-ui-react';
+import { Container, Grid} from 'semantic-ui-react'
+import { Link } from "react-router-dom";
+
 
 
 const StyledGrid = styled(Grid)({
   height:'150px',
   width:'100%',
   borderTop : 'solid 1px #E1E1E1',
-  backgroundColor:'white'
+  backgroundColor:'white',
 })
 const StyledColumn = styled(Grid.Column)({
     display:"inline",
@@ -20,10 +21,11 @@ const StyledGridRow = styled(Grid.Row)({
     marginTop:'10px'
 })
 
-const StyledImage = styled(Image)({
-    width:"160px",
-    marginLeft:'40%' 
-})
+const Logo = styled(Link)`
+    font-family: 'Jalnan';
+    font-size: x-large;
+    color: #CCCCCC;
+`
 
 const StyledP = styled.p({
     height:"25px",
@@ -33,9 +35,10 @@ const StyledP = styled.p({
 
 function Footer(){
     return (
+    <Container>
         <StyledGrid>
             <Grid.Column width={3}>
-            <StyledImage src='https://react.semantic-ui.com/images/wireframe/image.png' />
+                <Logo to={"/"}>케어요정</Logo>
             </Grid.Column>
             <Grid.Column width={12} style={{marginLeft:'5%'}}>
                 <StyledGridRow >
@@ -64,6 +67,7 @@ function Footer(){
                 </Grid.Row>
             </Grid.Column>
         </StyledGrid>
+    </Container>
 
     )
 }

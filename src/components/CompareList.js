@@ -15,6 +15,7 @@ const CompareListContainer = styled.div`
 
 const CompareList = ({compareList,onRemoveCompare})=>{
 
+
     const getCompare = ()=> {
         const result = []
         for(let i=0;i<3;i++){
@@ -27,10 +28,14 @@ const CompareList = ({compareList,onRemoveCompare})=>{
         }
         return result;
     }
+    
+    /*
+    {compareList.map((it)=>(
+                <CompareItem key={it.nursingHome_id} {...it} onRemoveCompare = {onRemoveCompare}></CompareItem>))}
+    */
     return(
         <CompareListContainer>
-            {compareList.map((it)=>(
-                <CompareItem key={it.nursingHome_id} {...it} onRemoveCompare = {onRemoveCompare}></CompareItem>))}
+            {getCompare()}
         </CompareListContainer>
     );
 }

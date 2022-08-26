@@ -78,7 +78,7 @@ function SearchBar() {
   const navigate = useNavigate();
   
   const handleSubmit = () =>{
-    navigate("search")
+    navigate(`search?keyword=${value}`)
     
   }
   
@@ -91,7 +91,6 @@ function SearchBar() {
   
   <MyForm onSubmit={handleSubmit}>
     <Search
-          fluid
           loading={loading}
           placeholder='Search...'
           onSearchChange={handleSearchChange}
