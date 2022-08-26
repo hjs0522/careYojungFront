@@ -2,6 +2,7 @@ import React, {useState,useRef,useEffect} from 'react'
 import { Button, Modal,Grid, Icon} from 'semantic-ui-react'
 import styled from 'styled-components'
 import DetailCost from './DetailCost'
+import { photoarr } from './photos'
 
 const response={
 		nursingHome_id:123, // 요양원 id
@@ -420,7 +421,7 @@ function Detail({img,name,loc,id,detail_bool,setDetail_bool}) {
             <Grid columns={2}relaxe >
               <Grid.Row stretched>
                 <Grid.Column  width={11}>
-                  <DetailImage  src={img}/>
+                  <DetailImage  src={photoarr[name]}/>
                 </Grid.Column>
                 <Grid.Column width={5}>
                   <DetailImage src="https://search.pstatic.net/common/?autoRotate=true&quality=95&type=w750&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20210627_259%2F1624777448578z0UmE_JPEG%2FNmbf0Se_e3WnRHnHeFr39mX7.jpg"/>

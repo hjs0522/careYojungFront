@@ -4,7 +4,7 @@ import ListArg from "./ListArg";
 
 const HorizontalScroll = styled.div`
     white-space:nowrap;
-    overflow:auto;
+    overflow:${prop=>prop.id==='Themelist'?'none':'auto'};
     height:100%;
     padding-bottom:20px;
     width:80%;

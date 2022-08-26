@@ -1,5 +1,8 @@
+import { useState } from "react";
 import { Button,Image,Icon } from "semantic-ui-react";
 import styled from "styled-components";
+import Detail from "./Detail";
+import {photoarr} from './photos';
 
 const ItemContainer = styled.li`
     display: flex;
@@ -41,7 +44,9 @@ const LinkContainer = styled.div`
 
 
 const SearchItem = ({nursingHome_id,img,name,type,grade,score,reviewNum,addRoad,phoneNumber,wish,onAdd,onEditWish,isWishPage,onRemoveWish})=>
-{
+{  
+    const [detail_bool,setDetail_bool] = useState(false);
+
     
     const handleOnClick = () =>{
         onEditWish(nursingHome_id,!wish);
@@ -71,8 +76,8 @@ const SearchItem = ({nursingHome_id,img,name,type,grade,score,reviewNum,addRoad,
     }
     
     return(
-        <ItemContainer>
-            <Image src={img} alt = "요양원 사진" size="small"></Image>
+        <ItemContainer onClick={()=>{setDetail_bool(true)}}>
+            <img  style={{width:'150px',height:'150px'}} src={photoarr[name]} alt = "요양원 사진" />
             {isWishPage
             ?
             (wish
@@ -101,6 +106,7 @@ const SearchItem = ({nursingHome_id,img,name,type,grade,score,reviewNum,addRoad,
                 <Button size="samll" onClick={handleOnAdd}>비교담기</Button>:
                 null}
             </LinkContainer>
+            <Detail detail_bool={detail_bool} setDetail_bool={setDetail_bool} name={name}/>
         </ItemContainer>
         
     );
