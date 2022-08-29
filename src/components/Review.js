@@ -39,38 +39,45 @@ const StarBox = styled.div({
     backgroundColor:'#f5f7fa',
     border:'1px solid #e1e1e1',
     borderRadius:'10px',
+    textAlign:'center',
+    paddingTop:'5%',
+})
+
+const InputText = styled.input({
+    height:'300px',
+    width:'100%',
+    textAlign:'left',
+    marginBottom:'15px',
+    fontSize:'20px'
 })
 
 const EndButton = styled.button({
-    display:'block',
     padding:'10px',
     borderRadius:'50px',
     width:'40%',
-    textAlign:'center',
     backgroundColor:'#496ace',
     color:'white',
     marginLeft:'30%',
+    cursor:'pointer',
 })
 
 function Review({review_bool, setReview_bool,name,addRoad}){
-    const [open, setOpen] = useState(false)
     const [starlength,setStarlength] = useState(0);
-    const aaa = (event)=>{
-        event.stopPropagation();
-        console.log(event);
-    }
+    const [reviewText,setReviewText]=useState("");
+    const [real_review,setReal_review]=useState("");
+
     function getStar(num){
-        const starArr=[0,0,0,0,0];
+        const starArr=[{id:1,value:0},{id:2,value:0},{id:3,value:0},{id:4,value:0},{id:5,value:0}];
         for(let i=0;i<num;i++){
-          starArr[i]=1
+          starArr[i].value=1;
         }
         const result=[]
         let index=0
         starArr.map((i)=>{
-          if(i===1)
-            result.push(<div id={index} onClick={aaa} style={{display:'inline-block'}}><Icon size="large" name="star" color="yellow"/></div>)
+          if(i.value===1)
+            result.push(<li onClick={()=>{setStarlength(i.id);}} style={{display:'inline-block'}}><Icon size="large" name="star" color="yellow"/></li>)
           else
-            result.push(<div id={index} onClick={aaa} style={{display:'inline-block'}}><Icon size="large" name="star" color="grey"/></div>)
+            result.push(<li onClick={()=>{setStarlength(i.id);}} style={{display:'inline-block'}}><Icon size="large" name="star" color="grey"/></li>)
           index+=1
         }
         )
@@ -78,7 +85,11 @@ function Review({review_bool, setReview_bool,name,addRoad}){
       }
     return (
     <Modal
-      onClose={() => setReview_bool(false)}
+      onClose={() => {
+        setStarlength(0);
+        return setReview_bool(false)
+      }
+    }
       onOpen={() => setReview_bool(true)}
       open={review_bool}
       size='small'
@@ -89,7 +100,7 @@ function Review({review_bool, setReview_bool,name,addRoad}){
                 <StyledHeaderText>리뷰작성</StyledHeaderText>
                 <div style={{display:'inline-block',float:'right',cursor:'pointer',marginTop:'-40px'}}>
                     <Modal.Actions >
-                        <Icon size="huge" color="grey" name="x" onClick={() => setReview_bool(false)}/>
+                        <Icon size="huge" color="grey" name="x" onClick={() => {setStarlength(0); return setReview_bool(false)}}/>
                     </Modal.Actions>
                 </div>   
             </StyledHeader> 
@@ -113,12 +124,25 @@ function Review({review_bool, setReview_bool,name,addRoad}){
                     {getStar(starlength)}
                 </StarBox>
             </div>
-            <div style={{marginBottom:'15px'}}>
-                <input onClick={(event)=>{
-                    event.stopPropagation();
-                }} style={{height:'300px',width:'100%',textAlign:'left'}} placeholder="시설을 이용하면서 느낀점을 상세하게 작성해주세요."  type="textbox" ></input>
-            </div>
-            <EndButton><StyledText>후기작성완료</StyledText></EndButton>
+            <form style={{marginBottom:'15px'}} onSubmit={(event)=>{
+                event.preventDefault();
+            }}>
+                <InputText onChange={(event)=>{
+                    setReviewText(event.target.value);
+                    console.log(reviewText);
+                }} placeholder="시설을 이용하면서 느낀점을 상세하게 작성해주세요."  type="textbox" />
+                <EndButton onClick={(event)=>{
+                    event.preventDefault();
+                    if(reviewText===''||starlength==0){
+                        alert("별점과 후기를 입력해주세요!");
+                    }
+                    else{
+                        setReal_review(reviewText);
+                        setReviewText('');
+                    }
+                    
+                }}><StyledText>후기작성완료</StyledText></EndButton>
+            </form>
         </StyledModal>
     </Modal>)
 }

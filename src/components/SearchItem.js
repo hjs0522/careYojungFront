@@ -98,8 +98,8 @@ const SearchItem = ({nursingHome_id,img,name,type,grade,score,reviewNum,addRoad,
     }
     
     return(
-        <ItemContainer onClick={()=>{setDetail_bool(true)}}>
-            <img  style={{width:'150px',height:'150px'}} src={photoarr[name]} alt = "요양원 사진" />
+        <ItemContainer >
+            <img onClick={()=>{setDetail_bool(true)}} style={{width:'150px',height:'150px',cursor:'pointer'}} src={photoarr[name]} alt = "요양원 사진" />
             {isWishPage
             ?
             (wish
@@ -121,7 +121,7 @@ const SearchItem = ({nursingHome_id,img,name,type,grade,score,reviewNum,addRoad,
                 event.stopPropagation();
                 handleOnClick()
             }}></Icon>}
-            <InfoContainer>
+            <InfoContainer onClick={()=>{setDetail_bool(true)}} style={{cursor:'pointer'}}>
                 <div>
                     <span>{name}</span>
                     <span>{type}</span>
@@ -135,7 +135,7 @@ const SearchItem = ({nursingHome_id,img,name,type,grade,score,reviewNum,addRoad,
                 <div>{phoneNumber}</div>
             </InfoContainer>
             <LinkContainer>
-                <Button size="small">상세보기</Button>
+                <Button size="small" onClick={()=>{setDetail_bool(true)}}>상세보기</Button>
                 <Button size="small" onClick={(event)=>{
                     event.stopPropagation();
                     setReview_bool(true);
