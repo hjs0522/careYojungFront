@@ -8,6 +8,7 @@ import MyPage from "./pages/MyPage";
 import Mappage from "./pages/Mappage"
 import { RecoilRoot } from "recoil";
 import Review from "./components/Review";
+import PersonInfo from "./pages/PersonInfo";
 
 
 
@@ -15,16 +16,16 @@ function App() {
   return (
   <RecoilRoot>
     <BrowserRouter>
-      {/* <Header/> */}
+      <Header/>
       <Routes>
         <Route path="/" element={<Mainpage></Mainpage>}></Route>
         <Route path="/search" element={<SearchPage></SearchPage>}></Route>
         <Route path="/wish" element = {<WishPage></WishPage>}></Route>
         <Route path="/mypage" element = {<MyPage></MyPage>}></Route>
         <Route path="/map" element= {<Mappage></Mappage>}></Route>
-        <Route path="/review" element={<Review />} />
+        <Route path="/personInfo" element = {<PersonInfo></PersonInfo>}></Route>
       </Routes>
-      {/* <Footer></Footer> */}
+      <Footer></Footer>
     </BrowserRouter>
   </RecoilRoot>
   );
