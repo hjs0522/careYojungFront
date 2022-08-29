@@ -3,6 +3,7 @@ import { Button,Image,Icon } from "semantic-ui-react";
 import styled from "styled-components";
 import Detail from "./Detail";
 import {photoarr} from './photos';
+import Review from "./Review";
 
 const ItemContainer = styled.li`
     display: flex;
@@ -45,8 +46,8 @@ const LinkContainer = styled.div`
 
 const SearchItem = ({nursingHome_id,img,name,type,grade,score,reviewNum,addRoad,phoneNumber,wish,onAdd,onEditWish,isWishPage,onRemoveWish})=>
 {  
-    const [detail_bool,setDetail_bool] = useState(false);
-
+    const [detail_bool,setDetail_bool] = useState(false); //상세정보 페이지 열려있는지 여부
+    const [review_bool,setReview_bool] = useState(false); //리뷰페이지 열려있는지 여부
     
     const handleOnClick = () =>{
         onEditWish(nursingHome_id,!wish);
@@ -102,11 +103,24 @@ const SearchItem = ({nursingHome_id,img,name,type,grade,score,reviewNum,addRoad,
             {isWishPage
             ?
             (wish
-            ?<Icon name='heart' color="red" size="large" onClick = {handleRemoveWish}></Icon>:
-            <Icon name='heart outline' size="large" onClick = {handleOnClick}></Icon>)
+            ?<Icon name='heart' color="red" size="large" onClick = {event=>{
+                    event.stopPropagation(); // onclick이벤트를 가지고 있는 블럭이 겹쳐잇을때 제일 위에 하나만 실행 되게 해줌.
+                    handleRemoveWish()
+                }
+            }></Icon>:
+            <Icon name='heart outline' size="large" onClick = {event=>{
+                event.stopPropagation();
+                handleOnClick()
+            }}></Icon>)
             :wish
-            ? <Icon name='heart' color="red" size="large" onClick = {handleOnClick}></Icon>:
-            <Icon name='heart outline' size="large" onClick = {handleOnClick}></Icon>}
+            ? <Icon name='heart' color="red" size="large" onClick = {event=>{
+                event.stopPropagation();
+                handleOnClick()
+            }}></Icon>:
+            <Icon name='heart outline' size="large" onClick = {event=>{
+                event.stopPropagation();
+                handleOnClick()
+            }}></Icon>}
             <InfoContainer>
                 <div>
                     <span>{name}</span>
@@ -122,12 +136,22 @@ const SearchItem = ({nursingHome_id,img,name,type,grade,score,reviewNum,addRoad,
             </InfoContainer>
             <LinkContainer>
                 <Button size="small">상세보기</Button>
-                <Button size="small">리뷰하기</Button>
+                <Button size="small" onClick={(event)=>{
+                    event.stopPropagation();
+                    setReview_bool(true);
+                    event.stopPropagation();
+                    }}>리뷰하기</Button>
                 {isWishPage?
-                <Button size="samll" onClick={handleOnAdd}>비교담기</Button>:
+                <Button size="samll" onClick={event=>{
+                    event.stopPropagation();
+                    handleOnAdd();
+                }
+                }>비교담기</Button>:
                 null}
             </LinkContainer>
+            <Review review_bool={review_bool} setReview_bool={setReview_bool} name={name} addRoad={addRoad}/>
             <Detail detail_bool={detail_bool} setDetail_bool={setDetail_bool} name={name}/>
+            
         </ItemContainer>
         
     );

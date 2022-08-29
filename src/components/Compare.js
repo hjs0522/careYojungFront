@@ -31,8 +31,9 @@ const Styledheader = styled.div({
 
 })
 
-const StyledheaderImg = styled(Image)({
-    marginBottom:'3%',
+const StyledheaderImg = styled.img({
+    width:'100%',
+    height:'100%',
 })
 
 const StyledText = styled.div({
@@ -68,8 +69,9 @@ const PersonBlock = styled.div({
 
 const arr = [{
     key:0,
-    name : "시립서부노인전문요양센터",
-    loc : "서울 성동구 금호로 45",
+    img:"https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=AeJbb3da-q2IzbDghh36ty1EQfK9pZTXfzMqpGcQmv0cnQ5eqCtFF0hg6hbFdtcv9EHdssG4OxF3979rqt3luWRF3uXoqzuWM1RuIgp5jBLSI3m2by3zyuN1iT1aFNGMZqb445k5i3veSoNSdzTMEcySx7Hn0k8YErIEgKm4bD1Bb_4OVu65&key=AIzaSyDY5tTtaA7BBeKxnL1hhcZQfXotxBJL4dY",
+    name : "강서미소요양원",
+    loc : "서울 강서구 화곡로 225 두산빌딩 3층",
     tel : 'T.031-1234-3456',
     cost : '210,000',
     per1 : 45,
@@ -80,6 +82,7 @@ const arr = [{
     per6 : 10,
 },{
     key : 1,
+    img:"https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=AeJbb3dtt3q8WNifDIih2_XTn1uLbPJnAVisiGxSyr8-eGTHYERgQnVxr3QQL_KgZcFhm6VYZijSEb_RFnqjNwClK2Xqcg_O-hvmg0APJ9vrN8hajvS9WQEEyGa1M9z5U5tJYdOkxTElNFgbEufRR9JVIh5Ws7-fJv6-Fo3wdCBqPefGwegC&key=AIzaSyDY5tTtaA7BBeKxnL1hhcZQfXotxBJL4dY",
     name : "시립서부노인전문요양센터",
     loc : "서울 성동구 금호로 45",
     tel : 'T.031-1234-3456',
@@ -92,6 +95,7 @@ const arr = [{
     per6 : 10,
 },{
     key : 1,
+    img:"https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=AeJbb3cFOwQtncajlbdVcUqhKGm9AxmHwzoxCwYILGNhUaLzisk42yWCOwqS4_3pl2zYWyGHuKyQzPgvVz9t2TmzC7xzOjKvwzQXLQ6-J29IE6nmtNuQDOQAsR11YRcB0-C60_tLTS5fbcC-DziBXVFC-9MGU1GpYJ7bFHL2jMAFTi4uYy8&key=AIzaSyDY5tTtaA7BBeKxnL1hhcZQfXotxBJL4dY",
     name : "시립서부노인전문요양센터",
     loc : "서울 성동구 금호로 45",
     tel : 'T.031-1234-3456',
@@ -104,7 +108,7 @@ const arr = [{
     per6 : 10,
 },]
 
-function Compare(){
+function Compare({}){
     const arrSize=arr.length;
     console.log(arrSize);
     const [open, setOpen] = useState(false)
@@ -114,7 +118,7 @@ function Compare(){
       onOpen={() => setOpen(true)}
       open={open}
       size='large'
-      trigger={<Button>비교하기</Button>}
+      trigger={<Button >비교하기</Button>}
     >
         <PageHeader>
             <TitleText >서비스 비교결과</TitleText>
@@ -131,7 +135,7 @@ function Compare(){
                     <Grid columns={arrSize}>
                         {arr.map((i)=>(
                             <Grid.Column>
-                                <StyledheaderImg src="https://react.semantic-ui.com/images/wireframe/image.png" />
+                                <StyledheaderImg src={i.img} />
                             </Grid.Column>
                         ))}
                     </Grid>
