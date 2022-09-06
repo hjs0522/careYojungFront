@@ -9,7 +9,8 @@ import Mappage from "./pages/Mappage"
 import { RecoilRoot } from "recoil";
 import Review from "./components/Review";
 import PersonInfo from "./pages/PersonInfo";
-
+import Information from "./pages/Information";
+import InfoDetail from "./pages/InfoDetail";
 
 
 function App() {
@@ -24,7 +25,9 @@ function App() {
         <Route path="/mypage" element = {<MyPage></MyPage>}></Route>
         <Route path="/map" element= {<Mappage></Mappage>}></Route>
         <Route path="/personInfo" element = {<PersonInfo></PersonInfo>}></Route>
+        <Route path="/info" element = {<Information></Information>}></Route>
       </Routes>
+      {/* <InfoDetail></InfoDetail> */}
       <Footer></Footer>
     </BrowserRouter>
   </RecoilRoot>

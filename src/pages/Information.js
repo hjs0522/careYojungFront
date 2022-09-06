@@ -8,9 +8,10 @@ const StyledInfomation = styled.div({
 })
 
 const InfoBody = styled.div({
-    width:'80%',
+    boxShadow: '0px 6px 20px rgba(0, 0, 0, 0.1)',
+    width:'70%',
     backgroundColor:'#FFFFFF',
-    marginLeft:'10%',
+    marginLeft:'15%',
     borderRadius:'30px',
     paddingBottom:'10%',
 
@@ -25,7 +26,7 @@ const InfoH1 = styled.h1({
 
 const One = styled.div({
     paddingTop:'1%',
-    paddingBottom:'2%',
+    paddingBottom:'3%',
     marginLeft:'10%',
     width:'80%',
     height:'30px',

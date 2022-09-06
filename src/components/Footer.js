@@ -5,7 +5,8 @@ import { Link } from "react-router-dom";
 
 
 const StyledGrid = styled(Grid)({
-  height:'150px',
+    marginTop:'50px',
+  height:'160px',
   width:'100%',
   borderTop : 'solid 1px #E1E1E1',
   backgroundColor:'white',
