@@ -5,11 +5,8 @@ import { Link } from "react-router-dom";
 
 
 const StyledGrid = styled(Grid)({
-    marginTop:'50px',
   height:'160px',
   width:'100%',
-  borderTop : 'solid 1px #E1E1E1',
-  backgroundColor:'white',
 })
 const StyledColumn = styled(Grid.Column)({
     display:"inline",
@@ -36,40 +33,41 @@ const StyledP = styled.p({
 
 function Footer(){
     return (
-    <Container>
-        <StyledGrid>
-            <Grid.Column width={3}>
-                <Logo to={"/"}>케어요정</Logo>
-            </Grid.Column>
-            <Grid.Column width={12} style={{marginLeft:'5%'}}>
-                <StyledGridRow >
-                    <StyledColumn >
-                        개인정보처리방침
-                    </StyledColumn>
-                    <StyledColumn >
-                        자주묻는질문
-                    </StyledColumn>
-                    <StyledColumn >
-                        <Link to={"/info"}>공지사항</Link>
-                    </StyledColumn>
-                    <StyledColumn>
-                        이용약관
-                    </StyledColumn>
-                </StyledGridRow>
-                <Grid.Row>
-                    <StyledP>
-                        ydk9819@gmail.com
-                    </StyledP>
-                </Grid.Row>
-                <Grid.Row>
-                    <StyledP>
-                        Copyrightⓒ2022 silver surfer All rights reserved.
-                    </StyledP>
-                </Grid.Row>
-            </Grid.Column>
-        </StyledGrid>
-    </Container>
-
+        <div style={{backgroundColor:'#fafafa',borderTop : 'solid 1px #E1E1E1',paddingTop:'30px'}}>
+        <Container>
+            <StyledGrid>
+                <Grid.Column width={3}>
+                    <Logo to={"/"}>케어요정</Logo>
+                </Grid.Column>
+                <Grid.Column width={12} style={{marginLeft:'5%'}}>
+                    <StyledGridRow >
+                        <StyledColumn >
+                            개인정보처리방침
+                        </StyledColumn>
+                        <StyledColumn >
+                            자주묻는질문
+                        </StyledColumn>
+                        <StyledColumn >
+                            <Link to={"/info"}>공지사항</Link>
+                        </StyledColumn>
+                        <StyledColumn>
+                            이용약관
+                        </StyledColumn>
+                    </StyledGridRow>
+                    <Grid.Row>
+                        <StyledP>
+                            ydk9819@gmail.com
+                        </StyledP>
+                    </Grid.Row>
+                    <Grid.Row>
+                        <StyledP>
+                            Copyrightⓒ2022 silver surfer All rights reserved.
+                        </StyledP>
+                    </Grid.Row>
+                </Grid.Column>
+            </StyledGrid>
+        </Container>
+    </div>
     )
 }
 

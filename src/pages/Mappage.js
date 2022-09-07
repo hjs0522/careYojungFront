@@ -1,4 +1,6 @@
+import { Container } from "semantic-ui-react";
 import styled from "styled-components";
+import DropDownRow from "../components/DropDownRow";
 import Map from "../components/Map";
 import Maplist from "../components/Maplist";
 
@@ -229,8 +231,11 @@ function Mappage(){
     
     return(
         <StyledMappage>
+            <Container fluid>
+            <div style={{padding:'10px 15% 10px 15%'}}><DropDownRow /></div>
             {/* <Maplist mapArr={mapArr}/> */}
             <Map mapArr={mapArr} />
+            </Container>
         </StyledMappage>
     )
 }

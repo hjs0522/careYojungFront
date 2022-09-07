@@ -26,8 +26,8 @@ function App() {
         <Route path="/map" element= {<Mappage></Mappage>}></Route>
         <Route path="/personInfo" element = {<PersonInfo></PersonInfo>}></Route>
         <Route path="/info" element = {<Information></Information>}></Route>
+        <Route path="/infoDetail" element = {<InfoDetail></InfoDetail>}></Route>
       </Routes>
-      {/* <InfoDetail></InfoDetail> */}
       <Footer></Footer>
     </BrowserRouter>
   </RecoilRoot>

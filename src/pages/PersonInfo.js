@@ -10,8 +10,8 @@ const StyledPersonInfo = styled.div({
 })
 const StyledBody = styled.div({
     backgroundColor:'white',
-    marginLeft:'150px',
-    marginRight:'150px',
+    width:'1200px',
+    margin:'0 auto',
     padding:"0 150px 70px 150px",
     borderRadius:'30px',
     boxShadow:'0px 6px 20px rgba(0, 0, 0, 0.1)'
