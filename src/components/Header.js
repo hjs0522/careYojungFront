@@ -1,6 +1,10 @@
+import { useCallback } from "react";
+import { useEffect,useState } from "react";
 import { Link } from "react-router-dom";
+import { useRecoilState } from "recoil";
 import {Container, Icon } from "semantic-ui-react";
 import styled from "styled-components";
+import { loginState } from "../atom";
 import SearchBar from "./SearchBar";
 
 
@@ -44,8 +48,15 @@ const HeaderButtonContainer = styled.div`
     align-items: center;
 `
 
+
+
 const Header = () =>{
 
+    const [login,setLogin] = useRecoilState(loginState);
+    const loginHandler = ()=>{
+        setLogin(!login)
+    }
+    
     return(
     <HeaderDiv className="ui top fixed menu">
         <Container>
@@ -54,14 +65,24 @@ const Header = () =>{
                     <Logo to={"/"}>케어요정</Logo>
                 </div>
                 <SearchBar></SearchBar>
-                    <HeaderButtonContainer>
-                        <Icon name="sign-out"></Icon>
-                        <HeaderButton onClick={()=>{console.log("logout")}}>로그아웃</HeaderButton> 
-                        <Icon name="heart outline"></Icon>
-                        <HeaderLink to={"/wish"}>위시리스트</HeaderLink>
-                        <Icon name="user outline"></Icon>
-                        <HeaderLink to={"/mypage"}>마이페이지</HeaderLink>
-                    </HeaderButtonContainer>
+                <HeaderButtonContainer>
+                {login?
+                (<>
+                    <Icon name="sign-out"></Icon>
+                    <HeaderButton onClick={loginHandler}>로그아웃</HeaderButton> 
+                    <Icon name="heart outline"></Icon>
+                    <HeaderLink to={"/wish"}>위시리스트</HeaderLink>
+                    <Icon name="user outline"></Icon>
+                    <HeaderLink to={"/mypage"}>마이페이지</HeaderLink>
+
+                </>):
+                (<>
+                    <Icon name="sign in"></Icon>
+                    <HeaderLink to={"/login"} onClick={loginHandler}>로그인</HeaderLink>
+                </>
+                )
+                }
+                </HeaderButtonContainer>
             </FlexContainer>
         </Container>
     </HeaderDiv>

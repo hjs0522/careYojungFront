@@ -7,6 +7,8 @@ import WishPage from "./pages/WishPage";
 import MyPage from "./pages/MyPage";
 import Mappage from "./pages/Mappage"
 import { RecoilRoot } from "recoil";
+import LoginPage from "./pages/LoginPage";
+import Kakao from "./pages/kakao";
 
 
 
@@ -16,11 +18,13 @@ function App() {
     <BrowserRouter>
       <Header/>
       <Routes>
-        <Route path="/" element={<Mainpage></Mainpage>}></Route>
-        <Route path="/search" element={<SearchPage></SearchPage>}></Route>
+        <Route path="/*" element={<Mainpage></Mainpage>}></Route>
+        <Route path="/search/list" element={<SearchPage></SearchPage>}></Route>
+        <Route path="/search/map" element= {<Mappage></Mappage>}></Route>
         <Route path="/wish" element = {<WishPage></WishPage>}></Route>
         <Route path="/mypage" element = {<MyPage></MyPage>}></Route>
-        <Route path="/map" element= {<Mappage></Mappage>}></Route>
+        <Route path="/login" element={<LoginPage></LoginPage>}></Route>
+        <Route path="/oauth/callback/kakao" element={<Kakao></Kakao>}></Route>
       </Routes>
       <Footer></Footer>
     </BrowserRouter>

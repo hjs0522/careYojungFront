@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-import {useSearchParams } from "react-router-dom";
+import {useNavigate, useSearchParams } from "react-router-dom";
 import { Container} from "semantic-ui-react";
 import styled from "styled-components";
 import DropDownRow from "../components/DropDownRow";
 import Pagination from '../components/Pagination'
 import SearchList from "../components/SearchList";
+import {serviceOptions,gradeOptions,orderOptions} from "../searchOptions";
 
 const dummyList = [
     {
@@ -236,21 +237,36 @@ const SearchContainer = styled(Container)`
 `
 
 const SearchPage = ()=>{
-
+    console.log("searchPage render")
+    const navigate =useNavigate();
     const [searchList,setSearchList] = useState([]);
     const [page,setPage] = useState(1);
     const [searchParams,setSearchParams] = useSearchParams();
-    searchParams.get("keyword");
+    
+    const keyword = searchParams.get("keyword");
+    const queryService = searchParams.get("service");
+    const queryGrade = searchParams.get("grade");
+    const queryOrder = searchParams.get("order");
+    
+    const [service,setService] =useState(queryService);
+    const [grade,setGrade] = useState(queryGrade);
+    const [order,setOrder] = useState(queryOrder);
+    
+    useEffect(()=>{
+        setSearchParams({keyword: keyword, service: service, grade: grade, order:order});
+        console.log("navigate");
+    },[setSearchParams,keyword,service,grade,order])
+    
     const offset = (page-1) * 5;
     
-        useEffect(() =>{
-        /*
-            fetch('localhost:8080/search?${searchParms}')
-                .then((res) => res.json())
-                .then((data)=> setSearchList(data));
-        */
-            setSearchList(dummyList);
-        },[]);
+    useEffect(() =>{
+    /*
+        fetch('localhost:8080/search?keyword=${keyword}')
+            .then((res) => res.json())
+            .then((data)=> setSearchList(data));
+    */
+        setSearchList(dummyList);
+    },[]);
     
     const onEditWish = (targetId, newWish)=>{
         setSearchList(
@@ -262,7 +278,7 @@ const SearchPage = ()=>{
     return(
     <PageContainer>
         <SearchContainer>
-            <DropDownRow></DropDownRow>
+            <DropDownRow keyword={keyword} service={service} grade={grade} order={order} setService = {setService} setGrade = {setGrade} setOrder = {setOrder}></DropDownRow>
             <SearchList searchList={searchList.slice(offset,offset+5)} onEditWish={onEditWish}></SearchList>
             <Pagination
                 total = {searchList.length}
