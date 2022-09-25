@@ -23,7 +23,7 @@ const dummyList = [
     {
         nursingHome_id:2,
         img:"https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=AeJbb3dtt3q8WNifDIih2_XTn1uLbPJnAVisiGxSyr8-eGTHYERgQnVxr3QQL_KgZcFhm6VYZijSEb_RFnqjNwClK2Xqcg_O-hvmg0APJ9vrN8hajvS9WQEEyGa1M9z5U5tJYdOkxTElNFgbEufRR9JVIh5Ws7-fJv6-Fo3wdCBqPefGwegC&key=AIzaSyDY5tTtaA7BBeKxnL1hhcZQfXotxBJL4dY",
-        name:"(주)롱라이프그린케어 강서재가노인복지센터",
+        name:"강서재가노인복지센터",
         type:"요양원",
         grade:"등급 A",
         score:5,

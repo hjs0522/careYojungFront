@@ -424,8 +424,8 @@ function Detail({img,name,loc,id,detail_bool,setDetail_bool}) {
                   <DetailImage  src={photoarr[name]}/>
                 </Grid.Column>
                 <Grid.Column width={5}>
-                  <DetailImage src="https://search.pstatic.net/common/?autoRotate=true&quality=95&type=w750&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20210627_259%2F1624777448578z0UmE_JPEG%2FNmbf0Se_e3WnRHnHeFr39mX7.jpg"/>
-                  <DetailImage src="https://search.pstatic.net/common/?autoRotate=true&quality=95&type=w750&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20220308_120%2F1646721661971q1ccQ_JPEG%2FmosaBADqZ0.jpg"/>
+                  <DetailImage src="https://react.semantic-ui.com/images/wireframe/image.png"/>
+                  <DetailImage src="https://react.semantic-ui.com/images/wireframe/image.png"/>
                 </Grid.Column>
               </Grid.Row>
             </Grid>

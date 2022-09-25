@@ -88,7 +88,6 @@ const arr2 = [{ //원래는 메인페이지에서 최근본시설, 인기있는�
 const StyledMainpage = styled.div`
   padding-top:120px;
   padding-bottom:100px;
-  overflow-y:auto;
 `
 
 const StyledContainer = styled.div({
