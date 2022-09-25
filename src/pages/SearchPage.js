@@ -230,11 +230,7 @@ const PageContainer = styled.div`
     background-color: #F5F7FA;
 `
 
-const SearchContainer = styled(Container)`
-    &.ui.container{
-        padding-top: 10vh;
-    }
-`
+
 
 const SearchPage = ()=>{
     console.log("searchPage render")
@@ -254,19 +250,24 @@ const SearchPage = ()=>{
     
     useEffect(()=>{
         setSearchParams({keyword: keyword, service: service, grade: grade, order:order});
-        console.log("navigate");
     },[setSearchParams,keyword,service,grade,order])
     
     const offset = (page-1) * 5;
     
     useEffect(() =>{
-    /*
-        fetch('localhost:8080/search?keyword=${keyword}')
-            .then((res) => res.json())
-            .then((data)=> setSearchList(data));
-    */
-        setSearchList(dummyList);
-    },[]);
+        
+        fetch(`e2b6-221-148-248-129.jp.ngrok.io/search/list?keyword=${keyword}&service=${service}&grade=${grade}&order=${order}`)
+            .then((res) => {
+                res.json()
+                console.log(res)
+                })
+            .then((data)=> {
+                console.log(data)
+            }).catch((error) => {
+    console.error('fetch에 문제가 있었습니다.', error);
+  });
+        setSearchList(dummyList)
+    },[keyword,service,grade,order]);
     
     const onEditWish = (targetId, newWish)=>{
         setSearchList(
@@ -277,15 +278,15 @@ const SearchPage = ()=>{
     };
     return(
     <PageContainer>
-        <SearchContainer>
-            <DropDownRow keyword={keyword} service={service} grade={grade} order={order} setService = {setService} setGrade = {setGrade} setOrder = {setOrder}></DropDownRow>
+        <DropDownRow keyword={keyword} service={service} grade={grade} order={order} setService = {setService} setGrade = {setGrade} setOrder = {setOrder}></DropDownRow>
+        <Container>
             <SearchList searchList={searchList.slice(offset,offset+5)} onEditWish={onEditWish}></SearchList>
             <Pagination
                 total = {searchList.length}
                 page = {page}
                 setPage = {setPage}
             ></Pagination>
-        </SearchContainer>
+        </Container>
     </PageContainer>
     )
 };

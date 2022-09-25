@@ -39,6 +39,9 @@ const LinkContainer = styled.div`
     }
 
 `
+const Text = styled.text`
+    margin-right: 10px;
+`
 
 
 
@@ -109,9 +112,9 @@ const SearchItem = ({nursingHome_id,img,name,type,grade,score,reviewNum,addRoad,
             <Icon name='heart outline' size="large" onClick = {handleOnClick}></Icon>}
             <InfoContainer>
                 <div>
-                    <span>{name}</span>
-                    <span>{type}</span>
-                    <span>{grade}</span>
+                    <Text>{name}</Text>
+                    <Text>{type}</Text>
+                    <Text>{grade}</Text>
                 </div>
                 <div>
                     <div>{getStar(score)}</div>

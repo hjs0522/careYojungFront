@@ -125,12 +125,16 @@ const WishPage = ()=>{
     const [searchList,setSearchList] = useState([]);
     
     useEffect(()=>{
-        /*
-        fetch("localhost:8080/wish")
-            .then((res)=>res.json())
-            .then((data)=>setSearchList(data));
-        */
-        setSearchList(dummyList);
+        
+        fetch(`https://e2b6-221-148-248-129.jp.ngrok.io/wish-list?memberId="master"`)
+            .then((res)=>{
+                res.json()
+                console.log(res)
+            })
+            .then((data)=>{
+                console.log(data)
+                setSearchList(data)});
+        
     },[])
     
     const toggleIsBarOpen = ()=>{

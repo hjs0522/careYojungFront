@@ -86,6 +86,8 @@ function SearchBar() {
       clearTimeout(timeoutRef.current)
     }
   }, [])
+  
+  
   return (
   
   <MyForm onSubmit={handleSubmit}>

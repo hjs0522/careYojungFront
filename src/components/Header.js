@@ -66,7 +66,7 @@ const Header = () =>{
                 </div>
                 <SearchBar></SearchBar>
                 <HeaderButtonContainer>
-                {login?
+                {!login?
                 (<>
                     <Icon name="sign-out"></Icon>
                     <HeaderButton onClick={loginHandler}>로그아웃</HeaderButton> 
