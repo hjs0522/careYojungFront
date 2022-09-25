@@ -105,7 +105,7 @@ const arr = [{
     per3 : 7,
     per4 : 10,
     per5 : 10,
-    per6 : 10,
+    per6 : 10,  
 },]
 
 function Compare({}){
