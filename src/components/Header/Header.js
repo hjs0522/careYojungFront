@@ -1,11 +1,9 @@
-import { useCallback } from "react";
-import { useEffect,useState } from "react";
 import { Link } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import {Container, Icon } from "semantic-ui-react";
 import styled from "styled-components";
-import { loginState } from "../atom";
-import SearchBar from "./SearchBar";
+import { loginState } from "../../atom";
+import SearchBar from "../Search/SearchBar";
 
 
 const HeaderDiv = styled.div`

@@ -1,4 +1,4 @@
-import {Modal,Icon, Grid,Image, Button} from 'semantic-ui-react'
+import {Modal,Icon, Grid, Button} from 'semantic-ui-react'
 import {useState} from 'react'
 import styled from 'styled-components'
 
@@ -108,7 +108,7 @@ const arr = [{
     per6 : 10,  
 },]
 
-function Compare({}){
+function Compare(){
     const arrSize=arr.length;
     console.log(arrSize);
     const [open, setOpen] = useState(false)
