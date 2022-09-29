@@ -60,7 +60,7 @@ const EndButton = styled.button({
     cursor:'pointer',
 })
 
-function Review({review_bool, setReview_bool,name,addRoad}){
+function Review({nursingHome_id,review_bool, setReview_bool,name,addRoad}){
     const [starlength,setStarlength] = useState(0);
     const [reviewText,setReviewText]=useState("");
     const [real_review,setReal_review]=useState("");
@@ -125,6 +125,19 @@ function Review({review_bool, setReview_bool,name,addRoad}){
             </div>
             <form style={{marginBottom:'15px'}} onSubmit={(event)=>{
                 event.preventDefault();
+                fetch("http://15.164.184.243:8080/review", {
+                    method: 'POST', // *GET, POST, PUT, DELETE 등
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        "memberId": "user11",
+                        "score": starlength,
+                        "svcId": nursingHome_id,
+                        "svcType": "ho",
+                        "text": reviewText,
+                    }), // body의 데이터 유형은 반드시 "Content-Type" 헤더와 일치해야 함
+                })
             }}>
                 <InputText onChange={(event)=>{
                     setReviewText(event.target.value);

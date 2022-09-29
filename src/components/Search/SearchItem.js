@@ -54,17 +54,6 @@ const SearchItem = ({nursingHome_id,img,name,type,grade,score,reviewNum,addrSiDo
     
     const handleOnClick = () =>{
         onEditWish(nursingHome_id,!wish);
-        /*fetch("http://15.164.184.243:8080/wish-list",{
-            method:'POST',
-            headers:{
-                'Content-Type': 'application/json',
-            },
-            body:{
-                "memberId": "user1",
-                "facialityId": nursingHome_id,
-                "facialityType": "ho"
-            }
-        });*/
         fetch("http://15.164.184.243:8080/wish-list", {
             method: 'POST', // *GET, POST, PUT, DELETE 등
             headers: {
@@ -72,25 +61,15 @@ const SearchItem = ({nursingHome_id,img,name,type,grade,score,reviewNum,addrSiDo
         // 'Content-Type': 'application/x-www-form-urlencoded',
             },
             body: JSON.stringify({
-                "memberId": "user2",
-                "facialityId": nursingHome_id,
-                "facialityType": "ho"
+                "memberId": "user12",
+                "svcId": nursingHome_id,
+                "svcType": "ho"
             }), // body의 데이터 유형은 반드시 "Content-Type" 헤더와 일치해야 함
             }).then(res=>console.log(res))
     }
     
     const handleOnAdd = () =>{
         onAdd(nursingHome_id,name);
-        
-        fetch("15.164.184.243:8080/wish-list",{
-            method:'POST',
-            body:{
-                "memberId": "user1",
-                "facialityId": nursingHome_id,
-                "facialityType": "ho"
-            }
-        });
-        
     }
     
     const handleRemoveWish = ()=>{
@@ -98,15 +77,18 @@ const SearchItem = ({nursingHome_id,img,name,type,grade,score,reviewNum,addrSiDo
             onRemoveWish(nursingHome_id);
             window.scrollTo(0, 0);
             
-        /*
-        fetch("15.164.184.243:8080/wish-list",{
-            method:'POST',
-            body:{
-                "memberId": "user1",
-                "facialityId": nursingHome_id,
-                "facialityType": "ho"
-            }
-        })*/
+            fetch("http://15.164.184.243:8080/wish-list/compare", {
+            method:'DELETE', // *GET, POST, PUT, DELETE 등
+            headers: {
+                'Content-Type': 'application/json',
+        // 'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: JSON.stringify({
+                "memberId": "user12",
+                "svcId": nursingHome_id,
+                "svcType": "ho",
+            }), // body의 데이터 유형은 반드시 "Content-Type" 헤더와 일치해야 함
+            })
         }
     }
     
@@ -125,9 +107,6 @@ const SearchItem = ({nursingHome_id,img,name,type,grade,score,reviewNum,addrSiDo
         return result;
     }
     
-    useEffect(()=>{
-        console.log(isWishPage)
-    },[])
     
     return(
         <ItemContainer >
@@ -192,8 +171,8 @@ const SearchItem = ({nursingHome_id,img,name,type,grade,score,reviewNum,addrSiDo
                 비교담기</Button>:
                 null}
             </LinkContainer>
-            <Review review_bool={review_bool} setReview_bool={setReview_bool} name={name} addrRoad={addrRoad}/>
-            <Detail detail_bool={detail_bool} setDetail_bool={setDetail_bool} name={name} />
+            <Review nursingHome_id={nursingHome_id} review_bool={review_bool} setReview_bool={setReview_bool} name={name} addrRoad={addrRoad}/>
+            <Detail nursingHome_id = {nursingHome_id}detail_bool={detail_bool} setDetail_bool={setDetail_bool} name={name} />
             
         </ItemContainer>
         

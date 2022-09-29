@@ -37,7 +37,7 @@ const SearchPage = ()=>{
     
     useEffect(() =>{
         
-        fetch(`http://15.164.184.243:8080/search/list?keyword=${keyword}&service=${service}&grade=${grade}&order=${order}&memberId=user2`)
+        fetch(`http://15.164.184.243:8080/search/list?keyword=${keyword}&service=${service}&grade=${grade}&order=${order}&memberId=user12`)
             .then((res) => res.json())
             .then((data)=> {
                 //console.log(data);

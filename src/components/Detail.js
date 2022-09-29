@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import {Modal,Grid, Icon} from 'semantic-ui-react'
 import styled from 'styled-components'
 import DetailCost from './Detail/DetailCost'
@@ -135,11 +135,24 @@ const menuArr={
   시설리뷰:'Detail-5'
 }
 
-function Detail({img,name,loc,id,detail_bool,setDetail_bool}) {
+function Detail({nursingHome_id,img,name,loc,id,detail_bool,setDetail_bool}) {
   const onMenuClick= (i) =>{
     const item=document.getElementById(menuArr[i.target.innerText]);
     item.scrollIntoView({behavior: "smooth" })
   }
+  const [detailInfo,setDetailInfo] = useState({});
+  useEffect(()=>{
+  
+    fetch(`http://15.164.184.243:8080/search/detail?id=${nursingHome_id}&memberId=user11&service=ho`)
+    .then((res) => res.json())
+    .then((data)=> {
+        console.log(data);
+        setDetailInfo(data);
+      });
+      
+  },[nursingHome_id])
+  
+  
   return (
     <Modal
       onClose={() => setDetail_bool(false)}
@@ -186,23 +199,23 @@ function Detail({img,name,loc,id,detail_bool,setDetail_bool}) {
             <Grid columns={2} >
               <Grid.Row >
                 <Grid.Column width={11}>
-                  <DetailInfo>{response.addrRoad}</DetailInfo>
-                  <DetailTel>T : {response.phoneNumber}</DetailTel>
+                  <DetailInfo>{detailInfo.addrRoad}</DetailInfo>
+                  <DetailTel>T : {detailInfo.phoneNumber}</DetailTel>
                   <DetailSummary>
                     <DetailSummaryText>시설정원</DetailSummaryText>
-                    <DetailSummaryText style={{color:'#496ACE'}}>{response.headCount}</DetailSummaryText>
+                    <DetailSummaryText style={{color:'#496ACE'}}>{detailInfo.headCount}</DetailSummaryText>
                     <DetailSummaryText style={{padding:'0'}}>명 </DetailSummaryText>
                     <DetailSummaryText>현원</DetailSummaryText>
-                    <DetailSummaryText style={{color:'#496ACE'}}>{response.nowCount}</DetailSummaryText>
+                    <DetailSummaryText style={{color:'#496ACE'}}>{detailInfo.nowCount}</DetailSummaryText>
                     <DetailSummaryText style={{padding:'0'}}>명 </DetailSummaryText>
                     <DetailSummaryText>대기</DetailSummaryText>
-                    <DetailSummaryText style={{color:'#496ACE'}}>{response.waitingCount}</DetailSummaryText>
+                    <DetailSummaryText style={{color:'#496ACE'}}>{detailInfo.waitingCount}</DetailSummaryText>
                     <DetailSummaryText style={{padding:'0'}}>명 </DetailSummaryText>
                   </DetailSummary>
-                  <DetailPerson response={response}/>  {/*인력현황 컴포넌트*/}
-                  <DetailFacility response={response}/>  {/*시설현황 컴포넌트*/}
+                  <DetailPerson detailInfo={detailInfo}/>  {/*인력현황 컴포넌트*/}
+                  <DetailFacility detailInfo={detailInfo}/>  {/*시설현황 컴포넌트*/}
                   <DetailAI />  {/*AI점수 컴포넌트*/}
-                  <DetailReview response={response}/> {/*시설리뷰 컴포넌트*/}
+                  <DetailReview detailInfo={detailInfo}/> {/*시설리뷰 컴포넌트*/}
                   
                 </Grid.Column>
                 <Grid.Column width={5}>

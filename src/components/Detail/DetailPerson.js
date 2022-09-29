@@ -22,14 +22,14 @@ const StyledDetailBox = styled.div({
     marginTop:'4%',
 })
   
-function DetailPerson({response}){
+function DetailPerson({detailInfo}){
   return(
     <StyledDetailBox id="Detail-2">
       <DetailTitle>인력현황</DetailTitle>
       <DetailPersonBox style={{marginLeft:"0"}}>
         <div style={{padding:"7%",borderBottom:'1px solid #e1e1e1'}}>
           <DetailPersonText>의사</DetailPersonText>
-          <DetailPersonText style={{float:'right',color:'#E9539b'}}>{response.doctor}명</DetailPersonText>
+          <DetailPersonText style={{float:'right',color:'#E9539b'}}>{detailInfo.doctor}명</DetailPersonText>
         </div>
         <div style={{padding:"7%"}}>
           <DetailPersonText style={{display:'block',marginBottom:'10px'}}>1명당 입소자 10명</DetailPersonText>
@@ -39,7 +39,7 @@ function DetailPerson({response}){
       <DetailPersonBox style={{marginLeft:'5%'}}>
         <div style={{padding:"7%",borderBottom:'1px solid #e1e1e1'}}>
           <DetailPersonText>간호사</DetailPersonText>
-          <DetailPersonText style={{float:'right',color:'#E9539b'}}>{response.nurse}명</DetailPersonText>
+          <DetailPersonText style={{float:'right',color:'#E9539b'}}>{detailInfo.nurse}명</DetailPersonText>
         </div>
         <div style={{padding:"7%"}}>
           <DetailPersonText style={{display:'block',marginBottom:'10px'}}>1명당 입소자 20명</DetailPersonText>
@@ -49,7 +49,7 @@ function DetailPerson({response}){
       <DetailPersonBox style={{float:"right"}}>
         <div style={{padding:"7%",borderBottom:'1px solid #e1e1e1'}}>
           <DetailPersonText>요양보호사</DetailPersonText>
-          <DetailPersonText style={{float:'right',color:'#E9539b'}}>{response.careGiver}명</DetailPersonText>
+          <DetailPersonText style={{float:'right',color:'#E9539b'}}>{detailInfo.careGiver}명</DetailPersonText>
         </div>
         <div style={{padding:"7%"}}>
           <DetailPersonText style={{display:'block',marginBottom:'10px'}}>1명당 입소자 20명</DetailPersonText>

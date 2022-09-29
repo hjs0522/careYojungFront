@@ -42,7 +42,7 @@ const DetailReviewText = styled.div({
   })
   
   
-  function DetailReview({response}){
+  function DetailReview({detailInfo}){
     function getStar(num){
       const starArr=[0,0,0,0,0];
       for(let i=0;i<num;i++){
@@ -60,8 +60,8 @@ const DetailReviewText = styled.div({
   
     function avgStar(){
       let sum=0;
-      response.reviews.map((i)=>sum+=i.score)
-      return (sum/response.reviews.length).toFixed(1);
+      detailInfo.reviews.map((i)=>sum+=i.score)
+      return (sum/detailInfo.reviews.length).toFixed(1);
     }
   
     return (
@@ -70,11 +70,11 @@ const DetailReviewText = styled.div({
           <DetailTitle  style={{display:'inline-block'}}>시설리뷰</DetailTitle>
           <Icon size="large" style={{paddingLeft:"3%"}} name="star" color="yellow"/>
           <DetailReviewText style={{paddingLeft:'3%',paddingRight:'2%'}}>{avgStar()}</DetailReviewText>
-          <DetailReviewText style={{paddingLeft:'2%',borderLeft:'1px solid #444444'}}>리뷰 {response.reviews.length}개</DetailReviewText>
+          <DetailReviewText style={{paddingLeft:'2%',borderLeft:'1px solid #444444'}}>리뷰 {detailInfo.reviews.length}개</DetailReviewText>
           <DetailReviewButton><img style={{width:'15px',height:'15px',marginRight:"10%"}} src="https://react.semantic-ui.com/images/wireframe/image.png" alt="리뷰버튼"/>리뷰하기</DetailReviewButton>
         </div>
         <DetailReviewBox>
-          {response.reviews.map((i)=>(
+          {detailInfo.reviews.map((i)=>(
             <DetailReviewElement>
               <DetailReviewStar>{getStar(i.score)}</DetailReviewStar>
               <DetailReviewText style={{paddingRight:'2%',color:'black'}}>{i.member_id}</DetailReviewText>

@@ -23,7 +23,7 @@ const WishPage = ()=>{
     
     useEffect(()=>{
         
-        fetch(`http://15.164.184.243:8080/wish-list?memberId=user2`)
+        fetch(`http://15.164.184.243:8080/wish-list?memberId=user12`)
             .then((res)=>res.json())
             .then((data)=>{
                 setSearchList(data)});
