@@ -3,8 +3,7 @@ import React from 'react'
 import { Form, Search} from 'semantic-ui-react'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
-import {serviceOptions,gradeOptions,orderOptions} from '../searchOptions.js';
-import { useRecoilValue } from 'recoil'
+import {serviceOptions,gradeOptions,orderOptions} from '../../searchOptions.js';
 const source = [
   {
     title: "성동구",

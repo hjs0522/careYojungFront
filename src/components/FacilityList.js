@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Icon, Grid, ListContent} from 'semantic-ui-react'
+import { Icon, Grid} from 'semantic-ui-react'
 import ListArg from "./ListArg";
 
 const HorizontalScroll = styled.div`

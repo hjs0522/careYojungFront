@@ -1,4 +1,4 @@
-import Header from "./components/Header";
+import Header from "./components/Header/Header";
 import Mainpage from "./pages/Mainpage";
 import Footer from "./components/Footer";
 import { BrowserRouter, Routes,Route } from "react-router-dom";
@@ -8,10 +8,10 @@ import MyPage from "./pages/MyPage";
 import Mappage from "./pages/Mappage"
 import { RecoilRoot } from "recoil";
 
+import Review from "./components/Review";
 import LoginPage from "./pages/LoginPage";
 import Kakao from "./pages/kakao";
 
-import Review from "./components/Review";
 import PersonInfo from "./pages/PersonInfo";
 import Information from "./pages/Information";
 import InfoDetail from "./pages/InfoDetail";

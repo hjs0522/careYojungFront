@@ -1,4 +1,4 @@
-import {Modal,Icon, Grid,Image, Button} from 'semantic-ui-react'
+import {Modal,Icon, Grid, Button} from 'semantic-ui-react'
 import {useState} from 'react'
 import styled from 'styled-components'
 
@@ -67,48 +67,32 @@ const PersonBlock = styled.div({
     marginBottom:'2%',
 })
 
-const arr = [{
-    key:0,
-    img:"https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=AeJbb3da-q2IzbDghh36ty1EQfK9pZTXfzMqpGcQmv0cnQ5eqCtFF0hg6hbFdtcv9EHdssG4OxF3979rqt3luWRF3uXoqzuWM1RuIgp5jBLSI3m2by3zyuN1iT1aFNGMZqb445k5i3veSoNSdzTMEcySx7Hn0k8YErIEgKm4bD1Bb_4OVu65&key=AIzaSyDY5tTtaA7BBeKxnL1hhcZQfXotxBJL4dY",
-    name : "강서미소요양원",
-    loc : "서울 강서구 화곡로 225 두산빌딩 3층",
-    tel : 'T.031-1234-3456',
-    cost : '210,000',
-    per1 : 45,
-    per2 : 42,
-    per3 : 7,
-    per4 : 10,
-    per5 : 10,
-    per6 : 10,
-},{
-    key : 1,
-    img:"https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=AeJbb3dtt3q8WNifDIih2_XTn1uLbPJnAVisiGxSyr8-eGTHYERgQnVxr3QQL_KgZcFhm6VYZijSEb_RFnqjNwClK2Xqcg_O-hvmg0APJ9vrN8hajvS9WQEEyGa1M9z5U5tJYdOkxTElNFgbEufRR9JVIh5Ws7-fJv6-Fo3wdCBqPefGwegC&key=AIzaSyDY5tTtaA7BBeKxnL1hhcZQfXotxBJL4dY",
-    name : "시립서부노인전문요양센터",
-    loc : "서울 성동구 금호로 45",
-    tel : 'T.031-1234-3456',
-    cost : '210,000',
-    per1 : 35,
-    per2 : 32,
-    per3 : 7,
-    per4 : 10,
-    per5 : 10,
-    per6 : 10,
-},{
-    key : 1,
-    img:"https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=AeJbb3cFOwQtncajlbdVcUqhKGm9AxmHwzoxCwYILGNhUaLzisk42yWCOwqS4_3pl2zYWyGHuKyQzPgvVz9t2TmzC7xzOjKvwzQXLQ6-J29IE6nmtNuQDOQAsR11YRcB0-C60_tLTS5fbcC-DziBXVFC-9MGU1GpYJ7bFHL2jMAFTi4uYy8&key=AIzaSyDY5tTtaA7BBeKxnL1hhcZQfXotxBJL4dY",
-    name : "시립서부노인전문요양센터",
-    loc : "서울 성동구 금호로 45",
-    tel : 'T.031-1234-3456',
-    cost : '210,000',
-    per1 : 35,
-    per2 : 32,
-    per3 : 7,
-    per4 : 10,
-    per5 : 10,
-    per6 : 10,  
-},]
+const Text = styled.text`
+    margin-right: 8px;
+`
 
-function Compare({}){
+function Compare({compareList}){
+    const [arr,setArr] = useState([]);
+    const handleOnClick=()=>{
+        if(compareList.length === 2){
+            fetch(`http://15.164.184.243:8080/wish-list/compare?svcList=${compareList[0].nursingHome_id},${compareList[1].nursingHome_id}&svcType=ho`)
+                .then((res) => res.json())
+                .then((data)=> {
+                    setArr(data);
+                    return data;
+                });
+        }
+        else if(compareList.length === 3){
+            fetch(`http://15.164.184.243:8080/wish-list/compare?svcList=${compareList[0].nursingHome_id},${compareList[1].nursingHome_id},${compareList[2].nursingHome_id}&svcType=ho`)
+                .then((res) => res.json())
+                .then((data)=> {
+                    setArr(data);
+                    return data;
+                });
+        }
+    }
+    
+    console.log(arr);
     const arrSize=arr.length;
     console.log(arrSize);
     const [open, setOpen] = useState(false)
@@ -118,7 +102,7 @@ function Compare({}){
       onOpen={() => setOpen(true)}
       open={open}
       size='large'
-      trigger={<Button >비교하기</Button>}
+      trigger={<Button onClick={handleOnClick}>비교하기</Button>}
     >
         <PageHeader>
             <TitleText >서비스 비교결과</TitleText>
@@ -145,8 +129,15 @@ function Compare({}){
                         {arr.map((i)=>(
                             <Grid.Column>
                             <StyledText style={{display:'block',marginBottom:"8%"}}>{i.name}</StyledText>
-                            <StyledText style={{fontSize:'18px',display:'block'}}>{i.loc}</StyledText>
-                            <StyledText style={{color:'#0596FF',display:'block'}}>{i.tel}</StyledText>
+                            <StyledText style={{fontSize:'18px',display:'block'}}>{
+                            <>
+                                <Text>{i.addrSiDo}</Text>
+                                <Text>{i.addrSiGunGu}</Text>
+                                <Text>{i.addrRoad}</Text>
+                                <Text>{i.buildingMainNum}</Text>
+                            </>
+                            }</StyledText>
+                            <StyledText style={{color:'#0596FF',display:'block'}}>{i.phoneNumber}</StyledText>
                             </Grid.Column>
                         ))}
                     </Grid>
@@ -172,7 +163,7 @@ function Compare({}){
                         {arr.map((i)=>(
                             <Grid.Column>
                                 {i.key===0 ? <StyledText style={{marginLeft:'8%'}}>정원</StyledText>: null}
-                                <StyledText style={{float:'right',marginRight:'8%'}}>{i.per1}명</StyledText>
+                                <StyledText style={{float:'right',marginRight:'8%'}}>{i.headCount}명</StyledText>
                             </Grid.Column>
                         ))}
                     </Grid>
@@ -182,7 +173,7 @@ function Compare({}){
                         {arr.map((i)=>(
                             <Grid.Column>
                                 {i.key===0 ? <StyledText style={{marginLeft:'8%'}}>현원</StyledText>: null}
-                                <StyledText style={{float:'right',marginRight:'8%'}}>{i.per2}명</StyledText>
+                                <StyledText style={{float:'right',marginRight:'8%'}}>{i.nowCount}명</StyledText>
                             </Grid.Column>
                         ))}
                     </Grid>
@@ -192,7 +183,7 @@ function Compare({}){
                         {arr.map((i)=>(
                             <Grid.Column>
                                 {i.key===0 ? <StyledText style={{marginLeft:'8%'}}>대기</StyledText>: null}
-                                <StyledText style={{float:'right',marginRight:'8%'}}>{i.per3}명</StyledText>
+                                <StyledText style={{float:'right',marginRight:'8%'}}>{i.waitingCount}명</StyledText>
                             </Grid.Column>
                         ))}
                     </Grid>
@@ -210,7 +201,7 @@ function Compare({}){
                                     <StyledText style={{marginLeft:'8%'}}>의사</StyledText>
                                     <StyledText style={{fontSize:'18px',marginLeft:'5%',color:'#999999'}}>평균 30명</StyledText>
                                     </>: null}
-                                <StyledText style={{float:'right',marginRight:'8%'}}>{i.per4}명</StyledText>
+                                <StyledText style={{float:'right',marginRight:'8%'}}>{i.doctor}명</StyledText>
                             </Grid.Column>
                         ))}
                     </Grid>
@@ -223,7 +214,7 @@ function Compare({}){
                                     <StyledText style={{marginLeft:'8%'}}>간호사</StyledText>
                                     <StyledText style={{fontSize:'18px',marginLeft:'5%',color:'#999999'}}>평균 30명</StyledText>
                                     </>: null}
-                                <StyledText style={{float:'right',marginRight:'8%'}}>{i.per5}명</StyledText>
+                                <StyledText style={{float:'right',marginRight:'8%'}}>{i.nurse}명</StyledText>
                             </Grid.Column>
                         ))}
                     </Grid>
@@ -236,7 +227,7 @@ function Compare({}){
                                         <StyledText style={{marginLeft:'8%'}}>요양보호사</StyledText>
                                         <StyledText style={{fontSize:'18px',marginLeft:'5%',color:'#999999'}}>평균 30명</StyledText>
                                         </>: null}
-                                    <StyledText style={{float:'right',marginRight:'8%'}}>{i.per6}명</StyledText>
+                                    <StyledText style={{float:'right',marginRight:'8%'}}>{i.careGiver}명</StyledText>
                                 </Grid.Column>
                             ))}
                         </Grid>

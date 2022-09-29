@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {  Grid, Image } from 'semantic-ui-react'
+import {  Grid } from 'semantic-ui-react'
 import FacilityList from "./FacilityList";
 import { StyledInfo,StyledBox, InfoH1, InfoH3 } from "./Recentlist";
 import { useState,useEffect } from "react";

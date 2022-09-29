@@ -45,7 +45,7 @@ const CompareAddBarOpen = ({toggleIsBarOpen,compareList,onRemoveCompare})=>  {
         </TextContainer>
         <CompareList compareList={compareList} onRemoveCompare = {onRemoveCompare}></CompareList>
         <ButtonContainer>
-            <Compare ></Compare>
+            <Compare compareList={compareList} ></Compare>
             <Button onClick={toggleIsBarOpen}>닫기<Icon name="angle down"></Icon></Button>
         </ButtonContainer>
     </CompareAddBarContainer>

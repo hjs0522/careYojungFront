@@ -73,7 +73,7 @@ function ListArg({index,name,img,loc,id}){
                 <StyleLoc id={id}>{loc}</StyleLoc>
             </TextBox>
             <StyledImage id={id} src={id==='Themelist'?img:photoarr[name]}/>
-            <Detail img={img} name={name} loc={loc} id={id} detail_bool={detail_bool} setDetail_bool={setDetail_bool} />
+            <Detail  img={img} name={name} loc={loc} id={id} detail_bool={detail_bool} setDetail_bool={setDetail_bool} />
         </StyledListArg>
     )
 }
