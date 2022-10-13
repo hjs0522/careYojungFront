@@ -533,6 +533,13 @@ function Detail({ img, name, loc, id, detail_bool, setDetail_bool }) {
         >
           <Icon size="huge" color="grey" name="x" />
         </div>
+        <button
+          onClick={() => {
+            console.log(process.env.REACT_APP_GOOGLEMAP_KEY);
+          }}
+        >
+          aaaaa
+        </button>
         <MenuBarBox>
           <Menubar onClick={onMenuClick}>기본정보</Menubar>
           <Menubar onClick={onMenuClick}>인력현황</Menubar>
@@ -545,7 +552,9 @@ function Detail({ img, name, loc, id, detail_bool, setDetail_bool }) {
             <Grid columns={2} relaxe>
               <Grid.Row stretched>
                 <Grid.Column width={11}>
-                  <DetailImage src={photoarr[name]} />
+                  <DetailImage
+                    src={photoarr[name] + process.env.REACT_APP_GOOGLEMAP_KEY}
+                  />
                 </Grid.Column>
                 <Grid.Column width={5}>
                   <DetailImage src="https://react.semantic-ui.com/images/wireframe/image.png" />
@@ -597,6 +606,7 @@ function Detail({ img, name, loc, id, detail_bool, setDetail_bool }) {
           </DetailBody>
         </Modal.Content>
       </DetailPage>
+      {console.log(photoarr[name] + process.env.REACT_APP_GOOGLEMAP_KEY)}
     </Modal>
   );
 }
