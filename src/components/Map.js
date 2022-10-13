@@ -29,7 +29,8 @@ function Map({ list, mapArr }) {
             position: coords,
           });
           const infowindow = new kakao.maps.InfoWindow({
-            content: `<div style="width:150px;text-align:center;padding:6px 0;">${item.name}</div>`,
+            content: `<div style="width:150px;text-align:center;padding:6px 0;">${item.name}</div>
+            <div>${item.addRoad}</div>`,
           });
           marker.setMap(wholemap);
 
@@ -53,12 +54,13 @@ function Map({ list, mapArr }) {
               console.log(message);
             }
           );
-          kakao.maps.event.addListener(marker, "mouseover", function () {
+          kakao.maps.event.addListener(marker, "mouseover", () => {
             // 마커에 마우스오버 이벤트가 발생하면 인포윈도우를 마커위에 표시합니다
-            bbbbb.style.backgroundColor = "#EEEEEF";
-            // console.log(bbbbb);
+            bbbbb.style.backgroundColor = "#97b1ff";
+
             infowindow.open(wholemap, marker);
           });
+
           // kakao.maps.event.addListener(marker, 'click', function() {
           //   // 마커에 마우스오버 이벤트가 발생하면 인포윈도우를 마커위에 표시합니다
           //   console.log('a');
@@ -66,7 +68,7 @@ function Map({ list, mapArr }) {
           //   <Detail img={item.img} name={item.name} loc={item.addRoad} detail_bool={detail_bool} setDetail_bool={setDetail_bool} />
           // });
           // 마커에 마우스아웃 이벤트를 등록합니다
-          kakao.maps.event.addListener(marker, "mouseout", function () {
+          kakao.maps.event.addListener(marker, "mouseout", () => {
             // 마커에 마우스아웃 이벤트가 발생하면 인포윈도우를 제거합니다
             bbbbb.style.backgroundColor = "white";
             infowindow.close();
@@ -77,20 +79,32 @@ function Map({ list, mapArr }) {
         }
       });
     });
+    //마커의 위치를 움직일 때마다 현재 보고있는 지도 화면의 위치 얻기
+    kakao.maps.event.addListener(wholemap, "mouseup", () => {
+      console.log(wholemap.getCenter()["La"]);
+      console.log(wholemap.getCenter()["Ma"]);
+      const currentMap = {
+        LB1: wholemap.getCenter()["La"] - 0.12189182448,
+        LB2: wholemap.getCenter()["Ma"] - 0.0603703707,
+        RT1: wholemap.getCenter()["La"] + 0.12189182448,
+        RT2: wholemap.getCenter()["Ma"] + 0.0603703707,
+      };
+      console.log(currentMap);
+    });
   }, []);
 
-  //마우스로 드래그해서 지도를 움직일때마다 지도의 중심좌표를 얻어서 현재 화면의 왼쪽 밑 꼭짓점과 오른쪽 위 꼭짓점을 반환한다.
-  const getMapCenter = () => {
-    console.log(wholemap.getCenter()["La"]);
-    console.log(wholemap.getCenter()["Ma"]);
-    const currentMap = {
-      LB1: wholemap.getCenter()["La"] - 0.12189182448,
-      LB2: wholemap.getCenter()["Ma"] - 0.0603703707,
-      RT1: wholemap.getCenter()["La"] + 0.12189182448,
-      RT2: wholemap.getCenter()["Ma"] + 0.0603703707,
-    };
-    console.log(currentMap);
-  };
+  // 마우스로 드래그해서 지도를 움직일때마다 지도의 중심좌표를 얻어서 현재 화면의 왼쪽 밑 꼭짓점과 오른쪽 위 꼭짓점을 반환한다.
+  // const getMapCenter = () => {
+  //   console.log(wholemap.getCenter()["La"]);
+  //   console.log(wholemap.getCenter()["Ma"]);
+  //   const currentMap = {
+  //     LB1: wholemap.getCenter()["La"] - 0.12189182448,
+  //     LB2: wholemap.getCenter()["Ma"] - 0.0603703707,
+  //     RT1: wholemap.getCenter()["La"] + 0.12189182448,
+  //     RT2: wholemap.getCenter()["Ma"] + 0.0603703707,
+  //   };
+  //   console.log(currentMap);
+  // };
 
   return (
     <>
@@ -104,7 +118,7 @@ function Map({ list, mapArr }) {
       >
         {/* <Findmap ist={list} /> */}
         <div
-          onMouseUp={getMapCenter}
+          // onMouseUp={getMapCenter}
           className="Map"
           ref={mapcontent}
           style={{ height: "100vh" }}
