@@ -45,7 +45,10 @@ const MaplistBoxText = styled.div({
 export function Detail_Maplist({
   score,
   reviewNum,
-  addRoad,
+  addrFront,
+  addrRoad,
+  buildingMainNum,
+  buildingSubNum,
   img,
   name,
   phoneNumber,
@@ -138,7 +141,10 @@ export function Detail_Maplist({
             </MaplistBoxText>
           </MaplistElement>
           <MaplistElement>
-            <MaplistBoxText>{addRoad}</MaplistBoxText>
+            <MaplistBoxText>
+              {addrFront} {addrRoad} {buildingMainNum}{" "}
+              {buildingSubNum === "0" ? null : buildingSubNum}
+            </MaplistBoxText>
           </MaplistElement>
           <MaplistElement>
             <MaplistBoxText style={{ color: "#0596ff" }}>
@@ -152,7 +158,7 @@ export function Detail_Maplist({
         <Detail
           img={img}
           name={name}
-          loc={addRoad}
+          loc={addrRoad}
           detail_bool={detail_bool}
           setDetail_bool={setDetail_bool}
         />
