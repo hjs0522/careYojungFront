@@ -3,7 +3,7 @@ import Maplist from "./Maplist";
 
 let wholemap = null;
 
-function Map({ list, mapArr }) {
+function Map({ list, mapArr, setMapArr }) {
   const { kakao } = window;
   const geocoder = new kakao.maps.services.Geocoder();
   const [mapOption, setMapOption] = useState({
@@ -19,8 +19,9 @@ function Map({ list, mapArr }) {
     // 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
     var zoomControl = new kakao.maps.ZoomControl();
     wholemap.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
-
     mapArr.map((item) => {
+      const road =
+        item.addrFront + " " + item.addrRoad + " " + item.buildingMainNum;
       geocoder.addressSearch(item.addRoad, (result, status) => {
         if (status === kakao.maps.services.Status.OK) {
           const coords = new kakao.maps.LatLng(result[0].y, result[0].x);
@@ -54,10 +55,9 @@ function Map({ list, mapArr }) {
           //     console.log(message);
           //   }
           // );
-          kakao.maps.event.addListener(marker, "mouseover", () => {
+          kakao.maps.event.addListener(marker, "mouseover", (i) => {
             // 마커에 마우스오버 이벤트가 발생하면 인포윈도우를 마커위에 표시합니다
             bbbbb.style.backgroundColor = "#97b1ff";
-
             infowindow.open(wholemap, marker);
           });
 
@@ -78,7 +78,7 @@ function Map({ list, mapArr }) {
           }
         }
       });
-    });
+    }, mapArr);
     //마커의 위치를 움직일 때마다 현재 보고있는 지도 화면의 위치 얻기
     kakao.maps.event.addListener(wholemap, "mouseup", () => {
       // console.log(wholemap.getCenter()["La"]);
@@ -90,20 +90,20 @@ function Map({ list, mapArr }) {
         keyword: "aaa",
         order: "aaa",
         memberId: "user1",
-        leftX: wholemap.getCenter()["La"] - 0.12189182448,
-        leftY: wholemap.getCenter()["Ma"] - 0.0603703707,
-        rightX: wholemap.getCenter()["La"] + 0.12189182448,
-        rightY: wholemap.getCenter()["Ma"] + 0.0603703707,
+        leftX: wholemap.getCenter()["La"] - 0.065514,
+        leftY: wholemap.getCenter()["Ma"] - 0.055675,
+        rightX: wholemap.getCenter()["La"] + 0.065514,
+        rightY: wholemap.getCenter()["Ma"] + 0.055675,
         service: "asd",
       };
-      // let query = Object.keys(currentMap)
-      //   .map(
-      //     (k) => encodeURIComponent(k) + "=" + encodeURIComponent(currentMap[k])
-      //   )ㅜ
-      //   .join("&");
-      // const url = "https://83e5-14-40-73-49.jp.ngrok.io/search/map?" + query;
-      const url =
-        "https://ca4d-14-40-73-49.jp.ngrok.io/search/map?centerX=127.02080081879996&centerY=37.47233610357272&grade=12&keyword=aaa&order=aaa&memberId=user1&leftX=126.89890899431995&leftY=37.41196573287272&rightX=127.14269264327996&rightY=37.53270647427272&service=asd";
+      let query = Object.keys(currentMap)
+        .map(
+          (k) => encodeURIComponent(k) + "=" + encodeURIComponent(currentMap[k])
+        )
+        .join("&");
+      const url = "https://ca4d-14-40-73-49.jp.ngrok.io/search/map?" + query;
+      // const url =
+      //   "https://ca4d-14-40-73-49.jp.ngrok.io/search/map?centerX=127.02080081879996&centerY=37.47233610357272&grade=12&keyword=aaa&order=aaa&memberId=user1&leftX=126.89890899431995&leftY=37.41196573287272&rightX=127.14269264327996&rightY=37.53270647427272&service=asd";
       fetch(url, {
         method: "GET",
         headers: {
@@ -114,7 +114,18 @@ function Map({ list, mapArr }) {
         .then((response) => response.json())
         .then((res) => {
           console.log(res);
+          setMapArr(res);
         });
+      console.log(
+        "left : " +
+          currentMap["leftY"] +
+          ", " +
+          currentMap["leftX"] +
+          " right : " +
+          currentMap["rightY"] +
+          ", " +
+          currentMap["rightX"]
+      );
       // fetch(url, {
       //   headers: {
       //     accept: "application/json",
@@ -160,7 +171,6 @@ function Map({ list, mapArr }) {
           width: "calc(100% - 350px)",
         }}
       >
-        {/* <Findmap ist={list} /> */}
         <div
           // onMouseUp={getMapCenter}
           className="Map"

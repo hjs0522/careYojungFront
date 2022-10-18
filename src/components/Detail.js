@@ -606,7 +606,6 @@ function Detail({ img, name, loc, id, detail_bool, setDetail_bool }) {
           </DetailBody>
         </Modal.Content>
       </DetailPage>
-      {console.log(photoarr[name] + process.env.REACT_APP_GOOGLEMAP_KEY)}
     </Modal>
   );
 }

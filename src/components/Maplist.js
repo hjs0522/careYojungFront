@@ -60,8 +60,8 @@ export function Detail_Maplist({
     }
     const result = [];
     starArr.map((i) => {
-      if (i === 1) result.push(<Icon key={i} name="star" color="yellow" />);
-      else result.push(<Icon key={i} name="star" color="grey" />);
+      if (i === 1) result.push(<Icon name="star" color="yellow" />);
+      else result.push(<Icon name="star" color="grey" />);
     });
     return result;
   }
