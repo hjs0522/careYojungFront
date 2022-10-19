@@ -1,9 +1,11 @@
 import styled from "styled-components";
 import { Icon } from "semantic-ui-react";
 const CompareItemContainer = styled.div`
-    background-color: #496ace;
+    background-color: #E6EDFF;
     border-radius: 10%;
-    border: solid;
+    color: #496ACE !important;
+    border: solid !important;
+    display: flex;
 `
 
 const CompareItem = ({nursingHome_id,name,onRemoveCompare}) =>{
@@ -12,7 +14,8 @@ const CompareItem = ({nursingHome_id,name,onRemoveCompare}) =>{
     }
     return(
     <CompareItemContainer>
-        {name}{<Icon name="remove circle" color="white" onClick = {handleOnRemove}></Icon>}
+        <div>{name}</div>
+        <div>{<Icon name="remove circle" color="white" onClick = {handleOnRemove}></Icon>}</div>
     </CompareItemContainer>);
 }
 

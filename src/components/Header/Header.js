@@ -48,13 +48,12 @@ const HeaderButtonContainer = styled.div`
 
 
 
-const Header = () =>{
-
+const Header = ({service,grade,order}) =>{
     const [login,setLogin] = useRecoilState(loginState);
     const loginHandler = ()=>{
         setLogin(!login)
     }
-    
+    console.log(service,grade,order)
     return(
     <HeaderDiv className="ui top fixed menu">
         <Container>
@@ -62,7 +61,7 @@ const Header = () =>{
                 <div>
                     <Logo to={"/"}>케어요정</Logo>
                 </div>
-                <SearchBar></SearchBar>
+                <SearchBar service={service} grade={grade} order={order}></SearchBar>
                 <HeaderButtonContainer>
                 {!login?
                 (<>

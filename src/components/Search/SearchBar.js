@@ -51,7 +51,7 @@ function exampleReducer(state, action) {
   }
 }
 
-function SearchBar() {
+function SearchBar({service,grade,order}) {
   const [state, dispatch] = React.useReducer(exampleReducer, initialState)
   const { loading, results, value } = state
   const timeoutRef = React.useRef()

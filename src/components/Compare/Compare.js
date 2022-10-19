@@ -71,6 +71,13 @@ const Text = styled.text`
     margin-right: 8px;
 `
 
+const CompareButton= styled(Button)`
+    &.ui.button{
+        background-color: #496ace;
+        color: #ffffff;
+    }
+`
+
 function Compare({compareList}){
     const [arr,setArr] = useState([]);
     const handleOnClick=()=>{
@@ -102,7 +109,7 @@ function Compare({compareList}){
       onOpen={() => setOpen(true)}
       open={open}
       size='large'
-      trigger={<Button onClick={handleOnClick}>비교하기</Button>}
+      trigger={<CompareButton onClick={handleOnClick}>비교하기</CompareButton>}
     >
         <PageHeader>
             <TitleText >서비스 비교결과</TitleText>

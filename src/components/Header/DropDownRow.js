@@ -2,7 +2,8 @@ import styled from "styled-components"
 import { Dropdown,Container, Icon} from "semantic-ui-react";
 import { Link} from "react-router-dom";
 import { serviceOptions,gradeOptions,orderOptions } from "../../searchOptions";
-
+import { useSearchParams } from "react-router-dom";
+import { useEffect } from "react";
 const DropdownBack = styled.div`
     background-color: white;
 `
@@ -18,6 +19,7 @@ const DropdownNav = styled.nav`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 100%;
     & a{
         color: white;
         background-color: #496ace;
@@ -40,7 +42,10 @@ const DropdownDiv = styled.div`
 
 const DropDownRow = (props)=>{
     
-    
+    const [searchParams,setSearchParams] = useSearchParams();
+    useEffect(()=>{
+        setSearchParams({service: props.service, grade: props.grade, order:props.order});
+    },[setSearchParams,props.service,props.grade,props.order])
     const handleServiceChange = (e,{value:service})=>{
         props.setService(service);
     }

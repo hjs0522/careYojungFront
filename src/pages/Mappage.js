@@ -1,236 +1,31 @@
+import { useSearchParams } from "react-router-dom";
 import { Container } from "semantic-ui-react";
 import DropDownRow from "../components/Header/DropDownRow";
+import { useEffect, useState } from "react";
 import Map from "../components/Map";
 
-
-
-const mapArr = [
-    {
-        nursingHome_id:1,
-        img:"https://react.semantic-ui.com/images/wireframe/image.png",
-        name:"강남 요양원",
-        type:"요양원",
-        grade:"등급 A",
-        score:5,
-        reviewNum:"10개",
-        addRoad:"서울특별시 강남구 학동로 426",
-        phoneNumber:"010-****-****",
-        wish:false,
-    },
-    {
-        nursingHome_id:2,
-        img:"https://react.semantic-ui.com/images/wireframe/image.png",
-        name:"강북 요양원",
-        type:"요양원",
-        grade:"등급 A",
-        score:5,
-        reviewNum:"10개",
-        addRoad:"서울특별시 강남구 도곡로 408",
-        phoneNumber:"010-****-****",
-        wish:false,
-    },
-    {
-        nursingHome_id:3,
-        img:"https://react.semantic-ui.com/images/wireframe/image.png",
-        name:"강동 요양원",
-        type:"요양원",
-        grade:"등급 A",
-        score:4,
-        reviewNum:"10개",
-        addRoad:"서울특별시 강남구 삼성로 154",
-        phoneNumber:"010-****-****",
-        wish:false,
-    },
-    {
-        nursingHome_id:4,
-        img:"https://react.semantic-ui.com/images/wireframe/image.png",
-        name:"강남 요양원",
-        type:"요양원",
-        grade:"등급 A",
-        score:3,
-        reviewNum:"10개",
-        addRoad:"서울시 강남구",
-        phoneNumber:"010-****-****",
-        wish:false,
-    },
-    {
-        nursingHome_id:5,
-        img:"https://react.semantic-ui.com/images/wireframe/image.png",
-        name:"강북 요양원",
-        type:"요양원",
-        grade:"등급 A",
-        score:4,
-        reviewNum:"10개",
-        addRoad:"서울시 강북구",
-        phoneNumber:"010-****-****",
-        wish:false,
-    },
-    {
-        nursingHome_id:6,
-        img:"https://react.semantic-ui.com/images/wireframe/image.png",
-        name:"강동 요양원",
-        type:"요양원",
-        grade:"등급 A",
-        score:5,
-        reviewNum:"10개",
-        addRoad:"서울시 강동구",
-        phoneNumber:"010-****-****",
-        wish:false,
-    },
-    {
-        nursingHome_id:7,
-        img:"https://react.semantic-ui.com/images/wireframe/image.png",
-        name:"강남 요양원",
-        type:"요양원",
-        grade:"등급 A",
-        score:5,
-        reviewNum:"10개",
-        addRoad:"서울시 강남구",
-        phoneNumber:"010-****-****",
-        wish:false,
-    },
-    {
-        nursingHome_id:8,
-        img:"https://react.semantic-ui.com/images/wireframe/image.png",
-        name:"강북 요양원",
-        type:"요양원",
-        grade:"등급 A",
-        score:2,
-        reviewNum:"10개",
-        addRoad:"서울시 강북구",
-        phoneNumber:"010-****-****",
-        wish:false,
-    },
-    {
-        nursingHome_id:9,
-        img:"https://react.semantic-ui.com/images/wireframe/image.png",
-        name:"강동 요양원",
-        type:"요양원",
-        grade:"등급 A",
-        score:3,
-        reviewNum:"10개",
-        addRoad:"서울시 강동구",
-        phoneNumber:"010-****-****",
-        wish:false,
-    },
-    {
-        nursingHome_id:10,
-        img:"https://react.semantic-ui.com/images/wireframe/image.png",
-        name:"강남 요양원",
-        type:"요양원",
-        grade:"등급 A",
-        score:4,
-        reviewNum:"10개",
-        addRoad:"서울시 강남구",
-        phoneNumber:"010-****-****",
-        wish:false,
-    },
-    {
-        nursingHome_id:11,
-        img:"https://react.semantic-ui.com/images/wireframe/image.png",
-        name:"강북 요양원",
-        type:"요양원",
-        grade:"등급 A",
-        score:5,
-        reviewNum:"10개",
-        addRoad:"서울시 강북구",
-        phoneNumber:"010-****-****",
-        wish:false,
-    },
-    {
-        nursingHome_id:12,
-        img:"https://react.semantic-ui.com/images/wireframe/image.png",
-        name:"강동 요양원",
-        type:"요양원",
-        grade:"등급 A",
-        score:4,
-        reviewNum:"10개",
-        addRoad:"서울시 강동구",
-        phoneNumber:"010-****-****",
-        wish:false,
-    },
-    {
-        nursingHome_id:13,
-        img:"https://react.semantic-ui.com/images/wireframe/image.png",
-        name:"강남 요양원",
-        type:"요양원",
-        grade:"등급 A",
-        score:4,
-        reviewNum:"10개",
-        addRoad:"서울시 강남구",
-        phoneNumber:"010-****-****",
-        wish:false,
-    },
-    {
-        nursingHome_id:14,
-        img:"https://react.semantic-ui.com/images/wireframe/image.png",
-        name:"강북 요양원",
-        type:"요양원",
-        grade:"등급 A",
-        score:5,
-        reviewNum:"10개",
-        addRoad:"서울시 강북구",
-        phoneNumber:"010-****-****",
-        wish:false,
-    },
-    {
-        nursingHome_id:15,
-        img:"https://react.semantic-ui.com/images/wireframe/image.png",
-        name:"강동 요양원",
-        type:"요양원",
-        grade:"등급 A",
-        score:4,
-        reviewNum:"10개",
-        addRoad:"서울시 강동구",
-        phoneNumber:"010-****-****",
-        wish:false,
-    },
-    {
-        nursingHome_id:16,
-        img:"https://react.semantic-ui.com/images/wireframe/image.png",
-        name:"강남 요양원",
-        type:"요양원",
-        grade:"등급 A",
-        score:5,
-        reviewNum:"10개",
-        addRoad:"서울시 강남구",
-        phoneNumber:"010-****-****",
-        wish:false,
-    },
-    {
-        nursingHome_id:17,
-        img:"https://react.semantic-ui.com/images/wireframe/image.png",
-        name:"강북 요양원",
-        type:"요양원",
-        grade:"등급 A",
-        score:4,
-        reviewNum:"10개",
-        addRoad:"서울시 강북구",
-        phoneNumber:"010-****-****",
-        wish:false,
-    },
-    {
-        nursingHome_id:18,
-        img:"https://react.semantic-ui.com/images/wireframe/image.png",
-        name:"강동 요양원",
-        type:"요양원",
-        grade:"등급 A",
-        score:4,
-        reviewNum:"10개",
-        addRoad:"서울시 강동구",
-        phoneNumber:"010-****-****",
-        wish:false,
-    },
-];
-
-function Mappage(){
+function Mappage({service,setService,grade,setGrade,order,setOrder}){
+    const [searchParams,setSearchParams] = useSearchParams();
+    
+    const keyword = searchParams.get("keyword");
+    const [mapdata,setMapdata] = useState([]);
+    useEffect(() =>{
+        
+        fetch(`http://15.164.184.243:8080/search/list?keyword=${keyword}&service=${service}&grade=${grade}&order=${order}&memberId=user12`)
+            .then((res) => res.json())
+            .then((data)=> {
+                //console.log(data);
+                setMapdata(data);
+                return data;
+            });
+    },[keyword,service,grade,order]);
     
     return(
         <>
-            <DropDownRow />
+            <DropDownRow service={service} grade={grade} order={order} setService = {setService} setGrade = {setGrade} setOrder = {setOrder}/>
             <Container fluid>
             {/* <Maplist mapArr={mapArr}/> */}
-            <Map mapArr={mapArr} />
+            <Map mapArr={mapdata} />
             </Container>
         </>
     )

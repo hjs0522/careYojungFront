@@ -3,20 +3,25 @@ import { Container } from "semantic-ui-react";
 import styled from "styled-components";
 import CompareAddBarClose from "../components/Compare/CompareAddBarClose";
 import CompareAddBarOpen from "../components/Compare/CompareAddBarOpen";
+import DropDownRow from "../components/Header/DropDownRow";
 import SearchList from "../components/Search/SearchList";
-
-const WishContainer = styled(Container)`
-    &.ui.container{
-        padding-top:10vh;
-        padding-bottom: 12vh;
-    }
-`
 
 const PageContainer = styled.div`
     background-color: #F5F7FA;
 `
+const TextDiv = styled.div`
+    display: flex;
+    align-items: center;
+    margin-top: 3vh;
+`
 
-const WishPage = ()=>{
+const TitleText = styled.div`
+    font-size: 20px;
+    font-weight: bold;
+    margin-right: 1vw;
+`
+
+const WishPage = ({service, setService, grade, setGrade, order, setOrder})=>{
     const [barOpen,setBarOpen] = useState(false);
     const [compareList,setCompareList] = useState([]);
     const [searchList,setSearchList] = useState([]);
@@ -63,10 +68,13 @@ const WishPage = ()=>{
     }
     
     const onRemoveCompare = (targetId)=>{
-        for(let i=0;i<compareList.length;i++){
-            console.log(`compare id is ${compareList[i].nursingHome_id}`);
-        }
+        console.log(searchList);
         const newCompareList = compareList.filter((it)=>it.nursingHome_id !== targetId);
+        for(let i=0;i<searchList.length;i++){
+            if(searchList[i].nursingHome_id === targetId){
+                console.log(searchList[i])
+            }
+        }
         setCompareList(newCompareList);
     }
     
@@ -85,9 +93,14 @@ const WishPage = ()=>{
     
     return(
     <PageContainer>
-        <WishContainer>
-            <SearchList searchList={searchList} onAdd = {onAdd} onEditWish={onEditWish} onRemoveWish={onRemoveWish} compareList = {compareList} isWishPage = {true}></SearchList>
-        </WishContainer>
+    <DropDownRow service={service} grade={grade} order={order} setService = {setService} setGrade = {setGrade} setOrder = {setOrder}></DropDownRow>
+        <Container>
+            <TextDiv>
+                <TitleText>위시리스트</TitleText>
+                <text>최대 3개의 시설을 비교 할 수 있습니다</text>
+            </TextDiv>
+            <SearchList searchList={searchList} onAdd = {onAdd} onEditWish={onEditWish} onRemoveWish={onRemoveWish} compareList = {compareList} isWishPage = {true} setBarOpen={setBarOpen}></SearchList>
+        </Container>
         {barOpen?<CompareAddBarOpen toggleIsBarOpen={toggleIsBarOpen} compareList={compareList} onRemoveCompare = {onRemoveCompare}></CompareAddBarOpen>:<CompareAddBarClose toggleIsBarOpen={toggleIsBarOpen} compareList={compareList}></CompareAddBarClose>}
     </PageContainer>
     )

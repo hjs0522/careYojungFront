@@ -10,26 +10,27 @@ import SearchList from "../components/Search/SearchList";
 const PageContainer = styled.div`
     background-color: #F5F7FA;
 `
+const TextDiv = styled.div`
+    display: flex;
+    align-items: center;
+    margin-top: 3vh;
+`
 
-
-
-const SearchPage = ()=>{
+const TitleText = styled.div`
+    font-size: 20px;
+    font-weight: bold;
+    margin-right: 1vw;
+`
+const SearchPage = ({service,grade,order,setService,setGrade,setOrder})=>{
     console.log("searchPage render")
-    const navigate =useNavigate();
     const [searchList,setSearchList] = useState([]);
     const [page,setPage] = useState(1);
     const [searchParams,setSearchParams] = useSearchParams();
     
     const keyword = searchParams.get("keyword");
-    const queryService = searchParams.get("service");
-    const queryGrade = searchParams.get("grade");
-    const queryOrder = searchParams.get("order");
-    
-    const [service,setService] =useState(queryService);
-    const [grade,setGrade] = useState(queryGrade);
-    const [order,setOrder] = useState(queryOrder);
     
     useEffect(()=>{
+        console.log("setSearchParmas")
         setSearchParams({keyword: keyword, service: service, grade: grade, order:order});
     },[setSearchParams,keyword,service,grade,order])
     
@@ -58,6 +59,10 @@ const SearchPage = ()=>{
     <PageContainer>
         <DropDownRow keyword={keyword} service={service} grade={grade} order={order} setService = {setService} setGrade = {setGrade} setOrder = {setOrder}></DropDownRow>
         <Container>
+            <TextDiv>
+                <TitleText>시설리스트</TitleText>
+                <text>고객님의 추천 시설 리스트 입니다.</text>
+            </TextDiv>
             <SearchList searchList={searchList.slice(offset,offset+5)} onEditWish={onEditWish} ></SearchList>
             <Pagination
                 total = {searchList.length}
