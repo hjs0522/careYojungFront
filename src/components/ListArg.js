@@ -75,14 +75,7 @@ function ListArg({ index, name, img, loc, id }) {
         <StyleName id={id}>{name}</StyleName>
         <StyleLoc id={id}>{loc}</StyleLoc>
       </TextBox>
-      <StyledImage
-        id={id}
-        src={
-          id === "Themelist"
-            ? img
-            : photoarr[name] + process.env.REACT_APP_GOOGLEMAP_KEY
-        }
-      />
+      <StyledImage id={id} src={id === "Themelist" ? img : photoarr[name]} />
       <Detail
         img={img}
         name={name}

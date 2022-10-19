@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Container } from "semantic-ui-react";
 import styled from "styled-components";
-import DropDownRow from "../components/DropDownRow";
+import DropDownRow from "../components/Header/DropDownRow";
 import Map from "../components/Map";
 import Maplist from "../components/Maplist";
 

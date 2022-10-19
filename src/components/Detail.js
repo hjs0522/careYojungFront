@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Button, Modal, Grid, Icon } from "semantic-ui-react";
 import styled from "styled-components";
-import DetailCost from "./DetailCost";
+import DetailCost from "./Detail/DetailCost";
 import { photoarr } from "./photos";
 
 const response = {

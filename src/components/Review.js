@@ -1,8 +1,7 @@
-import {Icon,Modal,Button, Grid} from 'semantic-ui-react'
+import {Icon,Modal, Grid} from 'semantic-ui-react'
 import {useState} from 'react'
 import styled from 'styled-components'
 import { photoarr } from './photos'
-import CompareList from './CompareList'
 
 const StyledModal = styled.div({
     padding:'50px 70px 30px 70px',
@@ -61,7 +60,7 @@ const EndButton = styled.button({
     cursor:'pointer',
 })
 
-function Review({review_bool, setReview_bool,name,addRoad}){
+function Review({nursingHome_id,review_bool, setReview_bool,name,addRoad}){
     const [starlength,setStarlength] = useState(0);
     const [reviewText,setReviewText]=useState("");
     const [real_review,setReal_review]=useState("");
@@ -73,7 +72,7 @@ function Review({review_bool, setReview_bool,name,addRoad}){
         }
         const result=[]
         let index=0
-        starArr.map((i)=>{
+        starArr.forEach((i)=>{
           if(i.value===1)
             result.push(<li onClick={()=>{setStarlength(i.id);}} style={{display:'inline-block'}}><Icon size="large" name="star" color="yellow"/></li>)
           else
@@ -93,7 +92,7 @@ function Review({review_bool, setReview_bool,name,addRoad}){
       onOpen={() => setReview_bool(true)}
       open={review_bool}
       size='small'
-      trigger={<Button >비교하기</Button>}
+      
     >
         <StyledModal>
             <StyledHeader>
@@ -126,6 +125,19 @@ function Review({review_bool, setReview_bool,name,addRoad}){
             </div>
             <form style={{marginBottom:'15px'}} onSubmit={(event)=>{
                 event.preventDefault();
+                fetch("http://15.164.184.243:8080/review", {
+                    method: 'POST', // *GET, POST, PUT, DELETE 등
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        "memberId": "user11",
+                        "score": starlength,
+                        "svcId": nursingHome_id,
+                        "svcType": "ho",
+                        "text": reviewText,
+                    }), // body의 데이터 유형은 반드시 "Content-Type" 헤더와 일치해야 함
+                })
             }}>
                 <InputText onChange={(event)=>{
                     setReviewText(event.target.value);
@@ -133,7 +145,7 @@ function Review({review_bool, setReview_bool,name,addRoad}){
                 }} placeholder="시설을 이용하면서 느낀점을 상세하게 작성해주세요."  type="textbox" />
                 <EndButton onClick={(event)=>{
                     event.preventDefault();
-                    if(reviewText===''||starlength==0){
+                    if(reviewText===''||starlength===0){
                         alert("별점과 후기를 입력해주세요!");
                     }
                     else{

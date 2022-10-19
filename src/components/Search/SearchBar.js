@@ -3,6 +3,7 @@ import React from 'react'
 import { Form, Search} from 'semantic-ui-react'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
+import {serviceOptions,gradeOptions,orderOptions} from '../../searchOptions.js';
 const source = [
   {
     title: "성동구",
@@ -50,10 +51,9 @@ function exampleReducer(state, action) {
   }
 }
 
-function SearchBar() {
+function SearchBar({service,grade,order}) {
   const [state, dispatch] = React.useReducer(exampleReducer, initialState)
   const { loading, results, value } = state
-
   const timeoutRef = React.useRef()
   const handleSearchChange = React.useCallback((e, data) => {
     clearTimeout(timeoutRef.current)
@@ -76,10 +76,8 @@ function SearchBar() {
   }, [])
   
   const navigate = useNavigate();
-  
   const handleSubmit = () =>{
-    navigate(`search?keyword=${value}`)
-    
+    navigate(`search/list?keyword=${value}&service=${serviceOptions[0].key}&grade=${gradeOptions[0].key}&order=${orderOptions[0].key}`);
   }
   
   React.useEffect(() => {
@@ -87,6 +85,8 @@ function SearchBar() {
       clearTimeout(timeoutRef.current)
     }
   }, [])
+  
+  
   return (
   
   <MyForm onSubmit={handleSubmit}>
