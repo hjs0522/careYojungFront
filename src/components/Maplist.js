@@ -55,6 +55,7 @@ export function Detail_Maplist({
   type,
   nursingHome_id,
   wholemap,
+  key,
 }) {
   function getStar(num) {
     const starArr = [0, 0, 0, 0, 0];
@@ -168,31 +169,19 @@ export function Detail_Maplist({
 }
 
 function Maplist({ mapArr, wholemap }) {
-  // const {kakao}=window;
-  // const geocoder = new kakao.maps.services.Geocoder();
-  // useEffect(()=>{
-  //     console.log(loc);
-  //     geocoder.addressSearch('서울시 성동구 금호로 45',(result, status)=>{
-  //         if(status === kakao.maps.services.Status.OK){
-  //             const coords = new kakao.maps.LatLng(result[0].y,result[0].x);
-  //             const marker = new kakao.maps.Marker({
-  //                 map : wholemap,
-  //                 position : coords
-  //             })
-  //             const infowindow = new kakao.maps.InfoWindow({
-  //                 content: `<div style="width:150px;text-align:center;padding:6px 0;">ㅁㅁㅁ</div>`
-  //             });
-  //             infowindow.open(wholemap,marker);
-  //             console.log(coords);
-  //             wholemap.setCenter(coords);
-  //         }
-  //     })
-  // },[])
   return (
     <StyledMaplist>
       <AllMaplist>
         {mapArr.map((i) => {
-          return <Detail_Maplist {...i} wholemap={wholemap} />;
+          return (
+            <div
+              onClick={() => {
+                console.log(i.nursingHome_id);
+              }}
+            >
+              <Detail_Maplist {...i} wholemap={wholemap} />
+            </div>
+          );
         })}
       </AllMaplist>
     </StyledMaplist>

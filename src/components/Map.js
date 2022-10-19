@@ -12,8 +12,15 @@ function Map({ mapArr, setMapArr }) {
   });
   const mapcontent = useRef();
 
+  //지도 초기 위치를 잡고 클릭으로 조절할 수 있는 줌 컨트롤 생성
   useEffect(() => {
     wholemap = new kakao.maps.Map(mapcontent.current, mapOption);
+    var zoomControl = new kakao.maps.ZoomControl();
+    wholemap.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+  }, []);
+
+  useEffect(() => {
+    // setMapOption({center:})
     mapArr.map((item) => {
       let road =
         item.addrFront +
@@ -37,9 +44,10 @@ function Map({ mapArr, setMapArr }) {
       // 마커에 커서가 오버됐을 때 마커 위에 표시할 인포윈도우를 생성합니다
       var bbbbb = document.getElementById("maplist" + item.nursingHome_id);
 
-      kakao.maps.event.addListener(marker, "mouseover", (i) => {
+      kakao.maps.event.addListener(marker, "click", (i) => {
         // 마커에 마우스오버 이벤트가 발생하면 인포윈도우를 마커위에 표시합니다
         bbbbb.style.backgroundColor = "#97b1ff";
+        console.log(marker);
         infowindow.open(wholemap, marker);
       });
 
@@ -48,6 +56,7 @@ function Map({ mapArr, setMapArr }) {
         bbbbb.style.backgroundColor = "white";
         infowindow.close();
       });
+
       // if (item.nursingHome_id === mapArr[0].nursingHome_id) {
       //   console.log(item.name);
       //   wholemap.setCenter(coords);
@@ -57,11 +66,9 @@ function Map({ mapArr, setMapArr }) {
   });
 
   useEffect(() => {
-    //wholemap = new kakao.maps.Map(mapcontent.current, mapOption);
+    // wholemap = new kakao.maps.Map(mapcontent.current, mapOption);
 
     // 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
-    var zoomControl = new kakao.maps.ZoomControl();
-    wholemap.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
     //마커의 위치를 움직일 때마다 현재 보고있는 지도 화면의 위치(왼쪽 아래 좌표, 오른족 위 좌표)) 얻기
     kakao.maps.event.addListener(wholemap, "mouseup", () => {
       const currentMap = {
@@ -82,7 +89,8 @@ function Map({ mapArr, setMapArr }) {
           (k) => encodeURIComponent(k) + "=" + encodeURIComponent(currentMap[k])
         )
         .join("&");
-      const url = "https://ca4d-14-40-73-49.jp.ngrok.io/search/map?" + query;
+      const url = "https://d912-14-40-73-49.jp.ngrok.io/search/map?" + query;
+      console.log(url);
       fetch(url, {
         method: "GET",
         headers: {
@@ -106,7 +114,7 @@ function Map({ mapArr, setMapArr }) {
           currentMap["rightX"]
       );
     });
-  });
+  }, []);
 
   // useEffect(() => {
   //   wholemap = new kakao.maps.Map(mapcontent.current, mapOption);
