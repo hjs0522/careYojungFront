@@ -1,5 +1,7 @@
 import { useState, useEffect, useRef } from "react";
+import Detail from "./Detail";
 import Maplist from "./Maplist";
+import Ex from "./Ex";
 
 let wholemap = null;
 
@@ -17,6 +19,8 @@ function Map({ mapArr, setMapArr }) {
     wholemap = new kakao.maps.Map(mapcontent.current, mapOption);
     var zoomControl = new kakao.maps.ZoomControl();
     wholemap.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+    wholemap.setMaxLevel(8);
+    wholemap.setMinLevel(5);
   }, []);
 
   useEffect(() => {
@@ -36,25 +40,29 @@ function Map({ mapArr, setMapArr }) {
         position: coords,
       });
       const infowindow = new kakao.maps.InfoWindow({
-        content: `<div style="width:150px;text-align:center;padding:6px 0;">${item.name}</div>
-        <div>${item.addRoad}</div>`,
+        content: `<div style="text-align:center;">${item.name}</div>`,
       });
+      // const detailwindow = new kakao.maps.InfoWindow({
+      //   content: `<div style="width:200px;height:100px;text-align:center;padding:10px;"><div style="font-size:20px">${item.name}</div></div>`,
+      // });
       marker.setMap(wholemap);
 
       // 마커에 커서가 오버됐을 때 마커 위에 표시할 인포윈도우를 생성합니다
       var bbbbb = document.getElementById("maplist" + item.nursingHome_id);
-
-      kakao.maps.event.addListener(marker, "click", (i) => {
+      kakao.maps.event.addListener(marker, "mouseover", (i) => {
         // 마커에 마우스오버 이벤트가 발생하면 인포윈도우를 마커위에 표시합니다
         bbbbb.style.backgroundColor = "#97b1ff";
-        console.log(marker);
         infowindow.open(wholemap, marker);
       });
-
+      kakao.maps.event.addListener(marker, "click", (i) => {
+        bbbbb.scrollIntoView({ behavior: "smooth" });
+        // detailwindow.open(wholemap, marker);
+      });
       kakao.maps.event.addListener(marker, "mouseout", () => {
         // 마커에 마우스아웃 이벤트가 발생하면 인포윈도우를 제거합니다
         bbbbb.style.backgroundColor = "white";
         infowindow.close();
+        // detailwindow.close();
       });
 
       // if (item.nursingHome_id === mapArr[0].nursingHome_id) {
@@ -70,7 +78,7 @@ function Map({ mapArr, setMapArr }) {
 
     // 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
     //마커의 위치를 움직일 때마다 현재 보고있는 지도 화면의 위치(왼쪽 아래 좌표, 오른족 위 좌표)) 얻기
-    kakao.maps.event.addListener(wholemap, "mouseup", () => {
+    kakao.maps.event.addListener(wholemap, "mousedown", () => {
       const currentMap = {
         centerX: wholemap.getCenter()["La"],
         centerY: wholemap.getCenter()["Ma"],
@@ -89,7 +97,7 @@ function Map({ mapArr, setMapArr }) {
           (k) => encodeURIComponent(k) + "=" + encodeURIComponent(currentMap[k])
         )
         .join("&");
-      const url = "https://d912-14-40-73-49.jp.ngrok.io/search/map?" + query;
+      const url = "https://4ed1-118-32-133-32.jp.ngrok.io/search/map?" + query;
       console.log(url);
       fetch(url, {
         method: "GET",

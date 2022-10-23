@@ -533,13 +533,6 @@ function Detail({ img, name, loc, id, detail_bool, setDetail_bool }) {
         >
           <Icon size="huge" color="grey" name="x" />
         </div>
-        <button
-          onClick={() => {
-            console.log(process.env.REACT_APP_GOOGLEMAP_KEY);
-          }}
-        >
-          aaaaa
-        </button>
         <MenuBarBox>
           <Menubar onClick={onMenuClick}>기본정보</Menubar>
           <Menubar onClick={onMenuClick}>인력현황</Menubar>
