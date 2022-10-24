@@ -5,11 +5,8 @@ import DropDownRow from "../components/Header/DropDownRow";
 import Map from "../components/Map";
 import Maplist from "../components/Maplist";
 
-const StyledMappage = styled.div`
-  padding-top: 70px;
-`;
 
-function Mappage() {
+function Mappage({service,setService,grade,setGrade,order,setOrder}) {
   const [mapArr, setMapArr] = useState([
     {
       nursingHome_id: 1,
@@ -229,14 +226,14 @@ function Mappage() {
     },
   ]);
   return (
-    <StyledMappage>
+    <>
+      <DropDownRow service={service} grade={grade} order={order} setService = {setService} setGrade = {setGrade} setOrder = {setOrder}/>
       <Container fluid>
         <div style={{ padding: "10px 15% 10px 15%" }}>
-          <DropDownRow />
         </div>
         <Map mapArr={mapArr} setMapArr={setMapArr} />
       </Container>
-    </StyledMappage>
+    </>
   );
 }
 

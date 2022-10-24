@@ -5,6 +5,7 @@ import CompareAddBarClose from "../components/Compare/CompareAddBarClose";
 import CompareAddBarOpen from "../components/Compare/CompareAddBarOpen";
 import DropDownRow from "../components/Header/DropDownRow";
 import SearchList from "../components/Search/SearchList";
+import { getWishList } from "../api";
 
 const PageContainer = styled.div`
     background-color: #F5F7FA;
@@ -28,7 +29,7 @@ const WishPage = ({service, setService, grade, setGrade, order, setOrder})=>{
     
     useEffect(()=>{
         
-        fetch(`http://15.164.184.243:8080/wish-list?memberId=user12`)
+        fetch(`https://4ed1-118-32-133-32.jp.ngrok.io/wish-list?memberId=user1`)
             .then((res)=>res.json())
             .then((data)=>{
                 setSearchList(data)});

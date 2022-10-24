@@ -89,7 +89,7 @@ function Map({ mapArr, setMapArr }) {
           (k) => encodeURIComponent(k) + "=" + encodeURIComponent(currentMap[k])
         )
         .join("&");
-      const url = "https://d912-14-40-73-49.jp.ngrok.io/search/map?" + query;
+      const url = "https://4ed1-118-32-133-32.jp.ngrok.io/search/map?" + query;
       console.log(url);
       fetch(url, {
         method: "GET",

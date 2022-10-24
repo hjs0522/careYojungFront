@@ -4,6 +4,7 @@ import {Container, Icon } from "semantic-ui-react";
 import styled from "styled-components";
 import { loginState } from "../../atom";
 import SearchBar from "../Search/SearchBar";
+import { PostLogout } from "../../api";
 
 
 const HeaderDiv = styled.div`
@@ -51,7 +52,13 @@ const HeaderButtonContainer = styled.div`
 const Header = ({service,grade,order}) =>{
     const [login,setLogin] = useRecoilState(loginState);
     const loginHandler = ()=>{
-        setLogin(!login)
+        if (login !== false){
+            setLogin(!login)
+        }
+        else{
+            setLogin(!login)
+            PostLogout();
+        }
     }
     console.log(service,grade,order)
     return(

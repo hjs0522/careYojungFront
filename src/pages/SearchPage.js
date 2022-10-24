@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import {useNavigate, useSearchParams } from "react-router-dom";
 import { Container} from "semantic-ui-react";
 import styled from "styled-components";
+import { getSearchList } from "../api";
 import DropDownRow from "../components/Header/DropDownRow";
 import Pagination from '../components/Pagination'
 import SearchList from "../components/Search/SearchList";
@@ -37,15 +38,10 @@ const SearchPage = ({service,grade,order,setService,setGrade,setOrder})=>{
     const offset = (page-1) * 5;
     
     useEffect(() =>{
-        
-        fetch(`http://15.164.184.243:8080/search/list?keyword=${keyword}&service=${service}&grade=${grade}&order=${order}&memberId=user12`)
-            .then((res) => res.json())
-            .then((data)=> {
-                //console.log(data);
-                setSearchList(data);
-                //console.log(data.name);
-                return data;
-            });
+        getSearchList(keyword,service,grade,order).then(
+        (data)=>{
+            setSearchList(data);
+        })
     },[keyword,service,grade,order]);
     
     const onEditWish = (targetId, newWish)=>{
