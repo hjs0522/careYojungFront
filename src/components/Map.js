@@ -24,8 +24,10 @@ function Map({ mapArr, setMapArr }) {
   }, []);
 
   useEffect(() => {
+    let markerIndex = 0;
     // setMapOption({center:})
     mapArr.map((item) => {
+      markerIndex += 1;
       let road =
         item.addrFront +
         " " +
@@ -40,7 +42,7 @@ function Map({ mapArr, setMapArr }) {
         position: coords,
       });
       const infowindow = new kakao.maps.InfoWindow({
-        content: `<div style="text-align:center;">${item.name}</div>`,
+        content: `<div style="width:30px;height:30px;background-color:#496ace;color:center;font-family:NanumB;font-size:20px">${markerIndex}</div>+<div style="text-align:center;">${item.name}</div>`,
       });
       // const detailwindow = new kakao.maps.InfoWindow({
       //   content: `<div style="width:200px;height:100px;text-align:center;padding:10px;"><div style="font-size:20px">${item.name}</div></div>`,
@@ -108,7 +110,6 @@ function Map({ mapArr, setMapArr }) {
       })
         .then((response) => response.json())
         .then((res) => {
-          console.log(res);
           setMapArr(res);
         });
       console.log(
@@ -158,7 +159,7 @@ function Map({ mapArr, setMapArr }) {
         style={{
           float: "right",
           display: "inline-block",
-          width: "calc(100% - 350px)",
+          width: "calc(100% - 400px)",
         }}
       >
         <div className="Map" ref={mapcontent} style={{ height: "100vh" }}></div>
