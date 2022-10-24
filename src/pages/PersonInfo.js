@@ -4,113 +4,112 @@ import { useState,useEffect,useRef } from "react";
 import { PostSignUp } from "../api";
 import { useNavigate } from "react-router-dom";
 const StyledPersonInfo = styled.div({
-    paddingBottom:'100px',
-    paddingTop:'100px',
-    backgroundColor:'#F5f7fa',
-})
+  paddingBottom: "100px",
+  paddingTop: "100px",
+  backgroundColor: "#F5f7fa",
+});
 const StyledBody = styled.div({
-    backgroundColor:'white',
-    width:'1200px',
-    margin:'0 auto',
-    padding:"0 150px 70px 150px",
-    borderRadius:'30px',
-    boxShadow:'0px 6px 20px rgba(0, 0, 0, 0.1)'
-
-})
+  backgroundColor: "white",
+  width: "1200px",
+  margin: "0 auto",
+  padding: "0 150px 70px 150px",
+  borderRadius: "30px",
+  boxShadow: "0px 6px 20px rgba(0, 0, 0, 0.1)",
+});
 const StyledText = styled.div({
-    fontSize:'22px',
-    display:'inline-block',
-    marginBottom:'20px',
-})
+  fontSize: "22px",
+  display: "inline-block",
+  marginBottom: "20px",
+});
 
 const StyledButton = styled.div`
-    height:40px;
-    width:${(prop)=> prop.width||'23.5%'};
-    display:inline-block;
-    border:1px solid #cccccc;
-    text-align:center;
-    border-radius:10px;
-    vertical-align:middle;
-    cursor:pointer;
-    padding-top:auto;
-    padding-bottom:auto;
-    font-size:20px;
-    color:#999999;
-    margin-left:${prop=>prop.left || '2%'}
-`
+  height: 40px;
+  width: ${(prop) => prop.width || "23.5%"};
+  display: inline-block;
+  border: 1px solid #cccccc;
+  text-align: center;
+  border-radius: 10px;
+  vertical-align: middle;
+  cursor: pointer;
+  padding-top: auto;
+  padding-bottom: auto;
+  font-size: 20px;
+  color: #999999;
+  margin-left: ${(prop) => prop.left || "2%"};
+`;
 const StyledFinishButton = styled.div({
-    width:'40%',
-    height:'70px',
-    textAlign:'center',
-    paddingTop:'25px',
-    fontSize:'24px',
-    color:'white',
-    background:'#cccccc',
-    marginLeft:'30%',
-    borderRadius:'30px',
-    cursor:'pointer',
-})
+  width: "40%",
+  height: "70px",
+  textAlign: "center",
+  paddingTop: "25px",
+  fontSize: "24px",
+  color: "white",
+  background: "#cccccc",
+  marginLeft: "30%",
+  borderRadius: "30px",
+  cursor: "pointer",
+});
 
 const StyledBox = styled.div({
-    marginBottom:'50px',
-    width:'47.5%',
-    display:'inline-block'
-})
+  marginBottom: "50px",
+  width: "47.5%",
+  display: "inline-block",
+});
 
 const ageOption = [
-    {
-      key: '65세 미만',
-      text: '65세 미만',
-      value: '65세 미만'
-    },
-    {
-        key: '65~75세',
-        text: '65~75세',
-        value: '65~75세'
-    },
-    {
-        key: '75~85세',
-        text: '75~85세',
-        value: '75~85세'
-    },
-    {
-        key: '85세 이상',
-        text: '85세 이상',
-        value: '85세 이상'
-    }
-]
+  {
+    key: "65세 미만",
+    text: "65세 미만",
+    value: "65세 미만",
+  },
+  {
+    key: "65~75세",
+    text: "65~75세",
+    value: "65~75세",
+  },
+  {
+    key: "75~85세",
+    text: "75~85세",
+    value: "75~85세",
+  },
+  {
+    key: "85세 이상",
+    text: "85세 이상",
+    value: "85세 이상",
+  },
+];
 const careRatingOption = [
-    {
-      key: '1등급',
-      text: '1등급',
-      value: '1등급'
-    },
-    {
-        key: '2등급',
-        text: '2등급',
-        value: '2등급'
-    },
-    {
-        key: '3등급',
-        text: '3등급',
-        value: '3등급'
-    },
-    {
-        key: '4등급',
-        text: '4등급',
-        value: '4등급'
-    },
-    {
-        key: '5등급',
-        text: '5등급',
-        value: '5등급'
-    },
-    {
-        key: '잘 모르겠음',
-        text: '잘 모르겠음',
-        value: '잘 모르겠음'
-    }
-]
+  {
+    key: "1등급",
+    text: "1등급",
+    value: "1등급",
+  },
+  {
+    key: "2등급",
+    text: "2등급",
+    value: "2등급",
+  },
+  {
+    key: "3등급",
+    text: "3등급",
+    value: "3등급",
+  },
+  {
+    key: "4등급",
+    text: "4등급",
+    value: "4등급",
+  },
+  {
+    key: "5등급",
+    text: "5등급",
+    value: "5등급",
+  },
+  {
+    key: "잘 모르겠음",
+    text: "잘 모르겠음",
+    value: "잘 모르겠음",
+  },
+];
 
 function PersonInfo(){
 
@@ -125,27 +124,26 @@ function PersonInfo(){
     const [genderClickid,setGenderClickid] = useState("");
     const [genderPreClickid,setGenderPreClickid] = useState("");
 
-    const onClickGender = (i)=>{
-        const item = document.getElementById(i.target.id);
-        setGenderClickid(i.target.id);
-        item.style.color='#496ace';
-        item.style.fontWeight='bolder';
-        item.style.backgroundColor='#e6edff';
-        item.style.border="1px solid #496ace";
-        if(genderPreClickid!==''){
-            const preitem = document.getElementById(genderPreClickid);
-            preitem.style.color='black';
-            preitem.style.fontWeight='lighter';
-            preitem.style.backgroundColor='white';
-            preitem.style.border="1px solid #CCCCCC";
-            if(i.target.id===genderPreClickid){
-                setGenderClickid("");
-                setGenderPreClickid("");
-                return;
-            }
-        }
-        setGenderPreClickid(i.target.id);
+  const onClickGender = (i) => {
+    const item = document.getElementById(i.target.id);
+    setGenderClickid(i.target.id);
+    item.style.color = "#496ace";
+    item.style.fontWeight = "bolder";
+    item.style.backgroundColor = "#e6edff";
+    item.style.border = "1px solid #496ace";
+    if (genderPreClickid !== "") {
+      const preitem = document.getElementById(genderPreClickid);
+      preitem.style.color = "black";
+      preitem.style.fontWeight = "lighter";
+      preitem.style.backgroundColor = "white";
+      preitem.style.border = "1px solid #CCCCCC";
+      if (i.target.id === genderPreClickid) {
+        setGenderClickid("");
+        setGenderPreClickid("");
+        return;
+      }
     }
+}
     //나이
     const [age,setAge] = useState('');
     const handleAgeChange = (e,{value:age})=>{
@@ -253,83 +251,57 @@ function PersonInfo(){
             setrecoverClickid("")
         }
     }
-    //보험 유형 버튼 관리
-    const [insuranceClickid,setinsuranceClickid] = useState("");
-    const [insurancePreClickid,setInsurancePreClickid] = useState("");
+  //보험 유형 버튼 관리
+  const [insuranceClickid, setinsuranceClickid] = useState("");
+  const [insurancePreClickid, setInsurancePreClickid] = useState("");
 
-    const onClickInsurance = (i)=>{
-        const item = document.getElementById(i.target.id);
-        setinsuranceClickid(i.target.id);
-        item.style.color='#496ace';
-        item.style.fontWeight='bolder';
-        item.style.backgroundColor='#e6edff';
-        item.style.border="1px solid #496ace";
-        if(insurancePreClickid!==''){
-            const preitem = document.getElementById(insurancePreClickid);
-            preitem.style.color='black';
-            preitem.style.fontWeight='lighter';
-            preitem.style.backgroundColor='white';
-            preitem.style.border="1px solid #CCCCCC";
-            if(i.target.id===insurancePreClickid){
-                setinsuranceClickid("");
-                setInsurancePreClickid("");
-                return;
-            }
-        }
-        setInsurancePreClickid(i.target.id);
+  const onClickInsurance = (i) => {
+    const item = document.getElementById(i.target.id);
+    setinsuranceClickid(i.target.id);
+    item.style.color = "#496ace";
+    item.style.fontWeight = "bolder";
+    item.style.backgroundColor = "#e6edff";
+    item.style.border = "1px solid #496ace";
+    if (insurancePreClickid !== "") {
+      const preitem = document.getElementById(insurancePreClickid);
+      preitem.style.color = "black";
+      preitem.style.fontWeight = "lighter";
+      preitem.style.backgroundColor = "white";
+      preitem.style.border = "1px solid #CCCCCC";
+      if (i.target.id === insurancePreClickid) {
+        setinsuranceClickid("");
+        setInsurancePreClickid("");
+        return;
+      }
     }
-    //수급자 유형 버튼 관리
-    const [recipientClickid,setrecipientClickid] = useState("");
-    const [recipientPreClickid,setRecipientPreClickid] = useState("");
+    setInsurancePreClickid(i.target.id);
+  };
+  //수급자 유형 버튼 관리
+  const [recipientClickid, setrecipientClickid] = useState("");
+  const [recipientPreClickid, setRecipientPreClickid] = useState("");
 
-    const onClickRecipient = (i)=>{
-        const item = document.getElementById(i.target.id);
-        setrecipientClickid(i.target.id);
-        item.style.color='#496ace';
-        item.style.fontWeight='bolder';
-        item.style.backgroundColor='#e6edff';
-        item.style.border="1px solid #496ace";
-        if(recipientPreClickid!==''){
-            const preitem = document.getElementById(recipientPreClickid);
-            preitem.style.color='black';
-            preitem.style.fontWeight='lighter';
-            preitem.style.backgroundColor='white';
-            preitem.style.border="1px solid #CCCCCC";
-            if(i.target.id===recipientPreClickid){
-                setrecipientClickid("");
-                setRecipientPreClickid("");
-                return;
-            }
-        }
-        setRecipientPreClickid(i.target.id);
+  const onClickRecipient = (i) => 
+  {
+    const item = document.getElementById(i.target.id);
+    setrecipientClickid(i.target.id);
+    item.style.color = "#496ace";
+    item.style.fontWeight = "bolder";
+    item.style.backgroundColor = "#e6edff";
+    item.style.border = "1px solid #496ace";
+    if (recipientPreClickid !== "") {
+      const preitem = document.getElementById(recipientPreClickid);
+      preitem.style.color = "black";
+      preitem.style.fontWeight = "lighter";
+      preitem.style.backgroundColor = "white";
+      preitem.style.border = "1px solid #CCCCCC";
+      if (i.target.id === recipientPreClickid) {
+        setrecipientClickid("");
+        setRecipientPreClickid("");
+        return;
+      }
     }
-    /*
-    //요양등급 버튼 관리
-    const [careratingClickid,setcareratingClickid] = useState("");
-    const [careratingPreClickid,setCareratingPreClickid] = useState("");
+    }
 
-    const onClickCarerating = (i)=>{
-        const item = document.getElementById(i.target.id);
-        setcareratingClickid(i.target.id);
-        item.style.color='#496ace';
-        item.style.fontWeight='bolder';
-        item.style.backgroundColor='#e6edff';
-        item.style.border="1px solid #496ace";
-        if(careratingPreClickid!==''){
-            const preitem = document.getElementById(careratingPreClickid);
-            preitem.style.color='black';
-            preitem.style.fontWeight='lighter';
-            preitem.style.backgroundColor='white';
-            preitem.style.border="1px solid #CCCCCC";
-            if(i.target.id===careratingPreClickid){
-                console.log('b');
-                setcareratingClickid("");
-                setCareratingPreClickid("");
-                return;
-            }
-        }
-        setCareratingPreClickid(i.target.id);
-    }*/
     //희망지역 상태관리
     const [location,setLocation]=useState('');
     const locationInput = useRef();
@@ -464,6 +436,6 @@ function PersonInfo(){
             </StyledBody>
         </StyledPersonInfo>
     )
-
 }
+
 export default PersonInfo;

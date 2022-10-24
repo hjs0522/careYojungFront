@@ -5,19 +5,29 @@ import Detail from "./Detail";
 
 const StyledMaplist = styled.div({
   display: "inline-block",
-  width: "350px",
+  width: "400px",
   height: "100vh",
-  border: "1px solid black",
+  border: "1px solid #e1e1e1",
 });
 
-const AllMaplist = styled.div({
-  overflowY: "auto",
-  height: "100vh",
-});
+const AllMaplist = styled.div`
+  &::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.4);
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #496ace;
+    border-radius: 6px;
+  }
+  overflow-y: auto;
+  height: 100vh;
+`;
 
 const MaplistBox = styled.div({
-  border: "1px solid #000000",
-  paddingLeft: "4%",
+  border: "1px solid #e1e1e1",
+  paddingLeft: "8%",
   paddingTop: "5%",
   paddingBottom: "3%",
 });
@@ -27,18 +37,27 @@ const MaplistElement = styled.div({
 });
 
 const MaplistBoxTitle = styled.div({
-  fontSize: "22px",
+  fontFamily: "NanumB",
+  fontSize: "19px",
   display: "inline-block",
 });
 
-const MaplistBoxIcon = styled.img({
+const MaplistBoxIcon = styled.div({
   display: "inline-block",
-  width: "20px",
-  height: "20px",
+  width: "30px",
+  height: "30px",
+  backgroundColor: "#496ace",
+  color: "white",
+  textAlign: "center",
+  fontFamily: "NanumB",
+  fontSize: "20px",
+  paddingTop: "5px",
+  marginTop: "-5px",
 });
 
 const MaplistBoxText = styled.div({
-  fontSize: "18px",
+  color: "#444444",
+  fontSize: "16px",
   display: "inline-block",
 });
 
@@ -55,6 +74,7 @@ export function Detail_Maplist({
   type,
   nursingHome_id,
   wholemap,
+  mapIndex,
   key,
 }) {
   function getStar(num) {
@@ -123,10 +143,10 @@ export function Detail_Maplist({
     >
       <Grid columns={2}>
         <Grid.Column width={2}>
-          <MaplistBoxIcon
-            style={{ marginLeft: "50%" }}
-            src="https://react.semantic-ui.com/images/wireframe/image.png"
-          />
+          {/* {mapIndex} */}
+          <MaplistBoxIcon style={{ marginLeft: "40%" }}>
+            {mapIndex}
+          </MaplistBoxIcon>
         </Grid.Column>
         <Grid.Column width={14}>
           <MaplistElement>
@@ -138,7 +158,7 @@ export function Detail_Maplist({
           <MaplistElement>
             {getStar(score)}
             <MaplistBoxText style={{ marginLeft: "2%" }}>
-              리뷰 {reviewNum}
+              {score.toFixed(1)} (리뷰 {reviewNum})
             </MaplistBoxText>
           </MaplistElement>
           <MaplistElement>
@@ -169,17 +189,19 @@ export function Detail_Maplist({
 }
 
 function Maplist({ mapArr, wholemap }) {
+  let mapIndex = 0;
   return (
     <StyledMaplist>
       <AllMaplist>
         {mapArr.map((i) => {
+          mapIndex = mapIndex + 1;
           return (
             <div
               onClick={() => {
                 console.log(i.nursingHome_id);
               }}
             >
-              <Detail_Maplist {...i} wholemap={wholemap} />
+              <Detail_Maplist {...i} wholemap={wholemap} mapIndex={mapIndex} />
             </div>
           );
         })}
