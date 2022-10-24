@@ -12,7 +12,7 @@ exports.PostLogout = PostLogout;
 var SERVER_ADDRESS = '4ed1-118-32-133-32.jp.ngrok.io';
 
 function postKakao(code) {
-  return fetch("https://4ed1-118-32-133-32.jp.ngrok.io/member/login/kakao?code=".concat(code), {
+  return fetch("https://care-yojung.com/member/login/kakao?code=".concat(code), {
     method: 'POST',
     headers: {
       "ngrok-skip-browser-warning": "69420",
@@ -24,7 +24,7 @@ function postKakao(code) {
 }
 
 function getSearchList(keyword, service, grade, order) {
-  return fetch("https://4ed1-118-32-133-32.jp.ngrok.io/search/list?keyword=".concat(keyword, "&service=").concat(service, "&grade=").concat(grade, "&order=").concat(order, "&memberId=user1"), {
+  return fetch("https://care-yojung.com/search/list?keyword=".concat(keyword, "&service=").concat(service, "&grade=").concat(grade, "&order=").concat(order, "&memberId=user1"), {
     method: "GET",
     headers: {
       "ngrok-skip-browser-warning": "69420",
@@ -44,7 +44,7 @@ function getWishList() {
 }
 
 function PostWishItem(nursingHome_id) {
-  return fetch("https://4ed1-118-32-133-32.jp.ngrok.io/wish-list", {
+  return fetch("https://care-yojung.com/wish-list", {
     method: 'POST',
     // *GET, POST, PUT, DELETE 등
     headers: {
@@ -64,7 +64,7 @@ function PostWishItem(nursingHome_id) {
 ;
 
 function PostSignUp(age, careGrade, insuranceClickid, diseaseResult, recipientClickid, name, genderClickid, location, recoverResult) {
-  return fetch("https://4ed1-118-32-133-32.jp.ngrok.io/member/signUp", {
+  return fetch("https://care-yojung.com/member/signUp", {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -85,7 +85,7 @@ function PostSignUp(age, careGrade, insuranceClickid, diseaseResult, recipientCl
 }
 
 function PostLogout() {
-  return fetch("https://4ed1-118-32-133-32.jp.ngrok.io/member/logout", {
+  return fetch("https://care-yojung.com/member/logout", {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
