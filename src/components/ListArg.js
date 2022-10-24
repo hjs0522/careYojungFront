@@ -76,6 +76,7 @@ function ListArg({ index, name, img, loc, id }) {
             : photoarr[name] + process.env.REACT_APP_GOOGLEMAP_KEY
         }
       />
+      
       {id !== "Themelist" ? (
         <Detail
           img={img}
