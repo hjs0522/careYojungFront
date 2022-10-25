@@ -1,10 +1,10 @@
-import { useEffect, useRef, useState } from "react";
-import { Button,Image,Icon } from "semantic-ui-react";
+import { useRef, useState } from "react";
+import { Button,Icon } from "semantic-ui-react";
 import styled from "styled-components";
 import Detail from "../Detail";
 import {photoarr} from '../photos';
 import Review from "../Review";
-import {PostWishItem} from "../../api";
+import {postWishItem,deleteWishItem} from "../../api";
 
 const ItemContainer = styled.li`
     display: flex;
@@ -78,7 +78,7 @@ const SearchItem = ({nursingHome_id,img,name,type,grade,score,reviewNum,addrSiDo
     
     const handleOnClick = () =>{
         onEditWish(nursingHome_id,!wish);
-        PostWishItem(nursingHome_id);
+        postWishItem(nursingHome_id);
     }
     
     const handleOnAdd = () =>{
@@ -92,20 +92,7 @@ const SearchItem = ({nursingHome_id,img,name,type,grade,score,reviewNum,addrSiDo
         if(window.confirm(`${name}을 위시리스트에서 삭제하시겠습니까?`)){
             onRemoveWish(nursingHome_id);
             window.scrollTo(0, 0);
-            
-            fetch("http://4ed1-118-32-133-32.jp.ngrok.io/wish-list/compare", {
-            method:'DELETE', // *GET, POST, PUT, DELETE 등
-            headers: {
-                'Content-Type': 'application/json',
-                "ngrok-skip-browser-warning": "69420",
-        // 'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            body: JSON.stringify({
-                "memberId": "user12",
-                "svcId": nursingHome_id,
-                "svcType": "ho",
-            }), // body의 데이터 유형은 반드시 "Content-Type" 헤더와 일치해야 함
-            })
+            deleteWishItem("user12",nursingHome_id,"ho");
         }
     }
     

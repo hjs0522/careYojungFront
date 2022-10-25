@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from "react";
-import Detail from "./Detail";
+import { getMap } from "../api";
 import Maplist from "./Maplist";
-import Ex from "./Ex";
 
 let wholemap = null;
 
@@ -99,16 +98,7 @@ function Map({ mapArr, setMapArr }) {
           (k) => encodeURIComponent(k) + "=" + encodeURIComponent(currentMap[k])
         )
         .join("&");
-      const url = "https://4ed1-118-32-133-32.jp.ngrok.io/search/map?" + query;
-      console.log(url);
-      fetch(url, {
-        method: "GET",
-        headers: {
-          "ngrok-skip-browser-warning": "69420",
-          accept: "application/json",
-        },
-      })
-        .then((response) => response.json())
+      getMap(query)
         .then((res) => {
           setMapArr(res);
         });

@@ -1,4 +1,4 @@
-import {useRef,useEffect,useState} from 'react'
+import {useEffect,useState} from 'react'
 import styled from "styled-components"
 
 const StyledDetailCost = styled.div({
@@ -73,7 +73,6 @@ const costArr={
 }
 
 function DetailCost(){
-    const boxRef = useRef(null);
     const [enterid,setEnterid]= useState(""); //버튼 호버시 id 가져오는 상태변수
     const [isEnter,setIsEnter] = useState(false); //버튼에 마우스가 올라가있는지 판별
 

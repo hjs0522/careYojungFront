@@ -3,7 +3,6 @@ import Popularlist from "../components/Popularlist";
 import Themelist from "../components/Themelist";
 import Pageup from "../components/Pageup";
 import styled from "styled-components";
-import { Loader,Segment,Dimmer,Image } from 'semantic-ui-react';
 
 
 const arr = [{ //원래는 메인페이지에서 최근본시설, 인기있는시설, 테마별 시설을 가져와서 뿌려줌. 현재는 가상의 데이터 사용
@@ -90,9 +89,6 @@ const StyledMainpage = styled.div`
   padding-bottom:100px;
 `
 
-const StyledContainer = styled.div({
-  paddingLeft:'100px',
-})
 
 
 function Mainpage(){

@@ -1,5 +1,5 @@
-import React, { useState, useRef, useEffect } from "react";
-import { Button, Modal, Grid, Icon } from "semantic-ui-react";
+import React, { useState, useEffect } from "react";
+import { Modal, Grid, Icon } from "semantic-ui-react";
 import styled from "styled-components";
 import DetailCost from "./Detail/DetailCost";
 import { photoarr } from "./photos";
@@ -46,15 +46,6 @@ const DetailPage = styled.div({
   scrollBehavior: "smooth",
 });
 
-const StyledImage = styled.img`
-  border-radius: 10px;
-  margin-left: 20px;
-  filter: drop-shadow(1px 1px 5px rgba(25, 32, 60, 0.3));
-  height: ${(prop) => (prop.id === "Themelist" ? "320px" : "220px")};
-  width: ${(prop) => (prop.id === "Themelist" ? "31.5%" : "22.5%")};
-  display: inline-block;
-  cursor: pointer;
-`;
 
 const DetailImage = styled.img({
   marginTop: "20px",
@@ -411,7 +402,7 @@ function DetailReview() {
       starArr[i] = 1;
     }
     const result = [];
-    starArr.map((i) => {
+    starArr.forEach((i) => {
       if (i === 1)
         result.push(<Icon key={i} size="large" name="star" color="yellow" />);
       else result.push(<Icon key={i} size="large" name="star" color="grey" />);
@@ -447,6 +438,7 @@ function DetailReview() {
           <img
             style={{ width: "15px", height: "15px", marginRight: "10%" }}
             src="https://react.semantic-ui.com/images/wireframe/image.png"
+            alt="이미지"
           />
           리뷰하기
         </DetailReviewButton>

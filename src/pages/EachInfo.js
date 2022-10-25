@@ -7,12 +7,6 @@ const StyledEachInfo = styled.div({
     backgroundColor:'#F5F7FA'
 })
 
-const EachInfoBody = styled.div({
-    width:'80%',
-    backgroundColor:'#FFFFFF',
-    marginLeft:'10%',
-    borderRadius:'30px',
-})
 
 
 

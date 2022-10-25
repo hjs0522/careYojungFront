@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
 import { postKakao } from "../api";
 
@@ -8,15 +7,15 @@ const Kakao = (props) =>{
     const navigate = useNavigate();
     
     useEffect(()=>{
-        fetch(`https://4ed1-118-32-133-32.jp.ngrok.io/member/login/kakao?code=${code}`,{
-            method: 'POST',
-            headers:{
-                "ngrok-skip-browser-warning": "69420",
-                'Content-Type': 'application/json',
-            },
-        })
-        .then((res) => res.json())
+        
+        postKakao(code)
         .then((data)=>{
+            try{
+                localStorage.setItem('user',data);
+            }catch(e){
+                console.log('localStorage is not working');
+            }
+            
             if (data=== false)
             {
                 navigate('/personInfo');

@@ -4,7 +4,7 @@ import { Container, Icon } from "semantic-ui-react";
 import styled from "styled-components";
 import { loginState } from "../../atom";
 import SearchBar from "../Search/SearchBar";
-import { PostLogout } from "../../api";
+import { postLogout } from "../../api";
 
 const HeaderDiv = styled.div`
   &.ui.top.fixed.menu {
@@ -54,7 +54,7 @@ const Header = ({service,grade,order}) =>{
         }
         else{
             setLogin(!login)
-            PostLogout();
+            postLogout();
         }
     }
     console.log(service,grade,order)
@@ -67,7 +67,7 @@ const Header = ({service,grade,order}) =>{
           </div>
           <SearchBar service={service} grade={grade} order={order}></SearchBar>
           <HeaderButtonContainer>
-            {!login ? (
+            {login ? (
               <>
                 <Icon name="sign-out"></Icon>
                 <HeaderButton onClick={loginHandler}>로그아웃</HeaderButton>

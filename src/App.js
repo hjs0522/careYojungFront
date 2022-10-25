@@ -7,7 +7,7 @@ import SearchPage from "./pages/SearchPage.js";
 import WishPage from "./pages/WishPage.js";
 import MyPage from "./pages/MyPage.js";
 import Mappage from "./pages/Mappage";
-import { RecoilRoot } from "recoil";
+
 import { useState } from "react";
 import LoginPage from "./pages/LoginPage";
 import Kakao from "./pages/kakao";
@@ -16,13 +16,29 @@ import { serviceOptions, gradeOptions, orderOptions } from "./searchOptions";
 import PersonInfo from "./pages/PersonInfo";
 import Information from "./pages/Information";
 import InfoDetail from "./pages/InfoDetail";
+import {useRecoilState} from 'recoil';
+import {loginState}from './atom';
+
 
 function App() {
   const [service, setService] = useState(serviceOptions[0].key);
   const [grade, setGrade] = useState(gradeOptions[0].key);
   const [order, setOrder] = useState(orderOptions[0].key);
+  
+  const [login,setLogin] = useRecoilState(loginState);
+  function loadUser(){
+    try{
+      const user = localStorage.getItem('user');
+      if(!user) return;
+      setLogin(true);
+    }
+    catch(e){
+      console.log('localStorage is not working');
+    }
+  }
+  loadUser();
+  
   return (
-    <RecoilRoot>
       <BrowserRouter>
         <Header
           service={service}
@@ -83,7 +99,6 @@ function App() {
         </Routes>
         <Footer></Footer>
       </BrowserRouter>
-    </RecoilRoot>
   );
 }
 

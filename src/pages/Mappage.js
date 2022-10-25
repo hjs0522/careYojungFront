@@ -1,9 +1,7 @@
 import { useState } from "react";
 import { Container } from "semantic-ui-react";
-import styled from "styled-components";
 import DropDownRow from "../components/Header/DropDownRow";
 import Map from "../components/Map";
-import Maplist from "../components/Maplist";
 
 
 function Mappage({service,setService,grade,setGrade,order,setOrder}) {

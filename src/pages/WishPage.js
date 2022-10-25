@@ -28,11 +28,7 @@ const WishPage = ({service, setService, grade, setGrade, order, setOrder})=>{
     const [searchList,setSearchList] = useState([]);
     
     useEffect(()=>{
-        
-        fetch(`https://4ed1-118-32-133-32.jp.ngrok.io/wish-list?memberId=user1`)
-            .then((res)=>res.json())
-            .then((data)=>{
-                setSearchList(data)});
+        getWishList.then((data)=>{setSearchList(data)});
     },[])
     
     const toggleIsBarOpen = ()=>{
