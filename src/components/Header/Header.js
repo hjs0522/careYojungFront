@@ -48,14 +48,11 @@ const HeaderButtonContainer = styled.div`
 
 const Header = ({service,grade,order}) =>{
     const [login,setLogin] = useRecoilState(loginState);
-    const loginHandler = ()=>{
-        if (login !== false){
-            setLogin(!login)
-        }
-        else{
-            setLogin(!login)
-            postLogout();
-        }
+    const logoutHandler = ()=>{
+          setLogin(false)
+          postLogout();
+          localStorage.removeItem('user');
+      
     }
     console.log(service,grade,order)
     return(
@@ -70,7 +67,7 @@ const Header = ({service,grade,order}) =>{
             {login ? (
               <>
                 <Icon name="sign-out"></Icon>
-                <HeaderButton onClick={loginHandler}>로그아웃</HeaderButton>
+                <HeaderButton onClick={logoutHandler}>로그아웃</HeaderButton>
                 <Icon name="heart outline"></Icon>
                 <HeaderLink to={"/wish"}>위시리스트</HeaderLink>
                 <Icon name="user outline"></Icon>
@@ -79,7 +76,7 @@ const Header = ({service,grade,order}) =>{
             ) : (
               <>
                 <Icon name="sign in"></Icon>
-                <HeaderLink to={"/login"} onClick={loginHandler}>
+                <HeaderLink to={"/login"}>
                   로그인
                 </HeaderLink>
               </>

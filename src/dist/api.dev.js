@@ -11,22 +11,24 @@ exports.deleteWishItem = deleteWishItem;
 exports.postSignUp = postSignUp;
 exports.postLogout = postLogout;
 exports.getMap = getMap;
-var SERVER_ADDRESS = 'care-yojung.com';
+var SERVER_ADDRESS = 'https://58fa-221-148-248-130.jp.ngrok.io';
 
 function postKakao(code) {
-  return fetch("https://".concat(SERVER_ADDRESS, "/member/login/kakao?code=").concat(code), {
+  return fetch("".concat(SERVER_ADDRESS, "/member/login/kakao?code=").concat(code), {
     method: 'POST',
     headers: {
       "ngrok-skip-browser-warning": "69420",
       'Content-Type': 'application/json'
-    }
+    },
+    credentials: 'include',
+    mode: 'cors'
   }).then(function (res) {
-    return console.log(res.json());
+    return res.json();
   });
 }
 
 function getSearchList(keyword, service, grade, order) {
-  return fetch("https://".concat(SERVER_ADDRESS, "/search/list?keyword=").concat(keyword, "&service=").concat(service, "&grade=").concat(grade, "&order=").concat(order, "&memberId=user1"), {
+  return fetch("".concat(SERVER_ADDRESS, "/search/list?keyword=").concat(keyword, "&service=").concat(service, "&grade=").concat(grade, "&order=").concat(order, "&memberId=user1"), {
     method: "GET",
     headers: {
       "ngrok-skip-browser-warning": "69420",
@@ -40,13 +42,13 @@ function getSearchList(keyword, service, grade, order) {
 ;
 
 function getWishList() {
-  return fetch("https://".concat(SERVER_ADDRESS, "/wish-list?memberId=user1")).then(function (res) {
+  return fetch("".concat(SERVER_ADDRESS, "/wish-list?memberId=user1")).then(function (res) {
     return res.json();
   });
 }
 
 function postWishItem(nursingHome_id) {
-  return fetch("https://".concat(SERVER_ADDRESS, "/wish-list"), {
+  return fetch("".concat(SERVER_ADDRESS, "/wish-list"), {
     method: 'POST',
     // *GET, POST, PUT, DELETE 등
     headers: {
@@ -66,7 +68,7 @@ function postWishItem(nursingHome_id) {
 ;
 
 function deleteWishItem(memberId, svcId, svcType) {
-  fetch("https://".concat(SERVER_ADDRESS, "/wish-list/compare"), {
+  fetch("".concat(SERVER_ADDRESS, "/wish-list/compare"), {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
@@ -82,7 +84,7 @@ function deleteWishItem(memberId, svcId, svcType) {
 }
 
 function postSignUp(age, careGrade, insuranceClickid, diseaseResult, recipientClickid, name, genderClickid, location, recoverResult) {
-  return fetch("https://".concat(SERVER_ADDRESS, "/member/signUp"), {
+  return fetch("".concat(SERVER_ADDRESS, "/member/signUp"), {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -90,7 +92,7 @@ function postSignUp(age, careGrade, insuranceClickid, diseaseResult, recipientCl
     },
     body: JSON.stringify({
       "age": age,
-      "careGrade": careGrade,
+      "careGrade": 1,
       "insuranceType": insuranceClickid,
       "necessaryTreat": diseaseResult,
       "reciptientType": recipientClickid,
@@ -103,7 +105,7 @@ function postSignUp(age, careGrade, insuranceClickid, diseaseResult, recipientCl
 }
 
 function postLogout() {
-  return fetch("https://".concat(SERVER_ADDRESS, "/member/logout"), {
+  return fetch("".concat(SERVER_ADDRESS, "/member/logout"), {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -113,7 +115,7 @@ function postLogout() {
 }
 
 function getMap(query) {
-  fetch("https://".concat(SERVER_ADDRESS, "/search/map?").concat(query), {
+  fetch("".concat(SERVER_ADDRESS, "/search/map?").concat(query), {
     method: "GET",
     headers: {
       "ngrok-skip-browser-warning": "69420",

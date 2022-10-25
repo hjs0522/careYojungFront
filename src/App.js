@@ -24,20 +24,22 @@ function App() {
   const [service, setService] = useState(serviceOptions[0].key);
   const [grade, setGrade] = useState(gradeOptions[0].key);
   const [order, setOrder] = useState(orderOptions[0].key);
-  
+  /*
   const [login,setLogin] = useRecoilState(loginState);
   function loadUser(){
     try{
       const user = localStorage.getItem('user');
       if(!user) return;
-      setLogin(true);
+      else{
+        setLogin(true);
+      }
     }
     catch(e){
       console.log('localStorage is not working');
     }
   }
   loadUser();
-  
+  */
   return (
       <BrowserRouter>
         <Header

@@ -1,18 +1,20 @@
-const SERVER_ADDRESS = 'care-yojung.com';
+const SERVER_ADDRESS = 'https://58fa-221-148-248-130.jp.ngrok.io';
 
 export function postKakao(code){
-    return fetch(`https://${SERVER_ADDRESS}/member/login/kakao?code=${code}`,{
+    return fetch(`${SERVER_ADDRESS}/member/login/kakao?code=${code}`,{
         method: 'POST',
         headers:{
             "ngrok-skip-browser-warning": "69420",
             'Content-Type': 'application/json',
         },
+        credentials:'include',
+        mode: 'cors',
     })
-    .then((res) => console.log(res.json()));
+    .then((res) => res.json());
 }
 
 export function getSearchList(keyword,service,grade,order){
-    return fetch(`https://${SERVER_ADDRESS}/search/list?keyword=${keyword}&service=${service}&grade=${grade}&order=${order}&memberId=user1`,{
+    return fetch(`${SERVER_ADDRESS}/search/list?keyword=${keyword}&service=${service}&grade=${grade}&order=${order}&memberId=user1`,{
         method: "GET",
         headers: {
           "ngrok-skip-browser-warning": "69420",
@@ -23,13 +25,13 @@ export function getSearchList(keyword,service,grade,order){
 };
 
 export function getWishList(){
-    return fetch(`https://${SERVER_ADDRESS}/wish-list?memberId=user1`)
+    return fetch(`${SERVER_ADDRESS}/wish-list?memberId=user1`)
     .then((res)=>res.json());
 }
 
 
 export function postWishItem(nursingHome_id){
-    return fetch(`https://${SERVER_ADDRESS}/wish-list`, {
+    return fetch(`${SERVER_ADDRESS}/wish-list`, {
         method: 'POST', // *GET, POST, PUT, DELETE 등
         headers: {
             'Content-Type': 'application/json',
@@ -45,7 +47,7 @@ export function postWishItem(nursingHome_id){
 };
 
 export function deleteWishItem(memberId,svcId,svcType){
-    fetch(`https://${SERVER_ADDRESS}/wish-list/compare`, {
+    fetch(`${SERVER_ADDRESS}/wish-list/compare`, {
             method:'DELETE',
             headers: {
                 'Content-Type': 'application/json',
@@ -60,7 +62,7 @@ export function deleteWishItem(memberId,svcId,svcType){
 }
 
 export function postSignUp(age,careGrade,insuranceClickid,diseaseResult,recipientClickid,name,genderClickid,location,recoverResult){
-    return fetch(`https://${SERVER_ADDRESS}/member/signUp`,{
+    return fetch(`${SERVER_ADDRESS}/member/signUp`,{
         method:'POST',
         headers:{
             'Content-Type': 'application/json',
@@ -68,7 +70,7 @@ export function postSignUp(age,careGrade,insuranceClickid,diseaseResult,recipien
         },
         body: JSON.stringify({
             "age":age,
-            "careGrade": careGrade,
+            "careGrade": 1,
             "insuranceType": insuranceClickid,
             "necessaryTreat": diseaseResult,
             "reciptientType": recipientClickid,
@@ -81,7 +83,7 @@ export function postSignUp(age,careGrade,insuranceClickid,diseaseResult,recipien
 }
 
 export function postLogout(){
-    return fetch(`https://${SERVER_ADDRESS}/member/logout`,{
+    return fetch(`${SERVER_ADDRESS}/member/logout`,{
         method:'POST',
         headers:{
             'Content-Type': 'application/json',
@@ -91,7 +93,7 @@ export function postLogout(){
 }
 
 export function getMap(query){
-    fetch(`https://${SERVER_ADDRESS}/search/map?${query}`, {
+    fetch(`${SERVER_ADDRESS}/search/map?${query}`, {
       method: "GET",
       headers: {
         "ngrok-skip-browser-warning": "69420",
