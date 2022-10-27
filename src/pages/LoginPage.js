@@ -1,5 +1,4 @@
-import { Link, NavLink } from "react-router-dom";
-import { Button, Container } from "semantic-ui-react";
+import { Button} from "semantic-ui-react";
 import styled from "styled-components";
 import { KAKAO_AUTH_URL } from "../OAuth";
 

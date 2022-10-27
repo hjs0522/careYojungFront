@@ -4,7 +4,7 @@ import { Container, Icon } from "semantic-ui-react";
 import styled from "styled-components";
 import { loginState } from "../../atom";
 import SearchBar from "../Search/SearchBar";
-import { PostLogout } from "../../api";
+import { postLogout } from "../../api";
 
 const HeaderDiv = styled.div`
   &.ui.top.fixed.menu {
@@ -48,14 +48,11 @@ const HeaderButtonContainer = styled.div`
 
 const Header = ({service,grade,order}) =>{
     const [login,setLogin] = useRecoilState(loginState);
-    const loginHandler = ()=>{
-        if (login !== false){
-            setLogin(!login)
-        }
-        else{
-            setLogin(!login)
-            PostLogout();
-        }
+    const logoutHandler = ()=>{
+          setLogin(false)
+          postLogout();
+          localStorage.removeItem('user');
+      
     }
     console.log(service,grade,order)
     return(
@@ -67,10 +64,10 @@ const Header = ({service,grade,order}) =>{
           </div>
           <SearchBar service={service} grade={grade} order={order}></SearchBar>
           <HeaderButtonContainer>
-            {!login ? (
+            {login ? (
               <>
                 <Icon name="sign-out"></Icon>
-                <HeaderButton onClick={loginHandler}>로그아웃</HeaderButton>
+                <HeaderButton onClick={logoutHandler}>로그아웃</HeaderButton>
                 <Icon name="heart outline"></Icon>
                 <HeaderLink to={"/wish"}>위시리스트</HeaderLink>
                 <Icon name="user outline"></Icon>
@@ -79,7 +76,7 @@ const Header = ({service,grade,order}) =>{
             ) : (
               <>
                 <Icon name="sign in"></Icon>
-                <HeaderLink to={"/login"} onClick={loginHandler}>
+                <HeaderLink to={"/login"}>
                   로그인
                 </HeaderLink>
               </>

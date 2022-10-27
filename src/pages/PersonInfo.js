@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { Dropdown, StepGroup } from "semantic-ui-react";
+import { Dropdown } from "semantic-ui-react";
 import { useState,useEffect,useRef } from "react";
-import { PostSignUp } from "../api";
+import { postSignUp } from "../api";
 import { useNavigate } from "react-router-dom";
 const StyledPersonInfo = styled.div({
   paddingBottom: "100px",
@@ -333,7 +333,7 @@ function PersonInfo(){
     }
     const navigate = useNavigate();
     const handlerOnClick = () =>{
-        PostSignUp(age,careGrade,insuranceClickid,diseaseResult,recipientClickid,name,genderClickid,location,recoverResult).then(res=>console.log(res.headers))
+        postSignUp(age,careGrade,insuranceClickid,diseaseResult,recipientClickid,name,genderClickid,location,recoverResult).then(res=>console.log(res.headers))
         navigate("/");
     }
     

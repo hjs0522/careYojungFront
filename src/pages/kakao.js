@@ -1,22 +1,26 @@
 import { useEffect } from "react";
-import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
 import { postKakao } from "../api";
+import { useRecoilState } from "recoil";
+import { loginState } from "../atom";
 
 const Kakao = (props) =>{
     const code = new URL(window.location.href).searchParams.get("code");
     const navigate = useNavigate();
-    
+    const [login,setLogin] = useRecoilState(loginState);
     useEffect(()=>{
-        fetch(`https://4ed1-118-32-133-32.jp.ngrok.io/member/login/kakao?code=${code}`,{
-            method: 'POST',
-            headers:{
-                "ngrok-skip-browser-warning": "69420",
-                'Content-Type': 'application/json',
-            },
-        })
-        .then((res) => res.json())
+        
+        postKakao(code)
         .then((data)=>{
+            try{
+                localStorage.setItem('user',data);
+                if (localStorage.getItem('user')){
+                    setLogin(true);
+                }
+            }catch(e){
+                console.log('localStorage is not working');
+            }
+            console.log(`data value is ${data}`);
             if (data=== false)
             {
                 navigate('/personInfo');
@@ -30,7 +34,7 @@ const Kakao = (props) =>{
             console.log("로그인 실패")
             navigate('/login');
         })
-    },[code,navigate]);
+    },[]);
     
     return(
         <h1>대기중</h1>
