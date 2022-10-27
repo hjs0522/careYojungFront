@@ -10,3 +10,9 @@
   font-style: normal;
   src: url("NanumSquareB.ttf");
 }
+@font-face {
+  font-family: "NanumEB";
+  font-weight: normal;
+  font-style: normal;
+  src: url("NanumSquare_acEB.ttf");
+}
