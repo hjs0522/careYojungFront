@@ -1,14 +1,12 @@
-const SERVER_ADDRESS = 'https://58fa-221-148-248-130.jp.ngrok.io';
+const SERVER_ADDRESS = 'https://api.care-yojung.com';
 
 export function postKakao(code){
     return fetch(`${SERVER_ADDRESS}/member/login/kakao?code=${code}`,{
         method: 'POST',
         headers:{
-            "ngrok-skip-browser-warning": "69420",
             'Content-Type': 'application/json',
         },
-        credentials:'include',
-        mode: 'cors',
+        credentials: 'include',
     })
     .then((res) => res.json());
 }
@@ -17,9 +15,9 @@ export function getSearchList(keyword,service,grade,order){
     return fetch(`${SERVER_ADDRESS}/search/list?keyword=${keyword}&service=${service}&grade=${grade}&order=${order}&memberId=user1`,{
         method: "GET",
         headers: {
-          "ngrok-skip-browser-warning": "69420",
           accept: "application/json",
         },
+        credentials: 'include',
     })
     .then(res => res.json());
 };
@@ -35,9 +33,8 @@ export function postWishItem(nursingHome_id){
         method: 'POST', // *GET, POST, PUT, DELETE 등
         headers: {
             'Content-Type': 'application/json',
-            "ngrok-skip-browser-warning": "69420",
-    // 'Content-Type': 'application/x-www-form-urlencoded',
         },
+        credentials: 'include',
         body: JSON.stringify({
             "memberId": "user12",
             "svcId": nursingHome_id,
@@ -51,8 +48,8 @@ export function deleteWishItem(memberId,svcId,svcType){
             method:'DELETE',
             headers: {
                 'Content-Type': 'application/json',
-                "ngrok-skip-browser-warning": "69420",
             },
+            credentials: 'include',
             body: JSON.stringify({
                 "memberId": memberId,
                 "svcId": svcId,
@@ -66,11 +63,12 @@ export function postSignUp(age,careGrade,insuranceClickid,diseaseResult,recipien
         method:'POST',
         headers:{
             'Content-Type': 'application/json',
-            "ngrok-skip-browser-warning": "69420",
+            'Authorization': `Bearer ${localStorage.getItem('access-token')}`
         },
+        credentials: 'include',
         body: JSON.stringify({
             "age":age,
-            "careGrade": 1,
+            "careGrade": careGrade,
             "insuranceType": insuranceClickid,
             "necessaryTreat": diseaseResult,
             "reciptientType": recipientClickid,
@@ -87,8 +85,8 @@ export function postLogout(){
         method:'POST',
         headers:{
             'Content-Type': 'application/json',
-            "ngrok-skip-browser-warning": "69420",
         },
+        credentials: 'include',
     })
 }
 
@@ -96,9 +94,8 @@ export function getMap(query){
     fetch(`${SERVER_ADDRESS}/search/map?${query}`, {
       method: "GET",
       headers: {
-        "ngrok-skip-browser-warning": "69420",
         accept: "application/json",
       },
-    })
-      .then((response) => response.json())
+      credentials: 'include',
+    }).then((response) => response.json());
 }

@@ -18,7 +18,7 @@ import Information from "./pages/Information";
 import InfoDetail from "./pages/InfoDetail";
 import {useRecoilState} from 'recoil';
 import {loginState}from './atom';
-
+import {CookiesProvider}  from 'react-cookie';
 
 function App() {
   const [service, setService] = useState(serviceOptions[0].key);
@@ -41,6 +41,7 @@ function App() {
   loadUser();
   */
   return (
+    <CookiesProvider>
       <BrowserRouter>
         <Header
           service={service}
@@ -101,6 +102,7 @@ function App() {
         </Routes>
         <Footer></Footer>
       </BrowserRouter>
+    </CookiesProvider>
   );
 }
 

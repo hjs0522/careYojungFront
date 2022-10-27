@@ -2,7 +2,6 @@ import { Button} from "semantic-ui-react";
 import styled from "styled-components";
 import { KAKAO_AUTH_URL } from "../OAuth";
 
-
 const PageContainer = styled.div`
     background-color: #F5F7FA;
     height: 80vh;
@@ -34,6 +33,7 @@ const LoginButtonContainer = styled.div`
 
 const LoginPage = ()=>{
     console.log(KAKAO_AUTH_URL)
+    
     return(
         <PageContainer>
             <LoginButtonContainer>

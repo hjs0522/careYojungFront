@@ -98,8 +98,8 @@ function Map({ mapArr, setMapArr }) {
           (k) => encodeURIComponent(k) + "=" + encodeURIComponent(currentMap[k])
         )
         .join("&");
-      getMap(query)
-        .then((res) => {
+        
+      getMap(query).then((res) => {
           setMapArr(res);
         });
       console.log(

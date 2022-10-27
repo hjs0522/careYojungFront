@@ -114,7 +114,7 @@ const SearchItem = ({nursingHome_id,img,name,type,grade,score,reviewNum,addrSiDo
     
     return(
         <ItemContainer ref={itemRef}>
-            <img onClick={()=>{setDetail_bool(true)}} style={{width:'150px',height:'150px',cursor:'pointer'}} src={photoarr[name]} alt = "요양원 사진" />
+            <img onClick={()=>{setDetail_bool(true)}} style={{width:'150px',height:'150px',cursor:'pointer'}} src={photoarr[name]+process.env.REACT_APP_GOOGLEMAP_KEY} alt = "요양원 사진" />
             {isWishPage
             ?
             (wish

@@ -3,6 +3,7 @@ import { Dropdown } from "semantic-ui-react";
 import { useState,useEffect,useRef } from "react";
 import { postSignUp } from "../api";
 import { useNavigate } from "react-router-dom";
+import {useCookies}from'react-cookie';
 const StyledPersonInfo = styled.div({
   paddingBottom: "100px",
   paddingTop: "100px",
@@ -82,37 +83,36 @@ const careRatingOption = [
   {
     key: "1등급",
     text: "1등급",
-    value: "1등급",
+    value: 1,
   },
   {
     key: "2등급",
     text: "2등급",
-    value: "2등급",
+    value: 2,
   },
   {
     key: "3등급",
     text: "3등급",
-    value: "3등급",
+    value: 3,
   },
   {
     key: "4등급",
     text: "4등급",
-    value: "4등급",
+    value: 4,
   },
   {
     key: "5등급",
     text: "5등급",
-    value: "5등급",
+    value: 5,
   },
   {
     key: "잘 모르겠음",
     text: "잘 모르겠음",
-    value: "잘 모르겠음",
+    value: 0,
   },
 ];
 
 function PersonInfo(){
-
     //이름input 관리
     const [name,setName] = useState('');
     const nameInput = useRef();
