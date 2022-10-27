@@ -10,7 +10,7 @@ const StyledImage = styled.img`
   filter: drop-shadow(1px 1px 5px rgba(25, 32, 60, 1));
   height: ${(prop) => (prop.id === "Themelist" ? "250px" : "220px")};
   width: ${(prop) => (prop.id === "Themelist" ? "330px" : "200px")};
-
+  object-fit: ${(prop) => (prop.id === "Themelist" ? "fill" : "none")};
   display: inline-block;
   cursor: pointer;
   z-index: 0;
@@ -30,6 +30,7 @@ const TextBox = styled.div`
 `;
 
 const StyleName = styled.div({
+  fontFamily: "NanumB",
   position: "absolute",
   top: "10px",
   marginLeft: "15px",
@@ -40,6 +41,7 @@ const StyleName = styled.div({
   cursor: "pointer",
 });
 const StyleLoc = styled.div({
+  fontFamily: "NanumR",
   position: "absolute",
   marginLeft: "14px",
   top: "30px",
@@ -77,7 +79,7 @@ function ListArg({ index, name, img, loc, id }) {
             : photoarr[name] + process.env.REACT_APP_GOOGLEMAP_KEY
         }
       />
-      
+
       {id !== "Themelist" ? (
         <Detail
           img={img}
