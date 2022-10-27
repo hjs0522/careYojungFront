@@ -14,6 +14,7 @@ const Kakao = (props) =>{
             try{
                 localStorage.setItem('user',data);
                 localStorage.setItem('access-token',data.accessToken);
+                localStorage.setItem('refresh-token',data.refreshToken);
                 if (localStorage.getItem('user')){
                     setLogin(true);
                 }

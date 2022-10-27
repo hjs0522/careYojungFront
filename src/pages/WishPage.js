@@ -28,7 +28,8 @@ const WishPage = ({service, setService, grade, setGrade, order, setOrder})=>{
     const [searchList,setSearchList] = useState([]);
     
     useEffect(()=>{
-        getWishList.then((data)=>{setSearchList(data)});
+        getWishList()
+        .then((data)=>{setSearchList(data)});
     },[])
     
     const toggleIsBarOpen = ()=>{
