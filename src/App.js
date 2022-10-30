@@ -16,9 +16,9 @@ import { serviceOptions, gradeOptions, orderOptions } from "./searchOptions";
 import PersonInfo from "./pages/PersonInfo";
 import Information from "./pages/Information";
 import InfoDetail from "./pages/InfoDetail";
-import {useRecoilState} from 'recoil';
-import {loginState}from './atom';
-import {CookiesProvider}  from 'react-cookie';
+import { useRecoilState } from "recoil";
+import { loginState } from "./atom";
+import { CookiesProvider } from "react-cookie";
 
 function App() {
   const [service, setService] = useState(serviceOptions[0].key);
