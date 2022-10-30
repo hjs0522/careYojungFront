@@ -112,3 +112,14 @@ export function getMap(query){
       credentials: 'include',
     }).then((response) => response.json());
 }
+
+export function getCompare(svcList){
+    return fetch(`${SERVER_ADDRESS}/wish-list/compare?${svcList}`,{
+        method: "GET",
+        headers: {
+          accept: "application/json",
+          'Authorization': `Bearer ${localStorage.getItem('access-token')}`
+        },
+        credentials: 'include',
+      }).then((response) => response.json());
+}

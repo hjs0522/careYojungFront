@@ -4,6 +4,7 @@ import { postKakao } from "../api";
 import { useRecoilState } from "recoil";
 import { loginState } from "../atom";
 import {useCookies}from'react-cookie';
+
 const Kakao = (props) =>{
     const code = new URL(window.location.href).searchParams.get("code");
     const navigate = useNavigate();

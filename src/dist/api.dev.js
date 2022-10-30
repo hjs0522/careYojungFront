@@ -11,6 +11,7 @@ exports.deleteWishItem = deleteWishItem;
 exports.postSignUp = postSignUp;
 exports.postLogout = postLogout;
 exports.getMap = getMap;
+exports.getCompare = getCompare;
 var SERVER_ADDRESS = 'https://api.care-yojung.com';
 
 function postKakao(code) {
@@ -125,6 +126,19 @@ function postLogout() {
 
 function getMap(query) {
   fetch("".concat(SERVER_ADDRESS, "/search/map?").concat(query), {
+    method: "GET",
+    headers: {
+      accept: "application/json",
+      'Authorization': "Bearer ".concat(localStorage.getItem('access-token'))
+    },
+    credentials: 'include'
+  }).then(function (response) {
+    return response.json();
+  });
+}
+
+function getCompare(svcList) {
+  return fetch("".concat(SERVER_ADDRESS, "/wish-list/compare?").concat(svcList), {
     method: "GET",
     headers: {
       accept: "application/json",

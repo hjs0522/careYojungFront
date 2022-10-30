@@ -42,7 +42,7 @@ const LoginPage = ()=>{
                     <text>쉽고 빠르게 케어요정을 시작해보세요!</text>
                 </div>
                 <a href={KAKAO_AUTH_URL}>카카오</a>
-                <img src="./kakao_login.png" alt="kakao"></img>
+                <img src={process.env.PUBLIC_URL+'/img/kakaoPng.png'} alt="kakao"></img>
                 <Button>b</Button>
                 <Button>c</Button>
             </LoginButtonContainer>
