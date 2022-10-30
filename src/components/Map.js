@@ -98,8 +98,16 @@ function Map({ mapArr, setMapArr }) {
           (k) => encodeURIComponent(k) + "=" + encodeURIComponent(currentMap[k])
         )
         .join("&");
-        
-      getMap(query).then((res) => {
+
+      fetch(`https://api.care-yojung.com/search/map?${query}`, {
+        method: "GET",
+        headers: {
+          accept: "application/json",
+        },
+        credentials: "include",
+      })
+        .then((response) => response.json())
+        .then((res) => {
           setMapArr(res);
         });
       console.log(
