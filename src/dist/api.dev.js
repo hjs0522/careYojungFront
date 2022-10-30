@@ -11,6 +11,7 @@ exports.deleteWishItem = deleteWishItem;
 exports.postSignUp = postSignUp;
 exports.postLogout = postLogout;
 exports.getMap = getMap;
+exports.getCompare = getCompare;
 var SERVER_ADDRESS = 'https://api.care-yojung.com';
 
 function postKakao(code) {
@@ -29,7 +30,8 @@ function getSearchList(keyword, service, grade, order) {
   return fetch("".concat(SERVER_ADDRESS, "/search/list?keyword=").concat(keyword, "&service=").concat(service, "&grade=").concat(grade, "&order=").concat(order, "&memberId=user1"), {
     method: "GET",
     headers: {
-      accept: "application/json"
+      accept: "application/json",
+      'Authorization': "Bearer ".concat(localStorage.getItem('access-token'))
     },
     credentials: 'include'
   }).then(function (res) {
@@ -40,7 +42,14 @@ function getSearchList(keyword, service, grade, order) {
 ;
 
 function getWishList() {
-  return fetch("".concat(SERVER_ADDRESS, "/wish-list?memberId=user1")).then(function (res) {
+  return fetch("".concat(SERVER_ADDRESS, "/wish-list?"), {
+    method: "GET",
+    headers: {
+      accept: 'application/json',
+      'Authorization': "Bearer ".concat(localStorage.getItem('access-token'))
+    },
+    credentials: 'include'
+  }).then(function (res) {
     return res.json();
   });
 }
@@ -50,7 +59,8 @@ function postWishItem(nursingHome_id) {
     method: 'POST',
     // *GET, POST, PUT, DELETE 등
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Authorization': "Bearer ".concat(localStorage.getItem('access-token'))
     },
     credentials: 'include',
     body: JSON.stringify({
@@ -68,7 +78,8 @@ function deleteWishItem(memberId, svcId, svcType) {
   fetch("".concat(SERVER_ADDRESS, "/wish-list/compare"), {
     method: 'DELETE',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Authorization': "Bearer ".concat(localStorage.getItem('access-token'))
     },
     credentials: 'include',
     body: JSON.stringify({
@@ -106,7 +117,8 @@ function postLogout() {
   return fetch("".concat(SERVER_ADDRESS, "/member/logout"), {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Authorization': "Bearer ".concat(localStorage.getItem('access-token'))
     },
     credentials: 'include'
   });
@@ -116,7 +128,21 @@ function getMap(query) {
   fetch("".concat(SERVER_ADDRESS, "/search/map?").concat(query), {
     method: "GET",
     headers: {
-      accept: "application/json"
+      accept: "application/json",
+      'Authorization': "Bearer ".concat(localStorage.getItem('access-token'))
+    },
+    credentials: 'include'
+  }).then(function (response) {
+    return response.json();
+  });
+}
+
+function getCompare(svcList) {
+  return fetch("".concat(SERVER_ADDRESS, "/wish-list/compare?").concat(svcList), {
+    method: "GET",
+    headers: {
+      accept: "application/json",
+      'Authorization': "Bearer ".concat(localStorage.getItem('access-token'))
     },
     credentials: 'include'
   }).then(function (response) {
