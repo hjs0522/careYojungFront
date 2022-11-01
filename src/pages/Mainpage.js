@@ -113,7 +113,7 @@ function Mainpage() {
   const login = useRecoilValue(loginState);
   return (
     <StyledMainpage>
-      {login ? <MainPhoto /> : <Recentlist arr={arr} />}
+      {login ? <Recentlist arr={arr} /> : <MainPhoto /> }
       <Popularlist arr={arr1} />
       <Themelist arr={arr2} />
 

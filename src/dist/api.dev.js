@@ -12,6 +12,8 @@ exports.postSignUp = postSignUp;
 exports.postLogout = postLogout;
 exports.getMap = getMap;
 exports.getCompare = getCompare;
+exports.getRecentList = getRecentList;
+exports.getPopularList = getPopularList;
 var SERVER_ADDRESS = 'https://api.care-yojung.com';
 
 function postKakao(code) {
@@ -27,7 +29,7 @@ function postKakao(code) {
 }
 
 function getSearchList(keyword, service, grade, order) {
-  return fetch("".concat(SERVER_ADDRESS, "/search/list?keyword=").concat(keyword, "&service=").concat(service, "&grade=").concat(grade, "&order=").concat(order, "&memberId=user1"), {
+  return fetch("".concat(SERVER_ADDRESS, "/search/list?keyword=").concat(keyword, "&service=").concat(service, "&grade=").concat(grade, "&order=").concat(order), {
     method: "GET",
     headers: {
       accept: "application/json",
@@ -149,3 +151,33 @@ function getCompare(svcList) {
     return response.json();
   });
 }
+
+function getRecentList() {
+  return fetch("".concat(SERVER_ADDRESS, "/main/recent"), {
+    method: "GET",
+    headers: {
+      accept: "application/json",
+      'Authorization': "Bearer ".concat(localStorage.getItem('access-token'))
+    },
+    credentials: 'include'
+  }).then(function (res) {
+    return res.json();
+  });
+}
+
+;
+
+function getPopularList() {
+  return fetch("".concat(SERVER_ADDRESS, "/main/popular"), {
+    method: "GET",
+    headers: {
+      accept: "application/json",
+      'Authorization': "Bearer ".concat(localStorage.getItem('access-token'))
+    },
+    credentials: 'include'
+  }).then(function (res) {
+    return res.json();
+  });
+}
+
+;

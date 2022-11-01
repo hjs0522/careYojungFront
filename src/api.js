@@ -12,7 +12,7 @@ export function postKakao(code){
 }
 
 export function getSearchList(keyword,service,grade,order){
-    return fetch(`${SERVER_ADDRESS}/search/list?keyword=${keyword}&service=${service}&grade=${grade}&order=${order}&memberId=user1`,{
+    return fetch(`${SERVER_ADDRESS}/search/list?keyword=${keyword}&service=${service}&grade=${grade}&order=${order}`,{
         method: "GET",
         headers: {
           accept: "application/json",
@@ -124,3 +124,28 @@ export function getCompare(svcList){
         credentials: 'include',
       }).then((response) => response.json());
 }
+
+export function getRecentList(){
+    return fetch(`${SERVER_ADDRESS}/main/recent`,{
+        method: "GET",
+        headers: {
+          accept: "application/json",
+          'Authorization': `Bearer ${localStorage.getItem('access-token')}`
+        },
+        credentials: 'include',
+    })
+    .then(res => res.json());
+};
+
+
+export function getPopularList(){
+    return fetch(`${SERVER_ADDRESS}/main/popular`,{
+        method: "GET",
+        headers: {
+          accept: "application/json",
+          'Authorization': `Bearer ${localStorage.getItem('access-token')}`
+        },
+        credentials: 'include',
+    })
+    .then(res => res.json());
+};

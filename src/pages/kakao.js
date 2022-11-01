@@ -39,6 +39,7 @@ const Kakao = (props) =>{
         })
     },[]);
     
+    
     return(
         <h1>대기중</h1>
     );

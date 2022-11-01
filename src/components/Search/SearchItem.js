@@ -86,6 +86,7 @@ const SearchItem = ({
   isWishPage,
   onRemoveWish,
   setBarOpen,
+  compareList,
 }) => {
   const itemRef = useRef(null);
   console.log("searchItem rendering");
@@ -175,6 +176,19 @@ const SearchItem = ({
     });
     return result;
   }
+  
+  useEffect(()=>{
+    let flag = false
+    for(let i=0;i<compareList.length;i++){
+      if (compareList[i].nursingHome_id === nursingHome_id){
+        flag = true
+        break
+      }
+    }
+    if (flag === false){
+      itemRef.current.style = "border: 1px solid #f1c644";
+    }
+  },[compareList])
 
   return (
     <ItemContainer ref={itemRef}>

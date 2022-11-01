@@ -98,6 +98,9 @@ function Compare({compareList}){
                 setArr(data);
             });
         }
+        else{
+            alert("시설을 추가해주세요")
+        }
 
     }
     
