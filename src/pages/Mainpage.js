@@ -7,6 +7,7 @@ import { Loader, Segment, Dimmer, Image } from "semantic-ui-react";
 import MainPhoto from "../components/MainPhoto";
 import { useRecoilValue } from "recoil";
 import { loginState } from "../atom";
+import Tos from "../components/Tos";
 
 const arr = [
   {
@@ -113,6 +114,7 @@ function Mainpage() {
   const login = useRecoilValue(loginState);
   return (
     <StyledMainpage>
+      <Tos />
       {login ? <MainPhoto /> : <Recentlist arr={arr} />}
       <Popularlist arr={arr1} />
       <Themelist arr={arr2} />
