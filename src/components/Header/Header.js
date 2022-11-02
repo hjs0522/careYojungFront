@@ -52,6 +52,8 @@ const Header = ({service,grade,order}) =>{
           setLogin(false)
           postLogout();
           localStorage.removeItem('user');
+          localStorage.removeItem('access-token');
+          localStorage.removeItem('refresh-token');
       
     }
     console.log(service,grade,order)

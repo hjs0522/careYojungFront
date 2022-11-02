@@ -1,8 +1,7 @@
 import { Button,Icon,Container} from "semantic-ui-react";
 import styled from "styled-components";
-import Compare from "./Compare";
 import CompareList from "./CompareList";
-
+import Compare from './Compare'
 const CompareAddBarBack = styled.div`
     display: flex;
     align-items: center;

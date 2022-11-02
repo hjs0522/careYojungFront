@@ -4,6 +4,7 @@ import { postKakao } from "../api";
 import { useRecoilState } from "recoil";
 import { loginState } from "../atom";
 import {useCookies}from'react-cookie';
+
 const Kakao = (props) =>{
     const code = new URL(window.location.href).searchParams.get("code");
     const navigate = useNavigate();
@@ -14,6 +15,7 @@ const Kakao = (props) =>{
             try{
                 localStorage.setItem('user',data);
                 localStorage.setItem('access-token',data.accessToken);
+                localStorage.setItem('refresh-token',data.refreshToken);
                 if (localStorage.getItem('user')){
                     setLogin(true);
                 }

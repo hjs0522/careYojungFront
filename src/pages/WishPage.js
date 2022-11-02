@@ -22,27 +22,19 @@ const TitleText = styled.div`
   margin-right: 1vw;
 `;
 
-const WishPage = ({
-  service,
-  setService,
-  grade,
-  setGrade,
-  order,
-  setOrder,
-}) => {
-  const [barOpen, setBarOpen] = useState(false);
-  const [compareList, setCompareList] = useState([]);
-  const [searchList, setSearchList] = useState([]);
-
-  useEffect(() => {
-    getWishList.then((data) => {
-      setSearchList(data);
-    });
-  }, []);
-
-  const toggleIsBarOpen = () => {
-    setBarOpen(!barOpen);
-  };
+const WishPage = ({service, setService, grade, setGrade, order, setOrder})=>{
+    const [barOpen,setBarOpen] = useState(false);
+    const [compareList,setCompareList] = useState([]);
+    const [searchList,setSearchList] = useState([]);
+    
+    useEffect(()=>{
+        getWishList()
+        .then((data)=>{setSearchList(data)});
+    },[])
+    
+    const toggleIsBarOpen = ()=>{
+        setBarOpen(!barOpen)
+    }
 
   const onAdd = (nursingHome_id, name) => {
     const newItem = {

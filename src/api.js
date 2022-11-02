@@ -16,6 +16,7 @@ export function getSearchList(keyword,service,grade,order){
         method: "GET",
         headers: {
           accept: "application/json",
+          'Authorization': `Bearer ${localStorage.getItem('access-token')}`
         },
         credentials: 'include',
     })
@@ -23,7 +24,14 @@ export function getSearchList(keyword,service,grade,order){
 };
 
 export function getWishList(){
-    return fetch(`${SERVER_ADDRESS}/wish-list?memberId=user1`)
+    return fetch(`${SERVER_ADDRESS}/wish-list?`,{
+        method:"GET",
+        headers:{
+            accept:'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('access-token')}`,
+        },
+        credentials: 'include',
+    })
     .then((res)=>res.json());
 }
 
@@ -33,6 +41,7 @@ export function postWishItem(nursingHome_id){
         method: 'POST', // *GET, POST, PUT, DELETE 등
         headers: {
             'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('access-token')}`
         },
         credentials: 'include',
         body: JSON.stringify({
@@ -48,6 +57,7 @@ export function deleteWishItem(memberId,svcId,svcType){
             method:'DELETE',
             headers: {
                 'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('access-token')}`
             },
             credentials: 'include',
             body: JSON.stringify({
@@ -86,6 +96,7 @@ export function postLogout(){
         method:'POST',
         headers:{
             'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('access-token')}`
         },
         credentials: 'include',
     })
@@ -96,7 +107,20 @@ export function getMap(query){
       method: "GET",
       headers: {
         accept: "application/json",
+        'Authorization': `Bearer ${localStorage.getItem('access-token')}`
       },
       credentials: 'include',
     }).then((response) => response.json());
+}
+
+
+export function getCompare(svcList){
+    return fetch(`${SERVER_ADDRESS}/wish-list/compare?${svcList}`,{
+        method: "GET",
+        headers: {
+          accept: "application/json",
+          'Authorization': `Bearer ${localStorage.getItem('access-token')}`
+        },
+        credentials: 'include',
+      }).then((response) => response.json());
 }

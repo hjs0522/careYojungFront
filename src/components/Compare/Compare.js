@@ -1,6 +1,8 @@
 import {Modal,Icon, Grid, Button} from 'semantic-ui-react'
 import {useState} from 'react'
 import styled from 'styled-components'
+import { getCompare } from '../../api'
+import { photoarr } from '../photos'
 
 const DetailPage = styled.div({
     marginTop:'4%',
@@ -80,23 +82,23 @@ const CompareButton= styled(Button)`
 
 function Compare({compareList}){
     const [arr,setArr] = useState([]);
+    console.log(compareList);
     const handleOnClick=()=>{
+        console.log(compareList.length)
         if(compareList.length === 2){
-            fetch(`http://15.164.184.243:8080/wish-list/compare?svcList=${compareList[0].nursingHome_id},${compareList[1].nursingHome_id}&svcType=ho`)
-                .then((res) => res.json())
-                .then((data)=> {
-                    setArr(data);
-                    return data;
-                });
+            getCompare(`svcList=${compareList[0].nursingHome_id},${compareList[1].nursingHome_id}&svcType=ho`)
+            .then((data)=> {
+                console.log(data);
+                setArr(data);
+            });
         }
         else if(compareList.length === 3){
-            fetch(`http://15.164.184.243:8080/wish-list/compare?svcList=${compareList[0].nursingHome_id},${compareList[1].nursingHome_id},${compareList[2].nursingHome_id}&svcType=ho`)
-                .then((res) => res.json())
-                .then((data)=> {
-                    setArr(data);
-                    return data;
-                });
+            getCompare(`svcList=${compareList[0].nursingHome_id},${compareList[1].nursingHome_id},${compareList[2].nursingHome_id}&svcType=ho`)
+            .then((data)=> {
+                setArr(data);
+            });
         }
+
     }
     
     console.log(arr);
@@ -126,7 +128,7 @@ function Compare({compareList}){
                     <Grid columns={arrSize}>
                         {arr.map((i)=>(
                             <Grid.Column>
-                                <StyledheaderImg src={i.img} />
+                                <StyledheaderImg src={photoarr[i.name]+process.env.REACT_APP_GOOGLEMAP_KEY} />
                             </Grid.Column>
                         ))}
                     </Grid>
