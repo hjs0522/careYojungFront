@@ -24,7 +24,6 @@ function Tos() {
 
   return (
     <Modal
-      onClose={() => setOpen(false)}
       onOpen={() => setOpen(true)}
       open={open}
       size="small"
