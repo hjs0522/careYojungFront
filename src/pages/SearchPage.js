@@ -53,13 +53,15 @@ const SearchPage = ({service,grade,order,setService,setGrade,setOrder})=>{
                 <text>고객님의 추천 시설 리스트 입니다.</text>
             </TextDiv>
             {isLoading?<div>loading...</div>
-            :<SearchList searchList={data?.slice(offset,offset+5)} onEditWish={onEditWish} ></SearchList>}
-            <Pagination
-            total = {data?.length}
-            page = {page}
-            setPage = {setPage}
-        ></Pagination>
-
+            :<>
+                <SearchList searchList={data?.slice(offset,offset+5)} onEditWish={onEditWish} ></SearchList>
+                <Pagination
+                total = {data?.length}
+                page = {page}
+                setPage = {setPage}>
+                </Pagination>
+             </>
+            }
         </Container>
     </PageContainer>
     )

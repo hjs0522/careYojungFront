@@ -22,10 +22,6 @@ const TitleText = styled.div`
   margin-right: 1vw;
 `;
 
-const CompareBar = styled.div`
-  transition: all 2s ease-in-out;
-`
-
 const WishPage = ({service, setService, grade, setGrade, order, setOrder})=>{
     const [barOpen,setBarOpen] = useState(false);
     const [compareList,setCompareList] = useState([]);
@@ -105,20 +101,18 @@ const WishPage = ({service, setService, grade, setGrade, order, setOrder})=>{
         ></SearchList>
         }
       </Container>
-      <CompareBar>
-        {barOpen ? (
-          <CompareAddBarOpen
-            toggleIsBarOpen={toggleIsBarOpen}
-            compareList={compareList}
-            onRemoveCompare={onRemoveCompare}
-          ></CompareAddBarOpen>
-        ) : (
-          <CompareAddBarClose
-            toggleIsBarOpen={toggleIsBarOpen}
-            compareList={compareList}
-          ></CompareAddBarClose>
-        )}
-      </CompareBar>
+      {barOpen ? (
+        <CompareAddBarOpen
+          toggleIsBarOpen={toggleIsBarOpen}
+          compareList={compareList}
+          onRemoveCompare={onRemoveCompare}
+        ></CompareAddBarOpen>
+      ) : (
+        <CompareAddBarClose
+          toggleIsBarOpen={toggleIsBarOpen}
+          compareList={compareList}
+        ></CompareAddBarClose>
+      )}
     </PageContainer>
   );
 };

@@ -3,7 +3,6 @@ import Popularlist from "../components/Popularlist";
 import Themelist from "../components/Themelist";
 import Pageup from "../components/Pageup";
 import styled from "styled-components";
-import { Loader, Segment, Dimmer, Image } from "semantic-ui-react";
 import MainPhoto from "../components/MainPhoto";
 import { useRecoilValue } from "recoil";
 import { loginState } from "../atom";

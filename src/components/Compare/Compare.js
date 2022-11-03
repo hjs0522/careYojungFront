@@ -83,7 +83,7 @@ const CompareButton= styled(Button)`
 function Compare({compareList}){
     const [arr,setArr] = useState([]);
     console.log(compareList);
-    const handleOnClick=()=>{
+    const handleOnClick=(event)=>{
         console.log(compareList.length)
         if(compareList.length === 2){
             getCompare(`svcList=${compareList[0].nursingHome_id},${compareList[1].nursingHome_id}&svcType=ho`)

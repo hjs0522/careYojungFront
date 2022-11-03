@@ -179,7 +179,7 @@ const SearchItem = ({
   
   useEffect(()=>{
     let flag = false
-    for(let i=0;i<compareList.length;i++){
+    for(let i=0;i<compareList?.length;i++){
       if (compareList[i].nursingHome_id === nursingHome_id){
         flag = true
         break
@@ -189,7 +189,7 @@ const SearchItem = ({
       itemRef.current.style = "border: 1px solid #f1c644";
     }
   },[compareList])
-
+  
   return (
     <ItemContainer ref={itemRef}>
       <img
