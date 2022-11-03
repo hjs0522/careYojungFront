@@ -26,6 +26,7 @@ const ModalHeader = styled.div({
   fontSize: "28px",
   marginTop: "2%",
   marginBottom: "2%",
+  fontFamily: "NanumEB",
 });
 
 const MenuBarBox = styled.div({
@@ -45,6 +46,7 @@ const Menubar = styled.button({
   border: "1px solid #706EE9",
   outline: "0",
   color: "#706EE9",
+  fontFamily: "NanumB",
 });
 
 const DetailBody = styled.div({
@@ -54,6 +56,7 @@ const DetailBody = styled.div({
 const DetailInfo = styled.div({
   fontSize: "20px",
   display: "inline",
+  fontFamily: "NanumB",
 });
 
 const DetailTel = styled.div({
@@ -75,7 +78,7 @@ const DetailSummary = styled.div({
 const DetailSummaryText = styled.div({
   fontSize: "20px",
   color: "#444444",
-
+  fontFamily: "NanumB",
   display: "inline-block",
   padding: "1%",
 });
