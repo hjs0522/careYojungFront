@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Container } from "semantic-ui-react";
+import { Container,Dimmer,Loader,Image } from "semantic-ui-react";
 import styled from "styled-components";
 import CompareAddBarClose from "../components/Compare/CompareAddBarClose";
 import CompareAddBarOpen from "../components/Compare/CompareAddBarOpen";
@@ -7,6 +7,7 @@ import DropDownRow from "../components/Header/DropDownRow";
 import SearchList from "../components/Search/SearchList";
 import { getWishList } from "../api";
 import { useQuery } from "react-query";
+import CompareBar from "../components/Compare/CompareBar";
 const PageContainer = styled.div`
   background-color: #f5f7fa;
 `;
@@ -89,7 +90,14 @@ const WishPage = ({service, setService, grade, setGrade, order, setOrder})=>{
           <TitleText>위시리스트</TitleText>
           <text>최대 3개의 시설을 비교 할 수 있습니다</text>
         </TextDiv>
-        {isLoading?<div>loading...</div>:
+        {isLoading?
+        <>
+          <Dimmer active>
+              <Loader>Loading</Loader>
+          </Dimmer>
+          <Image src='https://react.semantic-ui.com/images/wireframe/short-paragraph.png' />
+        </>
+        :
         <SearchList
           searchList={data}
           onAdd={onAdd}
@@ -101,18 +109,7 @@ const WishPage = ({service, setService, grade, setGrade, order, setOrder})=>{
         ></SearchList>
         }
       </Container>
-      {barOpen ? (
-        <CompareAddBarOpen
-          toggleIsBarOpen={toggleIsBarOpen}
-          compareList={compareList}
-          onRemoveCompare={onRemoveCompare}
-        ></CompareAddBarOpen>
-      ) : (
-        <CompareAddBarClose
-          toggleIsBarOpen={toggleIsBarOpen}
-          compareList={compareList}
-        ></CompareAddBarClose>
-      )}
+      <CompareBar barOpen = {barOpen} toggleIsBarOpen = {toggleIsBarOpen} compareList = {compareList} onRemoveCompare = {onRemoveCompare}></CompareBar>
     </PageContainer>
   );
 };

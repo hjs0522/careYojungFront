@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { useSearchParams } from "react-router-dom";
-import { Container} from "semantic-ui-react";
+import { Container, Dimmer, Loader,Image} from "semantic-ui-react";
 import styled from "styled-components";
 import { getSearchList } from "../api";
 import DropDownRow from "../components/Header/DropDownRow";
@@ -52,7 +52,13 @@ const SearchPage = ({service,grade,order,setService,setGrade,setOrder})=>{
                 <TitleText>시설리스트</TitleText>
                 <text>고객님의 추천 시설 리스트 입니다.</text>
             </TextDiv>
-            {isLoading?<div>loading...</div>
+            {isLoading?
+            <>
+                <Dimmer active>
+                    <Loader>Loading</Loader>
+                </Dimmer>
+                <Image src='https://react.semantic-ui.com/images/wireframe/short-paragraph.png' />
+            </>
             :<>
                 <SearchList searchList={data?.slice(offset,offset+5)} onEditWish={onEditWish} ></SearchList>
                 <Pagination

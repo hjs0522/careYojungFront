@@ -76,8 +76,8 @@ function postWishItem(nursingHome_id) {
 
 ;
 
-function deleteWishItem(memberId, svcId, svcType) {
-  fetch("".concat(SERVER_ADDRESS, "/wish-list/compare"), {
+function deleteWishItem(svcId, svcType) {
+  fetch("".concat(SERVER_ADDRESS, "/wish-list"), {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
@@ -85,7 +85,6 @@ function deleteWishItem(memberId, svcId, svcType) {
     },
     credentials: 'include',
     body: JSON.stringify({
-      "memberId": memberId,
       "svcId": svcId,
       "svcType": svcType
     }) // body의 데이터 유형은 반드시 "Content-Type" 헤더와 일치해야 함

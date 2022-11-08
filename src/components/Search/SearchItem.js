@@ -75,10 +75,12 @@ const SearchItem = ({
   grade,
   score,
   reviewNum,
-  addrSiDo,
-  addrSiGunGu,
+  addrFront,
+  addrDetail,
   addrRoad,
   buildingMainNum,
+  buildingSubNum,
+  floor,
   phoneNumber,
   wish,
   onAdd,
@@ -143,7 +145,7 @@ const SearchItem = ({
     if (window.confirm(`${name}을 위시리스트에서 삭제하시겠습니까?`)) {
       onRemoveWish(nursingHome_id);
       window.scrollTo(0, 0);
-      deleteWishItem("user12", nursingHome_id, "ho");
+      deleteWishItem(nursingHome_id, "ho");
     }
   };
   useEffect(() => {
@@ -257,10 +259,10 @@ const SearchItem = ({
           <span>{reviewNum}</span>
         </div>
         <div>
-          <Text>{addrSiDo}</Text>
-          <Text>{addrSiGunGu}</Text>
-          <Text>{addrRoad}</Text>
-          <Text>{buildingMainNum}</Text>
+          <span>{addrFront +" "}</span>
+          <span>{addrRoad + " "}</span>
+          <span>{buildingSubNum? buildingMainNum + '-' +buildingSubNum + " ": buildingMainNum + " "}</span>
+          <span>{addrDetail? addrDetail: floor? floor + '층': null}</span>
         </div>
         <div>{phoneNumber}</div>
       </InfoContainer>
