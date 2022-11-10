@@ -113,14 +113,13 @@ const StyledMainpage = styled.div`
 function Mainpage() {
   const login = useRecoilValue(loginState);
   return (
-    <MyPage />
-    // <StyledMainpage>
-    //   {login ? <MainPhoto /> : <Recentlist arr={arr} />}
-    //   <Popularlist arr={arr1} />
-    //   <Themelist arr={arr2} />
+    <StyledMainpage>
+      {login ? <MainPhoto /> : <Recentlist arr={arr} />}
+      <Popularlist arr={arr1} />
+      <Themelist arr={arr2} />
 
-    //   <Pageup />
-    // </StyledMainpage>
+      <Pageup />
+    </StyledMainpage>
   );
 }
 
