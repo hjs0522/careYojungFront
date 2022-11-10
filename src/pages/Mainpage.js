@@ -7,6 +7,7 @@ import { Loader, Segment, Dimmer, Image } from "semantic-ui-react";
 import MainPhoto from "../components/MainPhoto";
 import { useRecoilValue } from "recoil";
 import { loginState } from "../atom";
+import MyPage from "./MyPage";
 
 const arr = [
   {
@@ -112,13 +113,14 @@ const StyledMainpage = styled.div`
 function Mainpage() {
   const login = useRecoilValue(loginState);
   return (
-    <StyledMainpage>
-      {login ? <MainPhoto /> : <Recentlist arr={arr} />}
-      <Popularlist arr={arr1} />
-      <Themelist arr={arr2} />
+    <MyPage />
+    // <StyledMainpage>
+    //   {login ? <MainPhoto /> : <Recentlist arr={arr} />}
+    //   <Popularlist arr={arr1} />
+    //   <Themelist arr={arr2} />
 
-      <Pageup />
-    </StyledMainpage>
+    //   <Pageup />
+    // </StyledMainpage>
   );
 }
 
