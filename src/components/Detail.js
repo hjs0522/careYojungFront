@@ -76,7 +76,7 @@ const DetailSummaryText = styled.div({
   fontSize: "20px",
   color: "#444444",
 
-  display: "inline-block",
+  display: "inline",
   padding: "1%",
 });
 
