@@ -30,9 +30,6 @@ const LoginButtonContainer = styled.div`
   }
 `;
 
-const LoginPage = () => {
-  console.log(KAKAO_AUTH_URL);
-
 const LoginPage = ()=>{
     console.log(KAKAO_AUTH_URL)
     
@@ -51,3 +48,4 @@ const LoginPage = ()=>{
     );
 }
 export default LoginPage;
+
