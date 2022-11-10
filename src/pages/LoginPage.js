@@ -1,35 +1,37 @@
-import { Button} from "semantic-ui-react";
+import { Button } from "semantic-ui-react";
 import styled from "styled-components";
 import { KAKAO_AUTH_URL } from "../OAuth";
+import kakaoimg from "../img/kakaoPng.png";
 
 const PageContainer = styled.div`
-    background-color: #F5F7FA;
-    height: 80vh;
-    padding-top: 10vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-`
+  background-color: #f5f7fa;
+  height: 80vh;
+  padding-top: 10vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 
 const LoginButtonContainer = styled.div`
-    background-color: white;
-    width: 35vw;
-    height: 35vh;
-    border-radius: 5px;
+  background-color: white;
+  width: 35vw;
+  height: 35vh;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  padding-bottom: 5vh;
+  & div {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
-    justify-content: space-around;
-    padding-bottom: 5vh;
-    & div{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-    
-`
+  }
+`;
 
+const LoginPage = () => {
+  console.log(KAKAO_AUTH_URL);
 
 const LoginPage = ()=>{
     console.log(KAKAO_AUTH_URL)

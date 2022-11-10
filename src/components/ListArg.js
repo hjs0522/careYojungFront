@@ -59,7 +59,6 @@ const StyledListArg = styled.div({
 
 function ListArg({ index, name, img, loc, id }) {
   const [detail_bool, setDetail_bool] = useState(false);
-  console.log(photoarr[name] + process.env.REACT_APP_GOOGLEMAP_KEY);
   return (
     <StyledListArg
       id={id + index}

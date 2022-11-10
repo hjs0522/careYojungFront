@@ -6,6 +6,7 @@ import styled from "styled-components";
 import MainPhoto from "../components/MainPhoto";
 import { useRecoilValue } from "recoil";
 import { loginState } from "../atom";
+import MyPage from "./MyPage";
 
 const arr = [
   {

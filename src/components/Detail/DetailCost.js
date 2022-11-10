@@ -11,6 +11,7 @@ const StyledDetailCost = styled.div({
 const StyledHeader = styled.h4({
   fontSize: "24px",
   fontWeight: "normal",
+  fontFamily: "NanumB",
 });
 
 const StyledInnerHeader = styled.h4({
@@ -20,6 +21,7 @@ const StyledInnerHeader = styled.h4({
   marginBottom: "4%",
   marginTop: "4%",
   fontWeight: "normal",
+  fontFamily: "NanumB",
 });
 
 const BeneficalType = styled.div({
@@ -30,12 +32,13 @@ const CostButton = styled.button({
   margin: "auto",
   marginBottom: "3%",
   border: "1px solid #CCCCCC",
-  fontSize: "16px",
+  fontSize: "15px",
   padding: "2%",
   borderRadius: "10px",
   cursor: "pointer",
   fontWeight: "lighter",
   backgroundColor: "white",
+  fontFamily: "NanumR",
 });
 
 const CareLevel = styled.div({});
@@ -53,6 +56,7 @@ const ResCostText = styled.div`
   font-weight: 400;
   font-style: normal;
   margin: 3%;
+  font-family: NanumB;
 `;
 
 const costArr = {
