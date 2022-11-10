@@ -11,6 +11,7 @@ const DetailReviewText = styled.div({
 const DetailTitle = styled.h2({
   fontWeight: "normal",
   fontSize: "24px",
+  fontFamily: "NanumB",
 });
 
 const StyledDetailBox = styled.div({

@@ -2,6 +2,7 @@ import styled from "styled-components";
 const DetailTitle = styled.h2({
   fontWeight: "normal",
   fontSize: "24px",
+  fontFamily: "NanumB",
 });
 
 const StyledDetailBox = styled.div({
@@ -10,9 +11,10 @@ const StyledDetailBox = styled.div({
 
 const DetailFaciltytext = styled.div({
   fontSize: "18px",
-  display: "inline",
+  display: "inline-block",
   paddingLeft: "3%",
   paddingRight: "3%",
+  fontFamily: "NanumB",
 });
 const DetailFacilityBox = styled.div({
   border: "1px solid #E1e1e1",

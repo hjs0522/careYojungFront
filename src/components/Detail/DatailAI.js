@@ -5,6 +5,7 @@ const DetailTitle = styled.h2({
   fontWeight: "normal",
   fontSize: "24px",
   display: "inline-block",
+  fontFamily: "NanumB",
 });
 
 const StyledPopup = styled.div({
@@ -33,6 +34,7 @@ const DetailAIText = styled.div({
   display: "inline-block",
   fontSize: "16px",
   width: "80px",
+  fontFamily: "NanumB",
 });
 
 const DetailAIGraph = styled.div({
