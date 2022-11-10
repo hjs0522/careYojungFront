@@ -26,7 +26,7 @@ const ModalHeader = styled.div({
   fontSize: "28px",
   marginTop: "2%",
   marginBottom: "2%",
-  fontFamily: "NanumEB",
+  fontFamily: "NanumB",
 });
 
 const MenuBarBox = styled.div({
@@ -147,6 +147,10 @@ function Detail({ img, name, loc, id, detail_bool, setDetail_bool }) {
     >
       <DetailPage>
         <ModalHeader>{name}</ModalHeader>
+
+        <ModalHeader style={{ marginLeft: "20px", fontSize: "24px" }}>
+          요양원
+        </ModalHeader>
         <div
           onClick={() => setOpen(false)}
           style={{
