@@ -1,7 +1,6 @@
 import { Button } from "semantic-ui-react";
 import styled from "styled-components";
 import { KAKAO_AUTH_URL } from "../OAuth";
-import kakaoimg from "../img/kakaoPng.png";
 
 const PageContainer = styled.div`
   background-color: #f5f7fa;
@@ -47,5 +46,6 @@ const LoginPage = ()=>{
         </PageContainer>
     );
 }
+
 export default LoginPage;
 
