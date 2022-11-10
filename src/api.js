@@ -20,7 +20,20 @@ export function getSearchList(keyword,service,grade,order){
         },
         credentials: 'include',
     })
-    .then(res => res.json());
+    .then((res) => {
+        console.log(res.status)
+        if (res.status === 403){
+            const refresh = localStorage.getItem('refresh-token')
+            console.log(refresh);
+            postReissuance(refresh).then(data=>{
+                localStorage.setItem('access-token',data.accessToken);
+                localStorage.setItem('refresh-token',data.refreshToken);
+            })
+        }
+        else{
+            return res.json();
+        }
+    });
 };
 
 export function getWishList(){
@@ -151,3 +164,19 @@ export function getPopularList(){
     })
     .then(res => res.json());
 };
+
+
+export function postReissuance(refresh){
+    return fetch(`${SERVER_ADDRESS}/member/reissuance`,{
+        method:'POST',
+        headers:{
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('access-token')}`
+        },
+        credentials: 'include',
+        body: JSON.stringify({
+            'refresh': refresh,
+        }),
+    }).then(res => res.json());
+
+}

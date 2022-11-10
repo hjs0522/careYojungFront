@@ -3,7 +3,7 @@ import { useQuery } from "react-query";
 import { useSearchParams } from "react-router-dom";
 import { Container, Dimmer, Loader,Image} from "semantic-ui-react";
 import styled from "styled-components";
-import { getSearchList } from "../api";
+import { getSearchList,postReissuance } from "../api";
 import DropDownRow from "../components/Header/DropDownRow";
 import Pagination from '../components/Pagination'
 import SearchList from "../components/Search/SearchList";
@@ -34,7 +34,12 @@ const SearchPage = ({service,grade,order,setService,setGrade,setOrder})=>{
         setSearchParams({keyword: keyword, service: service, grade: grade, order:order});
     },[setSearchParams,keyword,service,grade,order])
     
-    const {isLoading,data} = useQuery(['searchList'],()=>getSearchList(keyword,service,grade,order))
+    const {isLoading,data} = useQuery(['searchList'],()=>getSearchList(keyword,service,grade,order).catch((err)=>{
+        console.log(err)
+        console.log(err.message)
+        console.log(err.status)
+    }));
+
     const onEditWish = (targetId, newWish)=>{
         data?.map((it)=>
             it.nursingHome_id ===targetId ? {...it,wish:newWish} : it

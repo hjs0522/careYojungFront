@@ -14,6 +14,7 @@ exports.getMap = getMap;
 exports.getCompare = getCompare;
 exports.getRecentList = getRecentList;
 exports.getPopularList = getPopularList;
+exports.postReissuance = postReissuance;
 var SERVER_ADDRESS = 'https://api.care-yojung.com';
 
 function postKakao(code) {
@@ -37,7 +38,18 @@ function getSearchList(keyword, service, grade, order) {
     },
     credentials: 'include'
   }).then(function (res) {
-    return res.json();
+    console.log(res.status);
+
+    if (res.status === 403) {
+      var refresh = localStorage.getItem('refresh-token');
+      console.log(refresh);
+      postReissuance(refresh).then(function (data) {
+        localStorage.setItem('access-token', data.accessToken);
+        localStorage.setItem('refresh-token', data.refreshToken);
+      });
+    } else {
+      return res.json();
+    }
   });
 }
 
@@ -183,3 +195,19 @@ function getPopularList() {
 }
 
 ;
+
+function postReissuance(refresh) {
+  return fetch("".concat(SERVER_ADDRESS, "/member/reissuance"), {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': "Bearer ".concat(localStorage.getItem('access-token'))
+    },
+    credentials: 'include',
+    body: JSON.stringify({
+      'refresh': refresh
+    })
+  }).then(function (res) {
+    return res.json();
+  });
+}
