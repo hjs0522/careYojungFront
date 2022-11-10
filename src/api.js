@@ -12,7 +12,7 @@ export function postKakao(code){
 }
 
 export function getSearchList(keyword,service,grade,order){
-    return fetch(`${SERVER_ADDRESS}/search/list?keyword=${keyword}&service=${service}&grade=${grade}&order=${order}&memberId=user1`,{
+    return fetch(`${SERVER_ADDRESS}/search/list?keyword=${keyword}&service=${service}&grade=${grade}&order=${order}`,{
         method: "GET",
         headers: {
           accept: "application/json",
@@ -20,7 +20,20 @@ export function getSearchList(keyword,service,grade,order){
         },
         credentials: 'include',
     })
-    .then(res => res.json());
+    .then((res) => {
+        console.log(res.status)
+        if (res.status === 403){
+            const refresh = localStorage.getItem('refresh-token')
+            console.log(refresh);
+            postReissuance(refresh).then(data=>{
+                localStorage.setItem('access-token',data.accessToken);
+                localStorage.setItem('refresh-token',data.refreshToken);
+            })
+        }
+        else{
+            return res.json();
+        }
+    });
 };
 
 export function getWishList(){
@@ -52,8 +65,8 @@ export function postWishItem(nursingHome_id){
         });
 };
 
-export function deleteWishItem(memberId,svcId,svcType){
-    fetch(`${SERVER_ADDRESS}/wish-list/compare`, {
+export function deleteWishItem(svcId,svcType){
+    fetch(`${SERVER_ADDRESS}/wish-list`, {
             method:'DELETE',
             headers: {
                 'Content-Type': 'application/json',
@@ -61,7 +74,6 @@ export function deleteWishItem(memberId,svcId,svcType){
             },
             credentials: 'include',
             body: JSON.stringify({
-                "memberId": memberId,
                 "svcId": svcId,
                 "svcType": svcType,
             }), // body의 데이터 유형은 반드시 "Content-Type" 헤더와 일치해야 함
@@ -90,7 +102,7 @@ export function postSignUp(age,careGrade,insuranceClickid,diseaseResult,recipien
     })
 }
 
-export function postLogout(){
+export function postLogout(refresh){
 
     return fetch(`${SERVER_ADDRESS}/member/logout`,{
         method:'POST',
@@ -99,6 +111,9 @@ export function postLogout(){
             'Authorization': `Bearer ${localStorage.getItem('access-token')}`
         },
         credentials: 'include',
+        body: JSON.stringify({
+            'refresh': refresh,
+        }),
     })
 }
 
@@ -123,4 +138,45 @@ export function getCompare(svcList){
         },
         credentials: 'include',
       }).then((response) => response.json());
+}
+
+export function getRecentList(){
+    return fetch(`${SERVER_ADDRESS}/main/recent`,{
+        method: "GET",
+        headers: {
+          accept: "application/json",
+          'Authorization': `Bearer ${localStorage.getItem('access-token')}`
+        },
+        credentials: 'include',
+    })
+    .then(res => res.json());
+};
+
+
+export function getPopularList(){
+    return fetch(`${SERVER_ADDRESS}/main/popular`,{
+        method: "GET",
+        headers: {
+          accept: "application/json",
+          'Authorization': `Bearer ${localStorage.getItem('access-token')}`
+        },
+        credentials: 'include',
+    })
+    .then(res => res.json());
+};
+
+
+export function postReissuance(refresh){
+    return fetch(`${SERVER_ADDRESS}/member/reissuance`,{
+        method:'POST',
+        headers:{
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('access-token')}`
+        },
+        credentials: 'include',
+        body: JSON.stringify({
+            'refresh': refresh,
+        }),
+    }).then(res => res.json());
+
 }

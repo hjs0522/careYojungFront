@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
+import { useQuery } from "react-query";
 import { useSearchParams } from "react-router-dom";
-import { Container} from "semantic-ui-react";
+import { Container, Dimmer, Loader,Image} from "semantic-ui-react";
 import styled from "styled-components";
-import { getSearchList } from "../api";
+import { getSearchList,postReissuance } from "../api";
 import DropDownRow from "../components/Header/DropDownRow";
 import Pagination from '../components/Pagination'
 import SearchList from "../components/Search/SearchList";
@@ -24,8 +25,6 @@ const TitleText = styled.div`
 `
 const SearchPage = ({service,grade,order,setService,setGrade,setOrder})=>{
     console.log("searchPage render")
-    const [searchList,setSearchList] = useState([]);
-    const [page,setPage] = useState(1);
     const [searchParams,setSearchParams] = useSearchParams();
     
     const keyword = searchParams.get("keyword");
@@ -35,22 +34,19 @@ const SearchPage = ({service,grade,order,setService,setGrade,setOrder})=>{
         setSearchParams({keyword: keyword, service: service, grade: grade, order:order});
     },[setSearchParams,keyword,service,grade,order])
     
-    const offset = (page-1) * 5;
-    
-    useEffect(() =>{
-        getSearchList(keyword,service,grade,order).then(
-        (data)=>{
-            setSearchList(data);
-        })
-    },[keyword,service,grade,order]);
-    
+    const {isLoading,data} = useQuery(['searchList'],()=>getSearchList(keyword,service,grade,order).catch((err)=>{
+        console.log(err)
+        console.log(err.message)
+        console.log(err.status)
+    }));
+
     const onEditWish = (targetId, newWish)=>{
-        setSearchList(
-            searchList.map((it)=>
-                it.nursingHome_id ===targetId ? {...it,wish:newWish} : it
-            )
-        );
+        data?.map((it)=>
+            it.nursingHome_id ===targetId ? {...it,wish:newWish} : it
+        )
     };
+    
+
     return(
     <PageContainer>
         <DropDownRow keyword={keyword} service={service} grade={grade} order={order} setService = {setService} setGrade = {setGrade} setOrder = {setOrder}></DropDownRow>
@@ -59,12 +55,17 @@ const SearchPage = ({service,grade,order,setService,setGrade,setOrder})=>{
                 <TitleText>시설리스트</TitleText>
                 <text>고객님의 추천 시설 리스트 입니다.</text>
             </TextDiv>
-            <SearchList searchList={searchList.slice(offset,offset+5)} onEditWish={onEditWish} ></SearchList>
-            <Pagination
-                total = {searchList.length}
-                page = {page}
-                setPage = {setPage}
-            ></Pagination>
+            {isLoading?
+            <>
+                <Dimmer active>
+                    <Loader>Loading</Loader>
+                </Dimmer>
+                <Image src='https://react.semantic-ui.com/images/wireframe/short-paragraph.png' />
+            </>
+            :<>
+                <SearchList searchList={data} onEditWish={onEditWish} ></SearchList>
+             </>
+            }
         </Container>
     </PageContainer>
     )

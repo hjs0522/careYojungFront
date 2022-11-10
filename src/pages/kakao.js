@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { postKakao } from "../api";
 import { useRecoilState } from "recoil";
 import { loginState } from "../atom";
-import {useCookies}from'react-cookie';
+import { Dimmer,Loader,Image } from "semantic-ui-react";
 
 const Kakao = (props) =>{
     const code = new URL(window.location.href).searchParams.get("code");
@@ -39,8 +39,14 @@ const Kakao = (props) =>{
         })
     },[]);
     
+    
     return(
-        <h1>대기중</h1>
+        <>
+            <Dimmer active>
+                <Loader>Loading</Loader>
+            </Dimmer>
+            <Image src='https://react.semantic-ui.com/images/wireframe/short-paragraph.png' />
+        </>
     );
 }
 

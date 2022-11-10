@@ -50,7 +50,8 @@ const Header = ({service,grade,order}) =>{
     const [login,setLogin] = useRecoilState(loginState);
     const logoutHandler = ()=>{
           setLogin(false)
-          postLogout();
+          const refresh = localStorage.getItem('refresh-token');
+          postLogout(refresh);
           localStorage.removeItem('user');
           localStorage.removeItem('access-token');
           localStorage.removeItem('refresh-token');

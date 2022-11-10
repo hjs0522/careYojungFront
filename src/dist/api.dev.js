@@ -12,6 +12,9 @@ exports.postSignUp = postSignUp;
 exports.postLogout = postLogout;
 exports.getMap = getMap;
 exports.getCompare = getCompare;
+exports.getRecentList = getRecentList;
+exports.getPopularList = getPopularList;
+exports.postReissuance = postReissuance;
 var SERVER_ADDRESS = 'https://api.care-yojung.com';
 
 function postKakao(code) {
@@ -27,7 +30,7 @@ function postKakao(code) {
 }
 
 function getSearchList(keyword, service, grade, order) {
-  return fetch("".concat(SERVER_ADDRESS, "/search/list?keyword=").concat(keyword, "&service=").concat(service, "&grade=").concat(grade, "&order=").concat(order, "&memberId=user1"), {
+  return fetch("".concat(SERVER_ADDRESS, "/search/list?keyword=").concat(keyword, "&service=").concat(service, "&grade=").concat(grade, "&order=").concat(order), {
     method: "GET",
     headers: {
       accept: "application/json",
@@ -35,7 +38,18 @@ function getSearchList(keyword, service, grade, order) {
     },
     credentials: 'include'
   }).then(function (res) {
-    return res.json();
+    console.log(res.status);
+
+    if (res.status === 403) {
+      var refresh = localStorage.getItem('refresh-token');
+      console.log(refresh);
+      postReissuance(refresh).then(function (data) {
+        localStorage.setItem('access-token', data.accessToken);
+        localStorage.setItem('refresh-token', data.refreshToken);
+      });
+    } else {
+      return res.json();
+    }
   });
 }
 
@@ -74,8 +88,8 @@ function postWishItem(nursingHome_id) {
 
 ;
 
-function deleteWishItem(memberId, svcId, svcType) {
-  fetch("".concat(SERVER_ADDRESS, "/wish-list/compare"), {
+function deleteWishItem(svcId, svcType) {
+  fetch("".concat(SERVER_ADDRESS, "/wish-list"), {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
@@ -83,7 +97,6 @@ function deleteWishItem(memberId, svcId, svcType) {
     },
     credentials: 'include',
     body: JSON.stringify({
-      "memberId": memberId,
       "svcId": svcId,
       "svcType": svcType
     }) // body의 데이터 유형은 반드시 "Content-Type" 헤더와 일치해야 함
@@ -113,14 +126,17 @@ function postSignUp(age, careGrade, insuranceClickid, diseaseResult, recipientCl
   });
 }
 
-function postLogout() {
+function postLogout(refresh) {
   return fetch("".concat(SERVER_ADDRESS, "/member/logout"), {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
       'Authorization': "Bearer ".concat(localStorage.getItem('access-token'))
     },
-    credentials: 'include'
+    credentials: 'include',
+    body: JSON.stringify({
+      'refresh': refresh
+    })
   });
 }
 
@@ -147,5 +163,51 @@ function getCompare(svcList) {
     credentials: 'include'
   }).then(function (response) {
     return response.json();
+  });
+}
+
+function getRecentList() {
+  return fetch("".concat(SERVER_ADDRESS, "/main/recent"), {
+    method: "GET",
+    headers: {
+      accept: "application/json",
+      'Authorization': "Bearer ".concat(localStorage.getItem('access-token'))
+    },
+    credentials: 'include'
+  }).then(function (res) {
+    return res.json();
+  });
+}
+
+;
+
+function getPopularList() {
+  return fetch("".concat(SERVER_ADDRESS, "/main/popular"), {
+    method: "GET",
+    headers: {
+      accept: "application/json",
+      'Authorization': "Bearer ".concat(localStorage.getItem('access-token'))
+    },
+    credentials: 'include'
+  }).then(function (res) {
+    return res.json();
+  });
+}
+
+;
+
+function postReissuance(refresh) {
+  return fetch("".concat(SERVER_ADDRESS, "/member/reissuance"), {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': "Bearer ".concat(localStorage.getItem('access-token'))
+    },
+    credentials: 'include',
+    body: JSON.stringify({
+      'refresh': refresh
+    })
+  }).then(function (res) {
+    return res.json();
   });
 }

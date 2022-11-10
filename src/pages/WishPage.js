@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
-import { Container } from "semantic-ui-react";
+import { Container,Dimmer,Loader,Image } from "semantic-ui-react";
 import styled from "styled-components";
 import CompareAddBarClose from "../components/Compare/CompareAddBarClose";
 import CompareAddBarOpen from "../components/Compare/CompareAddBarOpen";
 import DropDownRow from "../components/Header/DropDownRow";
 import SearchList from "../components/Search/SearchList";
 import { getWishList } from "../api";
-
+import { useQuery } from "react-query";
+import CompareBar from "../components/Compare/CompareBar";
 const PageContainer = styled.div`
   background-color: #f5f7fa;
 `;
@@ -25,16 +26,8 @@ const TitleText = styled.div`
 const WishPage = ({service, setService, grade, setGrade, order, setOrder})=>{
     const [barOpen,setBarOpen] = useState(false);
     const [compareList,setCompareList] = useState([]);
-    const [searchList,setSearchList] = useState([]);
+    const {isLoading,data} = useQuery(['wishList'],getWishList)
     
-    useEffect(()=>{
-        getWishList()
-        .then((data)=>{setSearchList(data)});
-    },[])
-    
-    const toggleIsBarOpen = ()=>{
-        setBarOpen(!barOpen)
-    }
 
   const onAdd = (nursingHome_id, name) => {
     const newItem = {
@@ -61,31 +54,22 @@ const WishPage = ({service, setService, grade, setGrade, order, setOrder})=>{
   };
 
   const onRemoveCompare = (targetId) => {
-    console.log(searchList);
     const newCompareList = compareList.filter(
       (it) => it.nursingHome_id !== targetId
     );
-    for (let i = 0; i < searchList.length; i++) {
-      if (searchList[i].nursingHome_id === targetId) {
-        console.log(searchList[i]);
-      }
-    }
     setCompareList(newCompareList);
   };
 
   const onRemoveWish = (targetId) => {
-    const newSearchList = searchList.filter(
+    data?.filter(
       (it) => it.nursingHome_id !== targetId
     );
-    setSearchList(newSearchList);
   };
 
   const onEditWish = (targetId, newWish) => {
-    setSearchList(
-      searchList.map((it) =>
+      data?.map((it) =>
         it.nursingHome_id === targetId ? { ...it, wish: newWish } : it
       )
-    );
   };
 
   return (
@@ -103,8 +87,16 @@ const WishPage = ({service, setService, grade, setGrade, order, setOrder})=>{
           <TitleText>위시리스트</TitleText>
           <text>최대 3개의 시설을 비교 할 수 있습니다</text>
         </TextDiv>
+        {isLoading?
+        <>
+          <Dimmer active>
+              <Loader>Loading</Loader>
+          </Dimmer>
+          <Image src='https://react.semantic-ui.com/images/wireframe/short-paragraph.png' />
+        </>
+        :
         <SearchList
-          searchList={searchList}
+          searchList={data}
           onAdd={onAdd}
           onEditWish={onEditWish}
           onRemoveWish={onRemoveWish}
@@ -112,19 +104,9 @@ const WishPage = ({service, setService, grade, setGrade, order, setOrder})=>{
           isWishPage={true}
           setBarOpen={setBarOpen}
         ></SearchList>
+        }
       </Container>
-      {barOpen ? (
-        <CompareAddBarOpen
-          toggleIsBarOpen={toggleIsBarOpen}
-          compareList={compareList}
-          onRemoveCompare={onRemoveCompare}
-        ></CompareAddBarOpen>
-      ) : (
-        <CompareAddBarClose
-          toggleIsBarOpen={toggleIsBarOpen}
-          compareList={compareList}
-        ></CompareAddBarClose>
-      )}
+      <CompareBar barOpen = {barOpen} setBarOpen = {setBarOpen} compareList = {compareList} onRemoveCompare = {onRemoveCompare}></CompareBar>
     </PageContainer>
   );
 };

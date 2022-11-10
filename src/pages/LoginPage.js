@@ -33,20 +33,21 @@ const LoginButtonContainer = styled.div`
 const LoginPage = () => {
   console.log(KAKAO_AUTH_URL);
 
-  return (
-    <PageContainer>
-      <LoginButtonContainer>
-        <div>
-          <h3>간편 로그인</h3>
-          <text>쉽고 빠르게 케어요정을 시작해보세요!</text>
-        </div>
-        <a href={KAKAO_AUTH_URL}>
-          <img src={kakaoimg} alt="kakao"></img>
-        </a>
-        <Button>b</Button>
-        <Button>c</Button>
-      </LoginButtonContainer>
-    </PageContainer>
-  );
-};
+const LoginPage = ()=>{
+    console.log(KAKAO_AUTH_URL)
+    
+    return(
+        <PageContainer>
+            <LoginButtonContainer>
+                <div>
+                    <h3>간편 로그인</h3>
+                    <text>쉽고 빠르게 케어요정을 시작해보세요!</text>
+                </div>
+                <a href={KAKAO_AUTH_URL}>
+                    <img src="img/kakao.png" alt="kakao"></img>
+                </a>
+            </LoginButtonContainer>
+        </PageContainer>
+    );
+}
 export default LoginPage;

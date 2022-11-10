@@ -1,20 +1,23 @@
 import { Button,Icon,Container} from "semantic-ui-react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import CompareList from "./CompareList";
 import Compare from './Compare'
-const CompareAddBarBack = styled.div`
-    display: flex;
-    align-items: center;
-    position: sticky;
-    bottom: 0px;
-    height: 12vh;
-    box-shadow: -5px 0px 5px 0px #666666;
-    background-color: white;
+
+const ChildAppearing = keyframes`
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 `
+
 const CompareAddBarContainer = styled(Container)`
     &.ui.container{
         display: flex;
         justify-content: space-between;
+        animation: ${ChildAppearing} 300ms ease-in-out 1;
+        transition: opacity ease-in-out 100ms;
     }
 `
 
@@ -44,9 +47,8 @@ const TextContainer = styled.div`
 `
 
 
-const CompareAddBarOpen = ({toggleIsBarOpen,compareList,onRemoveCompare})=>  {
+const CompareAddBarOpen = ({handleOnclick,compareList,onRemoveCompare})=>  {
     return(
-    <CompareAddBarBack>
         <CompareAddBarContainer>
             <TextContainer>
                 <h2>시설비교</h2>
@@ -55,10 +57,9 @@ const CompareAddBarOpen = ({toggleIsBarOpen,compareList,onRemoveCompare})=>  {
             <CompareList compareList={compareList} onRemoveCompare = {onRemoveCompare}></CompareList>
             <ButtonContainer>
                 <Compare compareList={compareList} ></Compare>
-                <CloseButton onClick={toggleIsBarOpen}>닫기<Icon name="angle down"></Icon></CloseButton>
+                <CloseButton onClick={handleOnclick}>닫기<Icon name="angle down"></Icon></CloseButton>
             </ButtonContainer>
         </CompareAddBarContainer>
-    </CompareAddBarBack>
     );
 }
 
