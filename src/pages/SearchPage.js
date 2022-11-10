@@ -25,7 +25,6 @@ const TitleText = styled.div`
 `
 const SearchPage = ({service,grade,order,setService,setGrade,setOrder})=>{
     console.log("searchPage render")
-    const [page,setPage] = useState(1);
     const [searchParams,setSearchParams] = useSearchParams();
     
     const keyword = searchParams.get("keyword");
@@ -35,7 +34,6 @@ const SearchPage = ({service,grade,order,setService,setGrade,setOrder})=>{
         setSearchParams({keyword: keyword, service: service, grade: grade, order:order});
     },[setSearchParams,keyword,service,grade,order])
     
-    const offset = (page-1) * 5;
     const {isLoading,data} = useQuery(['searchList'],()=>getSearchList(keyword,service,grade,order))
     const onEditWish = (targetId, newWish)=>{
         data?.map((it)=>
@@ -60,12 +58,7 @@ const SearchPage = ({service,grade,order,setService,setGrade,setOrder})=>{
                 <Image src='https://react.semantic-ui.com/images/wireframe/short-paragraph.png' />
             </>
             :<>
-                <SearchList searchList={data?.slice(offset,offset+5)} onEditWish={onEditWish} ></SearchList>
-                <Pagination
-                total = {data?.length}
-                page = {page}
-                setPage = {setPage}>
-                </Pagination>
+                <SearchList searchList={data} onEditWish={onEditWish} ></SearchList>
              </>
             }
         </Container>

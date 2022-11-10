@@ -10,7 +10,7 @@ const ItemContainer = styled.li`
   display: flex;
   margin: 3vh 0px;
   align-items: center;
-  border: 1px solid #f1c644;
+  border: 1px solid #E1E1E1;
   border-radius: 15px;
   background-color: white;
   position: relative;
@@ -28,6 +28,8 @@ const ItemContainer = styled.li`
 const InfoContainer = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  height: 120px;
   margin-left: 3vw;
 `;
 const LinkContainer = styled.div`
@@ -47,14 +49,14 @@ const Text = styled.text`
 const DetailButton = styled(Button)`
   &.ui.button {
     background-color: #e6edff;
-    border: solid #496ace;
+    border: 1px solid #496ace;
     color: #496ace;
   }
 `;
 const ReviewButton = styled(Button)`
   &.ui.button {
     background-color: #eeeeff;
-    border: solid #706ee9;
+    border: 1px solid #706ee9;
     color: #706ee9;
   }
 `;
@@ -62,10 +64,13 @@ const ReviewButton = styled(Button)`
 const CompareButton = styled(Button)`
   &.ui.button {
     background-color: #ffdaec;
-    border: solid #e9539b;
+    border: 1px solid #e9539b;
     color: #e9539b;
   }
 `;
+const PhoneNumberDiv = styled.div`
+  color: #0596FF;
+`
 
 const SearchItem = ({
   nursingHome_id,
@@ -94,41 +99,7 @@ const SearchItem = ({
   console.log("searchItem rendering");
   const [detail_bool, setDetail_bool] = useState(false); //상세정보 페이지 열려있는지 여부
   const [review_bool, setReview_bool] = useState(false); //리뷰페이지 열려있는지 여부
-  const [detailData, setDetailData] = useState({
-    nursingHome_id: 123, // 요양원 id
-    name: "서울요양시설", // 요양원이름
-    addrSiDo: 11, //시도코드
-    addrSiGunGu: 500, // 시군구코드
-    addrDong: 500, // 법정동코드
-    addrRi: 123, // 리코드
-    addrRoad: "서울시 상도로 22길", // 도로명주소
-    addrDetail: "4층", // 상세주소
-    phoneNumber: "010-1234-4567", // 전화번호
-    headCount: 40, // 정원
-    nowCount: 35, // 현원
-    waitingCount: 23, // 대기
-    doctor: 10, // 의사 수
-    nurse: 13, // 간호사 수
-    careGiver: 5, // 요양보호사 수
-    singleRoom: 12, // 1인실
-    doubleRoom: 21, // 2인실
-    tripleRoom: 13, // 3인실
-    quadrupleRoom: 12, // 4인실
-    programRoom: 1, // 프로그램실
-    trainingRoom: 1, // 작업 및 일상동작 훈련실
-    cost: 210000, // 비용
-    reviews: [
-      {
-        review_id: "abd", // 리뷰 id
-        member_id: "vcdc", // 사용자 id
-        nursingHome_id: "sdafasdf", // 요양원 id
-        text: "별로예요!", // 리뷰
-        score: 4, // 평점
-        date: "2022.07.21", // 작성 날짜
-      },
-    ],
-    // word 키워드 추가 예정
-  });
+  const [detailData, setDetailData] = useState();
 
   const handleOnClick = () => {
     onEditWish(nursingHome_id, !wish);
@@ -155,6 +126,7 @@ const SearchItem = ({
         method: "GET",
         headers: {
           accept: "application/json",
+          'Authorization': `Bearer ${localStorage.getItem('access-token')}`
         },
         credentials: "include",
       }
@@ -188,7 +160,7 @@ const SearchItem = ({
       }
     }
     if (flag === false){
-      itemRef.current.style = "border: 1px solid #f1c644";
+      itemRef.current.style = "border: 1px solid #E1E1E1";
     }
   },[compareList])
   
@@ -250,9 +222,7 @@ const SearchItem = ({
         style={{ cursor: "pointer" }}
       >
         <div>
-          <Text>{name}</Text>
-          <Text>{type}</Text>
-          <Text>{grade}</Text>
+          <h5>{name}  ・  요양원</h5>
         </div>
         <div>
           <div>{getStar(score)}</div>
@@ -264,7 +234,7 @@ const SearchItem = ({
           <span>{buildingSubNum? buildingMainNum + '-' +buildingSubNum + " ": buildingMainNum + " "}</span>
           <span>{addrDetail? addrDetail: floor? floor + '층': null}</span>
         </div>
-        <div>{phoneNumber}</div>
+        <PhoneNumberDiv>T.{phoneNumber}</PhoneNumberDiv>
       </InfoContainer>
       <LinkContainer>
         <DetailButton

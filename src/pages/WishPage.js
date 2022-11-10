@@ -28,9 +28,6 @@ const WishPage = ({service, setService, grade, setGrade, order, setOrder})=>{
     const [compareList,setCompareList] = useState([]);
     const {isLoading,data} = useQuery(['wishList'],getWishList)
     
-    const toggleIsBarOpen = ()=>{
-        setBarOpen(!barOpen)
-    }
 
   const onAdd = (nursingHome_id, name) => {
     const newItem = {
@@ -109,7 +106,7 @@ const WishPage = ({service, setService, grade, setGrade, order, setOrder})=>{
         ></SearchList>
         }
       </Container>
-      <CompareBar barOpen = {barOpen} toggleIsBarOpen = {toggleIsBarOpen} compareList = {compareList} onRemoveCompare = {onRemoveCompare}></CompareBar>
+      <CompareBar barOpen = {barOpen} setBarOpen = {setBarOpen} compareList = {compareList} onRemoveCompare = {onRemoveCompare}></CompareBar>
     </PageContainer>
   );
 };

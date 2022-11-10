@@ -114,14 +114,17 @@ function postSignUp(age, careGrade, insuranceClickid, diseaseResult, recipientCl
   });
 }
 
-function postLogout() {
+function postLogout(refresh) {
   return fetch("".concat(SERVER_ADDRESS, "/member/logout"), {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
       'Authorization': "Bearer ".concat(localStorage.getItem('access-token'))
     },
-    credentials: 'include'
+    credentials: 'include',
+    body: JSON.stringify({
+      'refresh': refresh
+    })
   });
 }
 

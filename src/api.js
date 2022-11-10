@@ -89,7 +89,7 @@ export function postSignUp(age,careGrade,insuranceClickid,diseaseResult,recipien
     })
 }
 
-export function postLogout(){
+export function postLogout(refresh){
 
     return fetch(`${SERVER_ADDRESS}/member/logout`,{
         method:'POST',
@@ -98,6 +98,9 @@ export function postLogout(){
             'Authorization': `Bearer ${localStorage.getItem('access-token')}`
         },
         credentials: 'include',
+        body: JSON.stringify({
+            'refresh': refresh,
+        }),
     })
 }
 

@@ -1,15 +1,24 @@
 import { Button, Container, Icon } from "semantic-ui-react";
-import styled from "styled-components";
+import styled,{keyframes} from "styled-components";
 
 
-
+const ChildAppearing = keyframes`
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+`
 const CompareAddBarContainer = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
     background-color: #496ace;
-    transition: all ease-in-out 2s;
+    animation: ${ChildAppearing} 300ms ease-in-out 1;
+    transition: opacity ease-in-out 100ms;
+    
 `
 const TextDiv = styled.div`
     color: #ffffff;
