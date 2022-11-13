@@ -5,6 +5,7 @@ import Detail from "../Detail";
 import { photoarr } from "../photos";
 import Review from "../Review";
 import { postWishItem, deleteWishItem } from "../../api";
+import { useMutation } from "react-query";
 
 const ItemContainer = styled.li`
   display: flex;
@@ -23,6 +24,8 @@ const ItemContainer = styled.li`
     top: 20px;
     left: 120px;
   }
+  
+  transition: all ease-in-out 300ms;
 `;
 
 const InfoContainer = styled.div`
@@ -100,10 +103,11 @@ const SearchItem = ({
   const [detail_bool, setDetail_bool] = useState(false); //상세정보 페이지 열려있는지 여부
   const [review_bool, setReview_bool] = useState(false); //리뷰페이지 열려있는지 여부
   const [detailData, setDetailData] = useState();
-
+  const postWish = useMutation((nursingHome_id)=> postWishItem(nursingHome_id));
+  
   const handleOnClick = () => {
-    onEditWish(nursingHome_id, !wish);
-    postWishItem(nursingHome_id);
+      onEditWish(nursingHome_id, !wish);
+      postWish.mutate(nursingHome_id);
   };
 
   const handleOnAdd = () => {
@@ -111,6 +115,7 @@ const SearchItem = ({
     setBarOpen(true);
     itemRef.current.style = "border: solid 3px #496ACE";
   };
+
 
   const handleRemoveWish = () => {
     if (window.confirm(`${name}을 위시리스트에서 삭제하시겠습니까?`)) {
