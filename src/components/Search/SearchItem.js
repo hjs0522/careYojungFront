@@ -11,7 +11,7 @@ const ItemContainer = styled.li`
   display: flex;
   margin: 3vh 0px;
   align-items: center;
-  border: 1px solid #E1E1E1;
+  border: 1px solid #e1e1e1;
   border-radius: 15px;
   background-color: white;
   position: relative;
@@ -72,8 +72,8 @@ const CompareButton = styled(Button)`
   }
 `;
 const PhoneNumberDiv = styled.div`
-  color: #0596FF;
-`
+  color: #0596ff;
+`;
 
 const SearchItem = ({
   nursingHome_id,
@@ -134,7 +134,7 @@ const SearchItem = ({
         method: "GET",
         headers: {
           accept: "application/json",
-          'Authorization': `Bearer ${localStorage.getItem('access-token')}`
+          Authorization: `Bearer ${localStorage.getItem("access-token")}`,
         },
         credentials: "include",
       }
@@ -158,20 +158,20 @@ const SearchItem = ({
     });
     return result;
   }
-  
-  useEffect(()=>{
-    let flag = false
-    for(let i=0;i<compareList?.length;i++){
-      if (compareList[i].nursingHome_id === nursingHome_id){
-        flag = true
-        break
+
+  useEffect(() => {
+    let flag = false;
+    for (let i = 0; i < compareList?.length; i++) {
+      if (compareList[i].nursingHome_id === nursingHome_id) {
+        flag = true;
+        break;
       }
     }
-    if (flag === false){
+    if (flag === false) {
       itemRef.current.style = "border: 1px solid #E1E1E1";
     }
-  },[compareList])
-  
+  }, [compareList]);
+
   return (
     <ItemContainer ref={itemRef}>
       <img
@@ -179,7 +179,11 @@ const SearchItem = ({
           setDetail_bool(true);
         }}
         style={{ width: "150px", height: "150px", cursor: "pointer" }}
-        src={photoarr[name] + process.env.REACT_APP_GOOGLEMAP_KEY}
+        src={
+          photoarr[name] === 0
+            ? "https://react.semantic-ui.com/images/wireframe/image.png"
+            : photoarr[name] + process.env.REACT_APP_GOOGLEMAP_KEY
+        }
         alt="요양원 사진"
       />
       {isWishPage ? (
@@ -230,17 +234,21 @@ const SearchItem = ({
         style={{ cursor: "pointer" }}
       >
         <div>
-          <h5>{name}  ・  요양원</h5>
+          <h5>{name} ・ 요양원</h5>
         </div>
         <div>
           <div>{getStar(score)}</div>
           <span>{reviewNum}</span>
         </div>
         <div>
-          <span>{addrFront +" "}</span>
+          <span>{addrFront + " "}</span>
           <span>{addrRoad + " "}</span>
-          <span>{buildingSubNum? buildingMainNum + '-' +buildingSubNum + " ": buildingMainNum + " "}</span>
-          <span>{addrDetail? addrDetail: floor? floor + '층': null}</span>
+          <span>
+            {buildingSubNum
+              ? buildingMainNum + "-" + buildingSubNum + " "
+              : buildingMainNum + " "}
+          </span>
+          <span>{addrDetail ? addrDetail : floor ? floor + "층" : null}</span>
         </div>
         <PhoneNumberDiv>T.{phoneNumber}</PhoneNumberDiv>
       </InfoContainer>

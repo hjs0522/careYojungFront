@@ -17,6 +17,7 @@ import PersonInfo from "./pages/PersonInfo";
 import Information from "./pages/Information";
 import InfoDetail from "./pages/InfoDetail";
 import { CookiesProvider } from "react-cookie";
+import Manager from "./pages/Manager";
 
 function App() {
   const [service, setService] = useState(serviceOptions[0].key);
@@ -97,6 +98,7 @@ function App() {
           <Route path="/personInfo" element={<PersonInfo></PersonInfo>}></Route>
           <Route path="/info" element={<Information></Information>}></Route>
           <Route path="/infoDetail" element={<InfoDetail></InfoDetail>}></Route>
+          <Route path="/manager" element={<Manager />}></Route>
         </Routes>
         <Footer></Footer>
       </BrowserRouter>
