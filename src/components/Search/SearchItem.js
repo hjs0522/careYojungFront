@@ -5,7 +5,7 @@ import Detail from "../Detail";
 import { photoarr } from "../photos";
 import Review from "../Review";
 import { postWishItem, deleteWishItem } from "../../api";
-import { useMutation } from "react-query";
+import { useMutation,useQueryClient } from "react-query";
 
 const ItemContainer = styled.li`
   display: flex;
@@ -92,9 +92,7 @@ const SearchItem = ({
   phoneNumber,
   wish,
   onAdd,
-  onEditWish,
   isWishPage,
-  onRemoveWish,
   setBarOpen,
   compareList,
 }) => {
@@ -103,27 +101,32 @@ const SearchItem = ({
   const [detail_bool, setDetail_bool] = useState(false); //상세정보 페이지 열려있는지 여부
   const [review_bool, setReview_bool] = useState(false); //리뷰페이지 열려있는지 여부
   const [detailData, setDetailData] = useState();
-  const postWish = useMutation((nursingHome_id)=> postWishItem(nursingHome_id));
-  
-  const handleOnClick = () => {
-      onEditWish(nursingHome_id, !wish);
-      postWish.mutate(nursingHome_id);
-  };
+  const queryClient = useQueryClient();
+  const postWishMutation = useMutation((nursingHome_id)=> postWishItem(nursingHome_id),{
+    onSuccess: () => {
+      // postTodo가 성공하면 todos로 맵핑된 useQuery api 함수를 실행합니다.
+      queryClient.invalidateQueries('searchList');
+    }
+  });
+  const removeWishMutation = useMutation((nursingHome_id)=> deleteWishItem(nursingHome_id,"ho"));
 
-  const handleOnAdd = () => {
+  const handleOnClick = () => {
+    postWishMutation.mutate(nursingHome_id);
+  };
+  
+  const handleRemoveWish = () => {
+    if (window.confirm(`${name}을 위시리스트에서 삭제하시겠습니까?`)) {
+      removeWishMutation.mutate(nursingHome_id);
+      window.scrollTo(0, 0);
+    }
+  };
+  
+  const handleOnAddCompare = () => {
     onAdd(nursingHome_id, name);
     setBarOpen(true);
     itemRef.current.style = "border: solid 3px #496ACE";
   };
 
-
-  const handleRemoveWish = () => {
-    if (window.confirm(`${name}을 위시리스트에서 삭제하시겠습니까?`)) {
-      onRemoveWish(nursingHome_id);
-      window.scrollTo(0, 0);
-      deleteWishItem(nursingHome_id, "ho");
-    }
-  };
   useEffect(() => {
     fetch(
       `https://api.care-yojung.com/search/detail?id=${nursingHome_id}&service=aaa`,
@@ -207,7 +210,7 @@ const SearchItem = ({
           size="large"
           onClick={(event) => {
             event.stopPropagation();
-            handleOnClick();
+            handleRemoveWish();
           }}
         ></Icon>
       ) : (
@@ -283,7 +286,7 @@ const SearchItem = ({
             size="samll"
             onClick={(event) => {
               event.stopPropagation();
-              handleOnAdd();
+              handleOnAddCompare();
             }}
           >
             <Icon name="shopping cart"></Icon>

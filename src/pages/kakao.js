@@ -23,7 +23,6 @@ const Kakao = (props) =>{
                 console.log(e);
                 console.log('localStorage is not working');
             }
-            console.log(`data value is ${data}`);
             if (data.flag=== false)
             {
                 navigate('/personInfo');
