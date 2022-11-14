@@ -25,6 +25,7 @@ const TitleText = styled.div`
 `
 const SearchPage = ({service,grade,order,setService,setGrade,setOrder})=>{
     console.log("searchPage render")
+    const [loading,setLoading] = useState(true);
     const [searchList,setSearchList] = useState([]);
     const [page,setPage] = useState(1);
     const [searchParams,setSearchParams] = useSearchParams();
@@ -42,6 +43,7 @@ const SearchPage = ({service,grade,order,setService,setGrade,setOrder})=>{
         getSearchList(keyword,service,grade,order).then(
         (data)=>{
             setSearchList(data);
+            setLoading(false);
         })
     },[keyword,service,grade,order]);
     
@@ -60,12 +62,23 @@ const SearchPage = ({service,grade,order,setService,setGrade,setOrder})=>{
                 <TitleText>시설리스트</TitleText>
                 <text>고객님의 추천 시설 리스트 입니다.</text>
             </TextDiv>
-            <SearchList searchList={searchList.slice(offset,offset+5)} onEditWish={onEditWish} ></SearchList>
-            <Pagination
-                total = {searchList.length}
-                page = {page}
-                setPage = {setPage}
-            ></Pagination>
+            {loading?
+                <>
+                <Dimmer active>
+                    <Loader>Loading</Loader>
+                </Dimmer>
+                <Image src='https://react.semantic-ui.com/images/wireframe/short-paragraph.png' />
+            </>
+            :
+            <>
+                <SearchList searchList={searchList.slice(offset,offset+5)} onEditWish={onEditWish} ></SearchList>
+                <Pagination
+                    total = {searchList.length}
+                    page = {page}
+                    setPage = {setPage}
+                ></Pagination>
+            </>
+            }
         </Container>
     </PageContainer>
     )

@@ -7,6 +7,7 @@ import MainPhoto from "../components/MainPhoto";
 import { useRecoilValue } from "recoil";
 import { loginState } from "../atom";
 import MyPage from "./MyPage";
+import { useState } from "react";
 
 const arr = [
   {
@@ -111,9 +112,10 @@ const StyledMainpage = styled.div`
 
 function Mainpage() {
   const login = useRecoilValue(loginState);
+  const [arr,setArr] = useState(JSON.parse(localStorage.getItem('recent')));
   return (
     <StyledMainpage>
-      {login ? <Recentlist arr={arr} /> : <MainPhoto /> }
+      {login ? (arr?<Recentlist arr={arr}/> : <MainPhoto></MainPhoto>) : <MainPhoto /> }
       <Popularlist arr={arr1} />
       <Themelist arr={arr2} />
 
