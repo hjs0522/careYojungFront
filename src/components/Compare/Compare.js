@@ -1,4 +1,4 @@
-import {Modal,Icon, Grid, Button} from 'semantic-ui-react'
+import {Modal,Icon, Grid, Button, Container} from 'semantic-ui-react'
 import {useState} from 'react'
 import styled from 'styled-components'
 import { getCompare } from '../../api'
@@ -136,24 +136,36 @@ function Compare({compareList}){
                         ))}
                     </Grid>
                 </Styledheader>
-                <div style={{top:'6%',position:'sticky',padding:'2%',backgroundColor:'white',zIndex:'4'}}>
+                <div style={{top:'6%',position:'sticky',padding:'2%',backgroundColor:'white',zIndex:'4' ,border:'1px solid #e1e1e1'}}>
                     <Grid columns={arrSize}>
                         {arr.map((i)=>(
                             <Grid.Column>
-                            <StyledText style={{display:'block',marginBottom:"8%"}}>{i.name}</StyledText>
-                            <StyledText style={{fontSize:'18px',display:'block'}}>{
-                            <>
-                                <Text>{i.addrSiDo}</Text>
-                                <Text>{i.addrSiGunGu}</Text>
-                                <Text>{i.addrRoad}</Text>
-                                <Text>{i.buildingMainNum}</Text>
-                            </>
-                            }</StyledText>
-                            <StyledText style={{color:'#0596FF',display:'block'}}>{i.phoneNumber}</StyledText>
+                                <StyledText style={{display:'block'}}>{i.name}</StyledText>
                             </Grid.Column>
                         ))}
                     </Grid>
-                    </div>
+                    <Grid columns={arrSize}>
+                        {arr.map((i)=>(
+                            <Grid.Column>
+                                <StyledText style={{fontSize:'18px',display:'block'}}>{
+                                    <div>
+                                        <span>{i.addrFront +" "}</span>
+                                        <span>{i.addrRoad + " "}</span>
+                                        <span>{i.buildingSubNum? i.buildingMainNum + '-' +i.buildingSubNum + " ": i.buildingMainNum + " "}</span>
+                                        <span>{i.addrDetail? i.addrDetail: i.floor? i.floor + '층': null}</span>
+                                    </div>
+                                }</StyledText>
+                            </Grid.Column>
+                        ))}
+                    </Grid>
+                    <Grid columns={arrSize}>
+                        {arr.map((i)=>(
+                            <Grid.Column>
+                            <StyledText style={{color:'#0596FF',display:'block'}}>T.{i.phoneNumber}</StyledText>
+                            </Grid.Column>
+                        ))}
+                    </Grid>
+                </div>
                 <StyledBox> {/* 예상비용 */}
                     <StyledText style={{fontSize:'24px',paddingLeft:'2%',paddingTop:'3%'}}>예상비용</StyledText>
                     <StyledText style={{fontSize:'18px',paddingLeft:'1%',color:'#999999'}}>(30일)</StyledText>
@@ -171,31 +183,31 @@ function Compare({compareList}){
                 <StyledBox> {/* 시설정원 */}
                     <StyledText style={{fontSize:'24px',paddingLeft:'2%',paddingTop:'3%'}}>시설정원</StyledText>
                     <PersonBlock>
+                        <Grid columns={arrSize} divided>
+                            {arr.map((i,index)=>(
+                                <Grid.Column>
+                                    {index ===0 ? <StyledText style={{marginLeft:'8%'}}>정원</StyledText>: null}
+                                    <StyledText style={{float:'right',marginRight:'8%'}}><span style={{color:'#E9539B'}}>{i.headCount}</span>명</StyledText>
+                                </Grid.Column>
+                            ))}
+                        </Grid>
+                    </PersonBlock>
+                    <PersonBlock>
                     <Grid columns={arrSize} divided>
-                        {arr.map((i)=>(
+                        {arr.map((i,index)=>(
                             <Grid.Column>
-                                {i.key===0 ? <StyledText style={{marginLeft:'8%'}}>정원</StyledText>: null}
-                                <StyledText style={{float:'right',marginRight:'8%'}}>{i.headCount}명</StyledText>
+                                {index===0 ? <StyledText style={{marginLeft:'8%'}}>현원</StyledText>: null}
+                                <StyledText style={{float:'right',marginRight:'8%'}}><span style={{color:'#E9539B'}}>{i.nowCount}</span>명</StyledText>
                             </Grid.Column>
                         ))}
                     </Grid>
                     </PersonBlock>
                     <PersonBlock>
                     <Grid columns={arrSize} divided>
-                        {arr.map((i)=>(
+                        {arr.map((i,index)=>(
                             <Grid.Column>
-                                {i.key===0 ? <StyledText style={{marginLeft:'8%'}}>현원</StyledText>: null}
-                                <StyledText style={{float:'right',marginRight:'8%'}}>{i.nowCount}명</StyledText>
-                            </Grid.Column>
-                        ))}
-                    </Grid>
-                    </PersonBlock>
-                    <PersonBlock>
-                    <Grid columns={arrSize} divided>
-                        {arr.map((i)=>(
-                            <Grid.Column>
-                                {i.key===0 ? <StyledText style={{marginLeft:'8%'}}>대기</StyledText>: null}
-                                <StyledText style={{float:'right',marginRight:'8%'}}>{i.waitingCount}명</StyledText>
+                                {index===0 ? <StyledText style={{marginLeft:'8%'}}>대기</StyledText>: null}
+                                <StyledText style={{float:'right',marginRight:'8%'}}><span style={{color:'#E9539B'}}>{i.waitingCount}</span>명</StyledText>
                             </Grid.Column>
                         ))}
                     </Grid>
@@ -206,40 +218,42 @@ function Compare({compareList}){
                     <StyledText style={{fontSize:'24px',paddingLeft:'2%',paddingTop:'3%'}}>인력현황</StyledText>
                     <StyledText style={{fontSize:'18px',paddingLeft:'1%',color:'#999999'}}>(1인당 담당하는 입소자 수)</StyledText>
                     <PersonBlock style={{backgroundColor:'white',border:'solid 1px #CCCCCC',paddingTop:'1%',paddingBottom:'1%'}}>
-                    <Grid columns={arrSize} divided>
-                        {arr.map((i)=>(
-                            <Grid.Column>
-                                {i.key===0 ? <>
-                                    <StyledText style={{marginLeft:'8%'}}>의사</StyledText>
-                                    <StyledText style={{fontSize:'18px',marginLeft:'5%',color:'#999999'}}>평균 30명</StyledText>
-                                    </>: null}
-                                <StyledText style={{float:'right',marginRight:'8%'}}>{i.doctor}명</StyledText>
-                            </Grid.Column>
-                        ))}
-                    </Grid>
-                    </PersonBlock>
-                    <PersonBlock style={{backgroundColor:'white',border:'solid 1px #CCCCCC',paddingTop:'1%',paddingBottom:'1%'}}>
-                    <Grid columns={arrSize} divided>
-                        {arr.map((i)=>(
-                            <Grid.Column>
-                                {i.key===0 ? <>
-                                    <StyledText style={{marginLeft:'8%'}}>간호사</StyledText>
-                                    <StyledText style={{fontSize:'18px',marginLeft:'5%',color:'#999999'}}>평균 30명</StyledText>
-                                    </>: null}
-                                <StyledText style={{float:'right',marginRight:'8%'}}>{i.nurse}명</StyledText>
-                            </Grid.Column>
-                        ))}
-                    </Grid>
+                        <Grid columns={arrSize} divided>
+                            {arr.map((i,index)=>(
+                                <Grid.Column>
+                                    {index===0 ? <>
+                                        <StyledText style={{marginLeft:'8%'}}>의사</StyledText>
+                                        <StyledText style={{fontSize:'18px',marginLeft:'5%',color:'#999999'}}>평균 30명</StyledText>
+                                        </>: null}
+                                    <StyledText style={{float:'right',marginRight:'8%'}}><span style={{color:'#E9539B'}}>{i.doctor}</span>명</StyledText>
+                                </Grid.Column>
+                            ))}
+                        </Grid>
                     </PersonBlock>
                     <PersonBlock style={{backgroundColor:'white',border:'solid 1px #CCCCCC',paddingTop:'1%',paddingBottom:'1%'}}>
                         <Grid columns={arrSize} divided>
-                            {arr.map((i)=>(
+                            {arr.map((i,index)=>(
                                 <Grid.Column>
-                                    {i.key===0 ? <>
-                                        <StyledText style={{marginLeft:'8%'}}>요양보호사</StyledText>
+                                    {index===0 ? <>
+                                        <StyledText style={{marginLeft:'8%'}}>간호사</StyledText>
                                         <StyledText style={{fontSize:'18px',marginLeft:'5%',color:'#999999'}}>평균 30명</StyledText>
                                         </>: null}
-                                    <StyledText style={{float:'right',marginRight:'8%'}}>{i.careGiver}명</StyledText>
+                                    <StyledText style={{float:'right',marginRight:'8%'}}><span style={{color:'#E9539B'}}>{i.nurse}</span>명</StyledText>
+                                </Grid.Column>
+                            ))}
+                        </Grid>
+                    </PersonBlock>
+                    <PersonBlock style={{backgroundColor:'white',border:'solid 1px #CCCCCC',paddingTop:'1%',paddingBottom:'1%'}}>
+                        <Grid columns={arrSize} divided>
+                            {arr.map((i,index)=>(
+                                <Grid.Column>
+                                    {index===0 ? 
+                                    <>
+                                        <StyledText style={{marginLeft:'8%'}}>요양보호사</StyledText>
+                                        <StyledText style={{fontSize:'18px',marginLeft:'5%',color:'#999999'}}>평균 30명</StyledText>
+                                    </>: null
+                                    }
+                                    <StyledText style={{float:'right',marginRight:'8%'}}><span style={{color:'#E9539B'}}>{i.careGiver}</span>명</StyledText>
                                 </Grid.Column>
                             ))}
                         </Grid>
