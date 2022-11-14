@@ -1,13 +1,14 @@
 import styled from "styled-components";
 import SearchBar from "./Search/SearchBar";
 import image from "./main.jpg";
+import { Button } from "semantic-ui-react";
 
-const StyledMainPhoto = styled.div({
-  height: "450px",
-});
+const StyledMainPhoto = styled.div`
+  height: 400px;
+`;
 
 const StyledMainImage = styled.div`
-  height: 400px;
+  height: 350px;
   width: 100%;
   objectfit: none;
   background-image: url(${image});
@@ -16,10 +17,14 @@ const StyledMainImage = styled.div`
 
 const StyledMainbox = styled.div`
   width: 100%;
-  height: 400px;
+  height: 350px;
   background-color: #ffffff;
   background-color: rgba(120, 120, 120, 0.5);
   backdrop-filter: blur(3px);
+  transition: all 1.5s;
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
 `;
 
 const StyledTextBox = styled.div`
@@ -47,9 +52,26 @@ function MainPhoto() {
       <StyledMainImage>
         <StyledMainbox>
           <StyledTextBox>
+            <br />
             <StyledH1>케어요정</StyledH1>
             <br />
             <StyledText>"쉽고 빠르게 우리 가족을 위한 요양시설을"</StyledText>
+            <StyledText>
+              당신의 소중한 가족이 머물 곳을 쉽게 알아보세요!
+            </StyledText>
+            {/* <div style={{ marginTop: "50px" }}>
+              <button
+                style={{
+                  width: "150px",
+                  height: "40px",
+                  background: "#5D79D0",
+                  borderRadius: "15px",
+                  border: "none",
+                }}
+              >
+                로그인
+              </button>
+            </div> */}
             {/* <div style={{ marginTop: "50px", width: "60%", height: "200px" }}>
               <SearchBar />
             </div> */}
