@@ -140,8 +140,8 @@ export function getCompare(svcList){
       }).then((response) => response.json());
 }
 
-export function getRecentList(){
-    return fetch(`${SERVER_ADDRESS}/main/recent`,{
+export function getMember(){
+    return fetch(`${SERVER_ADDRESS}/member`,{
         method: "GET",
         headers: {
           accept: "application/json",

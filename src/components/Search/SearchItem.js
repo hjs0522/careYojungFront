@@ -5,7 +5,7 @@ import Detail from "../Detail";
 import { photoarr } from "../photos";
 import Review from "../Review";
 import { postWishItem, deleteWishItem } from "../../api";
-
+import { useMediaQuery } from "react-responsive";
 const HeartAppearing = keyframes`
     from {
         opacity: 0;
@@ -30,6 +30,29 @@ const ItemContainer = styled.li`
     position: absolute;
     top: 20px;
     left: 120px;
+    animation: ${HeartAppearing} 300ms ease-in-out 1;
+    transition: opacity ease-in-out 100ms;
+  }
+  
+  transition: all ease-in-out 300ms;
+`;
+
+const MobileItemContainer = styled.li`
+  display: flex;
+  margin: 3vh 0px;
+  align-items: center;
+  border: 1px solid #E1E1E1;
+  border-radius: 15px;
+  background-color: white;
+  position: relative;
+  & img {
+    margin: 1vh;
+  }
+
+  & > i {
+    position: absolute;
+    top: 20px;
+    left: 80px;
     animation: ${HeartAppearing} 300ms ease-in-out 1;
     transition: opacity ease-in-out 100ms;
   }
@@ -161,6 +184,103 @@ const SearchItem = ({
       itemRef.current.style = "border: 1px solid #E1E1E1";
     }
   },[compareList])
+  
+  const isMobile = useMediaQuery({
+    query : "(max-width:767px)"
+  });
+  
+  if(isMobile){
+    return (
+      <MobileItemContainer ref={itemRef}>
+        <img
+          onClick={() => {
+            setDetail_bool(true);
+          }}
+          style={{ width: "100px", height: "100px", cursor: "pointer" }}
+          src={photoarr[name] === 0
+            ? "https://react.semantic-ui.com/images/wireframe/image.png"
+            : photoarr[name] + process.env.REACT_APP_GOOGLEMAP_KEY}
+          alt="요양원 사진"
+        />
+        {isWishPage ? (
+          wish ? (
+            <Icon
+              name="heart"
+              color="red"
+              size="large"
+              onClick={(event) => {
+                event.stopPropagation(); // onclick이벤트를 가지고 있는 블럭이 겹쳐잇을때 제일 위에 하나만 실행 되게 해줌.
+                handleRemoveWish();
+              }}
+            ></Icon>
+          ) : (
+            <Icon
+              name="heart outline"
+              size="large"
+              onClick={(event) => {
+                event.stopPropagation();
+                handleOnClick();
+              }}
+            ></Icon>
+          )
+        ) : wish ? (
+          <Icon
+            name="heart"
+            color="red"
+            size="large"
+            onClick={(event) => {
+              event.stopPropagation();
+              handleRemoveWishInSearch();
+            }}
+          ></Icon>
+        ) : (
+          <Icon
+            name="heart outline"
+            size="large"
+            onClick={(event) => {
+              event.stopPropagation();
+              handleOnClick();
+            }}
+          ></Icon>
+        )}
+        <InfoContainer
+          onClick={() => {
+            setDetail_bool(true);
+          }}
+          style={{ cursor: "pointer" }}
+        >
+          <div>
+            <h5>{name}  ・  요양원</h5>
+          </div>
+          <div>
+            <div>{getStar(score)}</div>
+            <span>{reviewNum}</span>
+          </div>
+          <div>
+            <span>{addrFront +" "}</span>
+            <span>{addrRoad + " "}</span>
+            <span>{buildingSubNum? buildingMainNum + '-' +buildingSubNum + " ": buildingMainNum + " "}</span>
+            <span>{addrDetail? addrDetail: floor? floor + '층': null}</span>
+          </div>
+          <PhoneNumberDiv>T.{phoneNumber}</PhoneNumberDiv>
+        </InfoContainer>
+        <Review
+          nursingHome_id={nursingHome_id}
+          review_bool={review_bool}
+          setReview_bool={setReview_bool}
+          name={name}
+          addrRoad={addrRoad}
+        />
+        <Detail
+          nursingHome_id={nursingHome_id}
+          detail_bool={detail_bool}
+          setDetail_bool={setDetail_bool}
+          name={name}
+          detailData={detailData}
+        />
+      </MobileItemContainer>
+    );
+  }
   
   return (
     <ItemContainer ref={itemRef}>

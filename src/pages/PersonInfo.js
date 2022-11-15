@@ -1,9 +1,10 @@
 import styled from "styled-components";
 import { Dropdown } from "semantic-ui-react";
 import { useState,useEffect,useRef } from "react";
-import { postSignUp } from "../api";
+import { getMember, postSignUp } from "../api";
 import { useNavigate } from "react-router-dom";
 import {useCookies}from'react-cookie';
+import {useQuery } from "react-query";
 const StyledPersonInfo = styled.div({
   paddingBottom: "100px",
   paddingTop: "100px",
@@ -113,6 +114,8 @@ const careRatingOption = [
 ];
 
 function PersonInfo(){
+  const [isLoading,data] = useQuery(["member"],getMember);
+  
     //이름input 관리
     const [name,setName] = useState('');
     const nameInput = useRef();
@@ -432,7 +435,7 @@ function PersonInfo(){
                     <StyledText>희망지역</StyledText>
                     <input ref={locationInput} onChange={onChangeLocation} style={{width:'100%',height:'40px',display:'block',border:'1px solid #cccccc',borderRadius:'10px'}}  />
                 </StyledBox>
-                {finishState?<StyledFinishButton style={{backgroundColor:'#496ace',color:'white'}} onClick={handlerOnClick}>회원가입 완료</StyledFinishButton>:<StyledFinishButton onClick={()=>{alert("항목을 전부 체크해주세요")}}>회원가입 완료</StyledFinishButton>}
+                {finishState?<StyledFinishButton style={{backgroundColor:'#496ace',color:'white'}} onClick={handlerOnClick}>제출하기</StyledFinishButton>:<StyledFinishButton onClick={()=>{alert("항목을 전부 체크해주세요")}}>제출하기</StyledFinishButton>}
             </StyledBody>
         </StyledPersonInfo>
     )

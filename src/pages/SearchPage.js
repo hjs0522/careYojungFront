@@ -73,7 +73,7 @@ const SearchPage = ({service,grade,order,setService,setGrade,setOrder})=>{
             <>
                 <SearchList searchList={searchList.slice(offset,offset+5)} onEditWish={onEditWish} ></SearchList>
                 <Pagination
-                    total = {searchList.length}
+                    total = {searchList.length>30?30:searchList.length}
                     page = {page}
                     setPage = {setPage}
                 ></Pagination>

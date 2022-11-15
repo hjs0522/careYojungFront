@@ -8,6 +8,7 @@ import {
 } from "../../searchOptions";
 import { useSearchParams } from "react-router-dom";
 import { useEffect } from "react";
+import { useMediaQuery } from "react-responsive";
 const DropdownBack = styled.div`
   background-color: white;
 `;
@@ -63,6 +64,14 @@ const DropDownRow = (props) => {
     props.setOrder(order);
   };
 
+  const isMobile = useMediaQuery({
+    query : "(max-width:767px)"
+  });
+  
+  if (isMobile){
+    return<></>
+  }
+  
   return (
     <DropdownBack>
       <DropdownContainer>
