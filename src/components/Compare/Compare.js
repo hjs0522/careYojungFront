@@ -106,7 +106,11 @@ function Compare({ compareList }) {
   return (
     <Modal
       onClose={() => setOpen(false)}
-      onOpen={() => setOpen(true)}
+      onOpen={() => {
+        console.log(arr)
+        if(arr.length === 2 || arr.length ===3){
+            return setOpen(true)}
+        }}
       open={open}
       size="large"
       trigger={<CompareButton onClick={handleOnClick}>비교하기</CompareButton>}

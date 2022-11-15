@@ -1,4 +1,3 @@
-
 import SearchItem from "./SearchItem";
 
 

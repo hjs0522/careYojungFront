@@ -132,6 +132,7 @@ function Detail({ img, name, loc, id, detail_bool, setDetail_bool }) {
     item.scrollIntoView({ behavior: "smooth" });
   };
   const [open, setOpen] = useState(false);
+  
   useEffect(() => {
     setOpen(detail_bool);
   }, [detail_bool]);

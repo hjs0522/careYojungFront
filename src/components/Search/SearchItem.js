@@ -1,17 +1,24 @@
 import { useEffect, useRef, useState } from "react";
 import { Button, Icon } from "semantic-ui-react";
-import styled from "styled-components";
+import styled,{keyframes} from "styled-components";
 import Detail from "../Detail";
 import { photoarr } from "../photos";
 import Review from "../Review";
 import { postWishItem, deleteWishItem } from "../../api";
-import { useMutation,useQueryClient } from "react-query";
 
+const HeartAppearing = keyframes`
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+`
 const ItemContainer = styled.li`
   display: flex;
   margin: 3vh 0px;
   align-items: center;
-  border: 1px solid #e1e1e1;
+  border: 1px solid #E1E1E1;
   border-radius: 15px;
   background-color: white;
   position: relative;
@@ -23,6 +30,8 @@ const ItemContainer = styled.li`
     position: absolute;
     top: 20px;
     left: 120px;
+    animation: ${HeartAppearing} 300ms ease-in-out 1;
+    transition: opacity ease-in-out 100ms;
   }
   
   transition: all ease-in-out 300ms;
@@ -72,8 +81,8 @@ const CompareButton = styled(Button)`
   }
 `;
 const PhoneNumberDiv = styled.div`
-  color: #0596ff;
-`;
+  color: #0596FF;
+`
 
 const SearchItem = ({
   nursingHome_id,
@@ -92,7 +101,9 @@ const SearchItem = ({
   phoneNumber,
   wish,
   onAdd,
+  onEditWish,
   isWishPage,
+  onRemoveWish,
   setBarOpen,
   compareList,
 }) => {
@@ -101,49 +112,28 @@ const SearchItem = ({
   const [detail_bool, setDetail_bool] = useState(false); //상세정보 페이지 열려있는지 여부
   const [review_bool, setReview_bool] = useState(false); //리뷰페이지 열려있는지 여부
   const [detailData, setDetailData] = useState();
-  const queryClient = useQueryClient();
-  const postWishMutation = useMutation((nursingHome_id)=> postWishItem(nursingHome_id),{
-    onSuccess: () => {
-      // postTodo가 성공하면 todos로 맵핑된 useQuery api 함수를 실행합니다.
-      queryClient.invalidateQueries('searchList');
-    }
-  });
-  const removeWishMutation = useMutation((nursingHome_id)=> deleteWishItem(nursingHome_id,"ho"));
 
   const handleOnClick = () => {
-    postWishMutation.mutate(nursingHome_id);
+    onEditWish(nursingHome_id, !wish);
+    postWishItem(nursingHome_id);
   };
-  
-  const handleRemoveWish = () => {
-    if (window.confirm(`${name}을 위시리스트에서 삭제하시겠습니까?`)) {
-      removeWishMutation.mutate(nursingHome_id);
-      window.scrollTo(0, 0);
-    }
-  };
-  
-  const handleOnAddCompare = () => {
+
+  const handleOnAdd = () => {
     onAdd(nursingHome_id, name);
     setBarOpen(true);
     itemRef.current.style = "border: solid 3px #496ACE";
   };
-
-  useEffect(() => {
-    fetch(
-      `https://api.care-yojung.com/search/detail?id=${nursingHome_id}&service=aaa`,
-      {
-        method: "GET",
-        headers: {
-          accept: "application/json",
-          Authorization: `Bearer ${localStorage.getItem("access-token")}`,
-        },
-        credentials: "include",
-      }
-    )
-      .then((res) => res.json())
-      .then((res) => {
-        setDetailData(res);
-      });
-  }, [detail_bool]);
+  
+  const handleRemoveWishInSearch = ()=>{
+    onEditWish(nursingHome_id, !wish);
+    deleteWishItem(nursingHome_id, "ho");
+  }
+  const handleRemoveWish = () => {
+    if (window.confirm(`${name}을 위시리스트에서 삭제하시겠습니까?`)) {
+      onRemoveWish(nursingHome_id);
+      deleteWishItem(nursingHome_id, "ho");
+    }
+  };
 
   function getStar(num) {
     const starArr = [0, 0, 0, 0, 0];
@@ -158,20 +148,20 @@ const SearchItem = ({
     });
     return result;
   }
-
-  useEffect(() => {
-    let flag = false;
-    for (let i = 0; i < compareList?.length; i++) {
-      if (compareList[i].nursingHome_id === nursingHome_id) {
-        flag = true;
-        break;
+  
+  useEffect(()=>{
+    let flag = false
+    for(let i=0;i<compareList?.length;i++){
+      if (compareList[i].nursingHome_id === nursingHome_id){
+        flag = true
+        break
       }
     }
-    if (flag === false) {
+    if (flag === false){
       itemRef.current.style = "border: 1px solid #E1E1E1";
     }
-  }, [compareList]);
-
+  },[compareList])
+  
   return (
     <ItemContainer ref={itemRef}>
       <img
@@ -179,11 +169,9 @@ const SearchItem = ({
           setDetail_bool(true);
         }}
         style={{ width: "150px", height: "150px", cursor: "pointer" }}
-        src={
-          photoarr[name] === 0
-            ? "https://react.semantic-ui.com/images/wireframe/image.png"
-            : photoarr[name] + process.env.REACT_APP_GOOGLEMAP_KEY
-        }
+        src={photoarr[name] === 0
+          ? "https://react.semantic-ui.com/images/wireframe/image.png"
+          : photoarr[name] + process.env.REACT_APP_GOOGLEMAP_KEY}
         alt="요양원 사진"
       />
       {isWishPage ? (
@@ -214,7 +202,7 @@ const SearchItem = ({
           size="large"
           onClick={(event) => {
             event.stopPropagation();
-            handleRemoveWish();
+            handleRemoveWishInSearch();
           }}
         ></Icon>
       ) : (
@@ -234,21 +222,17 @@ const SearchItem = ({
         style={{ cursor: "pointer" }}
       >
         <div>
-          <h5>{name} ・ 요양원</h5>
+          <h5>{name}  ・  요양원</h5>
         </div>
         <div>
           <div>{getStar(score)}</div>
           <span>{reviewNum}</span>
         </div>
         <div>
-          <span>{addrFront + " "}</span>
+          <span>{addrFront +" "}</span>
           <span>{addrRoad + " "}</span>
-          <span>
-            {buildingSubNum
-              ? buildingMainNum + "-" + buildingSubNum + " "
-              : buildingMainNum + " "}
-          </span>
-          <span>{addrDetail ? addrDetail : floor ? floor + "층" : null}</span>
+          <span>{buildingSubNum? buildingMainNum + '-' +buildingSubNum + " ": buildingMainNum + " "}</span>
+          <span>{addrDetail? addrDetail: floor? floor + '층': null}</span>
         </div>
         <PhoneNumberDiv>T.{phoneNumber}</PhoneNumberDiv>
       </InfoContainer>
@@ -270,6 +254,26 @@ const SearchItem = ({
               .then((res) => res.json())
               .then((res) => {
                 setDetailData(res);
+                let recent = JSON.parse(localStorage.getItem('recent'));
+                if (recent === null){
+                  recent = []
+                }
+                const obj = {
+                  "nursingHome_id":nursingHome_id,
+                  "name":name,
+                  "addrFront": addrFront, 
+                }
+                if (recent.some((element)=> element.nursingHome_id === obj.nursingHome_id)){
+                  recent = recent.filter((element)=> element.nursingHome_id !== obj.nursingHome_id);
+                  recent.push(obj)
+                }
+                else{
+                  if (recent.length === 10){
+                    recent.shift();
+                  }
+                  recent.push(obj);
+                }
+                localStorage.setItem('recent',JSON.stringify(recent))
               });
             console.log(detailData);
           }}
@@ -294,7 +298,7 @@ const SearchItem = ({
             size="samll"
             onClick={(event) => {
               event.stopPropagation();
-              handleOnAddCompare();
+              handleOnAdd();
             }}
           >
             <Icon name="shopping cart"></Icon>

@@ -39,7 +39,6 @@ const CompareAddBarClose = ({handleOnclick,compareList})=>
     return(
             <Container>
                 <CompareAddBarContainer>
-                    <div></div>
                     <TextDiv>시설비교함에 <texct>{compareList.length}</texct>개의 시설이 담겨있습니다.</TextDiv>
                     <OpenButton onClick={handleOnclick}>열기 <Icon name="angle up"></Icon></OpenButton>
                 </CompareAddBarContainer>

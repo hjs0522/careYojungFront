@@ -19,28 +19,28 @@ var serviceOptions = [{
 }];
 exports.serviceOptions = serviceOptions;
 var gradeOptions = [{
-  key: "0",
+  key: 0,
   text: "전체",
-  value: "0"
+  value: 0
 }, {
   key: 1,
-  text: 1,
+  text: "A",
   value: 1
 }, {
   key: 2,
-  text: 2,
+  text: "B",
   value: 2
 }, {
   key: 3,
-  text: 3,
+  text: "C",
   value: 3
 }, {
   key: 4,
-  text: 4,
+  text: "D",
   value: 4
 }, {
   key: 5,
-  text: 5,
+  text: "E",
   value: 5
 }];
 exports.gradeOptions = gradeOptions;
