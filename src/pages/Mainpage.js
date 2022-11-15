@@ -7,6 +7,7 @@ import MainPhoto from "../components/MainPhoto";
 import { useRecoilValue } from "recoil";
 import { loginState } from "../atom";
 import MyPage from "./MyPage";
+import WishPage from "./WishPage";
 
 const arr = [
   {
@@ -113,7 +114,7 @@ function Mainpage() {
   const login = useRecoilValue(loginState);
   return (
     <StyledMainpage>
-      {login ? <Recentlist arr={arr} /> : <MainPhoto /> }
+      {login ? <Recentlist arr={arr} /> : <MainPhoto />}
       <Popularlist arr={arr1} />
       <Themelist arr={arr2} />
 
