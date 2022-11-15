@@ -12,7 +12,7 @@ exports.postSignUp = postSignUp;
 exports.postLogout = postLogout;
 exports.getMap = getMap;
 exports.getCompare = getCompare;
-exports.getRecentList = getRecentList;
+exports.getMember = getMember;
 exports.getPopularList = getPopularList;
 exports.postReissuance = postReissuance;
 var SERVER_ADDRESS = 'https://api.care-yojung.com';
@@ -166,8 +166,8 @@ function getCompare(svcList) {
   });
 }
 
-function getRecentList() {
-  return fetch("".concat(SERVER_ADDRESS, "/main/recent"), {
+function getMember() {
+  return fetch("".concat(SERVER_ADDRESS, "/member"), {
     method: "GET",
     headers: {
       accept: "application/json",
