@@ -1,16 +1,23 @@
 import { Link } from "react-router-dom";
 import { useRecoilState } from "recoil";
-import { Container, Icon } from "semantic-ui-react";
+import { Container, Icon} from "semantic-ui-react";
 import styled from "styled-components";
 import { loginState } from "../../atom";
 import SearchBar from "../Search/SearchBar";
 import { postLogout } from "../../api";
-
+import { useMediaQuery } from "react-responsive";
+import { useState } from "react";
 const HeaderDiv = styled.div`
   &.ui.top.fixed.menu {
     background: linear-gradient(to bottom right, #496ace, #715deb);
   }
 `;
+
+const MobileHeaderDiv = styled.div`
+  & {
+    background: linear-gradient(to bottom right, #496ace, #715deb);
+  }   
+`
 
 const FlexContainer = styled.div`
   display: flex;
@@ -23,11 +30,22 @@ const FlexContainer = styled.div`
   }
 `;
 
+const MobileFlexContainer = styled.div`
+  display: flex;
+  height: 8vh;
+  justify-content: space-between;
+  align-items: center;
+  & > .ui.form {
+    width: 80%;
+  }
+`
 const Logo = styled(Link)`
   font-family: "Jalnan";
   font-size: x-large;
   color: white;
 `;
+
+
 
 const HeaderButton = styled.button`
   border: none;
@@ -46,6 +64,13 @@ const HeaderButtonContainer = styled.div`
   align-items: center;
 `;
 
+const MobileHeaderButtonContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  
+`;
+
 const Header = ({service,grade,order}) =>{
     const [login,setLogin] = useRecoilState(loginState);
     const logoutHandler = ()=>{
@@ -57,7 +82,42 @@ const Header = ({service,grade,order}) =>{
           localStorage.removeItem('refresh-token');
       
     }
-    console.log(service,grade,order)
+
+    const isMobile = useMediaQuery({
+      query : "(max-width:767px)"
+    });
+    
+    if (isMobile){
+      return(
+        <MobileHeaderDiv >
+          <Container>
+            <MobileFlexContainer>
+              <SearchBar service={service} grade={grade} order={order}></SearchBar>
+              <HeaderButtonContainer>
+                {login ? (
+                  <>
+                    <Icon name="sign-out"></Icon>
+                    <HeaderButton onClick={logoutHandler}>로그아웃</HeaderButton>
+                    <Icon name="heart outline"></Icon>
+                    <HeaderLink to={"/wish"}>위시리스트</HeaderLink>
+                    <Icon name="user outline"></Icon>
+                    <HeaderLink to={"/mypage"}>마이페이지</HeaderLink>
+                  </>
+                ) : (
+                  <>
+                    <Icon name="sign in"></Icon>
+                    <HeaderLink to={"/login"}>
+                      로그인
+                    </HeaderLink>
+                  </>
+                )}
+              </HeaderButtonContainer>
+            </MobileFlexContainer>
+          </Container>
+        </MobileHeaderDiv>
+      );
+    }
+    
     return(
     <HeaderDiv className="ui top fixed menu">
       <Container>
