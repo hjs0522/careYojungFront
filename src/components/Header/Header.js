@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useRecoilState } from "recoil";
-import { Container, Icon} from "semantic-ui-react";
+import { Container, Icon } from "semantic-ui-react";
 import styled from "styled-components";
 import { loginState } from "../../atom";
 import SearchBar from "../Search/SearchBar";
@@ -16,8 +16,8 @@ const HeaderDiv = styled.div`
 const MobileHeaderDiv = styled.div`
   & {
     background: linear-gradient(to bottom right, #496ace, #715deb);
-  }   
-`
+  }
+`;
 
 const FlexContainer = styled.div`
   display: flex;
@@ -38,14 +38,12 @@ const MobileFlexContainer = styled.div`
   & > .ui.form {
     width: 80%;
   }
-`
+`;
 const Logo = styled(Link)`
   font-family: "Jalnan";
   font-size: x-large;
   color: white;
 `;
-
-
 
 const HeaderButton = styled.button`
   border: none;
@@ -68,57 +66,57 @@ const MobileHeaderButtonContainer = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  
 `;
 
-const Header = ({service,grade,order}) =>{
-    const [login,setLogin] = useRecoilState(loginState);
-    const logoutHandler = ()=>{
-          setLogin(false)
-          const refresh = localStorage.getItem('refresh-token');
-          postLogout(refresh);
-          localStorage.removeItem('user');
-          localStorage.removeItem('access-token');
-          localStorage.removeItem('refresh-token');
-      
-    }
+const Header = ({ service, grade, order }) => {
+  const [login, setLogin] = useRecoilState(loginState);
+  const logoutHandler = () => {
+    setLogin(false);
+    const refresh = localStorage.getItem("refresh-token");
+    postLogout(refresh);
+    localStorage.removeItem("user");
+    localStorage.removeItem("access-token");
+    localStorage.removeItem("refresh-token");
+  };
 
-    const isMobile = useMediaQuery({
-      query : "(max-width:767px)"
-    });
-    
-    if (isMobile){
-      return(
-        <MobileHeaderDiv >
-          <Container>
-            <MobileFlexContainer>
-              <SearchBar service={service} grade={grade} order={order}></SearchBar>
-              <HeaderButtonContainer>
-                {login ? (
-                  <>
-                    <Icon name="sign-out"></Icon>
-                    <HeaderButton onClick={logoutHandler}>로그아웃</HeaderButton>
-                    <Icon name="heart outline"></Icon>
-                    <HeaderLink to={"/wish"}>위시리스트</HeaderLink>
-                    <Icon name="user outline"></Icon>
-                    <HeaderLink to={"/mypage"}>마이페이지</HeaderLink>
-                  </>
-                ) : (
-                  <>
-                    <Icon name="sign in"></Icon>
-                    <HeaderLink to={"/login"}>
-                      로그인
-                    </HeaderLink>
-                  </>
-                )}
-              </HeaderButtonContainer>
-            </MobileFlexContainer>
-          </Container>
-        </MobileHeaderDiv>
-      );
-    }
-    
-    return(
+  const isMobile = useMediaQuery({
+    query: "(max-width:767px)",
+  });
+
+  if (isMobile) {
+    return (
+      <MobileHeaderDiv>
+        <Container>
+          <MobileFlexContainer>
+            <SearchBar
+              service={service}
+              grade={grade}
+              order={order}
+            ></SearchBar>
+            <HeaderButtonContainer>
+              {login ? (
+                <>
+                  <Icon name="sign-out"></Icon>
+                  <HeaderButton onClick={logoutHandler}>로그아웃</HeaderButton>
+                  <Icon name="heart outline"></Icon>
+                  <HeaderLink to={"/wish"}>위시리스트</HeaderLink>
+                  <Icon name="user outline"></Icon>
+                  <HeaderLink to={"/mypage"}>마이페이지</HeaderLink>
+                </>
+              ) : (
+                <>
+                  <Icon name="sign in"></Icon>
+                  <HeaderLink to={"/login"}>로그인</HeaderLink>
+                </>
+              )}
+            </HeaderButtonContainer>
+          </MobileFlexContainer>
+        </Container>
+      </MobileHeaderDiv>
+    );
+  }
+
+  return (
     <HeaderDiv className="ui top fixed menu">
       <Container>
         <FlexContainer>
@@ -139,9 +137,7 @@ const Header = ({service,grade,order}) =>{
             ) : (
               <>
                 <Icon name="sign in"></Icon>
-                <HeaderLink to={"/login"}>
-                  로그인
-                </HeaderLink>
+                <HeaderLink to={"/login"}>로그인</HeaderLink>
               </>
             )}
           </HeaderButtonContainer>

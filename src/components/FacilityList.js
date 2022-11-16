@@ -4,8 +4,13 @@ import ListArg from "./ListArg";
 
 const HorizontalScroll = styled.div`
   white-space: nowrap;
-  overflow: ${(prop) => (prop.id === "Themelist" ? "none" : "auto")};
-  height: 100%;
+  overflow: ${(prop) =>
+    prop.id === "Themelist"
+      ? prop.isMobile === true
+        ? "none"
+        : "auto"
+      : "auto"};
+  height: ${(prop) => (prop.isMobile === true ? "100%" : "40vh")};
   padding-bottom: 20px;
   width: 80%;
   display: inline-block;
@@ -46,7 +51,15 @@ const GridExampleRelaxedVery = ({ size, arr, id }) => {
   );
 };
 
-function FacilityList({ size, arr, id, listCount, setListCount, listLen }) {
+function FacilityList({
+  size,
+  arr,
+  id,
+  listCount,
+  setListCount,
+  listLen,
+  isMobile,
+}) {
   const onClick = () => {
     if (listCount >= listLen) {
       return;
@@ -65,49 +78,48 @@ function FacilityList({ size, arr, id, listCount, setListCount, listLen }) {
     const item = document.getElementById(id + (listCount - 1));
     item.scrollIntoView({ behavior: "smooth", block: "nearest" });
   };
-  return (
-    <>
-      <div style={{ display: "inline-block", height: "100%" }}>
-        {id === "Themelist" ? null : (
-          // (
-          //   <Icon
-          //     name="angle left"
-          //     size="huge"
-          //     style={{ height: "100%", marginTop: "-450%", cursor: "pointer" }}
-          //     onClick={onClick2}
-          //   />
-          // )
-          <Icon
-            name="angle left"
-            size="huge"
-            style={{ height: "100%", marginTop: "-100%", cursor: "pointer" }}
-            onClick={onClick2}
-          />
-        )}
-      </div>
-      <HorizontalScroll id={id} onTouchMove>
-        <GridExampleRelaxedVery size={size} arr={arr} id={id} />
-      </HorizontalScroll>
-      <div style={{ display: "inline-block", height: "100%" }}>
-        {id === "Themelist" ? null : (
-          // (
-          //   <Icon
-          //     name="angle right"
-          //     size="huge"
-          //     style={{ height: "100%", marginTop: "-450%", cursor: "pointer" }}
-          //     onClick={onClick}
-          //   />
-          // )
-          <Icon
-            name="angle right"
-            size="huge"
-            style={{ height: "100%", marginTop: "-100%", cursor: "pointer" }}
-            onClick={onClick}
-          />
-        )}
-      </div>
-    </>
-  );
+  if (isMobile) {
+    return (
+      <>
+        <HorizontalScroll
+          id={id}
+          isMobile={isMobile}
+          style={{ marginLeft: "10%", marginTop: "30px", overflow: "auto" }}
+          onTouchMove
+        >
+          <GridExampleRelaxedVery size={size} arr={arr} id={id} />
+        </HorizontalScroll>
+      </>
+    );
+  } else {
+    return (
+      <>
+        <div style={{ display: "inline-block", height: "100%" }}>
+          {id === "Themelist" ? null : (
+            <Icon
+              name="angle left"
+              size="huge"
+              style={{ height: "100%", marginTop: "-100%", cursor: "pointer" }}
+              onClick={onClick2}
+            />
+          )}
+        </div>
+        <HorizontalScroll id={id} onTouchMove>
+          <GridExampleRelaxedVery size={size} arr={arr} id={id} />
+        </HorizontalScroll>
+        <div style={{ display: "inline-block", height: "100%" }}>
+          {id === "Themelist" ? null : (
+            <Icon
+              name="angle right"
+              size="huge"
+              style={{ height: "100%", marginTop: "-100%", cursor: "pointer" }}
+              onClick={onClick}
+            />
+          )}
+        </div>
+      </>
+    );
+  }
 }
 
 export default FacilityList;
