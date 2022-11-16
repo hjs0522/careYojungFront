@@ -48,17 +48,6 @@ export function getWishList() {
   }).then((res) => res.json());
 }
 
-export function getWishList() {
-  return fetch(`${SERVER_ADDRESS}/wish-list?`, {
-    method: "GET",
-    headers: {
-      accept: "application/json",
-      Authorization: `Bearer ${localStorage.getItem("access-token")}`,
-    },
-    credentials: "include",
-  }).then((res) => res.json());
-}
-
 export function postWishItem(nursingHome_id) {
   return fetch(`${SERVER_ADDRESS}/wish-list`, {
     method: "POST", // *GET, POST, PUT, DELETE 등
