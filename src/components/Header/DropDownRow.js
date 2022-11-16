@@ -9,6 +9,8 @@ import {
 import { useSearchParams } from "react-router-dom";
 import { useEffect } from "react";
 import { useMediaQuery } from "react-responsive";
+import { useRecoilState } from "recoil";
+import { keywordState,serviceState,gradeState,orderState } from "../../atom";
 const DropdownBack = styled.div`
   background-color: white;
 `;
@@ -45,23 +47,20 @@ const DropdownDiv = styled.div`
 
 const DropDownRow = (props) => {
   const [searchParams, setSearchParams] = useSearchParams();
-  useEffect(() => {
-    setSearchParams({
-      service: props.service,
-      grade: props.grade,
-      order: props.order,
-    });
-  }, [setSearchParams, props.service, props.grade, props.order]);
+  const [keyword,setKeyword] = useRecoilState(keywordState);
+  const [service,setService] = useRecoilState(serviceState);
+  const [grade,setGrade] = useRecoilState(gradeState);
+  const [order,setOrder] = useRecoilState(orderState);
   const handleServiceChange = (e, { value: service }) => {
-    props.setService(service);
+    setService(service);
   };
 
   const handleGradeChange = (e, { value: grade }) => {
-    props.setGrade(grade);
+    setGrade(grade);
   };
 
   const handleOrderChange = (e, { value: order }) => {
-    props.setOrder(order);
+    setOrder(order);
   };
 
   const isMobile = useMediaQuery({
@@ -81,7 +80,7 @@ const DropDownRow = (props) => {
             <Dropdown
               options={serviceOptions}
               onChange={handleServiceChange}
-              value={props.service}
+              value={service}
               selection
             ></Dropdown>
           </DropdownDiv>
@@ -90,7 +89,7 @@ const DropDownRow = (props) => {
             <Dropdown
               options={gradeOptions}
               onChange={handleGradeChange}
-              value={props.grade}
+              value={grade}
               selection
             ></Dropdown>
           </DropdownDiv>
@@ -99,13 +98,13 @@ const DropDownRow = (props) => {
             <Dropdown
               options={orderOptions}
               onChange={handleOrderChange}
-              value={props.order}
+              value={order}
               selection
             ></Dropdown>
           </DropdownDiv>
           <DropdownDiv>
             <Link
-              to={`/search/map?keyword=${props.keyword}&service=${props.service}&grade=${props.grade}&order=${props.order}`}
+              to={`/search/map?keyword=${keyword}&service=${service}&grade=${grade}&order=${order}`}
             >
               <Icon name="map outline"></Icon>
               지도로 보기

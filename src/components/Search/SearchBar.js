@@ -1,9 +1,11 @@
 import _ from 'lodash'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Form, Search} from 'semantic-ui-react'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
-import {serviceOptions,gradeOptions,orderOptions} from '../../searchOptions.js';
+import { keywordState,serviceState,gradeState,orderState } from '../../atom'
+import { useRecoilState } from 'recoil'
+
 const source = [
   {
     title: "성동구",
@@ -51,7 +53,7 @@ function exampleReducer(state, action) {
   }
 }
 
-function SearchBar({service,grade,order}) {
+function SearchBar() {
   const [state, dispatch] = React.useReducer(exampleReducer, initialState)
   const { loading, results, value } = state
   const timeoutRef = React.useRef()
@@ -76,8 +78,22 @@ function SearchBar({service,grade,order}) {
   }, [])
   
   const navigate = useNavigate();
+  const [keyword,setKeyword] = useRecoilState(keywordState);
+  const [service,setService] = useRecoilState(serviceState);
+  const [grade,setGrade] = useRecoilState(gradeState);
+  const [order,setOrder] = useRecoilState(orderState);
+  
+  useEffect(()=>{
+    console.log(value)
+    setKeyword(value)
+  },[value])
+  
+  useEffect(()=>{
+    console.log(keyword)
+  },[keyword])
+  
   const handleSubmit = () =>{
-    navigate(`search/list?keyword=${value}&service=${serviceOptions[0].key}&grade=${gradeOptions[0].key}&order=${orderOptions[0].key}`);
+    navigate(`search/list?keyword=${keyword}&service=${service}&grade=${grade}&order=${order}`);
   }
   
   React.useEffect(() => {

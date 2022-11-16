@@ -4,6 +4,8 @@ import { useSearchParams } from "react-router-dom";
 import { Container, Dimmer, Loader,Image} from "semantic-ui-react";
 import styled from "styled-components";
 import { getSearchList,postReissuance } from "../api";
+import { keywordState,serviceState,gradeState,orderState } from '../atom'
+import { useRecoilState } from "recoil";
 import DropDownRow from "../components/Header/DropDownRow";
 import Pagination from '../components/Pagination'
 import SearchList from "../components/Search/SearchList";
@@ -23,19 +25,14 @@ const TitleText = styled.div`
     font-weight: bold;
     margin-right: 1vw;
 `
-const SearchPage = ({service,grade,order,setService,setGrade,setOrder})=>{
-    console.log("searchPage render")
+const SearchPage = ()=>{
+    const [keyword,setKeyword] = useRecoilState(keywordState);
+    const [service,setService] = useRecoilState(serviceState);
+    const [grade,setGrade] = useRecoilState(gradeState);
+    const [order,setOrder] = useRecoilState(orderState);
     const [loading,setLoading] = useState(true);
     const [searchList,setSearchList] = useState([]);
     const [page,setPage] = useState(1);
-    const [searchParams,setSearchParams] = useSearchParams();
-    
-    const keyword = searchParams.get("keyword");
-    
-    useEffect(()=>{
-        console.log("setSearchParmas")
-        setSearchParams({keyword: keyword, service: service, grade: grade, order:order});
-    },[setSearchParams,keyword,service,grade,order])
     
     const offset = (page-1) * 5;
     

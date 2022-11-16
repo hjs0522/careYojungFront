@@ -28,6 +28,7 @@ export function getSearchList(keyword,service,grade,order){
             postReissuance(refresh).then(data=>{
                 localStorage.setItem('access-token',data.accessToken);
                 localStorage.setItem('refresh-token',data.refreshToken);
+                getSearchList(keyword,service,grade,order)
             })
         }
         else{
