@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { Container,Dimmer,Loader,Image } from "semantic-ui-react";
 import styled from "styled-components";
-import CompareAddBarClose from "../components/Compare/CompareAddBarClose";
-import CompareAddBarOpen from "../components/Compare/CompareAddBarOpen";
 import DropDownRow from "../components/Header/DropDownRow";
 import SearchList from "../components/Search/SearchList";
 import { getWishList } from "../api";
 import { useQuery } from "react-query";
 import CompareBar from "../components/Compare/CompareBar";
+import { useRecoilState } from "recoil";
+import { keywordState,serviceState,gradeState,orderState } from "../atom";
 const PageContainer = styled.div`
   background-color: #f5f7fa;
 `;
@@ -23,9 +23,13 @@ const TitleText = styled.div`
   margin-right: 1vw;
 `;
 
-const WishPage = ({service, setService, grade, setGrade, order, setOrder})=>{
+const WishPage = ()=>{
     const [barOpen,setBarOpen] = useState(false);
     const [compareList,setCompareList] = useState([]);
+    const [keyword,setKeyword] = useRecoilState(keywordState);
+    const [service,setService] = useRecoilState(serviceState);
+    const [grade,setGrade] = useRecoilState(gradeState);
+    const [order,setOrder] = useRecoilState(orderState);
     const {isLoading,data} = useQuery(['wishList'],getWishList)
     
 

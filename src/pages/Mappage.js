@@ -1,10 +1,12 @@
 import { useState } from "react";
-import { Container } from "semantic-ui-react";
+import { Container, Form } from "semantic-ui-react";
 import DropDownRow from "../components/Header/DropDownRow";
 import Map from "../components/Map";
+import {useRecoilState} from 'recoil'
+import {keywordState,serviceState,gradeState,orderState}from '../atom';
 
 
-function Mappage({service,setService,grade,setGrade,order,setOrder}) {
+function Mappage() {
   const [mapArr, setMapArr] = useState([
     {
       nursingHome_id: 1,
@@ -223,6 +225,10 @@ function Mappage({service,setService,grade,setGrade,order,setOrder}) {
       wish: false,
     },
   ]);
+  const [keyword,setKeyword] = useRecoilState(keywordState);
+  const [service,setService] = useRecoilState(serviceState);
+  const [grade,setGrade] = useRecoilState(gradeState);
+  const [order,setOrder] = useRecoilState(orderState);
   return (
     <>
       <DropDownRow service={service} grade={grade} order={order} setService = {setService} setGrade = {setGrade} setOrder = {setOrder}/>

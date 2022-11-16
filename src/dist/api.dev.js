@@ -46,6 +46,7 @@ function getSearchList(keyword, service, grade, order) {
       postReissuance(refresh).then(function (data) {
         localStorage.setItem('access-token', data.accessToken);
         localStorage.setItem('refresh-token', data.refreshToken);
+        getSearchList(keyword, service, grade, order);
       });
     } else {
       return res.json();

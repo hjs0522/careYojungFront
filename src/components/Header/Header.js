@@ -2,11 +2,11 @@ import { Link } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { Container, Icon} from "semantic-ui-react";
 import styled from "styled-components";
-import { loginState } from "../../atom";
+import { loginState,serviceState,gradeState,orderState } from "../../atom";
 import SearchBar from "../Search/SearchBar";
 import { postLogout } from "../../api";
 import { useMediaQuery } from "react-responsive";
-import { useState } from "react";
+
 const HeaderDiv = styled.div`
   &.ui.top.fixed.menu {
     background: linear-gradient(to bottom right, #496ace, #715deb);
@@ -64,15 +64,12 @@ const HeaderButtonContainer = styled.div`
   align-items: center;
 `;
 
-const MobileHeaderButtonContainer = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  
-`;
 
-const Header = ({service,grade,order}) =>{
+const Header = () =>{
     const [login,setLogin] = useRecoilState(loginState);
+    const [service,setService] = useRecoilState(serviceState);
+    const [grade,setGrade] = useRecoilState(gradeState);
+    const [order,setOrder] = useRecoilState(orderState);
     const logoutHandler = ()=>{
           setLogin(false)
           const refresh = localStorage.getItem('refresh-token');
@@ -92,7 +89,7 @@ const Header = ({service,grade,order}) =>{
         <MobileHeaderDiv >
           <Container>
             <MobileFlexContainer>
-              <SearchBar service={service} grade={grade} order={order}></SearchBar>
+              <SearchBar></SearchBar>
               <HeaderButtonContainer>
                 {login ? (
                   <>
@@ -125,14 +122,14 @@ const Header = ({service,grade,order}) =>{
           <div>
             <Logo to={"/"}>케어요정</Logo>
           </div>
-          <SearchBar service={service} grade={grade} order={order}></SearchBar>
+          <SearchBar></SearchBar>
           <HeaderButtonContainer>
             {login ? (
               <>
                 <Icon name="sign-out"></Icon>
                 <HeaderButton onClick={logoutHandler}>로그아웃</HeaderButton>
                 <Icon name="heart outline"></Icon>
-                <HeaderLink to={"/wish"}>위시리스트</HeaderLink>
+                <HeaderLink to={`/wish?service=${service}&grade=${grade}&order=${order}`}>위시리스트</HeaderLink>
                 <Icon name="user outline"></Icon>
                 <HeaderLink to={"/mypage"}>마이페이지</HeaderLink>
               </>
