@@ -44,24 +44,34 @@ export const StyledBox = styled.div({
   backgroundColor: "#496ACE",
 });
 
-function RecentInfo({ listLen, listCount }) {
+function RecentInfo({ listLen, listCount, isMobile }) {
   //최근 본 시설 소개 문구 컴포넌트
-  return (
-    <StyledInfo>
-      <StyledBox />
-      <InfoH1>최근 본 시설</InfoH1>
-      <InfoH3>고객님께서 </InfoH3>
-      <InfoH3>최근 본 시설입니다.</InfoH3>
-      <InfoH3 style={{ marginTop: "10%", fontSize: "18px" }}>
-        {"<"} {listCount}
-        {"/"}
-        {listLen} {">"}
-      </InfoH3>
-    </StyledInfo>
-  );
+  if (isMobile) {
+    return (
+      <StyledInfo style={{ marginLeft: "10%", marginTop: "0%" }}>
+        <StyledBox />
+        <InfoH1>최근 본 시설</InfoH1>
+        <InfoH3>고객님께서 최근 본 시설입니다.</InfoH3>
+      </StyledInfo>
+    );
+  } else {
+    return (
+      <StyledInfo>
+        <StyledBox />
+        <InfoH1>최근 본 시설</InfoH1>
+        <InfoH3>고객님께서 </InfoH3>
+        <InfoH3>최근 본 시설입니다.</InfoH3>
+        <InfoH3 style={{ marginTop: "10%", fontSize: "18px" }}>
+          {"<"} {listCount}
+          {"/"}
+          {listLen} {">"} */
+        </InfoH3>
+      </StyledInfo>
+    );
+  }
 }
 
-function Recentlist({ arr }) {
+function Recentlist({ arr, isMobile }) {
   const listLen = arr.length;
   const [listCount, setListCount] = useState(0);
 
@@ -69,13 +79,15 @@ function Recentlist({ arr }) {
     if (listLen > 4) setListCount(4);
     else setListCount(listLen);
   }, []);
-  return (
-    <StyledDiv>
-      <StyledRecentlist>
-        <Grid.Column width={4} floated="left">
-          <RecentInfo listLen={listLen} listCount={listCount} />
-        </Grid.Column>
-        <Grid.Column width={12}>
+  if (isMobile) {
+    return (
+      <StyledDiv>
+        <StyledRecentlist>
+          <RecentInfo
+            isMobile={isMobile}
+            listLen={listLen}
+            listCount={listCount}
+          />
           <FacilityList
             size={4}
             arr={arr}
@@ -83,11 +95,37 @@ function Recentlist({ arr }) {
             listLen={listLen}
             listCount={listCount}
             setListCount={setListCount}
+            isMobile={isMobile}
           />
-        </Grid.Column>
-      </StyledRecentlist>
-    </StyledDiv>
-  );
+        </StyledRecentlist>
+      </StyledDiv>
+    );
+  } else {
+    return (
+      <StyledDiv>
+        <StyledRecentlist>
+          <Grid.Column width={4} floated="left">
+            <RecentInfo
+              listLen={listLen}
+              listCount={listCount}
+              isMobile={isMobile}
+            />
+          </Grid.Column>
+          <Grid.Column width={12}>
+            <FacilityList
+              size={4}
+              arr={arr}
+              id="recentlist"
+              listLen={listLen}
+              listCount={listCount}
+              setListCount={setListCount}
+              isMobile={isMobile}
+            />
+          </Grid.Column>
+        </StyledRecentlist>
+      </StyledDiv>
+    );
+  }
 }
 
 export default Recentlist;

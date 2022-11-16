@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useRecoilState } from "recoil";
-import { Container, Icon} from "semantic-ui-react";
+import { Container, Icon } from "semantic-ui-react";
 import styled from "styled-components";
 import { loginState,serviceState,gradeState,orderState } from "../../atom";
 import SearchBar from "../Search/SearchBar";
@@ -16,8 +16,8 @@ const HeaderDiv = styled.div`
 const MobileHeaderDiv = styled.div`
   & {
     background: linear-gradient(to bottom right, #496ace, #715deb);
-  }   
-`
+  }
+`;
 
 const FlexContainer = styled.div`
   display: flex;
@@ -38,14 +38,12 @@ const MobileFlexContainer = styled.div`
   & > .ui.form {
     width: 80%;
   }
-`
+`;
 const Logo = styled(Link)`
   font-family: "Jalnan";
   font-size: x-large;
   color: white;
 `;
-
-
 
 const HeaderButton = styled.button`
   border: none;
@@ -96,7 +94,7 @@ const Header = () =>{
                     <Icon name="sign-out"></Icon>
                     <HeaderButton onClick={logoutHandler}>로그아웃</HeaderButton>
                     <Icon name="heart outline"></Icon>
-                    <HeaderLink to={"/wish"}>위시리스트</HeaderLink>
+                    <HeaderLink to={`/wish?service=${service}&grade=${grade}&order=${order}`}>위시리스트</HeaderLink>
                     <Icon name="user outline"></Icon>
                     <HeaderLink to={"/mypage"}>마이페이지</HeaderLink>
                   </>
@@ -116,6 +114,7 @@ const Header = () =>{
     }
     
     return(
+
     <HeaderDiv className="ui top fixed menu">
       <Container>
         <FlexContainer>
@@ -136,9 +135,7 @@ const Header = () =>{
             ) : (
               <>
                 <Icon name="sign in"></Icon>
-                <HeaderLink to={"/login"}>
-                  로그인
-                </HeaderLink>
+                <HeaderLink to={"/login"}>로그인</HeaderLink>
               </>
             )}
           </HeaderButtonContainer>

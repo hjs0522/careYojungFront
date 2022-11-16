@@ -6,6 +6,7 @@ import styled from "styled-components";
 import MainPhoto from "../components/MainPhoto";
 import { useRecoilValue } from "recoil";
 import { loginState } from "../atom";
+import { useMediaQuery } from "react-responsive";
 import MyPage from "./MyPage";
 import { useState } from "react";
 
@@ -113,23 +114,46 @@ const StyledMainpage = styled.div`
 function Mainpage() {
   const login = useRecoilValue(loginState);
   const [arr, setArr] = useState(JSON.parse(localStorage.getItem("recent")));
-  return (
-    <StyledMainpage>
-      {login ? (
-        arr ? (
-          <Recentlist arr={arr} />
+  const isMobile = useMediaQuery({
+    query: "(max-width:935px)",
+  });
+  if (isMobile) {
+    return (
+      <StyledMainpage style={{ paddingTop: "0px" }}>
+        {login ? (
+          arr ? (
+            <Recentlist isMobile={isMobile} arr={arr} />
+          ) : (
+            <MainPhoto isMobile={isMobile}></MainPhoto>
+          )
         ) : (
-          <MainPhoto></MainPhoto>
-        )
-      ) : (
-        <MainPhoto />
-      )}
-      <Popularlist arr={arr1} />
-      <Themelist arr={arr2} />
+          <Recentlist arr={arr1} isMobile={isMobile} />
+        )}
+        <Popularlist arr={arr1} isMobile={isMobile} />
+        <Themelist arr={arr2} isMobile={isMobile} />
 
-      <Pageup />
-    </StyledMainpage>
-  );
+        <Pageup />
+      </StyledMainpage>
+    );
+  } else {
+    return (
+      <StyledMainpage>
+        {login ? (
+          arr ? (
+            <Recentlist arr={arr} />
+          ) : (
+            <MainPhoto></MainPhoto>
+          )
+        ) : (
+          <MainPhoto />
+        )}
+        <Popularlist arr={arr1} />
+        <Themelist arr={arr2} />
+
+        <Pageup />
+      </StyledMainpage>
+    );
+  }
 }
 
 export default Mainpage;
