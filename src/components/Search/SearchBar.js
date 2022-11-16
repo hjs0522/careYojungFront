@@ -83,17 +83,10 @@ function SearchBar() {
   const [grade,setGrade] = useRecoilState(gradeState);
   const [order,setOrder] = useRecoilState(orderState);
   
-  useEffect(()=>{
-    console.log(value)
-    setKeyword(value)
-  },[value])
-  
-  useEffect(()=>{
-    console.log(keyword)
-  },[keyword])
   
   const handleSubmit = () =>{
-    navigate(`search/list?keyword=${keyword}&service=${service}&grade=${grade}&order=${order}`);
+    setKeyword(value);
+    navigate(`search/list?keyword=${value}&service=${service}&grade=${grade}&order=${order}`);
   }
   
   React.useEffect(() => {
