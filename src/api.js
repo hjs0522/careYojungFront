@@ -29,11 +29,23 @@ export function getSearchList(keyword, service, grade, order) {
       postReissuance(refresh).then((data) => {
         localStorage.setItem("access-token", data.accessToken);
         localStorage.setItem("refresh-token", data.refreshToken);
+        getSearchList(keyword, service, grade, order);
       });
     } else {
       return res.json();
     }
   });
+}
+
+export function getWishList() {
+  return fetch(`${SERVER_ADDRESS}/wish-list?`, {
+    method: "GET",
+    headers: {
+      accept: "application/json",
+      Authorization: `Bearer ${localStorage.getItem("access-token")}`,
+    },
+    credentials: "include",
+  }).then((res) => res.json());
 }
 
 export function getWishList() {

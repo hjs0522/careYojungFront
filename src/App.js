@@ -23,6 +23,7 @@ function App() {
   const [service, setService] = useState(serviceOptions[0].key);
   const [grade, setGrade] = useState(gradeOptions[0].key);
   const [order, setOrder] = useState(orderOptions[0].key);
+  const [keyword,setKeyword] = useState("");
   /*
   const [login,setLogin] = useRecoilState(loginState);
   function loadUser(){
@@ -42,53 +43,25 @@ function App() {
   return (
     <CookiesProvider>
       <BrowserRouter>
-        <Header
-          service={service}
-          setService={setService}
-          grade={grade}
-          setGrade={setGrade}
-          order={order}
-          setOrder={setOrder}
-        />
+        <Header/>
         <Routes>
           <Route path="/*" element={<Mainpage></Mainpage>}></Route>
           <Route
             path="/search/list"
             element={
-              <SearchPage
-                service={service}
-                setService={setService}
-                grade={grade}
-                setGrade={setGrade}
-                order={order}
-                setOrder={setOrder}
-              ></SearchPage>
+              <SearchPage></SearchPage>
             }
           ></Route>
           <Route
             path="/search/map"
             element={
-              <Mappage
-                service={service}
-                setService={setService}
-                grade={grade}
-                setGrade={setGrade}
-                order={order}
-                setOrder={setOrder}
-              ></Mappage>
+              <Mappage></Mappage>
             }
           ></Route>
           <Route
             path="/wish"
             element={
-              <WishPage
-                service={service}
-                setService={setService}
-                grade={grade}
-                setGrade={setGrade}
-                order={order}
-                setOrder={setOrder}
-              ></WishPage>
+              <WishPage></WishPage>
             }
           ></Route>
           <Route path="/mypage" element={<MyPage></MyPage>}></Route>

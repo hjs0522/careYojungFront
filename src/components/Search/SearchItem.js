@@ -252,7 +252,9 @@ const SearchItem = ({
           style={{ cursor: "pointer" }}
         >
           <div>
-            <h5>{name} ・ 요양원</h5>
+            <h5>
+              {name} ・ 요양원 ・ {grade === 0 ? "신설" : grade}
+            </h5>
           </div>
           <div>
             <div>{getStar(score)}</div>
