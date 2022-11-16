@@ -198,9 +198,10 @@ const SearchItem = ({
           }}
           style={{ width: "100px", height: "100px", cursor: "pointer" }}
           src={
-            photoarr[name] === 0
-              ? "https://react.semantic-ui.com/images/wireframe/image.png"
-              : photoarr[name] + process.env.REACT_APP_GOOGLEMAP_KEY
+            `https://api.care-yojung.com/image/thumbnail?id=${nursingHome_id}`
+            // photoarr[name] === 0
+            //   ? "https://react.semantic-ui.com/images/wireframe/image.png"
+            //   : photoarr[name] + process.env.REACT_APP_GOOGLEMAP_KEY
           }
           alt="요양원 사진"
         />
@@ -298,7 +299,7 @@ const SearchItem = ({
         }}
         style={{ width: "150px", height: "150px", cursor: "pointer" }}
         src={
-          `api.care-yojung.com/image/thumbnail?id=${nursingHome_id}`
+          `https://api.care-yojung.com/image/thumbnail?id=${nursingHome_id}`
           // photoarr[name] === 0
           //   ? "https://react.semantic-ui.com/images/wireframe/image.png"
           //   : photoarr[name] + process.env.REACT_APP_GOOGLEMAP_KEY
