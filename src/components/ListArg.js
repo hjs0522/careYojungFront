@@ -75,9 +75,11 @@ function ListArg({ index, name, img, loc, id }) {
         src={
           id === "Themelist"
             ? img
-            : photoarr[name] === 0
-            ? "https://react.semantic-ui.com/images/wireframe/image.png"
-            : photoarr[name] + process.env.REACT_APP_GOOGLEMAP_KEY
+            : "https://api.care-yojung.com/image/thumbnail?id=11111000033"
+          // img
+          // : photoarr[name] === 0
+          // ? "https://react.semantic-ui.com/images/wireframe/image.png"
+          // : photoarr[name] + process.env.REACT_APP_GOOGLEMAP_KEY
         }
       />
 

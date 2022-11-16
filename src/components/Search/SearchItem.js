@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Button, Icon } from "semantic-ui-react";
-import styled,{keyframes} from "styled-components";
+import styled, { keyframes } from "styled-components";
 import Detail from "../Detail";
 import { photoarr } from "../photos";
 import Review from "../Review";
@@ -13,12 +13,12 @@ const HeartAppearing = keyframes`
     to {
         opacity: 1;
     }
-`
+`;
 const ItemContainer = styled.li`
   display: flex;
   margin: 3vh 0px;
   align-items: center;
-  border: 1px solid #E1E1E1;
+  border: 1px solid #e1e1e1;
   border-radius: 15px;
   background-color: white;
   position: relative;
@@ -33,7 +33,7 @@ const ItemContainer = styled.li`
     animation: ${HeartAppearing} 300ms ease-in-out 1;
     transition: opacity ease-in-out 100ms;
   }
-  
+
   transition: all ease-in-out 300ms;
 `;
 
@@ -41,7 +41,7 @@ const MobileItemContainer = styled.li`
   display: flex;
   margin: 3vh 0px;
   align-items: center;
-  border: 1px solid #E1E1E1;
+  border: 1px solid #e1e1e1;
   border-radius: 15px;
   background-color: white;
   position: relative;
@@ -56,7 +56,7 @@ const MobileItemContainer = styled.li`
     animation: ${HeartAppearing} 300ms ease-in-out 1;
     transition: opacity ease-in-out 100ms;
   }
-  
+
   transition: all ease-in-out 300ms;
 `;
 
@@ -104,8 +104,8 @@ const CompareButton = styled(Button)`
   }
 `;
 const PhoneNumberDiv = styled.div`
-  color: #0596FF;
-`
+  color: #0596ff;
+`;
 
 const SearchItem = ({
   nursingHome_id,
@@ -146,11 +146,11 @@ const SearchItem = ({
     setBarOpen(true);
     itemRef.current.style = "border: solid 3px #496ACE";
   };
-  
-  const handleRemoveWishInSearch = ()=>{
+
+  const handleRemoveWishInSearch = () => {
     onEditWish(nursingHome_id, !wish);
     deleteWishItem(nursingHome_id, "ho");
-  }
+  };
   const handleRemoveWish = () => {
     if (window.confirm(`${name}을 위시리스트에서 삭제하시겠습니까?`)) {
       onRemoveWish(nursingHome_id);
@@ -171,25 +171,25 @@ const SearchItem = ({
     });
     return result;
   }
-  
-  useEffect(()=>{
-    let flag = false
-    for(let i=0;i<compareList?.length;i++){
-      if (compareList[i].nursingHome_id === nursingHome_id){
-        flag = true
-        break
+
+  useEffect(() => {
+    let flag = false;
+    for (let i = 0; i < compareList?.length; i++) {
+      if (compareList[i].nursingHome_id === nursingHome_id) {
+        flag = true;
+        break;
       }
     }
-    if (flag === false){
+    if (flag === false) {
       itemRef.current.style = "border: 1px solid #E1E1E1";
     }
-  },[compareList])
-  
+  }, [compareList]);
+
   const isMobile = useMediaQuery({
-    query : "(max-width:767px)"
+    query: "(max-width:767px)",
   });
-  
-  if(isMobile){
+
+  if (isMobile) {
     return (
       <MobileItemContainer ref={itemRef}>
         <img
@@ -197,9 +197,11 @@ const SearchItem = ({
             setDetail_bool(true);
           }}
           style={{ width: "100px", height: "100px", cursor: "pointer" }}
-          src={photoarr[name] === 0
-            ? "https://react.semantic-ui.com/images/wireframe/image.png"
-            : photoarr[name] + process.env.REACT_APP_GOOGLEMAP_KEY}
+          src={
+            photoarr[name] === 0
+              ? "https://react.semantic-ui.com/images/wireframe/image.png"
+              : photoarr[name] + process.env.REACT_APP_GOOGLEMAP_KEY
+          }
           alt="요양원 사진"
         />
         {isWishPage ? (
@@ -250,17 +252,21 @@ const SearchItem = ({
           style={{ cursor: "pointer" }}
         >
           <div>
-            <h5>{name}  ・  요양원</h5>
+            <h5>{name} ・ 요양원</h5>
           </div>
           <div>
             <div>{getStar(score)}</div>
             <span>{reviewNum}</span>
           </div>
           <div>
-            <span>{addrFront +" "}</span>
+            <span>{addrFront + " "}</span>
             <span>{addrRoad + " "}</span>
-            <span>{buildingSubNum? buildingMainNum + '-' +buildingSubNum + " ": buildingMainNum + " "}</span>
-            <span>{addrDetail? addrDetail: floor? floor + '층': null}</span>
+            <span>
+              {buildingSubNum
+                ? buildingMainNum + "-" + buildingSubNum + " "
+                : buildingMainNum + " "}
+            </span>
+            <span>{addrDetail ? addrDetail : floor ? floor + "층" : null}</span>
           </div>
           <PhoneNumberDiv>T.{phoneNumber}</PhoneNumberDiv>
         </InfoContainer>
@@ -281,7 +287,7 @@ const SearchItem = ({
       </MobileItemContainer>
     );
   }
-  
+
   return (
     <ItemContainer ref={itemRef}>
       <img
@@ -289,9 +295,12 @@ const SearchItem = ({
           setDetail_bool(true);
         }}
         style={{ width: "150px", height: "150px", cursor: "pointer" }}
-        src={photoarr[name] === 0
-          ? "https://react.semantic-ui.com/images/wireframe/image.png"
-          : photoarr[name] + process.env.REACT_APP_GOOGLEMAP_KEY}
+        src={
+          `api.care-yojung.com/image/thumbnail?id=${nursingHome_id}`
+          // photoarr[name] === 0
+          //   ? "https://react.semantic-ui.com/images/wireframe/image.png"
+          //   : photoarr[name] + process.env.REACT_APP_GOOGLEMAP_KEY
+        }
         alt="요양원 사진"
       />
       {isWishPage ? (
@@ -342,17 +351,21 @@ const SearchItem = ({
         style={{ cursor: "pointer" }}
       >
         <div>
-          <h5>{name}  ・  요양원</h5>
+          <h5>{name} ・ 요양원</h5>
         </div>
         <div>
           <div>{getStar(score)}</div>
           <span>{reviewNum}</span>
         </div>
         <div>
-          <span>{addrFront +" "}</span>
+          <span>{addrFront + " "}</span>
           <span>{addrRoad + " "}</span>
-          <span>{buildingSubNum? buildingMainNum + '-' +buildingSubNum + " ": buildingMainNum + " "}</span>
-          <span>{addrDetail? addrDetail: floor? floor + '층': null}</span>
+          <span>
+            {buildingSubNum
+              ? buildingMainNum + "-" + buildingSubNum + " "
+              : buildingMainNum + " "}
+          </span>
+          <span>{addrDetail ? addrDetail : floor ? floor + "층" : null}</span>
         </div>
         <PhoneNumberDiv>T.{phoneNumber}</PhoneNumberDiv>
       </InfoContainer>
@@ -374,26 +387,31 @@ const SearchItem = ({
               .then((res) => res.json())
               .then((res) => {
                 setDetailData(res);
-                let recent = JSON.parse(localStorage.getItem('recent'));
-                if (recent === null){
-                  recent = []
+                let recent = JSON.parse(localStorage.getItem("recent"));
+                if (recent === null) {
+                  recent = [];
                 }
                 const obj = {
-                  "nursingHome_id":nursingHome_id,
-                  "name":name,
-                  "addrFront": addrFront, 
-                }
-                if (recent.some((element)=> element.nursingHome_id === obj.nursingHome_id)){
-                  recent = recent.filter((element)=> element.nursingHome_id !== obj.nursingHome_id);
-                  recent.push(obj)
-                }
-                else{
-                  if (recent.length === 10){
+                  nursingHome_id: nursingHome_id,
+                  name: name,
+                  addrFront: addrFront,
+                };
+                if (
+                  recent.some(
+                    (element) => element.nursingHome_id === obj.nursingHome_id
+                  )
+                ) {
+                  recent = recent.filter(
+                    (element) => element.nursingHome_id !== obj.nursingHome_id
+                  );
+                  recent.push(obj);
+                } else {
+                  if (recent.length === 10) {
                     recent.shift();
                   }
                   recent.push(obj);
                 }
-                localStorage.setItem('recent',JSON.stringify(recent))
+                localStorage.setItem("recent", JSON.stringify(recent));
               });
             console.log(detailData);
           }}

@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import image from "./main.jpg";
-import { useMediaQuery } from "react-responsive";
 
 const StyledMainPhoto = styled.div`
   height: 400px;
@@ -45,10 +44,7 @@ const StyledText = styled.div`
   color: white;
 `;
 
-function MainPhoto() {
-  const isMobile = useMediaQuery({
-    query: "(max-width:767px)",
-  });
+function MainPhoto({ isMobile }) {
   if (isMobile) {
     return (
       <StyledMainPhoto style={{ height: "300px" }}>
