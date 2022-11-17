@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Form, Search} from 'semantic-ui-react'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
