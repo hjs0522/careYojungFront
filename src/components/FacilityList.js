@@ -5,12 +5,17 @@ import ListArg from "./ListArg";
 const HorizontalScroll = styled.div`
   white-space: nowrap;
   overflow: ${(prop) =>
-    prop.id === "Themelist"
-      ? prop.isMobile === true
-        ? "none"
-        : "auto"
+    prop.isMobile === true
+      ? "auto"
+      : prop.id === "Themelist"
+      ? "auto"
       : "auto"};
-  height: ${(prop) => (prop.isMobile === true ? "100%" : "40vh")};
+  height: ${(prop) =>
+    prop.id === "Themelist"
+      ? "40vh"
+      : prop.isMobile === true
+      ? "100%"
+      : "100%"};
   padding-bottom: 20px;
   width: 80%;
   display: inline-block;
@@ -84,7 +89,7 @@ function FacilityList({
         <HorizontalScroll
           id={id}
           isMobile={isMobile}
-          style={{ marginLeft: "10%", marginTop: "30px", overflow: "auto" }}
+          style={{ marginLeft: "10%", marginTop: "30px" }}
           onTouchMove
         >
           <GridExampleRelaxedVery size={size} arr={arr} id={id} />

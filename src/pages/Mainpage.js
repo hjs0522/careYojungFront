@@ -16,7 +16,7 @@ const arr = [
     key: 0,
     name: "보은요양원",
     ShortLoc: "서울특별시 동대문구",
-    img: "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=AeJbb3cOIl6j5vMO6uMzxWnyMYrggmG7KlGUIZKAJNHyLZrqOBcw4x1_ai-L3WTggTGif-Z8EcjWSNXEuZXbr4HPuL9RZgyA7IOZZ8KYk1S9lXu1ADflotD9pJq7Mx8oMno_1jj3t2YWnp-x5EL4GUnARoKhDnKSDNs-UXmLUcH_hgck6MQf&key=AIzaSyDY5tTtaA7BBeKxnL1hhcZQfXotxBJL4dY",
+    img: "https://api.care-yojung.com/image/thumbnail?id=11111000033",
   },
   {
     key: 1,
@@ -56,7 +56,7 @@ const arr1 = [
     key: 10,
     name: "관양1동 행정복지센터",
     ShortLoc: "경기도 안양시 동안구 ",
-    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgD6oZRl8LFmTsecrXbocSOvOaeXheB50PtAS9Hfnjsiy_FYkZ_oc7_xUqD5cx3wJfjO4&usqp=CAU",
+    img: "https://api.care-yojung.com/image/thumbnail?id=11111000033",
   },
   {
     key: 11,
@@ -127,7 +127,7 @@ function Mainpage() {
             <MainPhoto isMobile={isMobile}></MainPhoto>
           )
         ) : (
-          <Recentlist arr={arr1} isMobile={isMobile} />
+          <MainPhoto isMobile={isMobile}></MainPhoto>
         )}
         <Popularlist arr={arr1} isMobile={isMobile} />
         <Themelist arr={arr2} isMobile={isMobile} />

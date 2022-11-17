@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Modal, Grid, Icon } from "semantic-ui-react";
+import { Modal, Grid, Icon, Container } from "semantic-ui-react";
 import styled from "styled-components";
 import { photoarr } from "./photos";
 import Review from "./Review";
@@ -133,49 +133,59 @@ function Detail({ img, name, loc, id, detail_bool, setDetail_bool }) {
     item.scrollIntoView({ behavior: "smooth" });
   };
   const [open, setOpen] = useState(false);
-  
+
   useEffect(() => {
     setOpen(detail_bool);
   }, [detail_bool]);
   useEffect(() => {
     setDetail_bool(open);
   }, [open]);
-  
+
   const isMobile = useMediaQuery({
-    query : "(max-width:767px)"
+    query: "(max-width:1000px)",
   });
-  
-  if (isMobile){
-    return(
+
+  if (isMobile) {
+    return (
       <Modal
-      onClose={() => setOpen(false)}
-      onOpen={() => setOpen(true)}
-      open={open}
-      size="large"
-    >
+        onClose={() => setOpen(false)}
+        onOpen={() => setOpen(true)}
+        open={open}
+        size="large"
+      >
         <DetailPage>
-          <ModalHeader>{name}</ModalHeader>
-          <ModalHeader style={{ marginLeft: "20px", fontSize: "24px" }}>
-          요양원
-          </ModalHeader>
-          <div
-            onClick={() => setOpen(false)}
-            style={{
-              display: "inline-block",
-              float: "right",
-              marginTop: "1%",
-              marginRight: "1%",
-              cursor: "pointer",
-            }}
-          >
-            <Icon size="medium" color="grey" name="x" />
+          <div style={{ backgroundColor: "#e1e1e1" }}>
+            <ModalHeader>{name}</ModalHeader>
+            <ModalHeader style={{ marginLeft: "20px", fontSize: "24px" }}>
+              요양원
+            </ModalHeader>
+            <div
+              onClick={() => setOpen(false)}
+              style={{
+                display: "inline-block",
+                float: "right",
+                marginTop: "1%",
+                marginRight: "1%",
+                cursor: "pointer",
+              }}
+            >
+              <Icon size="medium" color="grey" name="x" />
+            </div>
           </div>
           <Modal.Content scrolling>
             <DetailBody id="Detail-1">
-              <DetailImage  src={photoarr[name] + process.env.REACT_APP_GOOGLEMAP_KEY}/>
-              <div>
-                <DetailInfo>{response.addrRoad}</DetailInfo>
-                <DetailTel>T : {response.phoneNumber}</DetailTel>
+              <DetailImage
+                src={photoarr[name] + process.env.REACT_APP_GOOGLEMAP_KEY}
+              />
+              <div style={{ marginTop: "10px" }}>
+                <DetailInfo style={{ fontSize: "22px" }}>
+                  {response.addrRoad}
+                </DetailInfo>
+              </div>
+              <div style={{ marginTop: "10px" }}>
+                <DetailTel style={{ marginLeft: "0" }}>
+                  T : {response.phoneNumber}
+                </DetailTel>
               </div>
               <DetailSummary>
                 <DetailSummaryText>시설정원</DetailSummaryText>
@@ -192,25 +202,26 @@ function Detail({ img, name, loc, id, detail_bool, setDetail_bool }) {
                 <DetailSummaryText style={{ padding: "0" }}>
                   명{" "}
                 </DetailSummaryText>
-                <DetailSummaryText>대기</DetailSummaryText>
-                <DetailSummaryText style={{ color: "#496ACE" }}>
-                  {response.waitingCount}
-                </DetailSummaryText>
-                <DetailSummaryText style={{ padding: "0" }}>
-                  명{" "}
-                </DetailSummaryText>
+                <div>
+                  <DetailSummaryText>대기</DetailSummaryText>
+                  <DetailSummaryText style={{ color: "#496ACE" }}>
+                    {response.waitingCount}
+                  </DetailSummaryText>
+                  <DetailSummaryText style={{ padding: "0" }}>
+                    명{" "}
+                  </DetailSummaryText>
+                </div>
               </DetailSummary>
-              <DetailPerson detailInfo={response} /> {/*인력현황 컴포넌트*/}
-              <DetailFacility detailInfo={response} />{" "}
-                {/*시설현황 컴포넌트*/}
-              <DetailAI /> {/*AI점수 컴포넌트*/}
-              <DetailReview detailInfo={response} />{" "}
-                {/* 시설리뷰 컴포넌트*/}
-              <DetailCost />
+              <DetailPerson detailInfo={response} isMobile={isMobile} />{" "}
+              {/*인력현황 컴포넌트*/}
+              <DetailFacility detailInfo={response} isMobile={isMobile} />{" "}
+              {/*시설현황 컴포넌트*/}
+              <DetailAI isMobile={isMobile} /> {/*AI점수 컴포넌트*/}
+              <DetailReview detailInfo={response} isMobile={isMobile} />{" "}
+              {/* 시설리뷰 컴포넌트*/}
             </DetailBody>
           </Modal.Content>
-
-        </DetailPage>  
+        </DetailPage>
       </Modal>
     );
   }
@@ -290,16 +301,21 @@ function Detail({ img, name, loc, id, detail_bool, setDetail_bool }) {
                     </DetailSummaryText>
                   </DetailSummary>
                   <DetailPerson detailInfo={response} /> {/*인력현황 컴포넌트*/}
-                  <DetailFacility detailInfo={response} />{" "}
+                  <Container>
+                    <DetailFacility detailInfo={response} isMobile={isMobile} />{" "}
+                  </Container>
                   {/*시설현황 컴포넌트*/}
-                  <DetailAI /> {/*AI점수 컴포넌트*/}
-                  <DetailReview detailInfo={response} />{" "}
+                  <DetailAI isMobile={isMobile} /> {/*AI점수 컴포넌트*/}
+                  <DetailReview
+                    detailInfo={response}
+                    isMobile={isMobile}
+                  />{" "}
                   {/* 시설리뷰 컴포넌트*/}
                 </Grid.Column>
                 <Grid.Column width={5}>
                   <div style={{ top: "5%", position: "sticky" }}>
                     {/* position:'sticky'를 사용하면 스크롤을 따라오게 할 수 있음. */}
-                    <DetailCost />
+                    <DetailCost isMobile={isMobile} />
                   </div>
                 </Grid.Column>
               </Grid.Row>

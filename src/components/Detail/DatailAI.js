@@ -40,57 +40,90 @@ const DetailAIText = styled.div({
 const DetailAIGraph = styled.div({
   display: "inline-block",
   width: "60%",
-  height: "10px",
+  height: "12px",
   backgroundColor: "#e1e1e1",
-
   borderRadius: "15px",
 });
 // #a3a1fd
 const DetailAIInnerGraph = styled.div`
-  position: absolute;
   display: inline-block;
-  height: 10px;
+  height: 12px;
   background: linear-gradient(270deg, #496ace 0%, #a3a1fd 100%);
   border-radius: 15px;
-  width: ${(prop) => (prop.width * 100) / 3.8 + "%" || "20%"};
+  width: ${(prop) => prop.width * 100 + "%" || "20%"};
 `;
+
+const DetailAIInnerGraphMoblie = styled.div``;
 const AIarr = [
   { name: "긍정도", value: 0.8 },
   { name: "부정도", value: 0.1 },
   { name: "혼합도", value: 0.08 },
 ];
 
-function DetailAI() {
-  return (
-    <StyledDetailBox id="Detail-4">
-      <DetailTitle>AI점수</DetailTitle>
-      <StyledPopup>
-        <Popup
-          content={
-            "케어요정의 리뷰와 여러 인터넷상의 소셜 데이터를 종합, 분석하여 각 시설의 평가를 나타냅니다."
-          }
-          key={"explain"}
-          header={"AI점수란?"}
-          trigger={<Icon name="question" size="small" color="red" />}
-        />
-      </StyledPopup>
-      <StyledDetailAI>
-        {AIarr.map((i) => (
-          <DetailAIElement>
-            <DetailAIText>{i.name}</DetailAIText>
-            <DetailAIGraph>
-              <DetailAIInnerGraph width={i.value}></DetailAIInnerGraph>
-            </DetailAIGraph>
-            <DetailAIText
-              style={{ width: "0", color: "#496ace", marginLeft: "3%" }}
-            >
-              {i.value * 100}%
-            </DetailAIText>
-          </DetailAIElement>
-        ))}
-      </StyledDetailAI>
-    </StyledDetailBox>
-  );
+function DetailAI({ isMobile }) {
+  if (isMobile) {
+    return (
+      <StyledDetailBox id="Detail-4">
+        <DetailTitle>AI점수</DetailTitle>
+        <StyledPopup>
+          <Popup
+            content={
+              "케어요정의 리뷰와 여러 인터넷상의 소셜 데이터를 종합, 분석하여 각 시설의 평가를 나타냅니다."
+            }
+            key={"explain"}
+            header={"AI점수란?"}
+            trigger={<Icon name="question" size="small" color="red" />}
+          />
+        </StyledPopup>
+        <StyledDetailAI>
+          {AIarr.map((i) => (
+            <DetailAIElement style={{ width: "100%" }}>
+              <DetailAIText>{i.name}</DetailAIText>
+              <DetailAIGraph style={{ width: "70%" }}>
+                <DetailAIInnerGraph width={i.value}></DetailAIInnerGraph>
+              </DetailAIGraph>
+              <DetailAIText
+                style={{ width: "0", color: "#496ace", marginLeft: "3%" }}
+              >
+                {i.value * 100}%
+              </DetailAIText>
+            </DetailAIElement>
+          ))}
+        </StyledDetailAI>
+      </StyledDetailBox>
+    );
+  } else {
+    return (
+      <StyledDetailBox id="Detail-4">
+        <DetailTitle>AI점수</DetailTitle>
+        <StyledPopup>
+          <Popup
+            content={
+              "케어요정의 리뷰와 여러 인터넷상의 소셜 데이터를 종합, 분석하여 각 시설의 평가를 나타냅니다."
+            }
+            key={"explain"}
+            header={"AI점수란?"}
+            trigger={<Icon name="question" size="small" color="red" />}
+          />
+        </StyledPopup>
+        <StyledDetailAI>
+          {AIarr.map((i) => (
+            <DetailAIElement>
+              <DetailAIText>{i.name}</DetailAIText>
+              <DetailAIGraph>
+                <DetailAIInnerGraph width={i.value}></DetailAIInnerGraph>
+              </DetailAIGraph>
+              <DetailAIText
+                style={{ width: "0", color: "#496ace", marginLeft: "3%" }}
+              >
+                {i.value * 100}%
+              </DetailAIText>
+            </DetailAIElement>
+          ))}
+        </StyledDetailAI>
+      </StyledDetailBox>
+    );
+  }
 }
 
 export default DetailAI;

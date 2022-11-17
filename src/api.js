@@ -1,14 +1,13 @@
-const SERVER_ADDRESS = 'https://api.care-yojung.com';
+const SERVER_ADDRESS = "https://api.care-yojung.com";
 
-export function postKakao(code){
-    return fetch(`${SERVER_ADDRESS}/member/login/kakao?code=${code}`,{
-        method: 'POST',
-        headers:{
-            'Content-Type': 'application/json',
-        },
-        credentials: 'include',
-    })
-    .then((res) => res.json());
+export function postKakao(code) {
+  return fetch(`${SERVER_ADDRESS}/member/login/kakao?code=${code}`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+  }).then((res) => res.json());
 }
 
 export async function getSearchList(keyword,service,grade,order){
@@ -265,18 +264,16 @@ export async function getPopularList(){
       }
 };
 
-
-export function postReissuance(refresh){
-    return fetch(`${SERVER_ADDRESS}/member/reissuance`,{
-        method:'POST',
-        headers:{
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${localStorage.getItem('access-token')}`
-        },
-        credentials: 'include',
-        body: JSON.stringify({
-            'refresh': refresh,
-        }),
-    }).then(res => res.json());
-
+export function postReissuance(refresh) {
+  return fetch(`${SERVER_ADDRESS}/member/reissuance`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${localStorage.getItem("access-token")}`,
+    },
+    credentials: "include",
+    body: JSON.stringify({
+      refresh: refresh,
+    }),
+  }).then((res) => res.json());
 }
