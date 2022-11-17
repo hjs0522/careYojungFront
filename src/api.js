@@ -11,34 +11,31 @@ export function postKakao(code){
     .then((res) => res.json());
 }
 
-export function getSearchList(keyword,service,grade,order){
-    return fetch(`${SERVER_ADDRESS}/search/list?keyword=${keyword}&service=${service}&grade=${grade}&order=${order}`,{
+export async function getSearchList(keyword,service,grade,order){
+    const res = await fetch(`${SERVER_ADDRESS}/search/list?keyword=${keyword}&service=${service}&grade=${grade}&order=${order}`,{
         method: "GET",
         headers: {
           accept: "application/json",
           'Authorization': `Bearer ${localStorage.getItem('access-token')}`
         },
         credentials: 'include',
-    })
-    .then((res) => {
-        console.log(res.status)
-        if (res.status === 403){
-            const refresh = localStorage.getItem('refresh-token')
-            console.log(refresh);
-            postReissuance(refresh).then(data=>{
-                localStorage.setItem('access-token',data.accessToken);
-                localStorage.setItem('refresh-token',data.refreshToken);
-                getSearchList(keyword,service,grade,order)
-            })
-        }
-        else{
-            return res.json();
-        }
     });
+    
+    if (res.status === 403){
+        const refresh = localStorage.getItem('refresh-token')
+        console.log(refresh);
+        const data = await postReissuance(refresh)
+        localStorage.setItem('access-token',data.accessToken);
+        localStorage.setItem('refresh-token',data.refreshToken);
+        return getSearchList(keyword,service,grade,order)
+    }
+    else{
+        return res.json();
+    }
 };
 
-export function getWishList(){
-    return fetch(`${SERVER_ADDRESS}/wish-list?`,{
+export async function getWishList(){
+    const res = await fetch(`${SERVER_ADDRESS}/wish-list?`,{
         method:"GET",
         headers:{
             accept:'application/json',
@@ -46,12 +43,23 @@ export function getWishList(){
         },
         credentials: 'include',
     })
-    .then((res)=>res.json());
+    
+    if (res.status === 403){
+        const refresh = localStorage.getItem('refresh-token')
+        console.log(refresh);
+        const data = await postReissuance(refresh)
+        localStorage.setItem('access-token',data.accessToken);
+        localStorage.setItem('refresh-token',data.refreshToken);
+        return getWishList();
+    }
+    else{
+        return res.json();
+    }
 }
 
 
-export function postWishItem(nursingHome_id){
-    return fetch(`${SERVER_ADDRESS}/wish-list`, {
+export async function postWishItem(nursingHome_id){
+    const res = await fetch(`${SERVER_ADDRESS}/wish-list`, {
         method: 'POST', // *GET, POST, PUT, DELETE 등
         headers: {
             'Content-Type': 'application/json',
@@ -64,10 +72,22 @@ export function postWishItem(nursingHome_id){
             "svcType": "ho"
         }), // body의 데이터 유형은 반드시 "Content-Type" 헤더와 일치해야 함
         });
+        
+    if (res.status === 403){
+        const refresh = localStorage.getItem('refresh-token')
+        console.log(refresh);
+        const data = await postReissuance(refresh)
+        localStorage.setItem('access-token',data.accessToken);
+        localStorage.setItem('refresh-token',data.refreshToken);
+        return postWishItem(nursingHome_id);
+    }
+    else{
+        return res.json();
+    }
 };
 
-export function deleteWishItem(svcId,svcType){
-    fetch(`${SERVER_ADDRESS}/wish-list`, {
+export async function deleteWishItem(svcId,svcType){
+    const res = await fetch(`${SERVER_ADDRESS}/wish-list`, {
             method:'DELETE',
             headers: {
                 'Content-Type': 'application/json',
@@ -79,10 +99,21 @@ export function deleteWishItem(svcId,svcType){
                 "svcType": svcType,
             }), // body의 데이터 유형은 반드시 "Content-Type" 헤더와 일치해야 함
             })
+    if (res.status === 403){
+        const refresh = localStorage.getItem('refresh-token')
+        console.log(refresh);
+        const data = await postReissuance(refresh)
+        localStorage.setItem('access-token',data.accessToken);
+        localStorage.setItem('refresh-token',data.refreshToken);
+        return deleteWishItem(svcId,svcType);
+    }
+    else{
+        return res.json();
+    }
 }
 
-export function postSignUp(age,careGrade,insuranceClickid,diseaseResult,recipientClickid,name,genderClickid,location,recoverResult){
-    return fetch(`${SERVER_ADDRESS}/member/signUp`,{
+export async function postSignUp(age,careGrade,insuranceClickid,diseaseResult,recipientClickid,name,genderClickid,location,recoverResult){
+    const res = await fetch(`${SERVER_ADDRESS}/member/signUp`,{
         method:'POST',
         headers:{
             'Content-Type': 'application/json',
@@ -101,11 +132,23 @@ export function postSignUp(age,careGrade,insuranceClickid,diseaseResult,recipien
             "withDisease": recoverResult,
         }),
     })
+    
+    if (res.status === 403){
+        const refresh = localStorage.getItem('refresh-token')
+        console.log(refresh);
+        const data = await postReissuance(refresh)
+        localStorage.setItem('access-token',data.accessToken);
+        localStorage.setItem('refresh-token',data.refreshToken);
+        return postSignUp(age,careGrade,insuranceClickid,diseaseResult,recipientClickid,name,genderClickid,location,recoverResult);
+    }
+    else{
+        return res.json();
+    }
 }
 
-export function postLogout(refresh){
+export async function postLogout(refresh){
 
-    return fetch(`${SERVER_ADDRESS}/member/logout`,{
+    const res = await fetch(`${SERVER_ADDRESS}/member/logout`,{
         method:'POST',
         headers:{
             'Content-Type': 'application/json',
@@ -116,33 +159,68 @@ export function postLogout(refresh){
             'refresh': refresh,
         }),
     })
+    
+    if (res.status === 403){
+        const refresh = localStorage.getItem('refresh-token')
+        console.log(refresh);
+        const data = await postReissuance(refresh)
+        localStorage.setItem('access-token',data.accessToken);
+        localStorage.setItem('refresh-token',data.refreshToken);
+        return postLogout(refresh);
+    }
+    else{
+        return res.json();
+    }
 }
 
-export function getMap(query){
-    fetch(`${SERVER_ADDRESS}/search/map?${query}`, {
+export async function getMap(query){
+    const res = await fetch(`${SERVER_ADDRESS}/search/map?${query}`, {
       method: "GET",
       headers: {
         accept: "application/json",
         'Authorization': `Bearer ${localStorage.getItem('access-token')}`
       },
       credentials: 'include',
-    }).then((response) => response.json());
+    })
+    
+    if (res.status === 403){
+        const refresh = localStorage.getItem('refresh-token')
+        console.log(refresh);
+        const data = await postReissuance(refresh)
+        localStorage.setItem('access-token',data.accessToken);
+        localStorage.setItem('refresh-token',data.refreshToken);
+        return getMap(query);
+    }
+    else{
+        return res.json();
+    }
 }
 
 
-export function getCompare(svcList){
-    return fetch(`${SERVER_ADDRESS}/wish-list/compare?${svcList}`,{
+export async function getCompare(svcList){
+    const res = await fetch(`${SERVER_ADDRESS}/wish-list/compare?${svcList}`,{
         method: "GET",
         headers: {
           accept: "application/json",
           'Authorization': `Bearer ${localStorage.getItem('access-token')}`
         },
         credentials: 'include',
-      }).then((response) => response.json());
+      })
+    if (res.status === 403){
+      const refresh = localStorage.getItem('refresh-token')
+      console.log(refresh);
+      const data = await postReissuance(refresh)
+      localStorage.setItem('access-token',data.accessToken);
+      localStorage.setItem('refresh-token',data.refreshToken);
+      return getCompare(svcList);
+    }
+    else{
+        return res.json();
+    }
 }
 
-export function getMember(){
-    return fetch(`${SERVER_ADDRESS}/member`,{
+export async function getMember(){
+    const res = await fetch(`${SERVER_ADDRESS}/member`,{
         method: "GET",
         headers: {
           accept: "application/json",
@@ -150,12 +228,22 @@ export function getMember(){
         },
         credentials: 'include',
     })
-    .then(res => res.json());
+    if (res.status === 403){
+        const refresh = localStorage.getItem('refresh-token')
+        console.log(refresh);
+        const data = await postReissuance(refresh)
+        localStorage.setItem('access-token',data.accessToken);
+        localStorage.setItem('refresh-token',data.refreshToken);
+        return getMember();
+      }
+    else{
+        return res.json();
+      }
 };
 
 
-export function getPopularList(){
-    return fetch(`${SERVER_ADDRESS}/main/popular`,{
+export async function getPopularList(){
+    const res = await fetch(`${SERVER_ADDRESS}/main/popular`,{
         method: "GET",
         headers: {
           accept: "application/json",
@@ -163,7 +251,18 @@ export function getPopularList(){
         },
         credentials: 'include',
     })
-    .then(res => res.json());
+    
+    if (res.status === 403){
+        const refresh = localStorage.getItem('refresh-token')
+        console.log(refresh);
+        const data = await postReissuance(refresh)
+        localStorage.setItem('access-token',data.accessToken);
+        localStorage.setItem('refresh-token',data.refreshToken);
+        return getPopularList();
+      }
+      else{
+          return res.json();
+      }
 };
 
 
