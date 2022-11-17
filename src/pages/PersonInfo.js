@@ -114,18 +114,16 @@ const careRatingOption = [
 ];
 
 function PersonInfo(){
-  const [isLoading,data] = useQuery(["member"],getMember);
+  //이름input 관리
+  const [name,setName] = useState('');
+  const nameInput = useRef();
+  const onChangeName = e =>{
+      setName(e.target.value);
+  }
   
-    //이름input 관리
-    const [name,setName] = useState('');
-    const nameInput = useRef();
-    const onChangeName = e =>{
-        setName(e.target.value);
-    }
-    
-    //성별 버튼 관리
-    const [genderClickid,setGenderClickid] = useState("");
-    const [genderPreClickid,setGenderPreClickid] = useState("");
+  //성별 버튼 관리
+  const [genderClickid,setGenderClickid] = useState("");
+  const [genderPreClickid,setGenderPreClickid] = useState("");
 
   const onClickGender = (i) => {
     const item = document.getElementById(i.target.id);
@@ -147,6 +145,7 @@ function PersonInfo(){
       }
     }
 }
+
     //나이
     const [age,setAge] = useState('');
     const handleAgeChange = (e,{value:age})=>{
@@ -340,13 +339,35 @@ function PersonInfo(){
         navigate("/");
     }
     
+    const [info,setInfo] = useState('');
+    useEffect(()=>{
+      getMember().then((data)=>{
+        setName(data.seniorName)
+        setGenderClickid(data.sex);
+        const itemSex = document.getElementById(data.sex);
+        itemSex.style.color = "#496ace";
+        itemSex.style.fontWeight = "bolder";
+        itemSex.style.backgroundColor = "#e6edff";
+        itemSex.style.border = "1px solid #496ace";
+        setinsuranceClickid(data.insuranceType);
+        const itmeInsure = document.getElementById(data.insuranceType);
+        itmeInsure.style.color = "#496ace";
+        itmeInsure.style.fontWeight = "bolder";
+        itmeInsure.style.backgroundColor = "#e6edff";
+        itmeInsure.style.border = "1px solid #496ace";
+        setAge(data.age);
+        setCareGrade(data.careGrade);
+      });
+    },[])
+    
+    
     return(
         <StyledPersonInfo>
             <StyledBody>
                 <StyledText style={{display:'block',fontSize:'24px',padding:'40px',textAlign:'center'}}>모시는 분의 정보를 입력해주세요.</StyledText>
                 <StyledBox >
                     <StyledText style={{width:'50%'}}>이름</StyledText>
-                    <input ref={nameInput} onChange={onChangeName} style={{width:'100%',height:'40px',display:'block',border:'1px solid #cccccc',borderRadius:'10px'}}  />
+                    <input ref={nameInput} onChange={onChangeName} value={name} style={{width:'100%',height:'40px',display:'block',border:'1px solid #cccccc',borderRadius:'10px'}}  />
                 </StyledBox>
                 
                 <StyledBox style={{marginLeft:'5%'}}>

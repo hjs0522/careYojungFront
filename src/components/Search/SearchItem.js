@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import { Button, Icon } from "semantic-ui-react";
 import styled, { keyframes } from "styled-components";
 import Detail from "../Detail";
-import { photoarr } from "../photos";
 import Review from "../Review";
 import { postWishItem, deleteWishItem } from "../../api";
 import { useMediaQuery } from "react-responsive";
