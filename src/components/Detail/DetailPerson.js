@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useMediaQuery } from "react-responsive";
+
 const DetailPersonBox = styled.div({
   width: "30%",
   border: "1px solid #e1e1e1",
@@ -21,7 +21,6 @@ const MobileDetailPersonText = styled.div({
   fontFamily: "NanumB",
 });
 
-
 const DetailTitle = styled.h2({
   fontWeight: "normal",
   fontSize: "24px",
@@ -38,66 +37,124 @@ const StyledDetailBox = styled.div({
   marginTop: "4%",
 });
 
-function DetailPerson({ detailInfo }) {
-
-  const isMobile = useMediaQuery({
-    query : "(max-width:767px)"
-  });
-  if (isMobile){
+function DetailPerson({ detailInfo, isMobile }) {
+  if (isMobile) {
     return (
       <StyledDetailBox id="Detail-2">
         <MobileDetailTitle>인력현황</MobileDetailTitle>
-        <DetailPersonBox style={{ marginLeft: "0" }}>
-          <div style={{ padding: "7%", borderBottom: "1px solid #e1e1e1" }}>
-            <MobileDetailPersonText>의사</MobileDetailPersonText>
-            <MobileDetailPersonText style={{ float: "right", color: "#E9539b" }}>
+        <DetailPersonBox
+          style={{
+            marginLeft: "0",
+            display: "block",
+            width: "100%",
+            height: "50px",
+          }}
+        >
+          <div
+            style={{
+              display: "inline",
+              padding: "5%",
+            }}
+          >
+            <MobileDetailPersonText
+              style={{
+                fontSize: "20px",
+                marginTop: "10px",
+                float: "left",
+                marginLeft: "20px",
+              }}
+            >
+              의사
+            </MobileDetailPersonText>
+            <MobileDetailPersonText
+              style={{
+                color: "#E9539b",
+                display: "inline",
+                float: "right",
+                fontSize: "20px",
+                marginTop: "10px",
+                marginRight: "20px",
+              }}
+            >
               {detailInfo.doctor}명
             </MobileDetailPersonText>
           </div>
-          <div style={{ padding: "7%" }}>
-            <MobileDetailPersonText style={{ display: "block", marginBottom: "10px" }}>
-              1명당 입소자 10명
+        </DetailPersonBox>
+        <DetailPersonBox
+          style={{
+            marginLeft: "0",
+            display: "block",
+            width: "100%",
+            height: "50px",
+            marginTop: "10px",
+          }}
+        >
+          <div
+            style={{
+              display: "inline",
+              padding: "5%",
+            }}
+          >
+            <MobileDetailPersonText
+              style={{
+                fontSize: "20px",
+                marginTop: "10px",
+                float: "left",
+                marginLeft: "20px",
+              }}
+            >
+              간호사
             </MobileDetailPersonText>
             <MobileDetailPersonText
-              style={{ display: "block", fontSize: "18px", color: "#999999" }}
+              style={{
+                color: "#E9539b",
+                display: "inline",
+                float: "right",
+                fontSize: "20px",
+                marginTop: "10px",
+                marginRight: "20px",
+              }}
             >
-              평균 1명당 20명
-            </MobileDetailPersonText>
-          </div>
-        </DetailPersonBox>
-        <DetailPersonBox style={{ marginLeft: "5%" }}>
-          <div style={{ padding: "7%", borderBottom: "1px solid #e1e1e1" }}>
-            <MobileDetailPersonText>간호사</MobileDetailPersonText>
-            <MobileDetailPersonText style={{ float: "right", color: "#E9539b" }}>
               {detailInfo.nurse}명
             </MobileDetailPersonText>
           </div>
-          <div style={{ padding: "7%" }}>
-            <MobileDetailPersonText style={{ display: "block", marginBottom: "10px" }}>
-              1명당 입소자 20명
-            </MobileDetailPersonText>
-            <MobileDetailPersonText
-              style={{ display: "block", fontSize: "18px", color: "#999999" }}
-            >
-              평균 1명당 20명
-            </MobileDetailPersonText>
-          </div>
         </DetailPersonBox>
-        <DetailPersonBox style={{ float: "right" }}>
-          <div style={{ padding: "7%", borderBottom: "1px solid #e1e1e1" }}>
-            <MobileDetailPersonText>요양보호사</MobileDetailPersonText>
-            <MobileDetailPersonText style={{ float: "right", color: "#E9539b" }}>
-              {detailInfo.careGiver}명
-            </MobileDetailPersonText>
-          </div>
-          <div style={{ padding: "7%" }}>
-            <MobileDetailPersonText style={{ display: "block", marginBottom: "10px" }}>
-              1명당 입소자 20명
+        <DetailPersonBox
+          style={{
+            marginLeft: "0",
+            display: "block",
+            width: "100%",
+            height: "50px",
+            marginTop: "10px",
+          }}
+        >
+          <div
+            style={{
+              display: "inline",
+              padding: "5%",
+            }}
+          >
+            <MobileDetailPersonText
+              style={{
+                fontSize: "20px",
+                marginTop: "10px",
+                float: "left",
+                marginLeft: "20px",
+              }}
+            >
+              요양보호사
             </MobileDetailPersonText>
             <MobileDetailPersonText
-              style={{ display: "block", fontSize: "18px", color: "#999999" }}
+              style={{
+                color: "#E9539b",
+                display: "inline",
+                float: "right",
+                fontSize: "20px",
+                marginTop: "10px",
+                marginRight: "20px",
+              }}
             >
-              평균 1명당 20명
+              {detailInfo.careGiver}명
             </MobileDetailPersonText>
           </div>
         </DetailPersonBox>
