@@ -3,8 +3,8 @@ import { Dropdown } from "semantic-ui-react";
 import { useState,useEffect,useRef } from "react";
 import { getMember, postSignUp } from "../api";
 import { useNavigate } from "react-router-dom";
-import {useCookies}from'react-cookie';
-import {useQuery } from "react-query";
+import { useMediaQuery } from "react-responsive";
+import MobilePage from "./MobilePage";
 const StyledPersonInfo = styled.div({
   paddingBottom: "100px",
   paddingTop: "100px",
@@ -360,7 +360,15 @@ function PersonInfo(){
       });
     },[])
     
+    const isMobile = useMediaQuery({
+      query: "(max-width:767px)",
+    });
     
+    if (isMobile){
+      return(
+        <MobilePage></MobilePage>
+      )
+    }
     return(
         <StyledPersonInfo>
             <StyledBody>

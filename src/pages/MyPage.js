@@ -2,7 +2,8 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import userimage from "../img/user.png";
 import heartimage from "../img/heart.png";
-
+import { useMediaQuery } from "react-responsive";
+import MobilePage from "./MobilePage";
 const StyleMypage = styled.div({
   backgroundColor: "#f5f7fa",
   paddingTop: "70px",
@@ -56,6 +57,16 @@ const MyPage = () => {
     box.style.border = "1px solid #e1e1e1";
     box.style.boxShadow = "none";
   };
+  
+  const isMobile = useMediaQuery({
+    query: "(max-width:767px)",
+  });
+  
+  if (isMobile){
+    return(
+      <MobilePage></MobilePage>
+    )
+  }
   return (
     <StyleMypage>
       <MypageBox>

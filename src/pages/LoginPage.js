@@ -1,7 +1,8 @@
 import { Button } from "semantic-ui-react";
 import styled from "styled-components";
 import { KAKAO_AUTH_URL } from "../OAuth";
-
+import { useMediaQuery } from "react-responsive";
+import MobilePage from "./MobilePage";
 const PageContainer = styled.div`
   background-color: #f5f7fa;
   height: 80vh;
@@ -31,7 +32,15 @@ const LoginButtonContainer = styled.div`
 
 const LoginPage = ()=>{
     console.log(KAKAO_AUTH_URL)
+    const isMobile = useMediaQuery({
+      query: "(max-width:767px)",
+    });
     
+    if (isMobile){
+      return(
+        <MobilePage></MobilePage>
+      )
+    }
     return(
         <PageContainer>
             <LoginButtonContainer>

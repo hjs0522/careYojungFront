@@ -1,7 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import { getMap } from "../api";
 import Maplist from "./Maplist";
-
+import {useMediaQuery} from 'react-responsive';
+import MobilePage from '../pages/MobilePage';
 let wholemap = null;
 
 function Map({ mapArr, setMapArr }) {
@@ -149,7 +150,15 @@ function Map({ mapArr, setMapArr }) {
   //     });
   //   });
   // }, [mapArr]);
-
+  const isMobile = useMediaQuery({
+    query: "(max-width:767px)",
+  });
+  
+  if (isMobile){
+    return(
+      <MobilePage></MobilePage>
+    )
+  }
   return (
     <>
       <Maplist mapArr={mapArr} wholemap={wholemap} />
