@@ -8,6 +8,8 @@ import { useQuery } from "react-query";
 import CompareBar from "../components/Compare/CompareBar";
 import { useRecoilState } from "recoil";
 import { keywordState,serviceState,gradeState,orderState } from "../atom";
+import { useMediaQuery } from "react-responsive";
+import MobilePage from "./MobilePage";
 const PageContainer = styled.div`
   background-color: #f5f7fa;
 `;
@@ -75,7 +77,15 @@ const WishPage = ()=>{
         it.nursingHome_id === targetId ? { ...it, wish: newWish } : it
       )
   };
-
+  const isMobile = useMediaQuery({
+    query: "(max-width:767px)",
+  });
+  
+  if (isMobile){
+    return(
+      <MobilePage></MobilePage>
+    )
+  }
   return (
     <PageContainer>
       <DropDownRow
