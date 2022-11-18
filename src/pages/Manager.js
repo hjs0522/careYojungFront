@@ -67,10 +67,35 @@ const arr = [
 ];
 
 function Manager() {
+  const getReview = () => {
+    fetch(`https://api.care-yojung.com/review/manage`, {
+      method: "GET",
+      headers: {
+        accept: "application/json",
+        Authorization: `Bearer ${localStorage.getItem("access-token")}`,
+      },
+      credentials: "include",
+    })
+      .then((res) => res.json())
+      .then((res) => console.log(res));
+
+    // if (res.status === 403){
+    //     const refresh = localStorage.getItem('refresh-token')
+    //     console.log(refresh);
+    //     const data = await postReissuance(refresh)
+    //     localStorage.setItem('access-token',data.accessToken);
+    //     localStorage.setItem('refresh-token',data.refreshToken);
+    //     return getWishList();
+    // }
+    // else{
+    //     return res.json();
+    // }
+  };
   return (
     <StyledManagermation>
       <ManagerBody>
         <ManagerH1>승인 대기중인 리뷰</ManagerH1>
+        <button onClick={getReview}>리뷰 가져오기</button>
         {arr.map((i) => (
           <One>
             <OneName>{i.name}</OneName>
