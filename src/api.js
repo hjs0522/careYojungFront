@@ -124,7 +124,7 @@ export async function postSignUp(age,careGrade,insuranceClickid,diseaseResult,re
             "careGrade": careGrade,
             "insuranceType": insuranceClickid,
             "necessaryTreat": diseaseResult,
-            "reciptientType": recipientClickid,
+            "recipientType": recipientClickid,
             "seniorName": name,
             "sex": genderClickid,
             "location": location,
