@@ -9,6 +9,7 @@ import { loginState } from "../atom";
 import { useMediaQuery } from "react-responsive";
 import MyPage from "./MyPage";
 import { useState } from "react";
+import Tos from "../components/Tos";
 
 const arr = [
   {
