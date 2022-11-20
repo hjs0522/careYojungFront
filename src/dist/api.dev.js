@@ -483,7 +483,7 @@ function getPopularList() {
       switch (_context10.prev = _context10.next) {
         case 0:
           _context10.next = 2;
-          return regeneratorRuntime.awrap(fetch("".concat(SERVER_ADDRESS, "/main/popular"), {
+          return regeneratorRuntime.awrap(fetch("".concat(SERVER_ADDRESS, "/nursing-home/popular"), {
             method: "GET",
             headers: {
               accept: "application/json",

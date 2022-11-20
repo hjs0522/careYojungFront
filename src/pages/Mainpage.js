@@ -10,6 +10,8 @@ import { useMediaQuery } from "react-responsive";
 import MyPage from "./MyPage";
 import { useState } from "react";
 import Tos from "../components/Tos";
+import { useEffect } from "react";
+import { getPopularList } from "../api";
 
 const arr = [
   {
@@ -118,6 +120,16 @@ function Mainpage() {
   const isMobile = useMediaQuery({
     query: "(max-width:935px)",
   });
+  
+  const [popular,setPopular] = useState(arr1);
+  
+  useEffect(()=>{
+    getPopularList().then(
+    (data)=>{
+      setPopular(data);
+    })
+  },[])
+  
   if (isMobile) {
     return (
       <StyledMainpage style={{ paddingTop: "0px" }}>
@@ -130,7 +142,9 @@ function Mainpage() {
         ) : (
           <MainPhoto isMobile={isMobile}></MainPhoto>
         )}
-        <Popularlist arr={arr1} isMobile={isMobile} />
+        
+        
+        <Popularlist arr={popular} isMobile={isMobile} />
         <Themelist arr={arr2} isMobile={isMobile} />
 
         <Pageup />
@@ -148,7 +162,7 @@ function Mainpage() {
         ) : (
           <MainPhoto />
         )}
-        <Popularlist arr={arr1} />
+        <Popularlist arr={popular} />
         <Themelist arr={arr2} />
 
         <Pageup />

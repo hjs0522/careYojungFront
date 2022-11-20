@@ -242,7 +242,7 @@ export async function getMember(){
 
 
 export async function getPopularList(){
-    const res = await fetch(`${SERVER_ADDRESS}/main/popular`,{
+    const res = await fetch(`${SERVER_ADDRESS}/nursing-home/popular`,{
         method: "GET",
         headers: {
           accept: "application/json",

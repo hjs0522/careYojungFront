@@ -57,7 +57,7 @@ const StyledListArg = styled.div({
   cursor: "pointer",
 });
 
-function ListArg({ index, name, img, loc, id }) {
+function ListArg({ index, name, img, loc, id,nursingHome_id }) {
   const [detail_bool, setDetail_bool] = useState(false);
   return (
     <StyledListArg
@@ -74,7 +74,7 @@ function ListArg({ index, name, img, loc, id }) {
         id={id}
         src={
           id === "Themelist"
-            ? img
+            ? `https://api.care-yojung.com/image/thumbnail?id=${nursingHome_id}`
             : photoarr[name] === 0
             ? "https://react.semantic-ui.com/images/wireframe/image.png"
             : photoarr[name] + process.env.REACT_APP_GOOGLEMAP_KEY
