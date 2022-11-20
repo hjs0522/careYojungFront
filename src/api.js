@@ -123,12 +123,12 @@ export async function postSignUp(age,careGrade,insuranceClickid,diseaseResult,re
             "age":age,
             "careGrade": careGrade,
             "insuranceType": insuranceClickid,
-            "necessaryTreat": diseaseResult,
+            "necessaryTreat": recoverResult,
             "recipientType": recipientClickid,
             "seniorName": name,
             "sex": genderClickid,
             "location": location,
-            "withDisease": recoverResult,
+            "withDisease": diseaseResult,
         }),
     })
     

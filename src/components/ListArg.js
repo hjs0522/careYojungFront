@@ -27,6 +27,7 @@ const TextBox = styled.div`
     prop.id === "Themelist" ? null : "rgba(0, 0, 0, 0.3)"};
   z-index: 1;
   position: absolute;
+  overflow: hidden;
 `;
 
 const StyleName = styled.div({
@@ -39,6 +40,7 @@ const StyleName = styled.div({
   fontSize: (prop) => (prop.id === "Themelist" ? "22px" : "18px"),
   display: "block",
   cursor: "pointer",
+  overflow: 'hidden',
 });
 const StyleLoc = styled.div({
   fontFamily: "NanumR",
@@ -50,6 +52,7 @@ const StyleLoc = styled.div({
   fontSize: (prop) => (prop.id === "Themelist" ? "18px" : "16px"),
   display: "block",
   cursor: "pointer",
+  overflow: 'hidden',
 });
 
 const StyledListArg = styled.div({
@@ -73,12 +76,8 @@ function ListArg({ index, name, img, loc, id,nursingHome_id }) {
       <StyledImage
         id={id}
         src={
-          id === "Themelist"
-            ? `https://api.care-yojung.com/image/thumbnail?id=${nursingHome_id}`
-            : photoarr[name] === 0
-            ? "https://react.semantic-ui.com/images/wireframe/image.png"
-            : photoarr[name] + process.env.REACT_APP_GOOGLEMAP_KEY
-        }
+        id === "Themelist"?img:
+        `https://api.care-yojung.com/image/thumbnail?id=${nursingHome_id}`}
       />
 
       {id !== "Themelist" ? (
@@ -87,6 +86,7 @@ function ListArg({ index, name, img, loc, id,nursingHome_id }) {
           name={name}
           loc={loc}
           id={id}
+          nursingHome_id={nursingHome_id}
           detail_bool={detail_bool}
           setDetail_bool={setDetail_bool}
         />

@@ -15,6 +15,7 @@ const Kakao = (props) =>{
             try{
                 if (data.flag=== false)
                 {
+                    localStorage.setItem('access-token',data.accessToken);
                     navigate('/personInfoSignUp');
                 }
                 else{

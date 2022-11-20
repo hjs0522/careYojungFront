@@ -247,12 +247,12 @@ function postSignUp(age, careGrade, insuranceClickid, diseaseResult, recipientCl
               "age": age,
               "careGrade": careGrade,
               "insuranceType": insuranceClickid,
-              "necessaryTreat": diseaseResult,
+              "necessaryTreat": recoverResult,
               "recipientType": recipientClickid,
               "seniorName": name,
               "sex": genderClickid,
               "location": location,
-              "withDisease": recoverResult
+              "withDisease": diseaseResult
             })
           }));
 

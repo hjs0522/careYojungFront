@@ -349,13 +349,36 @@ function PersonInfo(){
         itemSex.style.backgroundColor = "#e6edff";
         itemSex.style.border = "1px solid #496ace";
         setinsuranceClickid(data.insuranceType);
-        const itmeInsure = document.getElementById(data.insuranceType);
-        itmeInsure.style.color = "#496ace";
-        itmeInsure.style.fontWeight = "bolder";
-        itmeInsure.style.backgroundColor = "#e6edff";
-        itmeInsure.style.border = "1px solid #496ace";
+        const itemInsure = document.getElementById(data.insuranceType);
+        itemInsure.style.color = "#496ace";
+        itemInsure.style.fontWeight = "bolder";
+        itemInsure.style.backgroundColor = "#e6edff";
+        itemInsure.style.border = "1px solid #496ace";
         setAge(data.age);
         setCareGrade(data.careGrade);
+        setrecipientClickid(data.recipientType);
+        const itemRecipent = document.getElementById(data.recipientType);
+        itemRecipent.style.color = "#496ace";
+        itemRecipent.style.fontWeight = "bolder";
+        itemRecipent.style.backgroundColor = "#e6edff";
+        itemRecipent.style.border = "1px solid #496ace";
+        
+        data.withDisease.forEach(element => {
+          const itemDisease = document.getElementById(element)
+          itemDisease.style.color = "#496ace";
+          itemDisease.style.fontWeight = "bolder";
+          itemDisease.style.backgroundColor = "#e6edff";
+          itemDisease.style.border = "1px solid #496ace";
+        });
+        let recoverSum = 0;
+        data.necessaryTreat.forEach(element => {
+          const itemTreat = document.getElementById(element)
+          itemTreat.style.color = "#496ace";
+          itemTreat.style.fontWeight = "bolder";
+          itemTreat.style.backgroundColor = "#e6edff";
+          itemTreat.style.border = "1px solid #496ace";
+        });
+    
       });
     },[])
     

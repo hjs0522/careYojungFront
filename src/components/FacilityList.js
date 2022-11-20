@@ -46,6 +46,7 @@ const GridExampleRelaxedVery = ({ size, arr, id }) => {
                 id={id}
                 nursingHome_id = {i.nursingHome_id}
                 name={i.name}
+                img={i.img}
                 loc={i.addrFront}
               />
             );

@@ -13,45 +13,6 @@ import Tos from "../components/Tos";
 import { useEffect } from "react";
 import { getPopularList } from "../api";
 
-const arr = [
-  {
-    //원래는 메인페이지에서 최근본시설, 인기있는시설, 테마별 시설을 가져와서 뿌려줌. 현재는 가상의 데이터 사용
-    key: 0,
-    name: "보은요양원",
-    ShortLoc: "서울특별시 동대문구",
-    img: "https://api.care-yojung.com/image/thumbnail?id=11111000033",
-  },
-  {
-    key: 1,
-    name: "남부실버요양원",
-    ShortLoc: "서울특별시 금천구 ",
-    img: "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=AeJbb3cayxFQm6v8cfU5Hr9NlKD8ako-T8qf13jypcV20NjKrLFaKdfarP39wqQDdj1Do1PVbmcGeXMdxum-fc4Ho8BIwOws4asxlyBk5waI4Dfwu0HnlnJg9EkKGsd-ZfdG9o0_iVEPSz-6GgZ6CZyiSekLGAoi1xmdHWal4kKtzzrpnMzx&key=AIzaSyDY5tTtaA7BBeKxnL1hhcZQfXotxBJL4dY",
-  },
-  {
-    key: 2,
-    name: "참노인요양원",
-    ShortLoc: "인천광역시 계양구 ",
-    img: "https://mblogthumb-phinf.pstatic.net/MjAyMTAzMjJfNTIg/MDAxNjE2MzkxMzA0NDc4.RCSz6incoT1YQqMFLw56c-S7YrB5_tgIchXWEiL3qrcg.RE8SV1h8C4FSAFh4271numvCyPmspekAFg2oivqGdf4g.JPEG.samson1278/batch_프리미엄요양원11.jpg?type=w800",
-  },
-  {
-    key: 3,
-    name: "새솔요양원",
-    ShortLoc: "인천광역시 부평구 ",
-    img: "https://cdn.docdocdoc.co.kr/news/photo/201411/164531_56485_0530.jpg",
-  },
-  {
-    key: 4,
-    name: "봄날서울요양원",
-    ShortLoc: "서울특별시 강서구 ",
-    img: "https://react.semantic-ui.com/images/wireframe/image.png",
-  },
-  {
-    key: 5,
-    name: "강서중앙데이케어센터",
-    ShortLoc: "서울특별시 강서구",
-    img: "https://react.semantic-ui.com/images/wireframe/image.png",
-  },
-];
 
 const arr1 = [
   {
@@ -121,7 +82,7 @@ function Mainpage() {
     query: "(max-width:935px)",
   });
   
-  const [popular,setPopular] = useState(arr1);
+  const [popular,setPopular] = useState([]);
   
   useEffect(()=>{
     getPopularList().then(

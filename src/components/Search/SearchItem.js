@@ -133,8 +133,6 @@ const SearchItem = ({
   console.log("searchItem rendering");
   const [detail_bool, setDetail_bool] = useState(false); //상세정보 페이지 열려있는지 여부
   const [review_bool, setReview_bool] = useState(false); //리뷰페이지 열려있는지 여부
-  const [detailData, setDetailData] = useState();
-
   const handleOnClick = () => {
     onEditWish(nursingHome_id, !wish);
     postWishItem(nursingHome_id);
@@ -284,8 +282,7 @@ const SearchItem = ({
           detail_bool={detail_bool}
           setDetail_bool={setDetail_bool}
           name={name}
-          detailData={detailData}
-        />
+          />
       </MobileItemContainer>
     );
   }
@@ -375,47 +372,7 @@ const SearchItem = ({
         <DetailButton
           size="small"
           onClick={() => {
-            setDetail_bool(true);
-            fetch(
-              `https://api.care-yojung.com/search/detail?id=${nursingHome_id}&service=aaa`,
-              {
-                method: "GET",
-                headers: {
-                  accept: "application/json",
-                },
-                credentials: "include",
-              }
-            )
-              .then((res) => res.json())
-              .then((res) => {
-                setDetailData(res);
-                let recent = JSON.parse(localStorage.getItem("recent"));
-                if (recent === null) {
-                  recent = [];
-                }
-                const obj = {
-                  nursingHome_id: nursingHome_id,
-                  name: name,
-                  addrFront: addrFront,
-                };
-                if (
-                  recent.some(
-                    (element) => element.nursingHome_id === obj.nursingHome_id
-                  )
-                ) {
-                  recent = recent.filter(
-                    (element) => element.nursingHome_id !== obj.nursingHome_id
-                  );
-                  recent.push(obj);
-                } else {
-                  if (recent.length === 10) {
-                    recent.shift();
-                  }
-                  recent.push(obj);
-                }
-                localStorage.setItem("recent", JSON.stringify(recent));
-              });
-            console.log(detailData);
+            setDetail_bool(true); 
           }}
         >
           <Icon name="plus square outline"></Icon>
@@ -458,7 +415,6 @@ const SearchItem = ({
         detail_bool={detail_bool}
         setDetail_bool={setDetail_bool}
         name={name}
-        detailData={detailData}
       />
     </ItemContainer>
   );

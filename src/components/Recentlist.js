@@ -64,7 +64,7 @@ function RecentInfo({ listLen, listCount, isMobile }) {
         <InfoH3 style={{ marginTop: "10%", fontSize: "18px" }}>
           {"<"} {listCount}
           {"/"}
-          {listLen} {">"} */
+          {listLen} {">"}
         </InfoH3>
       </StyledInfo>
     );
@@ -74,7 +74,6 @@ function RecentInfo({ listLen, listCount, isMobile }) {
 function Recentlist({ arr, isMobile }) {
   const listLen = arr.length;
   const [listCount, setListCount] = useState(0);
-
   useEffect(() => {
     if (listLen > 4) setListCount(4);
     else setListCount(listLen);
