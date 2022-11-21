@@ -268,6 +268,8 @@ function Detail({nursingHome_id, detail_bool, setDetail_bool }) {
               <DetailFacility detailInfo={response} isMobile={isMobile} />{" "}
               {/*시설현황 컴포넌트*/}
               <DetailAI isMobile={isMobile} /> {/*AI점수 컴포넌트*/}
+              <DetailReview detailInfo={response} isMobile={isMobile} />{" "}
+              {/* 시설리뷰 컴포넌트*/}
             </DetailBody>
           </Modal.Content>
         </DetailPage>
@@ -372,6 +374,8 @@ function Detail({nursingHome_id, detail_bool, setDetail_bool }) {
                   </Container>
                   {/*시설현황 컴포넌트*/}
                   <DetailAI isMobile={isMobile} /> {/*AI점수 컴포넌트*/}
+                  <DetailReview detailInfo={response} isMobile={isMobile} />{" "}
+                  {/* 시설리뷰 컴포넌트*/}
                 </Grid.Column>
                 <Grid.Column width={5}>
                   <div style={{ top: "5%", position: "sticky" }}>
