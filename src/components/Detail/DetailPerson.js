@@ -173,12 +173,7 @@ function DetailPerson({ detailInfo, isMobile }) {
         </div>
         <div style={{ padding: "7%" }}>
           <DetailPersonText style={{ display: "block", marginBottom: "10px" }}>
-            1명당 입소자 10명
-          </DetailPersonText>
-          <DetailPersonText
-            style={{ display: "block", fontSize: "18px", color: "#999999" }}
-          >
-            평균 1명당 20명
+            전국 평균 0.7명
           </DetailPersonText>
         </div>
       </DetailPersonBox>
@@ -191,12 +186,7 @@ function DetailPerson({ detailInfo, isMobile }) {
         </div>
         <div style={{ padding: "7%" }}>
           <DetailPersonText style={{ display: "block", marginBottom: "10px" }}>
-            1명당 입소자 20명
-          </DetailPersonText>
-          <DetailPersonText
-            style={{ display: "block", fontSize: "18px", color: "#999999" }}
-          >
-            평균 1명당 20명
+            전국 평균 1.3명
           </DetailPersonText>
         </div>
       </DetailPersonBox>
@@ -209,12 +199,7 @@ function DetailPerson({ detailInfo, isMobile }) {
         </div>
         <div style={{ padding: "7%" }}>
           <DetailPersonText style={{ display: "block", marginBottom: "10px" }}>
-            1명당 입소자 20명
-          </DetailPersonText>
-          <DetailPersonText
-            style={{ display: "block", fontSize: "18px", color: "#999999" }}
-          >
-            평균 1명당 20명
+            전국 평균 10.0명
           </DetailPersonText>
         </div>
       </DetailPersonBox>
