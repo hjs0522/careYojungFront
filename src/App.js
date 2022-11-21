@@ -18,6 +18,7 @@ import Information from "./pages/Information";
 import InfoDetail from "./pages/InfoDetail";
 import { CookiesProvider } from "react-cookie";
 import Manager from "./pages/Manager";
+import PersonInfoSignUp from "./pages/PersonInfoSignUp";
 
 function App() {
   const [service, setService] = useState(serviceOptions[0].key);
@@ -69,6 +70,7 @@ function App() {
           <Route path="/oauth/callback/kakao" element={<Kakao></Kakao>}></Route>
           <Route path="/map" element={<Mappage></Mappage>}></Route>
           <Route path="/personInfo" element={<PersonInfo></PersonInfo>}></Route>
+          <Route path="/personInfoSignUp" element={<PersonInfoSignUp></PersonInfoSignUp>}></Route>
           <Route path="/info" element={<Information></Information>}></Route>
           <Route path="/infoDetail" element={<InfoDetail></InfoDetail>}></Route>
           <Route path="/manager" element={<Manager />}></Route>

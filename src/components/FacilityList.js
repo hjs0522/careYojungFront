@@ -44,9 +44,10 @@ const GridExampleRelaxedVery = ({ size, arr, id }) => {
               <ListArg
                 index={index}
                 id={id}
+                nursingHome_id = {i.nursingHome_id}
                 name={i.name}
                 img={i.img}
-                loc={i.ShortLoc}
+                loc={i.addrFront}
               />
             );
           })}

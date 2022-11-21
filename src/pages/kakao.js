@@ -13,22 +13,23 @@ const Kakao = (props) =>{
         postKakao(code)
         .then((data)=>{
             try{
-                localStorage.setItem('user',data);
-                localStorage.setItem('access-token',data.accessToken);
-                localStorage.setItem('refresh-token',data.refreshToken);
-                if (localStorage.getItem('user')){
-                    setLogin(true);
+                if (data.flag=== false)
+                {
+                    localStorage.setItem('access-token',data.accessToken);
+                    navigate('/personInfoSignUp');
+                }
+                else{
+                    localStorage.setItem('user',data);
+                    localStorage.setItem('access-token',data.accessToken);
+                    localStorage.setItem('refresh-token',data.refreshToken);
+                    if (localStorage.getItem('user')){
+                        setLogin(true);
+                    }
+                    navigate('/');
                 }
             }catch(e){
                 console.log(e);
                 console.log('localStorage is not working');
-            }
-            if (data.flag=== false)
-            {
-                navigate('/personInfo');
-            }
-            else{
-                navigate('/');
             }
         })
         .catch((err)=>{

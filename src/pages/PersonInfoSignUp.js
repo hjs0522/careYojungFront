@@ -1,10 +1,12 @@
 import styled from "styled-components";
 import { Dropdown } from "semantic-ui-react";
 import { useState,useEffect,useRef } from "react";
-import { getMember, postSignUp } from "../api";
+import {postSignUp } from "../api";
 import { useNavigate } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
 import MobilePage from "./MobilePage";
+import { useRecoilState } from "recoil";
+import { loginState } from "../atom";
 const StyledPersonInfo = styled.div({
   paddingBottom: "100px",
   paddingTop: "100px",
@@ -113,7 +115,7 @@ const careRatingOption = [
   },
 ];
 
-function PersonInfo(){
+function PersonInfoSignUp(){
   //이름input 관리
   const [name,setName] = useState('');
   const nameInput = useRef();
@@ -334,53 +336,22 @@ function PersonInfo(){
         }
     }
     const navigate = useNavigate();
+    const [login,setLogin] = useRecoilState(loginState);
     const handlerOnClick = () =>{
-        postSignUp(age,careGrade,insuranceClickid,diseaseResult,recipientClickid,name,genderClickid,location,recoverResult).then(res=>console.log(res.headers))
+        postSignUp(age,careGrade,insuranceClickid,diseaseResult,recipientClickid,name,genderClickid,location,recoverResult).then(
+        (data)=>{
+          localStorage.setItem('user',data);
+          localStorage.setItem('access-token',data.accessToken);
+          localStorage.setItem('refresh-token',data.refreshToken);
+          if (localStorage.getItem('user')){
+              setLogin(true);
+          }
+        }
+        )
         navigate("/");
     }
     
-    useEffect(()=>{
-      getMember().then((data)=>{
-        setName(data.seniorName)
-        setGenderClickid(data.sex);
-        const itemSex = document.getElementById(data.sex);
-        itemSex.style.color = "#496ace";
-        itemSex.style.fontWeight = "bolder";
-        itemSex.style.backgroundColor = "#e6edff";
-        itemSex.style.border = "1px solid #496ace";
-        setinsuranceClickid(data.insuranceType);
-        const itemInsure = document.getElementById(data.insuranceType);
-        itemInsure.style.color = "#496ace";
-        itemInsure.style.fontWeight = "bolder";
-        itemInsure.style.backgroundColor = "#e6edff";
-        itemInsure.style.border = "1px solid #496ace";
-        setAge(data.age);
-        setCareGrade(data.careGrade);
-        setrecipientClickid(data.recipientType);
-        const itemRecipent = document.getElementById(data.recipientType);
-        itemRecipent.style.color = "#496ace";
-        itemRecipent.style.fontWeight = "bolder";
-        itemRecipent.style.backgroundColor = "#e6edff";
-        itemRecipent.style.border = "1px solid #496ace";
-        
-        data.withDisease.forEach(element => {
-          const itemDisease = document.getElementById(element)
-          itemDisease.style.color = "#496ace";
-          itemDisease.style.fontWeight = "bolder";
-          itemDisease.style.backgroundColor = "#e6edff";
-          itemDisease.style.border = "1px solid #496ace";
-        });
-        let recoverSum = 0;
-        data.necessaryTreat.forEach(element => {
-          const itemTreat = document.getElementById(element)
-          itemTreat.style.color = "#496ace";
-          itemTreat.style.fontWeight = "bolder";
-          itemTreat.style.backgroundColor = "#e6edff";
-          itemTreat.style.border = "1px solid #496ace";
-        });
     
-      });
-    },[])
     
     const isMobile = useMediaQuery({
       query: "(max-width:767px)",
@@ -486,10 +457,10 @@ function PersonInfo(){
                     <StyledText>희망지역</StyledText>
                     <input ref={locationInput} onChange={onChangeLocation} style={{width:'100%',height:'40px',display:'block',border:'1px solid #cccccc',borderRadius:'10px'}}  />
                 </StyledBox>
-                {finishState?<StyledFinishButton style={{backgroundColor:'#496ace',color:'white'}} onClick={handlerOnClick}>제출하기</StyledFinishButton>:<StyledFinishButton onClick={()=>{alert("항목을 전부 체크해주세요")}}>제출하기</StyledFinishButton>}
+                {finishState?<StyledFinishButton style={{backgroundColor:'#496ace',color:'white'}} onClick={handlerOnClick}>회원가입 완료</StyledFinishButton>:<StyledFinishButton onClick={()=>{alert("항목을 전부 체크해주세요")}}>회원가입 완료</StyledFinishButton>}
             </StyledBody>
         </StyledPersonInfo>
     )
 }
 
-export default PersonInfo;
+export default PersonInfoSignUp;

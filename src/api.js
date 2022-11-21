@@ -123,12 +123,12 @@ export async function postSignUp(age,careGrade,insuranceClickid,diseaseResult,re
             "age":age,
             "careGrade": careGrade,
             "insuranceType": insuranceClickid,
-            "necessaryTreat": diseaseResult,
+            "necessaryTreat": recoverResult,
             "recipientType": recipientClickid,
             "seniorName": name,
             "sex": genderClickid,
             "location": location,
-            "withDisease": recoverResult,
+            "withDisease": diseaseResult,
         }),
     })
     
@@ -242,7 +242,7 @@ export async function getMember(){
 
 
 export async function getPopularList(){
-    const res = await fetch(`${SERVER_ADDRESS}/main/popular`,{
+    const res = await fetch(`${SERVER_ADDRESS}/nursing-home/popular`,{
         method: "GET",
         headers: {
           accept: "application/json",

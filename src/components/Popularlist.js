@@ -40,6 +40,7 @@ function PopularInfo({ listLen, listCount, isMobile }) {
 function Popularlist({ arr, isMobile }) {
   const listLen = arr.length;
   const [listCount, setListCount] = useState(0);
+  console.log(arr);
   useEffect(() => {
     if (listLen > 4) setListCount(4);
     else setListCount(listLen);

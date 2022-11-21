@@ -10,44 +10,6 @@ import DetailFacility from "./Detail/DetailFacility";
 import DetailReview from "./Detail/DatailReview";
 import { useMediaQuery } from "react-responsive";
 
-import { photoarr } from "./photos";
-
-const response = {
-  nursingHome_id: 123, // 요양원 id
-  name: "서울요양시설", // 요양원이름
-  addrSiDo: 11, //시도코드
-  addrSiGunGu: 500, // 시군구코드
-  addrDong: 500, // 법정동코드
-  addrRi: 123, // 리코드
-  addrRoad: "서울시 상도로 22길", // 도로명주소
-  addrDetail: "4층", // 상세주소
-  phoneNumber: "010-1234-4567", // 전화번호
-  headCount: 40, // 정원
-  nowCount: 35, // 현원
-  waitingCount: 23, // 대기
-  doctor: 10, // 의사 수
-  nurse: 13, // 간호사 수
-  careGiver: 5, // 요양보호사 수
-  singleRoom: 12, // 1인실
-  doubleRoom: 21, // 2인실
-  tripleRoom: 13, // 3인실
-  quadrupleRoom: 12, // 4인실
-  programRoom: 1, // 프로그램실
-  trainingRoom: 1, // 작업 및 일상동작 훈련실
-  cost: 210000, // 비용
-  reviews: [
-    {
-      review_id: "abd", // 리뷰 id
-      member_id: "vcdc", // 사용자 id
-      nursingHome_id: "sdafasdf", // 요양원 id
-      text: "별로예요!", // 리뷰
-      score: 4, // 평점
-      date: "2022.07.21", // 작성 날짜
-    },
-  ],
-  // word 키워드 추가 예정
-};
-
 const DetailPage = styled.div({
   marginLeft: "4%",
   marginRight: "4%",
@@ -132,28 +94,6 @@ const DetailSummaryText = styled.div({
   padding: "1%",
 });
 
-const DetailTitle = styled.h2({
-  fontWeight: "normal",
-  fontSize: "24px",
-});
-
-const StyledDetailBox = styled.div({
-  marginTop: "4%",
-});
-
-const DetailPersonBox = styled.div({
-  width: "30%",
-  border: "1px solid #e1e1e1",
-  borderRadius: "20px",
-  padding: "1%",
-  display: "inline-block",
-});
-const DetailPersonText = styled.div({
-  fontSize: "20px",
-  display: "inline",
-  textAlign: "center",
-});
-
 const menuArr = {
   기본정보: "Detail-1",
   인력현황: "Detail-2",
@@ -162,13 +102,89 @@ const menuArr = {
   시설리뷰: "Detail-5",
 };
 
-function Detail({ img, name, loc, id, detail_bool, setDetail_bool }) {
+function Detail({nursingHome_id, detail_bool, setDetail_bool }) {
+  const [response,setResponse] = useState({
+    "addrDetail": "",
+    "addrFront": "",
+    "addrRoad": "",
+    "buildingMainNum": "",
+    "buildingSubNum": "",
+    "careGiver": 0,
+    "cost": 0,
+    "doctor": 0,
+    "doubleRoom": 0,
+    "floor": "",
+    "grade": 0,
+    "headCount": 0,
+    "name": "",
+    "nowCount": 0,
+    "nurse": 0,
+    "nursingHome_id": 0,
+    "phoneNumber": "",
+    "programRoom": 0,
+    "quadrupleRoom": 0,
+    "reviews": [
+      {
+        "dateTime": "",
+        "memberId": "",
+        "score": 0,
+        "text": ""
+      }
+    ],
+    "score": 0,
+    "singleRoom": 0,
+    "trainingRoom": 0,
+    "tripleRoom": 0,
+    "waitingCount": 0,
+    "wish": true
+  })
   const onMenuClick = (i) => {
     const item = document.getElementById(menuArr[i.target.innerText]);
     item.scrollIntoView({ behavior: "smooth" });
   };
   const [open, setOpen] = useState(false);
-
+  useEffect(()=>{
+    fetch(
+      `https://api.care-yojung.com/search/detail?id=${nursingHome_id}&service=ho`,
+      {
+        method: "GET",
+        headers: {
+          accept: "application/json",
+          'Authorization': `Bearer ${localStorage.getItem('access-token')}`
+        },
+        credentials: 'include',
+      }
+    )
+      .then((res) => res.json())
+      .then((res) => {
+        setResponse(res);
+        let recent = JSON.parse(localStorage.getItem("recent"));
+        if (recent === null) {
+          recent = [];
+        }
+        const obj = {
+          nursingHome_id: res.nursingHome_id,
+          name: res.name,
+          addrFront: res.addrFront,
+        };
+        if (
+          recent.some(
+            (element) => element.nursingHome_id === obj.nursingHome_id
+          )
+        ) {
+          recent = recent.filter(
+            (element) => element.nursingHome_id !== obj.nursingHome_id
+          );
+          recent.push(obj);
+        } else {
+          if (recent.length === 10) {
+            recent.shift();
+          }
+          recent.push(obj);
+        }
+        localStorage.setItem("recent", JSON.stringify(recent));
+      });
+  },[])
   useEffect(() => {
     setOpen(detail_bool);
   }, [detail_bool]);
@@ -184,15 +200,15 @@ function Detail({ img, name, loc, id, detail_bool, setDetail_bool }) {
     return (
       <Modal
         onClose={() => setOpen(false)}
-        onOpen={() => setOpen(true)}
+        onOpen={() => {return setOpen(true)}}
         open={open}
         size="large"
       >
         <DetailPage>
           <div style={{ backgroundColor: "#e1e1e1" }}>
-            <ModalHeader>{name}</ModalHeader>
+            <ModalHeader>{response.name}</ModalHeader>
             <ModalHeader style={{ marginLeft: "20px", fontSize: "24px" }}>
-              요양원
+            ・ 요양원 ・ {response.grade === 0 ? "신설" : response.grade} 등급
             </ModalHeader>
             <div
               onClick={() => setOpen(false)}
@@ -210,7 +226,7 @@ function Detail({ img, name, loc, id, detail_bool, setDetail_bool }) {
           <Modal.Content scrolling>
             <DetailBody id="Detail-1">
               <DetailImage
-                src={photoarr[name] + process.env.REACT_APP_GOOGLEMAP_KEY}
+                src={"https://react.semantic-ui.com/images/wireframe/image.png"}
               />
               <div style={{ marginTop: "10px" }}>
                 <DetailInfo style={{ fontSize: "22px" }}>
@@ -277,10 +293,9 @@ function Detail({ img, name, loc, id, detail_bool, setDetail_bool }) {
       // }
     >
       <DetailPage>
-        <ModalHeader>{name}</ModalHeader>
-
+        <ModalHeader>{response.name}</ModalHeader>
         <ModalHeader style={{ marginLeft: "20px", fontSize: "24px" }}>
-          요양원
+        ・ 요양원 ・ {response.grade === 0 ? "신설" : response.grade} 등급
         </ModalHeader>
         <div
           onClick={() => setOpen(false)}
@@ -307,7 +322,7 @@ function Detail({ img, name, loc, id, detail_bool, setDetail_bool }) {
               <Grid.Row stretched>
                 <Grid.Column width={11}>
                   <DetailImage
-                    src={photoarr[name] + process.env.REACT_APP_GOOGLEMAP_KEY}
+                    src={"https://react.semantic-ui.com/images/wireframe/image.png"}
                   />
                 </Grid.Column>
                 <Grid.Column width={5}>
@@ -319,7 +334,16 @@ function Detail({ img, name, loc, id, detail_bool, setDetail_bool }) {
             <Grid columns={2}>
               <Grid.Row>
                 <Grid.Column width={11}>
-                  <DetailInfo>{response.addrRoad}</DetailInfo>
+                  <DetailInfo>
+                    <span>{response.addrFront + " "}</span>
+                    <span>{response.addrRoad + " "}</span>
+                    <span>
+                      {response.buildingSubNum
+                        ? response.buildingMainNum + "-" + response.buildingSubNum + " "
+                        : response.buildingMainNum + " "}
+                    </span>
+                    <span>{response.addrDetail ? response.addrDetail : response.floor ? response.floor + "층" : null}</span>
+                  </DetailInfo>
                   <DetailTel>T : {response.phoneNumber}</DetailTel>
                   <DetailSummary>
                     <DetailSummaryText>시설정원</DetailSummaryText>
@@ -350,10 +374,7 @@ function Detail({ img, name, loc, id, detail_bool, setDetail_bool }) {
                   </Container>
                   {/*시설현황 컴포넌트*/}
                   <DetailAI isMobile={isMobile} /> {/*AI점수 컴포넌트*/}
-                  <DetailReview
-                    detailInfo={response}
-                    isMobile={isMobile}
-                  />{" "}
+                  <DetailReview detailInfo={response} isMobile={isMobile} />{" "}
                   {/* 시설리뷰 컴포넌트*/}
                 </Grid.Column>
                 <Grid.Column width={5}>
@@ -369,6 +390,7 @@ function Detail({ img, name, loc, id, detail_bool, setDetail_bool }) {
       </DetailPage>
     </Modal>
   );
+
 }
 
 export default Detail;
