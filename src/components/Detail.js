@@ -226,7 +226,7 @@ function Detail({nursingHome_id, detail_bool, setDetail_bool }) {
           <Modal.Content scrolling>
             <DetailBody id="Detail-1">
               <DetailImage
-                src={"https://react.semantic-ui.com/images/wireframe/image.png"}
+              src={`https://api.care-yojung.com/image/thumbnail?id=${nursingHome_id}`}
               />
               <div style={{ marginTop: "10px" }}>
                 <DetailInfo style={{ fontSize: "22px" }}>
@@ -322,12 +322,12 @@ function Detail({nursingHome_id, detail_bool, setDetail_bool }) {
               <Grid.Row stretched>
                 <Grid.Column width={11}>
                   <DetailImage
-                    src={"https://react.semantic-ui.com/images/wireframe/image.png"}
+                    src={`https://api.care-yojung.com/image/detail?fileName=1.jpg&id=${nursingHome_id}`}
                   />
                 </Grid.Column>
                 <Grid.Column width={5}>
-                  <DetailImage src="https://react.semantic-ui.com/images/wireframe/image.png" />
-                  <DetailImage src="https://react.semantic-ui.com/images/wireframe/image.png" />
+                  <DetailImage src={`https://api.care-yojung.com/image/detail?fileName=2.jpg&id=${nursingHome_id}`}/>
+                  <DetailImage src={`https://api.care-yojung.com/image/detail?fileName=3.jpg&id=${nursingHome_id}`}/>
                 </Grid.Column>
               </Grid.Row>
             </Grid>
