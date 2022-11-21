@@ -180,25 +180,7 @@ function Review({
           </StyledText>
           <StarBox>{getStar(starlength)}</StarBox>
         </div>
-        <form
-          style={{ marginBottom: "15px" }}
-          // onSubmit={(event) => {
-          //   event.preventDefault();
-          //   fetch("http://15.164.184.243:8080/review", {
-          //     method: "POST", // *GET, POST, PUT, DELETE 등
-          //     headers: {
-          //       "Content-Type": "application/json",
-          //     },
-          //     body: JSON.stringify({
-          //       memberId: "user11",
-          //       score: starlength,
-          //       svcId: 11120000126,
-          //       svcType: "ho",
-          //       text: reviewText,
-          //     }), // body의 데이터 유형은 반드시 "Content-Type" 헤더와 일치해야 함
-          //   });
-          // }}
-        >
+        <form style={{ marginBottom: "15px" }}>
           <InputText
             onChange={(event) => {
               setReviewText(event.target.value);
@@ -214,23 +196,26 @@ function Review({
                 alert("별점과 후기를 입력해주세요!");
               } else {
                 if (window.confirm("리뷰를 작성하시겠습니까?") === true) {
-                  setReal_review(reviewText);
+                  // setReal_review(reviewText);
                   fetch(`https://api.care-yojung.com/review`, {
                     method: "POST",
                     headers: {
+                      Authorization: `Bearer ${localStorage.getItem(
+                        "access-token"
+                      )}`,
                       "Content-Type": "application/json",
                     },
                     credentials: "include",
-                    body: {
+                    body: JSON.stringify({
                       score: 3,
-                      svcId: 11120000126,
+                      svcId: nursingHome_id,
                       svcType: "aaastring",
-                      text: real_review,
-                    },
-                  }).then((res) => res.json());
-                  setReviewText("");
+                      text: reviewText,
+                    }),
+                  }).then((res) => console.log(res));
+                  console.log(reviewText);
+                  // setReviewText("");
                   alert("리뷰가 작성되었습니다!");
-
                   return setOpen(false);
                 }
               }

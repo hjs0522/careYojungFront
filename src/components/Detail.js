@@ -102,57 +102,57 @@ const menuArr = {
   시설리뷰: "Detail-5",
 };
 
-function Detail({nursingHome_id, detail_bool, setDetail_bool }) {
-  const [response,setResponse] = useState({
-    "addrDetail": "",
-    "addrFront": "",
-    "addrRoad": "",
-    "buildingMainNum": "",
-    "buildingSubNum": "",
-    "careGiver": 0,
-    "cost": 0,
-    "doctor": 0,
-    "doubleRoom": 0,
-    "floor": "",
-    "grade": 0,
-    "headCount": 0,
-    "name": "",
-    "nowCount": 0,
-    "nurse": 0,
-    "nursingHome_id": 0,
-    "phoneNumber": "",
-    "programRoom": 0,
-    "quadrupleRoom": 0,
-    "reviews": [
+function Detail({ nursingHome_id, detail_bool, setDetail_bool }) {
+  const [response, setResponse] = useState({
+    addrDetail: "",
+    addrFront: "",
+    addrRoad: "",
+    buildingMainNum: "",
+    buildingSubNum: "",
+    careGiver: 0,
+    cost: 0,
+    doctor: 0,
+    doubleRoom: 0,
+    floor: "",
+    grade: 0,
+    headCount: 0,
+    name: "",
+    nowCount: 0,
+    nurse: 0,
+    nursingHome_id: 0,
+    phoneNumber: "",
+    programRoom: 0,
+    quadrupleRoom: 0,
+    reviews: [
       {
-        "dateTime": "",
-        "memberId": "",
-        "score": 0,
-        "text": ""
-      }
+        dateTime: "",
+        memberId: "",
+        score: 0,
+        text: "",
+      },
     ],
-    "score": 0,
-    "singleRoom": 0,
-    "trainingRoom": 0,
-    "tripleRoom": 0,
-    "waitingCount": 0,
-    "wish": true
-  })
+    score: 0,
+    singleRoom: 0,
+    trainingRoom: 0,
+    tripleRoom: 0,
+    waitingCount: 0,
+    wish: true,
+  });
   const onMenuClick = (i) => {
     const item = document.getElementById(menuArr[i.target.innerText]);
     item.scrollIntoView({ behavior: "smooth" });
   };
   const [open, setOpen] = useState(false);
-  useEffect(()=>{
+  useEffect(() => {
     fetch(
       `https://api.care-yojung.com/search/detail?id=${nursingHome_id}&service=ho`,
       {
         method: "GET",
         headers: {
           accept: "application/json",
-          'Authorization': `Bearer ${localStorage.getItem('access-token')}`
+          Authorization: `Bearer ${localStorage.getItem("access-token")}`,
         },
-        credentials: 'include',
+        credentials: "include",
       }
     )
       .then((res) => res.json())
@@ -184,7 +184,7 @@ function Detail({nursingHome_id, detail_bool, setDetail_bool }) {
         }
         localStorage.setItem("recent", JSON.stringify(recent));
       });
-  },[])
+  }, []);
   useEffect(() => {
     setOpen(detail_bool);
   }, [detail_bool]);
@@ -200,7 +200,9 @@ function Detail({nursingHome_id, detail_bool, setDetail_bool }) {
     return (
       <Modal
         onClose={() => setOpen(false)}
-        onOpen={() => {return setOpen(true)}}
+        onOpen={() => {
+          return setOpen(true);
+        }}
         open={open}
         size="large"
       >
@@ -208,7 +210,7 @@ function Detail({nursingHome_id, detail_bool, setDetail_bool }) {
           <div style={{ backgroundColor: "#e1e1e1" }}>
             <ModalHeader>{response.name}</ModalHeader>
             <ModalHeader style={{ marginLeft: "20px", fontSize: "24px" }}>
-            ・ 요양원 ・ {response.grade === 0 ? "신설" : response.grade} 등급
+              ・ 요양원 ・ {response.grade === 0 ? "신설" : response.grade} 등급
             </ModalHeader>
             <div
               onClick={() => setOpen(false)}
@@ -295,7 +297,7 @@ function Detail({nursingHome_id, detail_bool, setDetail_bool }) {
       <DetailPage>
         <ModalHeader>{response.name}</ModalHeader>
         <ModalHeader style={{ marginLeft: "20px", fontSize: "24px" }}>
-        ・ 요양원 ・ {response.grade === 0 ? "신설" : response.grade} 등급
+          ・ 요양원 ・ {response.grade === 0 ? "신설" : response.grade} 등급
         </ModalHeader>
         <div
           onClick={() => setOpen(false)}
@@ -322,7 +324,9 @@ function Detail({nursingHome_id, detail_bool, setDetail_bool }) {
               <Grid.Row stretched>
                 <Grid.Column width={11}>
                   <DetailImage
-                    src={"https://react.semantic-ui.com/images/wireframe/image.png"}
+                    src={
+                      "https://react.semantic-ui.com/images/wireframe/image.png"
+                    }
                   />
                 </Grid.Column>
                 <Grid.Column width={5}>
@@ -339,10 +343,19 @@ function Detail({nursingHome_id, detail_bool, setDetail_bool }) {
                     <span>{response.addrRoad + " "}</span>
                     <span>
                       {response.buildingSubNum
-                        ? response.buildingMainNum + "-" + response.buildingSubNum + " "
+                        ? response.buildingMainNum +
+                          "-" +
+                          response.buildingSubNum +
+                          " "
                         : response.buildingMainNum + " "}
                     </span>
-                    <span>{response.addrDetail ? response.addrDetail : response.floor ? response.floor + "층" : null}</span>
+                    <span>
+                      {response.addrDetail
+                        ? response.addrDetail
+                        : response.floor
+                        ? response.floor + "층"
+                        : null}
+                    </span>
                   </DetailInfo>
                   <DetailTel>T : {response.phoneNumber}</DetailTel>
                   <DetailSummary>
@@ -374,7 +387,10 @@ function Detail({nursingHome_id, detail_bool, setDetail_bool }) {
                   </Container>
                   {/*시설현황 컴포넌트*/}
                   <DetailAI isMobile={isMobile} /> {/*AI점수 컴포넌트*/}
-                  <DetailReview detailInfo={response} isMobile={isMobile} />{" "}
+                  <DetailReview
+                    detailInfo={response}
+                    isMobile={isMobile}
+                  />{" "}
                   {/* 시설리뷰 컴포넌트*/}
                 </Grid.Column>
                 <Grid.Column width={5}>
@@ -390,7 +406,6 @@ function Detail({nursingHome_id, detail_bool, setDetail_bool }) {
       </DetailPage>
     </Modal>
   );
-
 }
 
 export default Detail;

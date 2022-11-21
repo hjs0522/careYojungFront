@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import ManagerDetail from "./ManagerDeatail";
+import { useEffect } from "react";
 
 const StyledManagermation = styled.div({
   paddingTop: "150px",
@@ -42,31 +43,46 @@ const OneData = styled.div({
   float: "right",
 });
 
-const arr = [
-  {
-    nursingHome_id: 1111111, // 요양원 id
-    name: "서울요양시설", // 요양원이름
-    review_id: "aaa", // 리뷰 id
-    member_id: "vcdc", // 사용자 id
-    text: "별로예요!", // 리뷰
-    score: 4, // 평점
-    date: "2022.07.21", // 작성 날짜
-    photo: "영수중 사진.", //영수증 사진
-  },
-  {
-    nursingHome_id: 2222, // 요양원 id
-    name: "으어", // 요양원이름
+// const arr = [
+//   {
+//     nursingHome_id: 1111111, // 요양원 id
+//     name: "서울요양시설", // 요양원이름
+//     review_id: "aaa", // 리뷰 id
+//     member_id: "vcdc", // 사용자 id
+//     text: "별로예요!", // 리뷰
+//     score: 4, // 평점
+//     date: "2022.07.21", // 작성 날짜
+//     photo: "영수중 사진.", //영수증 사진
+//   },
+//   {
+//     nursingHome_id: 2222, // 요양원 id
+//     name: "으어", // 요양원이름
 
-    review_id: "bbb", // 리뷰 id
-    member_id: "vcdc", // 사용자 id
-    text: "별로예요!", // 리뷰
-    score: 4, // 평점
-    date: "2022.07.21", // 작성 날짜
-    photo: "영수중 사진.", //영수증 사진
-  },
-];
+//     review_id: "bbb", // 리뷰 id
+//     member_id: "vcdc", // 사용자 id
+//     text: "별로예요!", // 리뷰
+//     score: 4, // 평점
+//     date: "2022.07.21", // 작성 날짜
+//     photo: "영수중 사진.", //영수증 사진
+//   },
+// ];
 
 function Manager() {
+  const [reviewArr, setReviewarr] = useState([]);
+  useEffect(() => {
+    fetch(`https://api.care-yojung.com/review/manage`, {
+      method: "GET",
+      headers: {
+        accept: "application/json",
+        Authorization: `Bearer ${localStorage.getItem("access-token")}`,
+      },
+      credentials: "include",
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        setReviewarr(res);
+      });
+  }, []);
   const getReview = () => {
     fetch(`https://api.care-yojung.com/review/manage`, {
       method: "GET",
@@ -96,10 +112,10 @@ function Manager() {
       <ManagerBody>
         <ManagerH1>승인 대기중인 리뷰</ManagerH1>
         <button onClick={getReview}>리뷰 가져오기</button>
-        {arr.map((i) => (
+        {reviewArr.map((i) => (
           <One>
-            <OneName>{i.name}</OneName>
-            <OneData>{i.date}</OneData>
+            <OneName>{i.svcName}</OneName>
+            {/* <OneData>{i.date}</OneData> */}
             <ManagerDetail {...i} />
           </One>
         ))}

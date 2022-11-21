@@ -12,9 +12,9 @@ const ManagerText = styled.div({
 
 function ManagerDetail({
   nursingHome_id,
-  name,
-  review_id,
-  member_id,
+  svcName,
+  reviewId,
+  memberId,
   text,
   score,
   date,
@@ -31,14 +31,14 @@ function ManagerDetail({
     >
       <Modal.Header>
         <ManagerText style={{ marginBottom: "2%", fontSize: "24px" }}>
-          {name}
+          {svcName}
         </ManagerText>
         <ManagerText style={{ color: "#999999" }}>{date}</ManagerText>
         <ManagerText style={{ color: "#999999" }}>
-          리뷰 id : {review_id}
+          리뷰 id : {reviewId}
         </ManagerText>
         <ManagerText style={{ color: "#999999" }}>
-          사용자 id : {member_id}
+          사용자 id : {memberId}
         </ManagerText>
       </Modal.Header>
       <div style={{ padding: "2%", marginTop: "40px" }}>
@@ -52,7 +52,7 @@ function ManagerDetail({
         <Button
           color="green"
           onClick={() => {
-            fetch(`https://api.care-yojung.com/review/accept/${review_id}`, {
+            fetch(`https://api.care-yojung.com/review/accept`, {
               method: "POST", // *GET, POST, PUT, DELETE 등
               headers: {
                 "Content-Type": "application/json",
@@ -61,7 +61,7 @@ function ManagerDetail({
               credentials: "include",
               body: JSON.stringify({
                 score: score,
-                svcId: member_id,
+                svcId: memberId,
               }), // body의 데이터 유형은 반드시 "Content-Type" 헤더와 일치해야 함
             });
             return setOpen(false);
