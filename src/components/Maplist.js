@@ -61,7 +61,7 @@ const MaplistBoxText = styled.div({
   display: "inline-block",
 });
 
-export function Detail_Maplist({
+export function DetailMaplist({
   score,
   reviewNum,
   addrFront,
@@ -177,6 +177,7 @@ export function Detail_Maplist({
           </MaplistElement>
         </Grid.Column>
         <Detail
+          nursingHome_id={nursingHome_id}
           img={img}
           name={name}
           loc={addrRoad}
@@ -201,7 +202,7 @@ function Maplist({ mapArr, wholemap }) {
                 console.log(i.nursingHome_id);
               }}
             >
-              <Detail_Maplist {...i} wholemap={wholemap} mapIndex={mapIndex} />
+              <DetailMaplist key={i.nursingHome_id} {...i} wholemap={wholemap} mapIndex={mapIndex} />
             </div>
           );
         })}

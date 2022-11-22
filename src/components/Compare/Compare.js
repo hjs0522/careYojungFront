@@ -139,7 +139,7 @@ function Compare({ compareList }) {
                   <Grid.Column>
                     <StyledheaderImg
                       src={
-                        photoarr[i.name] + process.env.REACT_APP_GOOGLEMAP_KEY
+                        `https://api.care-yojung.com/image/thumbnail?id=${i.nursingHome_id}`
                       }
                     />
                   </Grid.Column>
@@ -311,15 +311,6 @@ function Compare({ compareList }) {
               >
                 인력현황
               </StyledText>
-              <StyledText
-                style={{
-                  fontSize: "18px",
-                  paddingLeft: "1%",
-                  color: "#999999",
-                }}
-              >
-                (1인당 담당하는 입소자 수)
-              </StyledText>
               <PersonBlock
                 style={{
                   backgroundColor: "white",
@@ -343,7 +334,7 @@ function Compare({ compareList }) {
                               color: "#999999",
                             }}
                           >
-                            평균 30명
+                          전국 평균 0.7명
                           </StyledText>
                         </>
                       ) : null}
@@ -377,7 +368,7 @@ function Compare({ compareList }) {
                               color: "#999999",
                             }}
                           >
-                            평균 30명
+                          전국 평균 1.3명
                           </StyledText>
                         </>
                       ) : null}
@@ -411,7 +402,7 @@ function Compare({ compareList }) {
                               color: "#999999",
                             }}
                           >
-                            평균 30명
+                          전국 평균 10.0명
                           </StyledText>
                         </>
                       ) : null}
