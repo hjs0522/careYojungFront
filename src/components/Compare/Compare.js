@@ -87,12 +87,14 @@ function Compare({ compareList }) {
       ).then((data) => {
         console.log(data);
         setArr(data);
+        setOpen(true);
       });
     } else if (compareList.length === 3) {
       getCompare(
         `svcList=${compareList[0].nursingHome_id},${compareList[1].nursingHome_id},${compareList[2].nursingHome_id}&svcType=ho`
       ).then((data) => {
         setArr(data);
+        setOpen(true)
       });
     } else {
       alert("시설을 추가해주세요");
@@ -106,11 +108,6 @@ function Compare({ compareList }) {
   return (
     <Modal
       onClose={() => setOpen(false)}
-      onOpen={() => {
-        console.log(arr)
-        if(arr.length === 2 || arr.length ===3){
-            return setOpen(true)}
-        }}
       open={open}
       size="large"
       trigger={<CompareButton onClick={handleOnClick}>비교하기</CompareButton>}
