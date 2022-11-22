@@ -5,12 +5,19 @@ import {
   serviceOptions,
   gradeOptions,
   orderOptions,
+  keywordOptions,
 } from "../../searchOptions";
 import { useSearchParams } from "react-router-dom";
 import { useEffect } from "react";
 import { useMediaQuery } from "react-responsive";
 import { useRecoilState } from "recoil";
-import { keywordState,serviceState,gradeState,orderState } from "../../atom";
+import {
+  keywordState,
+  serviceState,
+  gradeState,
+  orderState,
+  keywordOptionState,
+} from "../../atom";
 const DropdownBack = styled.div`
   background-color: white;
 `;
@@ -47,10 +54,11 @@ const DropdownDiv = styled.div`
 
 const DropDownRow = (props) => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [keyword,setKeyword] = useRecoilState(keywordState);
-  const [service,setService] = useRecoilState(serviceState);
-  const [grade,setGrade] = useRecoilState(gradeState);
-  const [order,setOrder] = useRecoilState(orderState);
+  const [keyword, setKeyword] = useRecoilState(keywordState);
+  const [keywordOption, setKeywordOption] = useRecoilState(keywordOptionState);
+  const [service, setService] = useRecoilState(serviceState);
+  const [grade, setGrade] = useRecoilState(gradeState);
+  const [order, setOrder] = useRecoilState(orderState);
   const handleServiceChange = (e, { value: service }) => {
     setService(service);
   };
@@ -62,15 +70,18 @@ const DropDownRow = (props) => {
   const handleOrderChange = (e, { value: order }) => {
     setOrder(order);
   };
+  const handleKeywordChange = (e, { value: a }) => {
+    setKeywordOption(a);
+  };
 
   const isMobile = useMediaQuery({
-    query : "(max-width:767px)"
+    query: "(max-width:767px)",
   });
-  
-  if (isMobile){
-    return<></>
+
+  if (isMobile) {
+    return <></>;
   }
-  
+
   return (
     <DropdownBack>
       <DropdownContainer>
@@ -99,6 +110,15 @@ const DropDownRow = (props) => {
               options={orderOptions}
               onChange={handleOrderChange}
               value={order}
+              selection
+            ></Dropdown>
+          </DropdownDiv>
+          <DropdownDiv>
+            <text>키워드</text>
+            <Dropdown
+              options={keywordOptions}
+              onChange={handleKeywordChange}
+              value={keywordOption}
               selection
             ></Dropdown>
           </DropdownDiv>

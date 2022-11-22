@@ -182,6 +182,7 @@ export function Detail_Maplist({
           loc={addrRoad}
           detail_bool={detail_bool}
           setDetail_bool={setDetail_bool}
+          nursingHome_id={nursingHome_id}
         />
       </Grid>
     </MaplistBox>
