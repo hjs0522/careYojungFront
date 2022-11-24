@@ -4,7 +4,7 @@ import { useSearchParams } from "react-router-dom";
 import { Container, Dimmer, Loader, Image } from "semantic-ui-react";
 import styled from "styled-components";
 import { getSearchList, postReissuance } from "../api";
-import { keywordState, serviceState, gradeState, orderState } from "../atom";
+import { keywordState, serviceState, gradeState, orderState, wordsState } from "../atom";
 import { useRecoilState } from "recoil";
 import DropDownRow from "../components/Header/DropDownRow";
 import Pagination from "../components/Pagination";
@@ -29,6 +29,7 @@ const SearchPage = () => {
   const [service, setService] = useRecoilState(serviceState);
   const [grade, setGrade] = useRecoilState(gradeState);
   const [order, setOrder] = useRecoilState(orderState);
+  const [words,setWords] = useRecoilState(wordsState);
   const [loading, setLoading] = useState(true);
   const [searchList, setSearchList] = useState([]);
   const [page, setPage] = useState(1);
@@ -36,11 +37,11 @@ const SearchPage = () => {
   const offset = (page - 1) * 5;
 
   useEffect(() => {
-    getSearchList(keyword, service, grade, order).then((data) => {
+    getSearchList(keyword, service, grade, order,words).then((data) => {
       setSearchList(data);
       setLoading(false);
     });
-  }, [keyword, service, grade, order]);
+  }, [keyword, service, grade, order,words]);
 
   const onEditWish = (targetId, newWish) => {
     setSearchList(
@@ -52,13 +53,6 @@ const SearchPage = () => {
   return (
     <PageContainer>
       <DropDownRow
-        keyword={keyword}
-        service={service}
-        grade={grade}
-        order={order}
-        setService={setService}
-        setGrade={setGrade}
-        setOrder={setOrder}
       ></DropDownRow>
       <Container>
         <TextDiv>

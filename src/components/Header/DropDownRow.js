@@ -16,7 +16,7 @@ import {
   serviceState,
   gradeState,
   orderState,
-  keywordOptionState,
+  wordsState,
 } from "../../atom";
 const DropdownBack = styled.div`
   background-color: white;
@@ -55,10 +55,11 @@ const DropdownDiv = styled.div`
 const DropDownRow = (props) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [keyword, setKeyword] = useRecoilState(keywordState);
-  const [keywordOption, setKeywordOption] = useRecoilState(keywordOptionState);
   const [service, setService] = useRecoilState(serviceState);
   const [grade, setGrade] = useRecoilState(gradeState);
   const [order, setOrder] = useRecoilState(orderState);
+  const [words,setWords] = useRecoilState(wordsState);
+  
   const handleServiceChange = (e, { value: service }) => {
     setService(service);
   };
@@ -70,9 +71,12 @@ const DropDownRow = (props) => {
   const handleOrderChange = (e, { value: order }) => {
     setOrder(order);
   };
-  const handleKeywordChange = (e, { value: a }) => {
-    setKeywordOption(a);
+  const handleWordsChange = (e, { value: words }) => {
+    setWords(words);
   };
+  
+  
+  
 
   const isMobile = useMediaQuery({
     query: "(max-width:767px)",
@@ -117,8 +121,8 @@ const DropDownRow = (props) => {
             <text>키워드</text>
             <Dropdown
               options={keywordOptions}
-              onChange={handleKeywordChange}
-              value={keywordOption}
+              onChange={handleWordsChange}
+              value={words}
               selection
             ></Dropdown>
           </DropdownDiv>
