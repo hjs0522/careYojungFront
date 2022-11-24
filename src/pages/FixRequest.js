@@ -73,7 +73,7 @@ function FixRequest({ fixopen, setFixopen, name, nursingHome_id }) {
                 },
                 body: JSON.stringify({
                   name: name,
-                  nursingHome_id: nursingHome_id,
+                  nursingHome_id: `${nursingHome_id}`,
                   text: fixtext,
                 }), // body의 데이터 유형은 반드시 "Content-Type" 헤더와 일치해야 함
               });
