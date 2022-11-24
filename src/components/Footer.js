@@ -3,6 +3,8 @@ import { Container, Grid } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
 
+import { useState } from "react";
+
 const StyledGrid = styled(Grid)({
   height: "160px",
   width: "100%",
@@ -63,7 +65,7 @@ function Footer() {
                 marginRight: "0",
               }}
             >
-              <StyledColumn>자주묻는질문</StyledColumn>
+              <StyledColumn>시설정보수정</StyledColumn>
             </div>
 
             <div
@@ -113,7 +115,9 @@ function Footer() {
             <Grid.Column width={12} style={{ marginLeft: "5%" }}>
               <StyledGridRow>
                 <StyledColumn>개인정보처리방침</StyledColumn>
-                <StyledColumn>자주묻는질문</StyledColumn>
+                <div style={{ display: "inline" }}>
+                  <StyledColumn>시설정보수정</StyledColumn>
+                </div>
                 <StyledColumn>
                   <Link to={"/info"}>공지사항</Link>
                 </StyledColumn>

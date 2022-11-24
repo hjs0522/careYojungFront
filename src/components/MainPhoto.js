@@ -38,7 +38,7 @@ const StyledH1 = styled.div`
 `;
 const StyledText = styled.div`
   margin-top: 40px;
-  display: inline-block;
+  display: block;
   font-size: 30px;
   font-family: NanumB;
   color: white;

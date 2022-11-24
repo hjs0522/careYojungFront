@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Modal, Grid, Icon, Container } from "semantic-ui-react";
+import { Modal, Grid, Icon, Container, Button } from "semantic-ui-react";
 
 import styled from "styled-components";
 import DetailCost from "./Detail/DetailCost";
@@ -9,6 +9,7 @@ import DetailPerson from "./Detail/DetailPerson";
 import DetailFacility from "./Detail/DetailFacility";
 import DetailReview from "./Detail/DatailReview";
 import { useMediaQuery } from "react-responsive";
+import FixRequest from "../pages/FixRequest";
 
 const DetailPage = styled.div({
   marginLeft: "4%",
@@ -196,6 +197,7 @@ function Detail({ nursingHome_id, detail_bool, setDetail_bool }) {
     query: "(max-width:1000px)",
   });
 
+  const [fixopen, setFixopen] = useState(false);
   if (isMobile) {
     return (
       <Modal
@@ -211,6 +213,7 @@ function Detail({ nursingHome_id, detail_bool, setDetail_bool }) {
             <ModalHeader>{response.name}</ModalHeader>
             <ModalHeader style={{ marginLeft: "20px", fontSize: "24px" }}>
               ・ 요양원 ・ {response.grade === 0 ? "신설" : response.grade} 등급
+              <button>정보수정요청</button>
             </ModalHeader>
             <div
               onClick={() => setOpen(false)}
@@ -228,7 +231,7 @@ function Detail({ nursingHome_id, detail_bool, setDetail_bool }) {
           <Modal.Content scrolling>
             <DetailBody id="Detail-1">
               <DetailImage
-              src={`https://api.care-yojung.com/image/thumbnail?id=${nursingHome_id}`}
+                src={`https://api.care-yojung.com/image/thumbnail?id=${nursingHome_id}`}
               />
               <div style={{ marginTop: "10px" }}>
                 <DetailInfo style={{ fontSize: "22px" }}>
@@ -275,6 +278,7 @@ function Detail({ nursingHome_id, detail_bool, setDetail_bool }) {
             </DetailBody>
           </Modal.Content>
         </DetailPage>
+        <FixRequest fixopen={fixopen} setFixopen={setFixopen} />
       </Modal>
     );
   }
@@ -298,6 +302,19 @@ function Detail({ nursingHome_id, detail_bool, setDetail_bool }) {
         <ModalHeader>{response.name}</ModalHeader>
         <ModalHeader style={{ marginLeft: "20px", fontSize: "24px" }}>
           ・ 요양원 ・ {response.grade === 0 ? "신설" : response.grade} 등급
+          <Button
+            style={{
+              marginLeft: "30px",
+              width: "130px",
+              fontSize: "16px",
+              padding: "2%",
+            }}
+            onClick={() => {
+              setFixopen(true);
+            }}
+          >
+            정보수정요청
+          </Button>
         </ModalHeader>
         <div
           onClick={() => setOpen(false)}
@@ -327,10 +344,14 @@ function Detail({ nursingHome_id, detail_bool, setDetail_bool }) {
                     src={`https://api.care-yojung.com/image/detail?fileName=1.jpg&id=${nursingHome_id}`}
                   />
                 </Grid.Column>
-                
+
                 <Grid.Column width={5}>
-                  <DetailImage src={`https://api.care-yojung.com/image/detail?fileName=2.jpg&id=${nursingHome_id}`}/>
-                  <DetailImage src={`https://api.care-yojung.com/image/detail?fileName=3.jpg&id=${nursingHome_id}`}/>
+                  <DetailImage
+                    src={`https://api.care-yojung.com/image/detail?fileName=2.jpg&id=${nursingHome_id}`}
+                  />
+                  <DetailImage
+                    src={`https://api.care-yojung.com/image/detail?fileName=3.jpg&id=${nursingHome_id}`}
+                  />
                 </Grid.Column>
               </Grid.Row>
             </Grid>
@@ -403,6 +424,12 @@ function Detail({ nursingHome_id, detail_bool, setDetail_bool }) {
           </DetailBody>
         </Modal.Content>
       </DetailPage>
+      <FixRequest
+        nursingHome_id={response.nursingHome_id}
+        name={response.name}
+        fixopen={fixopen}
+        setFixopen={setFixopen}
+      />
     </Modal>
   );
 }

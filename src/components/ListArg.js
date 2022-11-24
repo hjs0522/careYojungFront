@@ -40,7 +40,7 @@ const StyleName = styled.div({
   fontSize: (prop) => (prop.id === "Themelist" ? "22px" : "18px"),
   display: "block",
   cursor: "pointer",
-  overflow: 'hidden',
+  overflow: "hidden",
 });
 const StyleLoc = styled.div({
   fontFamily: "NanumR",
@@ -52,7 +52,7 @@ const StyleLoc = styled.div({
   fontSize: (prop) => (prop.id === "Themelist" ? "18px" : "16px"),
   display: "block",
   cursor: "pointer",
-  overflow: 'hidden',
+  overflow: "hidden",
 });
 
 const StyledListArg = styled.div({
@@ -60,7 +60,7 @@ const StyledListArg = styled.div({
   cursor: "pointer",
 });
 
-function ListArg({ index, name, img, loc, id,nursingHome_id }) {
+function ListArg({ index, name, img, loc, id, nursingHome_id, key, keyword }) {
   const [detail_bool, setDetail_bool] = useState(false);
   return (
     <StyledListArg
@@ -74,12 +74,18 @@ function ListArg({ index, name, img, loc, id,nursingHome_id }) {
         <StyleLoc id={id}>{loc}</StyleLoc>
       </TextBox>
       <StyledImage
+        onClick={(i) => {
+          if (id === "Themelist" && keyword === "ch") {
+          }
+        }}
         id={id}
         src={
-        id === "Themelist"?img:
-        `https://api.care-yojung.com/image/thumbnail?id=${nursingHome_id}`}
+          id === "Themelist"
+            ? img
+            : `https://api.care-yojung.com/image/thumbnail?id=${nursingHome_id}`
+        }
       />
-
+      {/* {console.log(key)} */}
       {id !== "Themelist" ? (
         <Detail
           img={img}
