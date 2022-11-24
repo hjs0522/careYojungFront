@@ -76,6 +76,7 @@ function ListArg({ index, name, img, loc, id, nursingHome_id, key, keyword }) {
       <StyledImage
         onClick={(i) => {
           if (id === "Themelist" && keyword === "ch") {
+          } else if (id === "Themelist" && keyword === "wo") {
           }
         }}
         id={id}
