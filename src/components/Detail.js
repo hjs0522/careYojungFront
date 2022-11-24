@@ -119,6 +119,9 @@ function Detail({ nursingHome_id, detail_bool, setDetail_bool }) {
     headCount: 0,
     name: "",
     nowCount: 0,
+    positive: 0,
+    negative: 0,
+    mixed: 0,
     nurse: 0,
     nursingHome_id: 0,
     phoneNumber: "",
@@ -158,6 +161,7 @@ function Detail({ nursingHome_id, detail_bool, setDetail_bool }) {
     )
       .then((res) => res.json())
       .then((res) => {
+        // console.log(res);
         setResponse(res);
         let recent = JSON.parse(localStorage.getItem("recent"));
         if (recent === null) {
@@ -406,7 +410,8 @@ function Detail({ nursingHome_id, detail_bool, setDetail_bool }) {
                     <DetailFacility detailInfo={response} isMobile={isMobile} />{" "}
                   </Container>
                   {/*시설현황 컴포넌트*/}
-                  <DetailAI isMobile={isMobile} /> {/*AI점수 컴포넌트*/}
+                  <DetailAI isMobile={isMobile} detailInfo={response} />{" "}
+                  {/*AI점수 컴포넌트*/}
                   <DetailReview
                     detailInfo={response}
                     isMobile={isMobile}

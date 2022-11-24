@@ -60,11 +60,12 @@ const AIarr = [
   { name: "혼합도", value: 0.08 },
 ];
 
-function DetailAI({ isMobile }) {
+function DetailAI({ isMobile, detailInfo }) {
   if (isMobile) {
     return (
       <StyledDetailBox id="Detail-4">
         <DetailTitle>AI점수</DetailTitle>
+
         <StyledPopup>
           <Popup
             content={
