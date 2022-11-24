@@ -20,7 +20,7 @@ const arr2 = [
     keyword: "ch",
     name: "치매 관련 시설",
     ShortLoc: "치매 환자 수용 가능 시설들",
-    img: "https://img.freepik.com/premium-photo/rural-landscape-in-sunny-day-green-forest-and-sky-with-clouds_105596-498.jpg?w=2000",
+    img: "https://img.sbs.co.kr/newimg/news/20181001/201233540_1280.jpg",
   },
   {
     key: 21,

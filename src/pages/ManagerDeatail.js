@@ -4,7 +4,7 @@ import { Modal, Button, Icon } from "semantic-ui-react";
 import { useState } from "react";
 import { useEffect } from "react";
 
-const ManagerText = styled.div({
+export const ManagerText = styled.div({
   fontSize: "18px",
   color: "#444444",
   whiteSpace: "pre-wrap",

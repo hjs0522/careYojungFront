@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import ManagerDetail from "./ManagerDeatail";
 import { useEffect } from "react";
+import ManagerFix from "./ManagerFix";
 
 const StyledManagermation = styled.div({
   paddingTop: "150px",
@@ -69,6 +70,7 @@ const OneData = styled.div({
 
 function Manager() {
   const [reviewArr, setReviewarr] = useState([]);
+  const [fixArr, setFixarr] = useState([]);
   useEffect(() => {
     fetch(`https://api.care-yojung.com/review/manage`, {
       method: "GET",
@@ -83,6 +85,20 @@ function Manager() {
         setReviewarr(res);
       });
   }, []);
+  useEffect(() => {
+    fetch(`https://api.care-yojung.com/nursing-home/modify`, {
+      method: "GET",
+      headers: {
+        accept: "application/json",
+        Authorization: `Bearer ${localStorage.getItem("access-token")}`,
+      },
+      credentials: "include",
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        setFixarr(res);
+      });
+  }, []);
   const getReview = () => {
     fetch(`https://api.care-yojung.com/review/manage`, {
       method: "GET",
@@ -93,7 +109,35 @@ function Manager() {
       credentials: "include",
     })
       .then((res) => res.json())
-      .then((res) => console.log(res));
+      .then((res) => {
+        setReviewarr(res);
+      });
+
+    // if (res.status === 403){
+    //     const refresh = localStorage.getItem('refresh-token')
+    //     console.log(refresh);
+    //     const data = await postReissuance(refresh)
+    //     localStorage.setItem('access-token',data.accessToken);
+    //     localStorage.setItem('refresh-token',data.refreshToken);
+    //     return getWishList();
+    // }
+    // else{
+    //     return res.json();
+    // }
+  };
+  const getFix = () => {
+    fetch(`https://api.care-yojung.com/review/manage`, {
+      method: "GET",
+      headers: {
+        accept: "application/json",
+        Authorization: `Bearer ${localStorage.getItem("access-token")}`,
+      },
+      credentials: "include",
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        setFixarr(res);
+      });
 
     // if (res.status === 403){
     //     const refresh = localStorage.getItem('refresh-token')
@@ -117,6 +161,17 @@ function Manager() {
             <OneName>{i.svcName}</OneName>
             {/* <OneData>{i.date}</OneData> */}
             <ManagerDetail {...i} />
+          </One>
+        ))}
+      </ManagerBody>
+      <ManagerBody>
+        <ManagerH1>승인 대기중인 시설정보수정요청</ManagerH1>
+        <button onClick={getFix}>요청 가져오기</button>
+        {fixArr.map((i) => (
+          <One>
+            <OneName>{i.name}</OneName>
+            {/* <OneData>{i.date}</OneData> */}
+            <ManagerFix {...i} />
           </One>
         ))}
       </ManagerBody>

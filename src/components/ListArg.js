@@ -8,9 +8,10 @@ const StyledImage = styled.img`
   border-radius: 10px;
   margin-left: 20px;
   filter: drop-shadow(1px 1px 5px rgba(25, 32, 60, 1));
-  height: ${(prop) => (prop.id === "Themelist" ? "250px" : "220px")};
+  height: ${(prop) => (prop.id === "Themelist" ? "230px" : "220px")};
   width: ${(prop) => (prop.id === "Themelist" ? "330px" : "200px")};
   object-fit: ${(prop) => (prop.id === "Themelist" ? "fill" : "none")};
+  background-size: cover;
   display: inline-block;
   cursor: pointer;
   z-index: 0;

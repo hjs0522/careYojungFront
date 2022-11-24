@@ -54,13 +54,13 @@ const DetailAIInnerGraph = styled.div`
 `;
 
 const DetailAIInnerGraphMoblie = styled.div``;
-const AIarr = [
-  { name: "긍정도", value: 0.8 },
-  { name: "부정도", value: 0.1 },
-  { name: "혼합도", value: 0.08 },
-];
 
 function DetailAI({ isMobile, detailInfo }) {
+  const AIarr = [
+    { name: "긍정도", value: detailInfo.positive },
+    { name: "부정도", value: detailInfo.negative },
+    { name: "혼합도", value: detailInfo.mixed },
+  ];
   if (isMobile) {
     return (
       <StyledDetailBox id="Detail-4">
