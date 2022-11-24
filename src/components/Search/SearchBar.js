@@ -87,6 +87,10 @@ function SearchBar() {
   
   const handleSubmit = () =>{
     setKeyword(value);
+    setWords("all")
+    setService("all")
+    setGrade(0)
+    setOrder("ac")
     navigate(`search/list?keyword=${value}&service=${service}&grade=${grade}&order=${order}&words=${words}`);
   }
   
