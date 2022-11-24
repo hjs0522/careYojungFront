@@ -76,6 +76,7 @@ function ListArg({ index, name, img, loc, id, nursingHome_id, key, keyword }) {
       <StyledImage
         onClick={(i) => {
           if (id === "Themelist" && keyword === "ch") {
+            //여기 채워야해 테마리스트 시설
           } else if (id === "Themelist" && keyword === "wo") {
           }
         }}
