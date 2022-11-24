@@ -28,10 +28,6 @@ const TitleText = styled.div`
 const WishPage = ()=>{
     const [barOpen,setBarOpen] = useState(false);
     const [compareList,setCompareList] = useState([]);
-    const [keyword,setKeyword] = useRecoilState(keywordState);
-    const [service,setService] = useRecoilState(serviceState);
-    const [grade,setGrade] = useRecoilState(gradeState);
-    const [order,setOrder] = useRecoilState(orderState);
     const {isLoading,data} = useQuery(['wishList'],getWishList)
     
 
@@ -89,12 +85,6 @@ const WishPage = ()=>{
   return (
     <PageContainer>
       <DropDownRow
-        service={service}
-        grade={grade}
-        order={order}
-        setService={setService}
-        setGrade={setGrade}
-        setOrder={setOrder}
       ></DropDownRow>
       <Container>
         <TextDiv>

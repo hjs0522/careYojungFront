@@ -10,9 +10,9 @@ export function postKakao(code) {
   }).then((res) => res.json());
 }
 
-export async function getSearchList(keyword, service, grade, order) {
+export async function getSearchList(keyword, service, grade, order,words) {
   const res = await fetch(
-    `${SERVER_ADDRESS}/search/list?keyword=${keyword}&service=${service}&grade=${grade}&order=${order}`,
+    `${SERVER_ADDRESS}/search/list?keyword=${keyword}&service=${service}&grade=${grade}&order=${order}&words=${words}`,
     {
       method: "GET",
       headers: {

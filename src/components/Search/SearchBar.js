@@ -3,7 +3,7 @@ import React from 'react'
 import { Form, Search} from 'semantic-ui-react'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
-import { keywordState,serviceState,gradeState,orderState } from '../../atom'
+import { keywordState,serviceState,gradeState,orderState, wordsState } from '../../atom'
 import { useRecoilState } from 'recoil'
 
 const source = [
@@ -82,11 +82,16 @@ function SearchBar() {
   const [service,setService] = useRecoilState(serviceState);
   const [grade,setGrade] = useRecoilState(gradeState);
   const [order,setOrder] = useRecoilState(orderState);
+  const [words,setWords] = useRecoilState(wordsState);
   
   
   const handleSubmit = () =>{
     setKeyword(value);
-    navigate(`search/list?keyword=${value}&service=${service}&grade=${grade}&order=${order}`);
+    setWords("all")
+    setService("all")
+    setGrade(0)
+    setOrder("ac")
+    navigate(`search/list?keyword=${value}&service=${service}&grade=${grade}&order=${order}&words=${words}`);
   }
   
   React.useEffect(() => {

@@ -29,20 +29,20 @@ function postKakao(code) {
   });
 }
 
-function getSearchList(keyword, service, grade, order) {
+function getSearchList(keyword, service, grade, order, words) {
   var res, refresh, data;
   return regeneratorRuntime.async(function getSearchList$(_context) {
     while (1) {
       switch (_context.prev = _context.next) {
         case 0:
           _context.next = 2;
-          return regeneratorRuntime.awrap(fetch("".concat(SERVER_ADDRESS, "/search/list?keyword=").concat(keyword, "&service=").concat(service, "&grade=").concat(grade, "&order=").concat(order), {
+          return regeneratorRuntime.awrap(fetch("".concat(SERVER_ADDRESS, "/search/list?keyword=").concat(keyword, "&service=").concat(service, "&grade=").concat(grade, "&order=").concat(order, "&words=").concat(words), {
             method: "GET",
             headers: {
               accept: "application/json",
-              'Authorization': "Bearer ".concat(localStorage.getItem('access-token'))
+              Authorization: "Bearer ".concat(localStorage.getItem("access-token"))
             },
-            credentials: 'include'
+            credentials: "include"
           }));
 
         case 2:
@@ -53,15 +53,15 @@ function getSearchList(keyword, service, grade, order) {
             break;
           }
 
-          refresh = localStorage.getItem('refresh-token');
+          refresh = localStorage.getItem("refresh-token");
           console.log(refresh);
           _context.next = 8;
           return regeneratorRuntime.awrap(postReissuance(refresh));
 
         case 8:
           data = _context.sent;
-          localStorage.setItem('access-token', data.accessToken);
-          localStorage.setItem('refresh-token', data.refreshToken);
+          localStorage.setItem("access-token", data.accessToken);
+          localStorage.setItem("refresh-token", data.refreshToken);
           return _context.abrupt("return", getSearchList(keyword, service, grade, order));
 
         case 14:
@@ -75,8 +75,6 @@ function getSearchList(keyword, service, grade, order) {
   });
 }
 
-;
-
 function getWishList() {
   var res, refresh, data;
   return regeneratorRuntime.async(function getWishList$(_context2) {
@@ -87,10 +85,10 @@ function getWishList() {
           return regeneratorRuntime.awrap(fetch("".concat(SERVER_ADDRESS, "/wish-list?"), {
             method: "GET",
             headers: {
-              accept: 'application/json',
-              'Authorization': "Bearer ".concat(localStorage.getItem('access-token'))
+              accept: "application/json",
+              Authorization: "Bearer ".concat(localStorage.getItem("access-token"))
             },
-            credentials: 'include'
+            credentials: "include"
           }));
 
         case 2:
@@ -101,15 +99,15 @@ function getWishList() {
             break;
           }
 
-          refresh = localStorage.getItem('refresh-token');
+          refresh = localStorage.getItem("refresh-token");
           console.log(refresh);
           _context2.next = 8;
           return regeneratorRuntime.awrap(postReissuance(refresh));
 
         case 8:
           data = _context2.sent;
-          localStorage.setItem('access-token', data.accessToken);
-          localStorage.setItem('refresh-token', data.refreshToken);
+          localStorage.setItem("access-token", data.accessToken);
+          localStorage.setItem("refresh-token", data.refreshToken);
           return _context2.abrupt("return", getWishList());
 
         case 14:
@@ -131,17 +129,17 @@ function postWishItem(nursingHome_id) {
         case 0:
           _context3.next = 2;
           return regeneratorRuntime.awrap(fetch("".concat(SERVER_ADDRESS, "/wish-list"), {
-            method: 'POST',
+            method: "POST",
             // *GET, POST, PUT, DELETE 등
             headers: {
-              'Content-Type': 'application/json',
-              'Authorization': "Bearer ".concat(localStorage.getItem('access-token'))
+              "Content-Type": "application/json",
+              Authorization: "Bearer ".concat(localStorage.getItem("access-token"))
             },
-            credentials: 'include',
+            credentials: "include",
             body: JSON.stringify({
-              "memberId": "user12",
-              "svcId": nursingHome_id,
-              "svcType": "ho"
+              memberId: "user12",
+              svcId: nursingHome_id,
+              svcType: "ho"
             }) // body의 데이터 유형은 반드시 "Content-Type" 헤더와 일치해야 함
 
           }));
@@ -154,15 +152,15 @@ function postWishItem(nursingHome_id) {
             break;
           }
 
-          refresh = localStorage.getItem('refresh-token');
+          refresh = localStorage.getItem("refresh-token");
           console.log(refresh);
           _context3.next = 8;
           return regeneratorRuntime.awrap(postReissuance(refresh));
 
         case 8:
           data = _context3.sent;
-          localStorage.setItem('access-token', data.accessToken);
-          localStorage.setItem('refresh-token', data.refreshToken);
+          localStorage.setItem("access-token", data.accessToken);
+          localStorage.setItem("refresh-token", data.refreshToken);
           return _context3.abrupt("return", postWishItem(nursingHome_id));
 
         case 14:
@@ -176,8 +174,6 @@ function postWishItem(nursingHome_id) {
   });
 }
 
-;
-
 function deleteWishItem(svcId, svcType) {
   var res, refresh, data;
   return regeneratorRuntime.async(function deleteWishItem$(_context4) {
@@ -186,15 +182,15 @@ function deleteWishItem(svcId, svcType) {
         case 0:
           _context4.next = 2;
           return regeneratorRuntime.awrap(fetch("".concat(SERVER_ADDRESS, "/wish-list"), {
-            method: 'DELETE',
+            method: "DELETE",
             headers: {
-              'Content-Type': 'application/json',
-              'Authorization': "Bearer ".concat(localStorage.getItem('access-token'))
+              "Content-Type": "application/json",
+              Authorization: "Bearer ".concat(localStorage.getItem("access-token"))
             },
-            credentials: 'include',
+            credentials: "include",
             body: JSON.stringify({
-              "svcId": svcId,
-              "svcType": svcType
+              svcId: svcId,
+              svcType: svcType
             }) // body의 데이터 유형은 반드시 "Content-Type" 헤더와 일치해야 함
 
           }));
@@ -207,15 +203,15 @@ function deleteWishItem(svcId, svcType) {
             break;
           }
 
-          refresh = localStorage.getItem('refresh-token');
+          refresh = localStorage.getItem("refresh-token");
           console.log(refresh);
           _context4.next = 8;
           return regeneratorRuntime.awrap(postReissuance(refresh));
 
         case 8:
           data = _context4.sent;
-          localStorage.setItem('access-token', data.accessToken);
-          localStorage.setItem('refresh-token', data.refreshToken);
+          localStorage.setItem("access-token", data.accessToken);
+          localStorage.setItem("refresh-token", data.refreshToken);
           return _context4.abrupt("return", deleteWishItem(svcId, svcType));
 
         case 14:
@@ -237,22 +233,22 @@ function postSignUp(age, careGrade, insuranceClickid, diseaseResult, recipientCl
         case 0:
           _context5.next = 2;
           return regeneratorRuntime.awrap(fetch("".concat(SERVER_ADDRESS, "/member/signUp"), {
-            method: 'POST',
+            method: "POST",
             headers: {
-              'Content-Type': 'application/json',
-              'Authorization': "Bearer ".concat(localStorage.getItem('access-token'))
+              "Content-Type": "application/json",
+              Authorization: "Bearer ".concat(localStorage.getItem("access-token"))
             },
-            credentials: 'include',
+            credentials: "include",
             body: JSON.stringify({
-              "age": age,
-              "careGrade": careGrade,
-              "insuranceType": insuranceClickid,
-              "necessaryTreat": recoverResult,
-              "recipientType": recipientClickid,
-              "seniorName": name,
-              "sex": genderClickid,
-              "location": location,
-              "withDisease": diseaseResult
+              age: age,
+              careGrade: careGrade,
+              insuranceType: insuranceClickid,
+              necessaryTreat: recoverResult,
+              recipientType: recipientClickid,
+              seniorName: name,
+              sex: genderClickid,
+              location: location,
+              withDisease: diseaseResult
             })
           }));
 
@@ -264,15 +260,15 @@ function postSignUp(age, careGrade, insuranceClickid, diseaseResult, recipientCl
             break;
           }
 
-          refresh = localStorage.getItem('refresh-token');
+          refresh = localStorage.getItem("refresh-token");
           console.log(refresh);
           _context5.next = 8;
           return regeneratorRuntime.awrap(postReissuance(refresh));
 
         case 8:
           data = _context5.sent;
-          localStorage.setItem('access-token', data.accessToken);
-          localStorage.setItem('refresh-token', data.refreshToken);
+          localStorage.setItem("access-token", data.accessToken);
+          localStorage.setItem("refresh-token", data.refreshToken);
           return _context5.abrupt("return", postSignUp(age, careGrade, insuranceClickid, diseaseResult, recipientClickid, name, genderClickid, location, recoverResult));
 
         case 14:
@@ -295,14 +291,14 @@ function postLogout(refresh) {
         case 0:
           _context6.next = 2;
           return regeneratorRuntime.awrap(fetch("".concat(SERVER_ADDRESS, "/member/logout"), {
-            method: 'POST',
+            method: "POST",
             headers: {
-              'Content-Type': 'application/json',
-              'Authorization': "Bearer ".concat(localStorage.getItem('access-token'))
+              "Content-Type": "application/json",
+              Authorization: "Bearer ".concat(localStorage.getItem("access-token"))
             },
-            credentials: 'include',
+            credentials: "include",
             body: JSON.stringify({
-              'refresh': refresh
+              refresh: refresh
             })
           }));
 
@@ -314,15 +310,15 @@ function postLogout(refresh) {
             break;
           }
 
-          _refresh = localStorage.getItem('refresh-token');
+          _refresh = localStorage.getItem("refresh-token");
           console.log(_refresh);
           _context6.next = 8;
           return regeneratorRuntime.awrap(postReissuance(_refresh));
 
         case 8:
           data = _context6.sent;
-          localStorage.setItem('access-token', data.accessToken);
-          localStorage.setItem('refresh-token', data.refreshToken);
+          localStorage.setItem("access-token", data.accessToken);
+          localStorage.setItem("refresh-token", data.refreshToken);
           return _context6.abrupt("return", postLogout(_refresh));
 
         case 14:
@@ -347,9 +343,9 @@ function getMap(query) {
             method: "GET",
             headers: {
               accept: "application/json",
-              'Authorization': "Bearer ".concat(localStorage.getItem('access-token'))
+              Authorization: "Bearer ".concat(localStorage.getItem("access-token"))
             },
-            credentials: 'include'
+            credentials: "include"
           }));
 
         case 2:
@@ -360,15 +356,15 @@ function getMap(query) {
             break;
           }
 
-          refresh = localStorage.getItem('refresh-token');
+          refresh = localStorage.getItem("refresh-token");
           console.log(refresh);
           _context7.next = 8;
           return regeneratorRuntime.awrap(postReissuance(refresh));
 
         case 8:
           data = _context7.sent;
-          localStorage.setItem('access-token', data.accessToken);
-          localStorage.setItem('refresh-token', data.refreshToken);
+          localStorage.setItem("access-token", data.accessToken);
+          localStorage.setItem("refresh-token", data.refreshToken);
           return _context7.abrupt("return", getMap(query));
 
         case 14:
@@ -393,9 +389,9 @@ function getCompare(svcList) {
             method: "GET",
             headers: {
               accept: "application/json",
-              'Authorization': "Bearer ".concat(localStorage.getItem('access-token'))
+              Authorization: "Bearer ".concat(localStorage.getItem("access-token"))
             },
-            credentials: 'include'
+            credentials: "include"
           }));
 
         case 2:
@@ -406,15 +402,15 @@ function getCompare(svcList) {
             break;
           }
 
-          refresh = localStorage.getItem('refresh-token');
+          refresh = localStorage.getItem("refresh-token");
           console.log(refresh);
           _context8.next = 8;
           return regeneratorRuntime.awrap(postReissuance(refresh));
 
         case 8:
           data = _context8.sent;
-          localStorage.setItem('access-token', data.accessToken);
-          localStorage.setItem('refresh-token', data.refreshToken);
+          localStorage.setItem("access-token", data.accessToken);
+          localStorage.setItem("refresh-token", data.refreshToken);
           return _context8.abrupt("return", getCompare(svcList));
 
         case 14:
@@ -439,9 +435,9 @@ function getMember() {
             method: "GET",
             headers: {
               accept: "application/json",
-              'Authorization': "Bearer ".concat(localStorage.getItem('access-token'))
+              Authorization: "Bearer ".concat(localStorage.getItem("access-token"))
             },
-            credentials: 'include'
+            credentials: "include"
           }));
 
         case 2:
@@ -452,15 +448,15 @@ function getMember() {
             break;
           }
 
-          refresh = localStorage.getItem('refresh-token');
+          refresh = localStorage.getItem("refresh-token");
           console.log(refresh);
           _context9.next = 8;
           return regeneratorRuntime.awrap(postReissuance(refresh));
 
         case 8:
           data = _context9.sent;
-          localStorage.setItem('access-token', data.accessToken);
-          localStorage.setItem('refresh-token', data.refreshToken);
+          localStorage.setItem("access-token", data.accessToken);
+          localStorage.setItem("refresh-token", data.refreshToken);
           return _context9.abrupt("return", getMember());
 
         case 14:
@@ -474,8 +470,6 @@ function getMember() {
   });
 }
 
-;
-
 function getPopularList() {
   var res, refresh, data;
   return regeneratorRuntime.async(function getPopularList$(_context10) {
@@ -487,9 +481,9 @@ function getPopularList() {
             method: "GET",
             headers: {
               accept: "application/json",
-              'Authorization': "Bearer ".concat(localStorage.getItem('access-token'))
+              Authorization: "Bearer ".concat(localStorage.getItem("access-token"))
             },
-            credentials: 'include'
+            credentials: "include"
           }));
 
         case 2:
@@ -500,15 +494,15 @@ function getPopularList() {
             break;
           }
 
-          refresh = localStorage.getItem('refresh-token');
+          refresh = localStorage.getItem("refresh-token");
           console.log(refresh);
           _context10.next = 8;
           return regeneratorRuntime.awrap(postReissuance(refresh));
 
         case 8:
           data = _context10.sent;
-          localStorage.setItem('access-token', data.accessToken);
-          localStorage.setItem('refresh-token', data.refreshToken);
+          localStorage.setItem("access-token", data.accessToken);
+          localStorage.setItem("refresh-token", data.refreshToken);
           return _context10.abrupt("return", getPopularList());
 
         case 14:
@@ -521,8 +515,6 @@ function getPopularList() {
     }
   });
 }
-
-;
 
 function postReissuance(refresh) {
   return fetch("".concat(SERVER_ADDRESS, "/member/reissuance"), {

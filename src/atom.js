@@ -27,12 +27,6 @@ export const serviceState = atom({
   effects_UNSTABLE: [persistAtom],
 });
 
-export const keywordOptionState = atom({
-  key: "serviceState",
-  default: keywordOptions[0].key,
-  effects_UNSTABLE: [persistAtom],
-});
-
 export const gradeState = atom({
   key: "gradeState",
   default: gradeOptions[0].key,
@@ -42,5 +36,11 @@ export const gradeState = atom({
 export const orderState = atom({
   key: "orderState",
   default: orderOptions[0].key,
+  effects_UNSTABLE: [persistAtom],
+});
+
+export const wordsState = atom({
+  key: "wordsState",
+  default: keywordOptions[0].key,
   effects_UNSTABLE: [persistAtom],
 });
