@@ -200,7 +200,7 @@ function Detail({ nursingHome_id, detail_bool, setDetail_bool }) {
   const isMobile = useMediaQuery({
     query: "(max-width:1000px)",
   });
-
+  console.log(response.positive);
   const [fixopen, setFixopen] = useState(false);
   if (isMobile) {
     return (

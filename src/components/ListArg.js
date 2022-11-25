@@ -2,7 +2,13 @@ import styled from "styled-components";
 import Detail from "./Detail";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { wordsState,serviceState,gradeState,orderState, keywordState } from "../atom";
+import {
+  wordsState,
+  serviceState,
+  gradeState,
+  orderState,
+  keywordState,
+} from "../atom";
 import { useRecoilState } from "recoil";
 const StyledImage = styled.img`
   border-radius: 10px;
@@ -10,7 +16,7 @@ const StyledImage = styled.img`
   filter: drop-shadow(1px 1px 5px rgba(25, 32, 60, 1));
   height: ${(prop) => (prop.id === "Themelist" ? "230px" : "220px")};
   width: ${(prop) => (prop.id === "Themelist" ? "330px" : "200px")};
-  object-fit: ${(prop) => (prop.id === "Themelist" ? "fill" : "none")};
+  object-fit: ${(prop) => (prop.id === "Themelist" ? "fill" : "cover")};
   background-size: cover;
   display: inline-block;
   cursor: pointer;
@@ -64,11 +70,11 @@ const StyledListArg = styled.div({
 function ListArg({ index, name, img, loc, id, nursingHome_id, key, keyword }) {
   const [detail_bool, setDetail_bool] = useState(false);
   const navigate = useNavigate();
-  const [searchKeyword,setSearchKeyword] = useRecoilState(keywordState);
-  const [service,setService] = useRecoilState(serviceState);
-  const [grade,setGrade] = useRecoilState(gradeState);
-  const [order,setOrder] = useRecoilState(orderState);
-  const [words,setWords] = useRecoilState(wordsState);
+  const [searchKeyword, setSearchKeyword] = useRecoilState(keywordState);
+  const [service, setService] = useRecoilState(serviceState);
+  const [grade, setGrade] = useRecoilState(gradeState);
+  const [order, setOrder] = useRecoilState(orderState);
+  const [words, setWords] = useRecoilState(wordsState);
   return (
     <StyledListArg
       id={id + index}
@@ -83,13 +89,17 @@ function ListArg({ index, name, img, loc, id, nursingHome_id, key, keyword }) {
       <StyledImage
         onClick={(i) => {
           if (id === "Themelist" && keyword === "ch") {
-            setSearchKeyword("서울")
-            setWords("ch")
-            navigate(`search/list?keyword=서울&service=${service}&grade=${grade}&order=${order}&words=ch`)
+            setSearchKeyword("서울");
+            setWords("ch");
+            navigate(
+              `search/list?keyword=서울&service=${service}&grade=${grade}&order=${order}&words=ch`
+            );
           } else if (id === "Themelist" && keyword === "wo") {
-            setSearchKeyword("서울")
-            setWords("wo")
-            navigate(`search/list?keyword=서울&service=${service}&grade=${grade}&order=${order}&words=wo`)
+            setSearchKeyword("서울");
+            setWords("wo");
+            navigate(
+              `search/list?keyword=서울&service=${service}&grade=${grade}&order=${order}&words=wo`
+            );
           }
         }}
         id={id}
