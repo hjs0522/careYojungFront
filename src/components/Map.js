@@ -93,6 +93,7 @@ function Map({ mapArr, setMapArr }) {
         rightX: wholemap.getCenter()["La"] + 0.065514,
         rightY: wholemap.getCenter()["Ma"] + 0.055675,
         service: "asd",
+        words: "all",
       };
       let query = Object.keys(currentMap)
         .map(
@@ -167,7 +168,7 @@ function Map({ mapArr, setMapArr }) {
           width: "calc(100% - 400px)",
         }}
       >
-        <div className="Map" ref={mapcontent} style={{ height: "100vh" }}></div>
+        <div className="Map" ref={mapcontent} style={{ height: "90vh" }}></div>
       </div>
     </>
   );
