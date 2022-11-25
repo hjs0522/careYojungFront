@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Modal, Button } from "semantic-ui-react";
 import styled from "styled-components";
 
@@ -13,22 +13,17 @@ const Styledbody = styled.div({
   height: "50vh",
 });
 
-function Tos() {
+function Tos({ tosOpen, setTosOpen }) {
   const [open, setOpen] = useState(false);
-  //   useEffect(() => {
-  //     setOpen(review_bool);
-  //   }, [review_bool]);
-  //   useEffect(() => {
-  //     setReview_bool(open);
-  //   }, [open]);
+  useEffect(() => {
+    setOpen(tosOpen);
+  }, [tosOpen]);
+  useEffect(() => {
+    setTosOpen(open);
+  }, [open]);
 
   return (
-    <Modal
-      onOpen={() => setOpen(true)}
-      open={open}
-      size="small"
-      trigger={<Button>Show Modal</Button>}
-    >
+    <Modal onOpen={() => setOpen(true)} open={open} size="small">
       <Modal.Header>
         <StyledHeader>개인정보 이용약관 동의</StyledHeader>
       </Modal.Header>
@@ -40,14 +35,20 @@ function Tos() {
           </div>
           <div>
             <div>②수집하려는 개인정보의 항목</div>
-            <br />성명, 성별, 연령, 장기노인요양등급, 가지고 있는 질병, 필요한 치료, 보험유형, 수급자 유형, 희망지역{" "}
+            <br />
+            성명, 성별, 연령, 장기노인요양등급, 가지고 있는 질병, 필요한 치료,
+            보험유형, 수급자 유형, 희망지역{" "}
           </div>
           <div>
             <div>개인정보의 보유 및 이용기간(근거법률)</div>
-            <br />1년{" "}
+            <br />
+            1년{" "}
           </div>
           <div>
-            <div>④동의를 거부할 수 있으며, 예시)동의 거부시 ○○서비스가 제공되지 않습니다.</div>
+            <div>
+              ④동의를 거부할 수 있으며, 예시)동의 거부시 케어 요정 서비스가
+              제공되지 않습니다.
+            </div>
             <br />{" "}
           </div>
         </Styledbody>
