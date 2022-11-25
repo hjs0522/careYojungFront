@@ -6,7 +6,7 @@ import Detail from "./Detail";
 const StyledMaplist = styled.div({
   display: "inline-block",
   width: "400px",
-  height: "100vh",
+  height: "90vh",
   border: "1px solid #e1e1e1",
 });
 
@@ -202,7 +202,12 @@ function Maplist({ mapArr, wholemap }) {
                 console.log(i.nursingHome_id);
               }}
             >
-              <DetailMaplist key={i.nursingHome_id} {...i} wholemap={wholemap} mapIndex={mapIndex} />
+              <DetailMaplist
+                key={i.nursingHome_id}
+                {...i}
+                wholemap={wholemap}
+                mapIndex={mapIndex}
+              />
             </div>
           );
         })}

@@ -69,7 +69,7 @@ function DetailAI({ isMobile, detailInfo }) {
         <StyledPopup>
           <Popup
             content={
-              "케어요정의 리뷰와 여러 인터넷상의 소셜 데이터를 종합, 분석하여 각 시설의 평가를 나타냅니다."
+              "케어요정의 리뷰와 여러 인터넷상의 소셜 데이터를 종합, 분석하여 각 시설의 평가를 나타냅니다.\n로그인 했을경우 리뷰점수를 확인할 수 있습니다."
             }
             key={"explain"}
             header={"AI점수란?"}
@@ -86,7 +86,7 @@ function DetailAI({ isMobile, detailInfo }) {
               <DetailAIText
                 style={{ width: "0", color: "#496ace", marginLeft: "3%" }}
               >
-                {i.value * 100}%
+                {(i.value * 100).toFixed(1)}%
               </DetailAIText>
             </DetailAIElement>
           ))}
@@ -117,7 +117,7 @@ function DetailAI({ isMobile, detailInfo }) {
               <DetailAIText
                 style={{ width: "0", color: "#496ace", marginLeft: "3%" }}
               >
-                {i.value * 100}%
+                {(i.value * 100).toFixed(1)}%
               </DetailAIText>
             </DetailAIElement>
           ))}
