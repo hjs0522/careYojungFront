@@ -129,6 +129,7 @@ const SearchItem = ({
   setBarOpen,
   compareList,
 }) => {
+  const gradeTrans = ['신설','A','B','C','D','E']
   const itemRef = useRef(null);
   console.log("searchItem rendering");
   const [detail_bool, setDetail_bool] = useState(false); //상세정보 페이지 열려있는지 여부
@@ -251,7 +252,7 @@ const SearchItem = ({
         >
           <div>
             <h5>
-              {name} ・ 요양원 ・ {grade === 0 ? "신설" : grade}
+              {name} ・ 요양원 ・ {gradeTrans[grade]}
             </h5>
           </div>
           <div>
@@ -350,7 +351,7 @@ const SearchItem = ({
         style={{ cursor: "pointer" }}
       >
         <div>
-          <h5>{name} ・ 요양원</h5>
+          <h5>{name} ・ 요양원 ・ {gradeTrans[grade]}</h5>
         </div>
         <div>
           <div>{getStar(score)}</div>

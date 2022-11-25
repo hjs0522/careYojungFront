@@ -104,6 +104,7 @@ const menuArr = {
 };
 
 function Detail({ nursingHome_id, detail_bool, setDetail_bool }) {
+  const gradeTrans = ['신설','A','B','C','D','E']
   const [response, setResponse] = useState({
     addrDetail: "",
     addrFront: "",
@@ -305,7 +306,7 @@ function Detail({ nursingHome_id, detail_bool, setDetail_bool }) {
       <DetailPage>
         <ModalHeader>{response.name}</ModalHeader>
         <ModalHeader style={{ marginLeft: "20px", fontSize: "24px" }}>
-          ・ 요양원 ・ {response.grade === 0 ? "신설" : response.grade} 등급
+          ・ 요양원 ・ {gradeTrans[response.grade]} 등급
           <Button
             style={{
               marginLeft: "30px",

@@ -129,14 +129,14 @@ const DropDownRow = (props) => {
           <DropdownDiv>
             {props.isMapPage ? (
               <Link
-                to={`/search/list?keyword=${keyword}&service=${service}&grade=${grade}&order=${order}`}
+                to={`/search/list?keyword=${keyword}&service=${service}&grade=${grade}&order=${order}&words=all`}
               >
                 <Icon name="list"></Icon>
                 리스트로 보기
               </Link>
             ) : (
               <Link
-                to={`/search/map?keyword=${keyword}&service=${service}&grade=${grade}&order=${order}`}
+                to={`/search/map?keyword=${keyword}&service=${service}&grade=${grade}&order=${order}&words=all`}
               >
                 <Icon name="map outline"></Icon>
                 지도로 보기

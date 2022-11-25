@@ -3,8 +3,9 @@ import { Container, Dimmer, Loader,Image} from "semantic-ui-react";
 import DropDownRow from "../components/Header/DropDownRow";
 import Map from "../components/Map";
 import {useRecoilState} from 'recoil'
-import {keywordState,serviceState,gradeState,orderState}from '../atom';
+import {keywordState,serviceState,gradeState,orderState,wordsState}from '../atom';
 import {getSearchList} from '../api';
+
 
 function Mappage() {
   const [keyword,setKeyword] = useRecoilState(keywordState);
@@ -13,9 +14,9 @@ function Mappage() {
   const [order,setOrder] = useRecoilState(orderState);
   const [loading,setLoading] = useState(true);
   const [mapArr, setMapArr] = useState([]);
-  
+  const [words,setWords] = useRecoilState(wordsState);
   useEffect(() =>{
-    getSearchList(keyword,service,grade,order).then(
+    getSearchList(keyword,service,grade,order,words).then(
     (data)=>{
         setMapArr(data);
         setLoading(false);

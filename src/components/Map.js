@@ -93,6 +93,7 @@ function Map({ mapArr, setMapArr }) {
         rightX: wholemap.getCenter()["La"] + 0.065514,
         rightY: wholemap.getCenter()["Ma"] + 0.055675,
         service: "asd",
+        words:"all"
       };
       let query = Object.keys(currentMap)
         .map(
