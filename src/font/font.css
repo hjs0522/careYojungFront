@@ -1,0 +1,18 @@
+@font-face {
+  font-family: "NanumR";
+  font-weight: normal;
+  font-style: normal;
+  src: url("NanumSquareR.ttf");
+}
+@font-face {
+  font-family: "NanumB";
+  font-weight: normal;
+  font-style: normal;
+  src: url("NanumSquareB.ttf");
+}
+@font-face {
+  font-family: "NanumEB";
+  font-weight: normal;
+  font-style: normal;
+  src: url("NanumSquare_acEB.ttf");
+}
