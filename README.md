@@ -18,3 +18,11 @@
 <img width="1141" alt="스크린샷 2023-03-22 오후 3 44 30" src="https://user-images.githubusercontent.com/91768822/229422630-5446f688-5dc5-44fe-84a0-c1ea7a1e2ba6.png">
 
 [메인 시나리오]
+<img width="1141" alt="스크린샷 2023-03-22 오후 3 50 05" src="https://user-images.githubusercontent.com/91768822/229425990-7c2c9343-56b8-4396-97d7-fa24827de7e5.png">
+<img width="1141" alt="스크린샷 2023-03-22 오후 3 52 23" src="https://user-images.githubusercontent.com/91768822/229426013-6e7c273a-fcfc-4aef-b492-cf90a81ff87c.png">
+<img width="1141" alt="스크린샷 2023-03-22 오후 3 52 41" src="https://user-images.githubusercontent.com/91768822/229426048-f4f5b1e6-53ab-473f-89d0-c25015d260bb.png">
+<img width="1141" alt="스크린샷 2023-03-22 오후 3 52 55" src="https://user-images.githubusercontent.com/91768822/229426072-827582e4-ac6e-47de-9b43-3a6f7fc6603c.png">
+<img width="1141" alt="스크린샷 2023-03-22 오후 3 53 06" src="https://user-images.githubusercontent.com/91768822/229426101-329997fe-c948-41da-b180-93b2042017c3.png">
+<img width="1141" alt="스크린샷 2023-03-22 오후 3 53 21" src="https://user-images.githubusercontent.com/91768822/229426152-7382b6c8-3e2a-4096-9e7a-44783657757a.png">
+<img width="1141" alt="스크린샷 2023-03-22 오후 3 53 35" src="https://user-images.githubusercontent.com/91768822/229426178-d3672738-b1b4-4481-b3a3-bbcb1dceb97f.png">
+<img width="1141" alt="스크린샷 2023-03-22 오후 3 53 47" src="https://user-images.githubusercontent.com/91768822/229426197-5914a636-5936-41b8-82d7-bd70c8d758a5.png">
