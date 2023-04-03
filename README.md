@@ -1,5 +1,6 @@
 # careYojungFront
 요양원 정보 알림이 프로젝트시 구현한 프론트엔드 코드입니다.
+
 [문제인식 + 기획의도]
 <img width="1141" alt="스크린샷 2023-03-22 오후 3 35 43" src="https://user-images.githubusercontent.com/91768822/229421528-d52afab8-4e60-48cd-95e1-e6a774c45a69.png">
 <img width="1141" alt="스크린샷 2023-03-22 오후 3 36 50" src="https://user-images.githubusercontent.com/91768822/229421560-d9cc9393-49b3-47e5-9581-030e5395c75f.png">
@@ -12,7 +13,10 @@
 <img width="1141" alt="스크린샷 2023-03-22 오후 3 40 39" src="https://user-images.githubusercontent.com/91768822/229421983-80e318e3-317d-4cb4-87fb-64fbe4692edc.png">
 <img width="1141" alt="스크린샷 2023-03-22 오후 3 40 48" src="https://user-images.githubusercontent.com/91768822/229422027-299a5423-c09a-423b-ad22-7895fe49c92c.png">
 <img width="1141" alt="스크린샷 2023-03-22 오후 3 41 11" src="https://user-images.githubusercontent.com/91768822/229422050-fe7cbb95-6a77-48ee-92a4-2e8404ac6844.png">
-![Uploading 스크린샷 2023-03-22 오후 3.41.33.png…]()
-
+<img width="1141" alt="스크린샷 2023-03-22 오후 3 41 33" src="https://user-images.githubusercontent.com/91768822/229422510-c4cec674-3a95-4e8d-ad03-8e40248d1454.png">
+<img width="1141" alt="스크린샷 2023-03-22 오후 3 42 12" src="https://user-images.githubusercontent.com/91768822/229422567-7de45930-0c9a-4b98-bab6-5f92d17142b8.png">
+<img width="1141" alt="스크린샷 2023-03-22 오후 3 42 42" src="https://user-images.githubusercontent.com/91768822/229422590-2dbfd442-391c-4e6a-a19a-75cffc4084d7.png">
 [아키텍처]
+<img width="1141" alt="스크린샷 2023-03-22 오후 3 44 30" src="https://user-images.githubusercontent.com/91768822/229422630-5446f688-5dc5-44fe-84a0-c1ea7a1e2ba6.png">
+
 [메인 시나리오]
