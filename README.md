@@ -1,25 +1,18 @@
 # careYojungFront
 요양원 정보 알림이 프로젝트시 구현한 프론트엔드 코드입니다.
 [문제인식 + 기획의도]
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/cf34cbbc-825d-4edf-8c00-9aaf4c4d7efe/Untitled.png)
+<img width="1141" alt="스크린샷 2023-03-22 오후 3 35 43" src="https://user-images.githubusercontent.com/91768822/229421528-d52afab8-4e60-48cd-95e1-e6a774c45a69.png">
+<img width="1141" alt="스크린샷 2023-03-22 오후 3 36 50" src="https://user-images.githubusercontent.com/91768822/229421560-d9cc9393-49b3-47e5-9581-030e5395c75f.png">
 [시스템 구성도]
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/42ec3bfe-5b76-4269-83ba-13b7af06ef3f/Untitled.png)
+<img width="1141" alt="스크린샷 2023-03-22 오후 3 37 31" src="https://user-images.githubusercontent.com/91768822/229421633-70f422f6-ea0d-4f98-b93a-ae737917658e.png">
 [주요기능]
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/3f5f63af-3d4d-43ea-94b2-4186163bd8fe/Untitled.png)
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/46e9c892-2bef-42b7-9c71-7a55722e2289/Untitled.png)
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/3dc3623b-f560-4411-8e56-4cf6677bdaeb/Untitled.png)
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/f0d2d8ad-ed98-45d4-a4e3-6f29fde5d9ec/Untitled.png)
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/72f61b0a-09c6-42b7-b0a0-30f99454e223/Untitled.png)
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/44bf8c19-0f4a-44c0-b917-128be20fe3d8/Untitled.png)
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/fbe8ea83-cb3d-4546-becc-3351a59b16cf/Untitled.png)
+<img width="1141" alt="스크린샷 2023-03-22 오후 3 38 25" src="https://user-images.githubusercontent.com/91768822/229421677-f6c956fe-4299-47dc-a02f-2c72ef8cf13f.png">
+<img width="1141" alt="스크린샷 2023-03-22 오후 3 40 07" src="https://user-images.githubusercontent.com/91768822/229421887-009a3259-325c-42f2-a180-a4dac0b01707.png">
+<img width="1141" alt="스크린샷 2023-03-22 오후 3 40 22" src="https://user-images.githubusercontent.com/91768822/229421918-1bbf6ab3-cf85-4985-a20d-5d2478eb2106.png">
+<img width="1141" alt="스크린샷 2023-03-22 오후 3 40 39" src="https://user-images.githubusercontent.com/91768822/229421983-80e318e3-317d-4cb4-87fb-64fbe4692edc.png">
+<img width="1141" alt="스크린샷 2023-03-22 오후 3 40 48" src="https://user-images.githubusercontent.com/91768822/229422027-299a5423-c09a-423b-ad22-7895fe49c92c.png">
+<img width="1141" alt="스크린샷 2023-03-22 오후 3 41 11" src="https://user-images.githubusercontent.com/91768822/229422050-fe7cbb95-6a77-48ee-92a4-2e8404ac6844.png">
+![Uploading 스크린샷 2023-03-22 오후 3.41.33.png…]()
+
 [아키텍처]
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/08c95245-5633-487d-a7fe-a36f8e129462/Untitled.png)
 [메인 시나리오]
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/170d1dd0-299d-4a0d-bc3c-8ea47dd6c40f/Untitled.png)
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/e3ced816-aaff-4a53-abcb-83e3ec44fa6e/Untitled.png)
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/b2bf1769-7f99-42b5-a64c-528cff9973f6/Untitled.png)
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/ec14bde7-b405-47f6-9eef-5f2cbff94f1b/Untitled.png)
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/525e8b06-6c9a-4efc-bb0b-bbadf39c3a61/Untitled.png)
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/ca59e99f-9090-42a4-97a3-2cbd1955cdf3/Untitled.png)
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/1bab286f-3165-4c41-aba9-720600a3d4dc/Untitled.png)
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/4c257cb1-38b1-4f9d-9f72-52c6513b00ff/Untitled.png)
